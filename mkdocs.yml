@@ -4,30 +4,34 @@ use_directory_urls: false
 
 nav:
   - "Inicio": "index.md"
-  - "UD1.- Gestión de Soluciones I":
-      - "UD1 - Gestión de soluciones I/index.md"
-  - "UD2.- Gestión de Soluciones II":
-    - "UD2 - Gestión de soluciones II/index.md"
-  - "UD3.- Gestión de Soluciones III":
-    - "UD3 - Gestión de soluciones III/index.md"
-    - "Ejercicio de clase": "UD3 - Gestión de soluciones III/Ejercicios_clase/Ejemplo1.md"
-  - "UD4.- Gestión de Soluciones IV":
-    - "UD4 - Gestión de soluciones IV/index.md"
-    - "Ejercicio de clase 1": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo1.md"
-    - "Ejercicio de clase 2": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo2.md"
-  - "UD5 - Introducción a la computación paralela y distribuida":
-    - "UD5 - Introducción a la computación paralela y distribuida/index.md"
-  - "UD6 - Apache Hadoop":
-    - "UD6 - Apache Hadoop/index.md"
-    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
-    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
-    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"
-  - "UD7 - Apache Hadoop - Hive":
-    - "UD7 - Apache Hadoop - Hive/index.md"
-  - "UD8 - Ingesta de Datos":
-    - "UD8 - Ingesta de Datos/index.md"
-    - "Pig": "UD8 - Ingesta de Datos/pig.md"
-    - "Flume": "UD8 - Ingesta de Datos/flume.md"
+  - "UD1 - Gestión de Soluciones":
+    - "UD1 - Gestión de soluciones/index.md"
+    - "Diseño y Construcción de Soluciones": "UD1 - Gestión de soluciones/1_dis_const_soluc.md"
+    - "Procediminetos y Mecanismos de Ingesta de Datos": "UD1 - Gestión de soluciones/2_proced_mecan_ingesta_datos.md"
+    - "Formato de Datos Adecuado para el Almacenamiento": "UD1 - Gestión de soluciones/3_form_datos_almacenamiento.md"
+#  - "UD2 - Procesado y Presentación Datos Almacenados":
+#    - "MongoDB": "UD2 - Procesado y Presentación Datos Almacenados/mongoDB.md"
+#    - "Neo4j" : "UD2 - Procesado y Presentación Datos Almacenados/neo4j.md"
+#  - "UD3.- Gestión de Soluciones III":
+#    - "UD3 - Gestión de soluciones III/index.md"
+#    - "Ejercicio de clase": "UD3 - Gestión de soluciones III/Ejercicios_clase/Ejemplo1.md"
+#  - "UD4.- Gestión de Soluciones IV":
+#    - "UD4 - Gestión de soluciones IV/index.md"
+#    - "Ejercicio de clase 1": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo1.md"
+#    - "Ejercicio de clase 2": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo2.md"
+#  - "UD5 - Introducción a la computación paralela y distribuida":
+#    - "UD5 - Introducción a la computación paralela y distribuida/index.md"
+#  - "UD6 - Apache Hadoop":
+#    - "UD6 - Apache Hadoop/index.md"
+#    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
+#    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
+#    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"
+#  - "UD7 - Apache Hadoop - Hive":
+#    - "UD7 - Apache Hadoop - Hive/index.md"
+#  - "UD8 - Ingesta de Datos":
+#    - "UD8 - Ingesta de Datos/index.md"
+#    - "Pig": "UD8 - Ingesta de Datos/pig.md"
+#    - "Flume": "UD8 - Ingesta de Datos/flume.md"
 
 theme:
   name: "material"
