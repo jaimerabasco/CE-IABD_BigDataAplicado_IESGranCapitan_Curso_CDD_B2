@@ -1,0 +1,114 @@
+site_name: Big Data Aplicado
+site_url: https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/
+use_directory_urls: false
+
+nav:
+  - "Inicio": "index.md"
+  - "UD1.- Gestión de Soluciones I":
+      - "UD1 - Gestión de soluciones I/index.md"
+  - "UD2.- Gestión de Soluciones II":
+    - "UD2 - Gestión de soluciones II/index.md"
+  - "UD3.- Gestión de Soluciones III":
+    - "UD3 - Gestión de soluciones III/index.md"
+    - "Ejercicio de clase": "UD3 - Gestión de soluciones III/Ejercicios_clase/Ejemplo1.md"
+  - "UD4.- Gestión de Soluciones IV":
+    - "UD4 - Gestión de soluciones IV/index.md"
+    - "Ejercicio de clase 1": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo1.md"
+    - "Ejercicio de clase 2": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo2.md"
+  - "UD5 - Introducción a la computación paralela y distribuida":
+    - "UD5 - Introducción a la computación paralela y distribuida/index.md"
+  - "UD6 - Apache Hadoop":
+    - "UD6 - Apache Hadoop/index.md"
+    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
+    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
+    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"
+  - "UD7 - Apache Hadoop - Hive":
+    - "UD7 - Apache Hadoop - Hive/index.md"
+  - "UD8 - Ingesta de Datos":
+    - "UD8 - Ingesta de Datos/index.md"
+    - "Pig": "UD8 - Ingesta de Datos/pig.md"
+    - "Flume": "UD8 - Ingesta de Datos/flume.md"
+
+theme:
+  name: "material"
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Cambiar a modo noche
+    - scheme: slate 
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Cambiar a modo día
+  font:
+    text: Roboto
+    code: Roboto Mono
+  language: es
+  logo: "images/logo.png"
+  favicon: "images/logo.png"
+  features:
+    - navigation.tracking
+    - navigation.indexes
+    - toc.follow
+    - navigation.top
+    - header.autohide
+    - announce.dismiss
+#    - content.code.annotate
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/jaimerabasco
+    - icon: fontawesome/solid/paper-plane
+      link: mailto:<jaimerabasco@iesgrancapitan.org>
+#  consent:
+#    title: Consentimiento de cookie
+#    description: >-
+#      Esta página de apuntes utiliza cookies para reconocer las visitas, medir la efectividad de la documentación
+#      y averiguar si encuentras aquello que buscas o cómo has llegado a estos apuntes.
+#      Con tu consentimiento, me ayudas a mejorar estos materiales.
+
+plugins:
+  - search:
+      lang: es
+  - social:
+      cards: true
+#  - git-revision-date-localized:
+#      enable_creation_date: true
+
+markdown_extensions:
+  - abbr
+  - attr_list
+  - admonition
+  - pymdownx.highlight:
+      linenums: true
+      linenums_style: pymdownx-inline
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg      
+  - pymdownx.superfences
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - tables
+  - md_in_html
+  - footnotes
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - meta
+  - sane_lists
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+copyright: 2023-2024 Jaime Rabasco - Licencia CC BY-NC-SA
