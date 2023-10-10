@@ -7,10 +7,10 @@ nav:
   - "UD1 - Gestión de Soluciones":
     - "UD1 - Gestión de soluciones/index.md"
     - "Diseño y Construcción de Soluciones": "UD1 - Gestión de soluciones/1_dis_const_soluc.md"
-    - "Procediminetos y Mecanismos de Ingesta de Datos": "UD1 - Gestión de soluciones/2_proced_mecan_ingesta_datos.md"
+    - "Procedimientos y Mecanismos de Ingesta de Datos": "UD1 - Gestión de soluciones/2_proced_mecan_ingesta_datos.md"
     - "Formato de Datos Adecuado para el Almacenamiento": "UD1 - Gestión de soluciones/3_form_datos_almacenamiento.md"
-#  - "UD2 - Procesado y Presentación Datos Almacenados":
-#    - "MongoDB": "UD2 - Procesado y Presentación Datos Almacenados/mongoDB.md"
+  - "UD2 - Procesado y Presentación Datos Almacenados":
+    - "MongoDB": "UD2 - Procesado y Presentación Datos Almacenados/mongoDB.md"
 #    - "Neo4j" : "UD2 - Procesado y Presentación Datos Almacenados/neo4j.md"
 #  - "UD3.- Gestión de Soluciones III":
 #    - "UD3 - Gestión de soluciones III/index.md"
@@ -61,6 +61,8 @@ theme:
     - navigation.top
     - header.autohide
     - announce.dismiss
+    - content.tabs.link
+    - content.code.copy
 #    - content.code.annotate
 
 extra_css:
@@ -92,6 +94,9 @@ markdown_extensions:
   - attr_list
   - admonition
   - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
       linenums: true
       linenums_style: pymdownx-inline
   - pymdownx.tabbed:
@@ -99,6 +104,8 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:materialx.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg      
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
   - pymdownx.superfences
   - pymdownx.caret
   - pymdownx.mark
