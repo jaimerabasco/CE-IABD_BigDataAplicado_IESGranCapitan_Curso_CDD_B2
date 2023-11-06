@@ -170,7 +170,6 @@ Para la administración del sistema de bases de datos, MongoDB pone a disposici�
 
 ## 3. Instalación y uso
 
-
 ### 3.1 Docker
 
 Vamos a explicar como levantar un contenedor MongoDB con Docker
@@ -462,7 +461,7 @@ Y escribiendo después la contraseña establecida nos conectamos a nuestro al se
 </figure>
 
 
-1. Seguimos los pasos y creamos un **New Playground**. Como test, ejecutamos (_botón play arriba a la derecha_) el playground creado por defecto. Observa el resultado, la salida en consola y los nuevos datos creados en nuestra Cloud Database.
+4. Seguimos los pasos y creamos un **New Playground**. Como test, ejecutamos (_botón play arriba a la derecha_) el playground creado por defecto. Observa el resultado, la salida en consola y los nuevos datos creados en nuestra Cloud Database.
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_VSCode_4_PlayGround_Ejecutado.jpg">
@@ -470,6 +469,13 @@ Y escribiendo después la contraseña establecida nos conectamos a nuestro al se
 </figure>
 
 5. Observa el código del playground. Presta especial atención a las palabras reservadas `db, use, consolo.log(), print(), printjson()`. Para mas información de uso consulta la [documentación oficial](https://www.mongodb.com/docs/mongodb-vscode/playgrounds/)
+   
+6. También puedes ejecutar una shell de mongoDB usando botón derecho sobre la conexión y pulsando ***Launch MongoDB Shell***. _Para ello debes tener en tu sistema [MongoDB Shell](https://www.mongodb.com/docs/mongodb-shell/install/)_
+
+<figure style="align: center; width:600px;">
+    <img src="images/MongoDB_VSCode_5_MongoDB_Shell.jpg">
+    <figcaption>Figura MongoDB for VSCode 5. MongoDB Shell en VSCode</figcaption>
+</figure>
 
 ### 3.6 MongoDB Compass
 
@@ -1042,7 +1048,7 @@ Entonces, para eliminar todos los documentos que coincidan con un criterio de el
 Lo vemos en el siguiente ejemplo, donde eliminamos todos los documentos de la colección de inventario donde el campo de estado es "A":
 
 ```json
-db.inventory.deleteMany({ estado: "A" })
+db.inventory.deleteMany({ status: "A" })
 ```
 
 El método devuelve un documento con el estado de la operación.
@@ -1054,7 +1060,7 @@ Para eliminar como máximo un único documento que coincida con un filtro espec�
 En el siguiente ejemplo elimina el primer documento cuyo estado es "D":
 
 ```json
-db.inventory.deleteOne( {estado: "D" } )
+db.inventory.deleteOne( {status: "D" } )
 ```
 
 #### Otros Ejemplos

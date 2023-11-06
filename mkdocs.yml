@@ -10,8 +10,9 @@ nav:
     - "Procedimientos y Mecanismos de Ingesta de Datos": "UD1 - Gestión de soluciones/2_proced_mecan_ingesta_datos.md"
     - "Formato de Datos Adecuado para el Almacenamiento": "UD1 - Gestión de soluciones/3_form_datos_almacenamiento.md"
   - "UD2 - Procesado y Presentación Datos Almacenados":
+    - "UD2 - Procesado y Presentación Datos Almacenados/index.md"
     - "MongoDB": "UD2 - Procesado y Presentación Datos Almacenados/mongoDB.md"
-#    - "Neo4j" : "UD2 - Procesado y Presentación Datos Almacenados/neo4j.md"
+    - "Neo4j" : "UD2 - Procesado y Presentación Datos Almacenados/neo4j.md"
 #  - "UD3.- Gestión de Soluciones III":
 #    - "UD3 - Gestión de soluciones III/index.md"
 #    - "Ejercicio de clase": "UD3 - Gestión de soluciones III/Ejercicios_clase/Ejemplo1.md"

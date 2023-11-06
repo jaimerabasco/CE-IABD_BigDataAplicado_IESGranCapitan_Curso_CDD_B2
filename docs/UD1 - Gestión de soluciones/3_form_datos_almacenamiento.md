@@ -508,7 +508,7 @@ Por otro lado, no utilizan el lenguaje SQL. Por el contrario, emplean otro tipo 
 En base a esta estructura y características, las bases de datos documentales se usan principalmente para almacenar **grandes cantidades de datos**, o cuando se trata de información poco estructurada.
 
 
-## 5. Bases de datos sobre grafos
+## 5. Bases de datos orientadas a grafos
 
 Tal y como se expuso anteriormente, en los últimos años han aparecido nuevos tipos de datos como aquellos que vienen dados en forma de **grafo**. Algunos de estos datos son los provenientes de interacciones en **redes sociales, datos geográficos expresados en forma de mapas, etc**.
 
@@ -577,11 +577,11 @@ Aunque existen diferentes tipos de modelos de datos basados en grafos, cada sist
 
 Uno de los modelos de datos basado en grafos más popular es el **modelo de grafo de propiedades etiquetadas**. Un grafo representado mediante este modelo, debe cumplir las siguientes características principales:
 
-1) Debe contener un conjunto de nodos y aristas o relaciones entre dichos nodos,
-2) Los nodos contienen propiedades, definidas a través de pares “clave-valor”,
-3) Los nodos pueden estar etiquetados con una o más etiquetas,
-4) Las relaciones entre los nodos están nombradas y son dirigidas, teniendo siempre un nodo de inicio y otro nodo de fin,
-5) Las relaciones del grafo también pueden contener propiedades. Este modelo, a pesar de su simplicidad, es sencillo de entender y permite modelar cualquier problema y/o conjunto de datos.
+1. Debe contener un conjunto de nodos y aristas o relaciones entre dichos nodos.
+2. Los nodos contienen propiedades, definidas a través de pares “clave-valor”.
+3. Los nodos pueden estar etiquetados con una o más etiquetas.
+4. Las relaciones entre los nodos están nombradas y son dirigidas, teniendo siempre un nodo de inicio y otro nodo de fin.
+5. Las relaciones del grafo también pueden contener propiedades. Este modelo, a pesar de su simplicidad, es sencillo de entender y permite modelar cualquier problema y/o conjunto de datos.
 
 ### 5.1 Características principales
 
