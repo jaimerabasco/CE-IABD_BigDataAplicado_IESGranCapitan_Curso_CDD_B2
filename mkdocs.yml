@@ -13,17 +13,11 @@ nav:
     - "UD2 - Procesado y Presentación Datos Almacenados/index.md"
     - "MongoDB": "UD2 - Procesado y Presentación Datos Almacenados/mongoDB.md"
     - "Neo4j" : "UD2 - Procesado y Presentación Datos Almacenados/neo4j.md"
-#  - "UD3.- Gestión de Soluciones III":
-#    - "UD3 - Gestión de soluciones III/index.md"
-#    - "Ejercicio de clase": "UD3 - Gestión de soluciones III/Ejercicios_clase/Ejemplo1.md"
-#  - "UD4.- Gestión de Soluciones IV":
-#    - "UD4 - Gestión de soluciones IV/index.md"
-#    - "Ejercicio de clase 1": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo1.md"
-#    - "Ejercicio de clase 2": "UD4 - Gestión de soluciones IV/Ejercicios_clase/Ejemplo2.md"
-#  - "UD5 - Introducción a la computación paralela y distribuida":
-#    - "UD5 - Introducción a la computación paralela y distribuida/index.md"
-#  - "UD6 - Apache Hadoop":
-#    - "UD6 - Apache Hadoop/index.md"
+  - "UD3 - Introducción a la computación paralela y distribuida":
+    - "UD3 - Introducción a la computación paralela y distribuida/index.md"
+    - "Computación Paralela y Distribuida": "UD3 - Introducción a la computación paralela y distribuida/comput_paralela_distribuida.md"
+#  - "UD4 - Apache Hadoop":
+#    - "UD4 - Apache Hadoop/index.md"
 #    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
 #    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
 #    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"
