@@ -41,7 +41,7 @@ Algunos de los aspectos más importantes a tener en cuenta dentro de un sistema 
 
 Los sistemas computacionales distribuidos son sistemas de computación de alto rendimiento que están formados por conjuntos de ordenadores interconectados mediante una red que ofrecen funcionalidades diversas algunas de ellas propias de la supercomputación, tales como la computación paralela. Entre estos sistemas cabe destacar los basados en **Grid** o en arquitecturas **Cloud** (en la nube) y de forma más básica, los denominados **Clusters**.
 
-Los **Clusters** están formados por colecciones de computadores de similares características interconectados mediante una red (ver [figura5.1]). Los computadores hacen uso de un mismo sistema operativo y un middleware que se encarga de abstraer y virtualizar los diferentes computadores del sistema dando la visión al usuario de un sistema operativo único. Los _clusters_ son sistemas dedicados a la supercomputación. El sistema operativo de un cluster es estándar y, por lo tanto, es el _middleware_ quien provee de librerías que permiten la computación paralela.
+Los **Clusters** están formados por colecciones de computadores de similares características interconectados mediante una red. Los computadores hacen uso de un mismo sistema operativo y un middleware que se encarga de abstraer y virtualizar los diferentes computadores del sistema dando la visión al usuario de un sistema operativo único. Los _clusters_ son sistemas dedicados a la supercomputación. El sistema operativo de un cluster es estándar y, por lo tanto, es el _middleware_ quien provee de librerías que permiten la computación paralela.
 
 <figure style="align: center; ">
     <img src="images/Figura3.1_Esquema_organizacion_servicio_supercomputacion_cluster.png">
@@ -72,9 +72,7 @@ Además, este tipo de estructuración permite que se puedan escalar los recursos
 Algunas de las ventajas que ofrece el _Grid Computing_ son las siguientes:
 
 - Es robusta en cuanto a sucesos que pudieran afectar a parte de su infraestructura, por ejemplo, catástrofes naturales. Los entornos Grid son bastante modulares e independientes, lo que reduce sus puntos vulnerables a fallo.
-
 - Es una manera muy eficaz de utilizar los recursos de una manera óptima y eficiente en una organización.
-
 - Puede utilizarse para balanceos de carga y conexiones de red que sean redundantes ofreciendo muchas facilidades en cuanto a la escalabilidad y actualización y siendo muy conveniente para ejecutar programas o tareas de forma paralela.
 
 Algunas de las desventajas que tiene esta tecnología son: los riesgos de seguridad que ofrece la participación de diferentes entidades heterogéneas y la necesidad de una interconexión de altas prestaciones.
@@ -155,7 +153,7 @@ En la siguiente tabla se muestran estos grupos de servicios, con la categoría a
 
 ## 3.5 Big Data Pipeline
 
-Una **pipeline de datos** es una construcción lógica que representa un proceso dividido en fases. Las pipelines de datos se caracterizan por definir el conjunto de pasos o fases y las tecnologías involucradas en un proceso de movimiento o procesamiento de datos. Por tanto, **el proceso de extremo a extremo de recopilar datos, convertirlos en conocimientos, entrenar un modelo, difundir conocimientos y aplicar el modelo cuando y donde sea necesario la acción para lograr el objetivo empresarial está unido por un _data pipeline_**.
+Una **pipeline de datos** es una construcción lógica que representa un proceso dividido en fases. Las pipelines de datos se caracterizan por definir el conjunto de pasos o fases y las tecnologías involucradas en un proceso de movimiento o procesamiento de datos. Por tanto, **el proceso de extremo a extremo de recopilar datos, convertirlos en conocimiento, entrenar un modelo, difundir conocimiento y aplicar el modelo cuando y donde sea necesario la acción para lograr el objetivo empresarial está unido por un _data pipeline_**.
 
 ### 3.5.1 Etapas
 

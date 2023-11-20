@@ -16,8 +16,8 @@ nav:
   - "UD3 - Introducción a la computación paralela y distribuida":
     - "UD3 - Introducción a la computación paralela y distribuida/index.md"
     - "Computación Paralela y Distribuida": "UD3 - Introducción a la computación paralela y distribuida/comput_paralela_distribuida.md"
-#  - "UD4 - Apache Hadoop":
-#    - "UD4 - Apache Hadoop/index.md"
+  - "UD4 - Apache Hadoop":
+    - "UD4 - Apache Hadoop/index.md"
 #    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
 #    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
 #    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"
