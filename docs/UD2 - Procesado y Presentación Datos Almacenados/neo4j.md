@@ -780,7 +780,7 @@ CALL gds.graph.project(
 ```
 
 ```
-CALL gds.beta.closeness.stream('myGraph_cercania')
+CALL gds.closeness.stream('myGraph_cercania')
 YIELD nodeId, score
 RETURN gds.util.asNode(nodeId).id AS id, score
 ORDER BY score DESC

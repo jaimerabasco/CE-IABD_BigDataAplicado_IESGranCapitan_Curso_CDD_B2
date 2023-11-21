@@ -1,6 +1,6 @@
-# UD 6 - Apache Hadoop - MapReduce
+# UD 4 - Apache Hadoop - MapReduce
 
-## Introducción
+## 1. Introducción
 
 !!! Info "**MapReduce**"
 
@@ -17,8 +17,8 @@ Para ello, usa un paradigma de programación funcional en dos fases, la de **map
     Hadoop Aunque MapReduce ha sido utilizado ampliamente por toda la comunidad de desarrolladores o proyectos Big Data, la realidad es que hoy en día cada vez se usa menos, como puede verse en este gráfico de tendencia de búsquedas en Google:
 
     <figure style="align: center; width:600px;">
-        <img src="images/Figura6.1_MapReduce_Historial_Busqueda_Google.jpg">
-        <figcaption>Figura6.1_MapReduce: Historial de Búsquedas en Google</figcaption>
+        <img src="images/Figura4.1_MapReduce_Historial_Busqueda_Google.jpg">
+        <figcaption>Figura4.1_MapReduce: Historial de Búsquedas en Google</figcaption>
     </figure>
 
     Sin embargo, es importante entender y comprender bien MapReduce por dos motivos:
@@ -29,18 +29,18 @@ Para ello, usa un paradigma de programación funcional en dos fases, la de **map
 Estos subprocesos asociados a la tarea se ejecutan de manera **distribuida**, en diferentes nodos de procesamiento o esclavos. Para controlar y gestionar su ejecución, existe un proceso **Master** o **Job Tracker**. También es el encargado de aceptar los nuevos trabajos enviados al sistema por los clientes.
 
 <figure style="align: center; width:600px;">
-    <img src="images/Figura6.2_MapReduce_WorkFlow_MapReduce.jpg">
-    <figcaption>Figura6.2_MapReduce WorkFlow (Recuerda que Yarn está entre ambas)</figcaption>
+    <img src="images/Figura4.2_MapReduce_WorkFlow_MapReduce.jpg">
+    <figcaption>Figura4.2_MapReduce WorkFlow (Recuerda que Yarn está entre ambas)</figcaption>
 </figure>
 
 Este sistema de procesamiento se apoya en tecnologías de almacenamiento de datos distribuidas, en cuyos nodos se ejecutan estas operaciones de tipo map y reduce. El sistema de ficheros distribuido de Hadoop es HDFS (Hadoop Distributed File System), encargado de almacenar los ficheros divididos en bloques de datos. HDFS proporciona la división previa de los datos en bloques que necesita MapReduce para ejecutar. Los resultados del procesamiento se pueden almacenar en el mismo sistema de almacenamiento o bien en una base de datos o sistema externo.
 
 <figure style="align: center; width:600px;">
-    <img src="images/Figura6.3_MapReduce_Esquema_fases_MapReduce.jpg">
-    <figcaption>Figura6.3_MapReduce_Esquema de fases de MapReduce</figcaption>
+    <img src="images/Figura4.3_MapReduce_Esquema_fases_MapReduce.jpg">
+    <figcaption>Figura4.3_MapReduce_Esquema de fases de MapReduce</figcaption>
 </figure>
 
-## Fases y Funciomiento
+## 2. Fases y Funcionamiento
 
 Un trabajo de MapReduce se compone de cinco etapas distintas, ejecutadas en orden:
 
@@ -53,8 +53,8 @@ Un trabajo de MapReduce se compone de cinco etapas distintas, ejecutadas en orde
 De todas estas fases debes saber que el programador sólo suele programar la fase ***map*** y ***reduce***, siendo el resto de fases ejecutadas de forma automática por MapReduce en base a los parámetros de configuración.
 
 <figure style="align: center; width:600px;">
-    <img src="images/Figura6.4_MapReduce_FrameworkMapReduce.jpg">
-    <figcaption>Figura6.4_MapReduce_Framework MapReduce</figcaption>
+    <img src="images/Figura4.4_MapReduce_FrameworkMapReduce.jpg">
+    <figcaption>Figura4.4_MapReduce_Framework MapReduce</figcaption>
 </figure>
 
 En un trabajo Hadoop MapReduce, se dividen los datos de entrada en fragmentos independientes que son procesados por los mappers en paralelo. A continuación, se ordenan los resultados del map, que son la entrada para los reducers. Generalmente, las entradas y salidas de los trabajos se almacenan en un sistema de ficheros, siendo los nodos de almacenamiento y de cómputo los mismos. También es muy común que la lógica de la aplicación no se pueda descomponer en una única ejecución de MapReduce, por lo que se encadenan varias de estas fases, tratando los resultados de una como entrada para los mappers de la siguiente fase.
@@ -63,15 +63,26 @@ Esta característica, permite ejecutar las tareas de cada fragmento en el nodo d
 
 El framework también se encarga de gestionar los recursos, planificar, reiniciar y monitorizar las tareas con el gestor de **Hadoop YARN**, que tiene un único _Resource Manager_ y un _Node Manager_ en cada nodo del clúster.
 
+## 3. WebUI
+
+Podemos observar los trabajos realizados desde la Interfaz WebUI en el puerto 8088 `http://bda-iesgrancapitan:8088`
+
+<figure style="align: center;">
+    <img src="images/Figura4.5_MapReduce_WebUI.jpg">
+    <figcaption>Figura4.5_MapReduce_WebUI</figcaption>
+</figure>
+
+## 4. Ejemplos
+
 Para explicar el funcionamiento de MapReduce, se van a utilizar los siguientes ejemplos:
 
-## Ejemplo 1
+### 4.1 Ejemplo 1
 
 El siguiente gráfico muestra un ejemplo de una empresa que fabrica juguetes de colores. Cuando un cliente compra un juguete desde la página web, el pedido se almacena como un fichero en Hadoop con los colores de los juguetes adquiridos. Para averiguar cuantas unidades de cada color debe preparar la fábrica, se emplea un algoritmo MapReduce para contar los colores:
 
 <figure style="align: center;">
-    <img src="images/Figura6.5_MapReduce_Ejemplo1_Map_y_Reduce.jpg">
-    <figcaption>Figura6.4_MapReduce_Ejemplo1_Map y Reduce</figcaption>
+    <img src="images/Figura4.6_MapReduce_Ejemplo1_Map_y_Reduce.jpg">
+    <figcaption>Figura4.6_MapReduce_Ejemplo1_Map y Reduce</figcaption>
 </figure>
 
 Siguiendo MapReduce:
@@ -82,8 +93,8 @@ Siguiendo MapReduce:
 Es un proceso de procesamiento costoso. Los pasos serían los siguientes: _Recuerda que la gestión de la capa de procesamiento la realiza YARN_:
 
 <figure style="align: center; width:600px;">
-    <img src="images/Figura6.6_MapReduce_Ejemplo1_Detallado.jpg">
-    <figcaption>Figura6.6_MapReduce_Ejemplo1 Detallado</figcaption>
+    <img src="images/Figura4.7_MapReduce_Ejemplo1_Detallado.jpg">
+    <figcaption>Figura4.7_MapReduce_Ejemplo1 Detallado</figcaption>
 </figure>
 
 1. Lectura desde HDFS de los ficheros de entrada.
@@ -93,7 +104,7 @@ Es un proceso de procesamiento costoso. Los pasos serían los siguientes: _Recue
 5. La fase de reducción suma las ocurrencias de cada color y genera un fichero por clave con el total de cada color.
 6. Las claves se unen en un único fichero de salida que se persiste en HDFS.
 
-## Ejemplo 2
+### 4.2 Ejemplo 2
 
 Imagina que tenemos un fichero de muchos terabytes de datos con todas las cotizaciones de todas las empresas de todas las bolsas del mundo desde hace 30 años, con una cotización cada minuto. Cada línea del fichero tiene el siguiente formato:
 
@@ -173,8 +184,8 @@ El ejemplo puede parecer sencillo, pero permite entender cómo funciona MapReduc
 En la siguiente imagen puede verse de forma gráfica el ejemplo anterior:
 
 <figure style="align: center;">
-    <img src="images/Figura6.7_MapReduce_Ejemplo2_Detallado.jpg">
-    <figcaption>Figura6.7_MapReduce_Ejemplo2 Detallado</figcaption>
+    <img src="images/Figura4.8_MapReduce_Ejemplo2_Detallado.jpg">
+    <figcaption>Figura4.8_MapReduce_Ejemplo2 Detallado</figcaption>
 </figure>
 
 !!! Note "Sobre los ejemplos"
@@ -186,11 +197,11 @@ En la siguiente imagen puede verse de forma gráfica el ejemplo anterior:
     La esencia de MapReduce para resolver un problema es intentar descomponerlo en problemas más sencillos en los que cada problema se resuelve con una primera fase en la que se toman todos los datos de entrada uno a uno, se realiza alguna operación con ellos, y los resultados son combinados y ejecutados por otra fase de ejecución que realiza una operación con la que se devuelve el resultado.
 
 
-## Ejercicios
+## 5. Ejercicios
 
 Vamos a ver 2 ejercicios para poner en práctica lo aprendido en MapReduce
 
-### Ejercicio 1
+### 5.1 Ejercicio 1
 
 En este ejercicio, vamos a crear nuestro primer programa MapReduce. Asegurate de que tienes Apache Hadoop instalado y funcionando. Si no, accede al recurso correspondiente.
 
@@ -198,10 +209,11 @@ En este ejercicio, vamos a crear nuestro primer programa MapReduce. Asegurate de
 1. Creamos un directorio en local donde vamos a desarrollar cada uno de los códigos fuente en Java
 
 ```
-mkdir $HOME/bda/MapReduce/ejercicios
+mkdir -p $HOME/bda/MapReduce/ejercicios
+cd $HOME/bda/MapReduce/ejercicios
 ```
 
-2. Descargamos el fichero fuente para el Ejercicio en local. Contiene información relacionada con ventas, el nombre del producto, el precio, el modo de pago, la ciudad, el país del cliente, etc.. Descárgalo de este gist alojado en github
+2. Descargamos el fichero fuente para el ejercicio en local. Contiene información relacionada con ventas, el nombre del producto, el precio, el modo de pago, la ciudad, el país del cliente, etc; alojado en este gist de github
 
 ```
 wget https://gist.githubusercontent.com/jaimerabasco/cb528c32b4c4092e6a0763d8b6bc25c0/raw/54b30a89f3b608d0837bd1fc10bc31e64ba4c7c8/Ventas_Enero23.csv
@@ -304,15 +316,10 @@ public class VentasPaisReducer extends MapReduceBase implements Reducer<Text, In
 }
 ```
 
-4. Descargamos el fichero fuente para el Ejercicio en local. Contiene información relacionada con ventas, el nombre del producto, el precio, el modo de pago, la ciudad, el país del cliente, etc.. Descárgalo de este gist alojado en github
-
-```
-wget https://gist.githubusercontent.com/jaimerabasco/cb528c32b4c4092e6a0763d8b6bc25c0/raw/54b30a89f3b608d0837bd1fc10bc31e64ba4c7c8/Ventas_Enero23.csv
-```
-
 4. Copia el fichero del "Ventas_Enero23.csv" a HDFS
 
 ```
+hdfs dfs -mkdir -p /bda/mapreduce/ejercicios
 hdfs dfs -copyFromLocal Ventas_Enero23.csv /bda/mapreduce/ejercicios
 ```
 
@@ -492,7 +499,7 @@ United Kingdom	100
 United States	462
 ```
 
-### Ejercicio 2
+### 5.2 Ejercicio 2
 
 Vamos a realizar un ejercicio de ejemplo de uso de MapReduce. En este caso vamos a usar una de las aplicaciones que ya vienen dentro de MapReduce, que es el contador de palabras
 
@@ -831,8 +838,8 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.j
 9. Comprobamos la ejecución en WebUI de Yarn. Recuerda acceder al puerto `8088`
 
 <figure style="align: center;">
-    <img src="images/Figura6.8_MapReduce_Ejemplo2_WebUI_Yarn.jpg">
-    <figcaption>Figura6.8_MapReduce_Ejemplo2 WebUI Yarn</figcaption>
+    <img src="images/Figura4.9_MapReduce_Ejemplo2_WebUI_Yarn.jpg">
+    <figcaption>Figura4.9_MapReduce_Ejemplo2 WebUI Yarn</figcaption>
 </figure>
 
 
@@ -841,20 +848,3 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.j
 ```
 hdfs dfs -cat /bda/mapreduce/ejercicios/salida_quijote2/part-r-00000
 ```
-
-
-[figura6.1_Yarn]: images/Figura6.1_MapReduce_Historial_Busqueda_Google.jpg "Figura6.1_MapReduce_Historial Búsqueda Google"
-
-[figura6.2_Yarn]: images/Figura6.2_MapReduce_WorkFlow_MapReduce.jpg "Figura6.2_MapReduce_WorkFlow MapReduce"
-
-[figura6.3_Yarn]: images/Figura6.3_MapReduce_Esquema_fases_MapReduce.jpg "Figura6.3_MapReduce_Esquema fases MapReduce"
-
-[figura6.4_Yarn]: images/Figura6.4_MapReduce_FrameworkMapReduce.jpg "Figura6.4_MapReduce_FrameworkMapReduce"
-
-[figura6.5_Yarn]: images/Figura6.5_MapReduce_Ejemplo1_Map_y_Reduce.jpg "Figura6.5_MapReduce_Ejemplo1 Map y Reduce"
-
-[figura6.6_Yarn]: images/Figura6.6_MapReduce_Ejemplo1_Detallado.jpg "Figura6.6_MapReduce_Ejemplo1 etallado"
-
-[figura6.7_Yarn]: images/Figura6.7_MapReduce_Ejemplo2_Detallado.jpg "Figura6.7_MapReduce_Ejemplo2 Detallado.jpg"
-
-[figura6.8_Yarn]: images/Figura6.8_MapReduce_Ejemplo2_WebUI_Yarn.jpg "Figura6.8_MapReduce_Ejemplo2 WebUI_Yarn"
