@@ -193,7 +193,16 @@ En la imagen se muestra Los Data Pipeline en los diferentes servicios de Cloud C
 
 <figure style="align: center; width:900px;">
     <img src="images/Figura3.6_BigData_Pipeline.webp">
-    <figcaption>Figura 3.3: BigData Pipeline on AWS, Azure and GCP</figcaption>
+    <figcaption>Figura 3.6: BigData Pipeline on AWS, Azure and GCP</figcaption>
+</figure>
+
+### 3.5.4 Bases de datos en la nube
+
+Como información adicional, y para completar el gran ecosistema de cloud computing, añadimos la siguiente imagen donde se muestran las diferentes Bases de Datos en los servicios de Cloud Computing.
+
+<figure style="align: center; width:900px;">
+    <img src="images/Figura3.7_BigData_Cloud_Database.jpg">
+    <figcaption>Figura 3.7: Cloud DataBase on AWS, Azure and GCP</figcaption>
 </figure>
 
 
@@ -253,8 +262,8 @@ En el sistema de _streaming_, hay tres tipos de estrategia para realizar la gest
 - **Espera pasiva (Passive Standby)**: El sistema hará regularmente una copia de seguridad del último estado en el nodo maestro a una copia del nodo réplica. Cuando se produzca un fallo, el estado del sistema se restaurará a partir de los datos de la copia de seguridad. La estrategia de replicación pasiva admite el caso de que la carga de datos sea mayor, pero el tiempo de recuperación se incrementa. Los datos de copia de seguridad pueden guardarse en un sistema de almacenamiento distribuido para reducir el tiempo de recuperación.
 
 <figure style="align: center; ">
-    <img src="images/Figura3.7_Esquema_nodos_streaming.png">
-    <figcaption>Figura 3.7: Esquema de nodos en streaming. Upstream Nu y downstream Nd </figcaption>
+    <img src="images/Figura3.8_Esquema_nodos_streaming.png">
+    <figcaption>Figura 3.8: Esquema de nodos en streaming. Upstream Nu y downstream Nd </figcaption>
 </figure>
 
 - **Espera activa (Active Standby)**: Cuando el sistema transmite datos para el nodo maestro, también transmite una copia de los datos para una replica del nodo al mismo tiempo. Cuando el nodo maestro falla, una de las réplicas del nodo asume completamente el trabajo, y los nodos suplentes necesitan la asignación de los mismos recursos del sistema. De esta manera, el tiempo de recuperación del fallo es más corto, pero el rendimiento de los datos es menor. También desperdicia más recursos del sistema.

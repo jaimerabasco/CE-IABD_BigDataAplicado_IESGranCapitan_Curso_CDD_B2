@@ -1,351 +1,69 @@
-# UD 4 - Apache Hadoop - HDFS
+# UD 4 - Apache Hadoop - Cluster
 
-**Hadoop Distributed File System (HDFS)** Es el componente principal del ecosistema Hadoop. Hace posible almacenar conjuntos de datos masivos con tipos de datos estructurados, semi-estructurados y no estructurados como imágenes, vídeo, datos de sensores, etc.
+En este recurso vamos a explicar como se instala y configura un cluster con Apache Hadoop
 
-Es un sistema de almacenamiento distribuido y tolerante a fallos que puede almacenar gran cantidad de datos, escalar de forma incremental y sobrevivir a fallos de hardware sin perder datos. Se basa en el [paper](https://static.googleusercontent.com/media/research.google.com/es//archive/gfs-sosp2003.pdf) que publicó Google detallando su Google File System en 2003.
+## 1. Prerequisitos
 
-Está optimizado para obtener un alto rendimiento y trabajar con máxima eficiencia cuando se leen _archivos grandes_. Para obtener este rendimiento, utiliza tamaños de bloque inusualmente grandes y optimización de localización de los datos para reducir la E/S de red.
+Debemos tener instalado VirtualBox. 
 
-Con el fin de ofrecer una visión de los recursos como una sola unidad crea una capa de abstracción como un sistema de ficheros único. **Está basado en la idea de que mover el procesamiento es mucho más rápido, fácil y eficiente que mover grandes cantidades de datos, que pueden producir altas latencias y congestión en la red**.
+### 1.1 Configurar Red NAT
 
-## 1. Características HDFS
+Para crear nuestro cluster, vamos a configurar un **red NAT** para que los nodos tenga conexión entre ellos y salida a Internet a través del Host
 
-- **Es un sistema de ficheros distribuido**, es decir, se ejecuta sobre diferentes nodos que trabajan en conjunto ofreciendo a los usuarios y aplicaciones que utilizan el sistema, un interfaz como si sólo hubiera un único servidor por detrás.
-- Está diseñado para ejecutarse sobre **hardware commodity**, es decir, no requiere unos servidores específicos o costosos. Esto conlleva la necesidad de poder sobreponerse a los fallos que pudieran tener los servidores o algunas partes de los servidores.
-- Está optimizado para almacenar **ficheros de gran tamaño** y para hacer operaciones de lectura o escritura masivas. Su objetivo es cubrir los casos de uso de analítica masiva, no los casos de uso que dan soporte a las operaciones de las empresas.
-- Tiene capacidad para **escalar horizontalmente** hasta volúmenes de Petabytes y miles de nodos, y está diseñado para poder dar soporte a **múltiples clientes** con acceso concurrente. La escalabilidad se consigue añadiendo más servidores
-- No establece **ninguna restricción sobre los tipos de datos** que se almacenan en el sistema, ya que éstos pueden ser estructurados, semiestructurados o no disponer de ninguna estructura, como el caso de imágenes o vídeos.
-- HDFS tiene una orientación **"write-once, read many"**, que significa "se escribe una vez, se lee muchas veces", es decir, asume que un archivo una vez escrito en HDFS **no se modificará**, aunque se puede acceder a él muchas veces. Así pues, los datos, una vez escritos en HDFS son _immutables_. Cada fichero de HDFS solo permite añadir contenido (append-only). Una vez se ha creado y escrito en él, solo podemos añadir contenido o eliminarlo. Es decir, a priori, no podemos modificar los datos.
-
-_Recuerda las características con esta imagen_
-
-<figure style="align: center; width:600px;">
-    <img src="images/Figura4.1_HDFS_Características_HDFS.png">
-    <figcaption>Figura 1 HDFS: Características HDFS</figcaption>
-</figure>
-
-## 2. Bloques
-
-Un bloque es la cantidad mínima de datos que puede ser leída o escrita. En HDFS, los ficheros se dividen en bloques, como en la mayoría de sistemas de ficheros. Sin embargo, el **tamaño de un bloque en HDFS es** muy grande, **de 128 megabytes por defecto**. En el sistema operativo de un PC (Windows, Linux, etc.), el tamaño suele ser de 512 bytes o 4 kilobytes, es decir, unas 50.000 veces más pequeño que en HDFS.
-
-_El bloque es la unidad mínima de lectura_, lo que significa que aunque tengamos un fichero que ocupa 1 kilobyte, tendremos que leer o escribir 128 megabytes cada vez que queramos operar con el fichero. Para ficheros grandes, por ejemplo, de 500 gigabytes, la ventaja que aporta es que hay que buscar y leer o escribir muchos menos bloques. Esta característica explica por qué Hadoop está diseñado para ficheros grandes y lecturas masivas, y por qué tiene un mal rendimiento para operaciones pequeñas.
-
-Por lo tanto, cuando queremos escribir un fichero en HDFS, lo primero que se hace es dividir el fichero en bloques. A continuación, los bloques son almacenados en diferentes nodos, no siendo necesario que los bloques de un mismo fichero estén en un mismo nodo. Además, un aspecto importante es que cada bloque se replica (se copia) en más de un nodo, lo que se conoce como el **factor de replica**. _El factor de replica por defecto en HDFS es 3_, lo que significa que cada bloque tiene 3 copias almacenadas en 3 nodos diferentes. **La replicación es el mecanismo con el que se consigue, entre otras cosas, la tolerancia a fallos**.
-
-Al tener varias réplicas de cada bloque en diferentes nodos, en caso de que un nodo se caiga, o que un disco de un nodo se corrompa, HDFS dispondrá de otras copias, por lo que no se perderán los datos. 
-
-<figure style="align: center;width:600px;">
-    <img src="images/Figura4.2_HDFS_Bloques_HDFS.png">
-    <figcaption>Figura 2 HDFS: Bloques HDFS</figcaption>
-</figure>
-
-En el ejemplo anterior, si se cayera el nodo 3, HDFS dispondría de otras dos copias por cada bloque que almacena del fichero.
-
-<figure style="align: center;width:800px;">
-    <img src="images/Figura4.3_HDFS_Factor_Replicación_HDFS.png">
-    <figcaption>Figura 3 HDFS: Factor Replicación HDFS</figcaption>
-</figure>
-
-El factor de replica puede configurarse a nivel de fichero o directorio, es decir, podemos elegir un factor de replica diferente para los ficheros o directorios que consideremos. Cuanto mayor sea el factor de replica, más difícil será que perdamos los datos e incluso mejorará el rendimiento en las lecturas, porque para leer un bloque, HDFS podrá utilizar cualquier nodo. Sin embargo, un factor de replica alto hace que las escrituras tengan peor rendimiento, al tener que hacer muchas copias en cada escritura, y además, consumirá más espacio real en disco.
-
-## 3. Arquitectura HDFS
-
-La arquitectura de HDFS consta de distintos servicios y tipos de nodo, aunque fundamentalmente son tres tipos:
-
-- **NameNode**(NN): Nodo de Nombres.
-- **Secondary NameNode**(SNN): Nodo de Nombres Secundario.
-- **DataNode**(DN): Nodos de Datos
-
-**NameNode**
-
-El nodo Namenode actúa de maestro, manteniendo la metainformación de todo el sistema de ficheros, esto es:
-
-- Almacena el espacio de nombres HDFS
-- La estructura de directorios, subdirectorios y los ficheros
-- La información de los ficheros: tamaño, fecha de modificación, propietario, permisos, etc.
-- El factor de replica de cada fichero.
-- Los bloques que componen cada fichero.
-- La ubicación de los distintos bloques (en qué nodo se encuentran).
-
-!!! note inline end
-
-    _La información es almacenada tanto en disco, para garantizar la durabilidad en caso de una caída del servidor, como en memoria, para poder acceder a la información lo más rápido posible y optimizar el rendimiento._
-
-NameNode se compone principalmente de dos ficheros:
-
-- **FsImage:** Contiene la estructura de directorio completa (espacio de nombres) de HDFS con detalles sobre la ubicación de los datos en los bloques de datos y qué bloques están almacenados en qué nodo. NameNode utiliza este archivo cuando se inicia.
-- **EditLog:** Es un _registro de transacciones_ que registra los cambios en el sistema de archivos HDFS o cualquier acción realizada en el clúster HDFS, como la adición de un nuevo bloque, la replicación, la eliminación, etc. En resumen, registra los cambios desde que se creó la última FsImage
-
-Cuando se inicia un NameNode, lee el estado HDFS de un archivo de imagen, fsimage, y luego aplica las ediciones del archivo de registro de ediciones. Seguidamente escribe un nuevo estado HDFS en el fsImage y comienza la operación normal con un archivo de edición vacío.
-
-!!! example
-
-    Por ejemplo, la creación de un nuevo archivo en HDFS hace que NameNode inserte un registro en EditLog para indicarlo. De manera similar, cambiar el factor de replica de un archivo hace que se inserte un nuevo registro en EditLog. El NameNode utiliza un archivo en su sistema de archivos del sistema operativo anfitrión local para almacenar el EditLog. Todo el espacio de nombres del sistema de archivos, incluida la asignación de bloques a archivos y las propiedades del sistema de archivos, se almacena en un archivo denominado FsImage. La FsImage también se almacena como un archivo en el sistema de archivos local de NameNode.
-
-Además de gestionar la **metainformación**, **coordina** todas las **lecturas** y **escrituras**, y controla el funcionamiento de los Datanodes, es decir, detecta si hay algún fallo en algún nodo y toma las acciones necesarias en caso de que alguno esté caído o con fallos.
-
-Es importante que el Namenode sea robusto y no tenga caídas. Por este motivo, se utiliza hardware más resiliente que en el caso de los Datanodes.
-
-**Secondary NameNode**
-
-Para mejorar la **tolerancia a fallos**, suele existir un nodo secundario del maestro, denominado **Secondary Namenode**.
-
-El NameNode es el único punto de fallo en HDFS ya que, si el Namenode falla, se pierde todo el sistema de archivos HDFS. Para reducir este riesgo esto, Hadoop implementó el Secondary Namenode en la versión 3.
-
-Secondary Namenode no es un **nodo de respaldo**. Su principal función es almacenar una copia de los ficheros ***fsimage*** y ***editlog***. Comprueba los metadatos del sistema de archivos almacenados en NameNode. Esto es lo que se llama _checkpointing_. El proceso que sigue el NameNode secundario para fusionar periódicamente los archivos fsimage y edits log es el siguiente:
-
-1. El NameNode secundario obtiene los últimos archivos fsImage y editLog del NameNode primario.
-2. El NameNode secundario aplica cada transacción del archivo editLog a fsImage para crear un nuevo archivo FsImage fusionado.
-3. El archivo fsImage fusionado se transfiere de nuevo al NameNode primario.
+Para ello, explicamos con una imagen como funciona VirtualBox en este tipo de configuración de red
 
 <figure style="align: center;">
-    <img src="images/Figura4.4_HDFS_Relacion_NameNode_DataNode.png">
-    <figcaption>Figura 4 HDFS: Relación entre NameNode y DataNode</figcaption>
+    <img src="images/Figura4.1_ClusterHadoop_RedNAT_Virtualbox.webp">
+    <figcaption>Figura 1 Cluster Hadoop: Red NAT Virtualbox - Fuente: medium.com/@sidlors</figcaption>
 </figure>
 
-**DataNode**
+Puedes observar que podemos configurar nuestra propia subred, dentro de las cuales, hay 2 ips que VirtualBox asigna estáticas dentro de la red: la **puerta de enlace**(primera de la red) y el **DHCP** (tercera de la red). Para más información, consulta la [documentación oficial de VirtualBox](https://www.virtualbox.org/manual/UserManual.html#network_nat_service)
 
-Los **Datanodes** son los servicios que se encuentran en los **nodos worker**, y su labor principal es almacenar o leer los bloques que componen los ficheros que están almacenados en HDFS, con las siguientes particularidades:
+Teniendo en cuenta esto, vamos a configurar nuestra propia subred, que será la `192.168.11.0/24`
 
-- Habrá más de uno en cada clúster. Por cada Namenode podemos tener miles de Datanodes.
-- Almacena y lee bloques de datos. El Datanode sólo conoce los bloques que contiene, pero no sabe a qué fichero pertenecen o dónde se encuentran el resto de bloques del fichero. Toda esta información sólo está en el Namenode. Por eso es crítico para HDFS.
-- Envían al Namenode la lista de los bloques que almacenan, para que el Namenode pueda tener una lista actualizada de los bloques y su ubicación.
-- Almacenan un checksum por cada bloque para detectar si el bloque
-está corrupto y garantizar su integridad.
-- Envía un latido (_heartbeat_) al Namenode, que es un mensaje corto indicando que está levantado
+1. Abrimos la configuración de VirtualBox para crear una nueva red NAT en `Preferencias -> Redes -> Redes NAT -> Agregar nueva red NAT`
 
-
-**Resumen**
+2. Creamos una nueva Red NAT llamada `BDA`. Usaremos la red `192.168.11.0/24` con DHCP Deshabilitado. Puedes elegir cualquier otra si quieres.
 
 <figure style="align: center;">
-    <img src="images/Figura4.5_HDFS_Resumen_Nodos_HDFS.jpg">
-    <figcaption>Figura 5 HDFS: Resumen Nodos HDFS</figcaption>
+    <img src="images/Figura4.2_ClusterHadoop_RedNAT.jpg">
+    <figcaption>Figura 2 Cluster Hadoop: Red NAT</figcaption>
 </figure>
 
-## 4. Funcionamiento (Lectura y Escritura)
+3. Una vez configurada la Red NAT, podemos empezar a instalar y configurar el cluster.
 
-Los datos que se escriben en HDFS son ***immutables***, es decir, no pueden ser modificados.
+### 1.2 Configuración de las máquinas
 
-Esto significa que HDFS sólo permite añadir contenido a los ficheros, así que por ejemplo, si en un fichero de 256 megabytes se pretende modificar un carácter, HDFS creará un nuevo bloque con el cambio y lo escribirá por completo, borrando el bloque anterior. 
+Vamos a crear una primera máquina que después clonaremos y cambiaremos las configuraciones necesarias. Las máquinas tendrán la siguiente configuración (***siempre que sea posible***):
 
-Esto, junto con la característica del tamaño de bloque de **128 megabytes**, que es la **unidad mínima de lectura**, hace que el rendimiento de HDFS para operaciones sencillas sobre registros aleatorios sea muy pobre. Recuerda que HDFS está pensado para _ficheros grandes y lecturas masivas_. 
+- **Nombre**: master (las otras dos máquinas se llamarán nodo1, nodo2 y nodo3)
+- **RAM**: 4GB (_yo por ejemplo, no puedo darle más de 3GB_)
+- **Núcleos**: 2
+- **Disco duro**: 50GB
+- **Interfaz de red**: Red NAT ("BDA"): 192.0.11.10 (las s de las otras 3 máquinas serán 192.0.11.11, 192.0.11.12 y 192.0.11.13)
+- **Sistema operativo**: Ubuntu server 22.04
+- **Usuario**: hadoop
 
-HDFS proporciona dos tipos de operaciones básicas con los ficheros: **leer y escribir un fichero**
+### 1.3 Configuración de red 
 
-**Lectura**
+Habiendo entendido correctamente lo explicado en los puntos anteriores,podemos configurar la interfaz de red de forma manual, con la siguiente configuración:
 
-En el caso de las lecturas, un ***esquema simplificado*** de esta operación sería:
+- **Subred**: `192.168.11.0/24`
+- **Direción Ip**: `192.168.11.10`
+- **Puerta de enlace**: `192.168.11.1` 
+- **DNS**: `8.8.8.8,1.1.1.1`
 
 <figure style="align: center;">
-    <img src="images/Figura4.6_HDFS_Lectura_HDFS.jpg">
-    <figcaption>Figura 6 HDFS: Lectura HDFS</figcaption>
+    <img src="images/Figura4.3_ClusterHadoop_InterfazRedMaster.jpg">
+    <figcaption>Figura 3 Cluster Hadoop: Interfaz de Red Nodo Master</figcaption>
 </figure>
 
-1. El cliente que desea leer un fichero de HDFS, mediante una librería instalada en su equipo, realiza una llamada al Namenode para conocer qué bloques forman un fichero (llamemos X al fichero), así como los Datanodes que contienen cada uno de los bloques.
-2. El Namenode retorna dicha información, y ordena para cada bloque los Datanodes que contienen dicho bloque en función de la distancia al cliente (un algoritmo evalúa la distancia entre el cliente y cada Datanode). El objetivo de esta lista ordenada es intentar reducir el tiempo de acceso a cada Datanode desde el cliente.
-3. Con la información recibida del Namenode, el cliente se comunica directamente con el Datanode 1 para solicitarle el primer bloque.
-4. El cliente se comunica con el Datanode 2 para obtener el bloque 2.
-5. El cliente se comunica con el Datanode 1 para obtener el bloque 3. 
 
-!!! info
+## 2. Nodo Master
 
-    Es preciso indicar que durante la operación, la única responsabilidad del Namenode es devolver al cliente la lista de bloques y la ubicación de los mismos, pero no interviene en las lecturas. Es decir, para realizar las lecturas de cada bloque, **el cliente se comunica directamente con los Datanodes, sin que los datos pasen por el Namenode**. Esto hace que el Namenode no sea cuello de botella del proceso, y pueda atender múltiples peticiones en paralelo, ya que no le supone mucho esfuerzo de computación atender las diferentes solicitudes de los clientes.
+Creamos en VirtualBox el nodo `master` configurando el Interfaz de red como Red NAT y elegimos la que acabamos de crear `BDA`
 
-**Escritura**
-
-En el caso de las escrituras, un esquema simplificado de esta operación sería:
-
-<figure style="align: center;">
-    <img src="images/Figura4.7_HDFS_Escritura_HDFS.jpg">
-    <figcaption>Figura 7 HDFS: Escritura HDFS</figcaption>
-</figure>
-
-1. El cliente, que desea escribir un fichero, invoca a un servicio del Namenode para solicitar la creación del fichero, indicándole en la llamada el nombre y la ruta en la que desea guardarlo.
-2. El Namenode realiza una serie de verificaciones, como los permisos del usuario/cliente en el directorio, si el fichero ya existe, etc. En caso de que todas las verificaciones sean correctas, devuelve un OK, en caso contrario un KO.
-3. El cliente comienza a generar los bloques en los que se dividirá el fichero utilizando una librería de HDFS.
-4. Para cada bloque que desea escribir el cliente, se invoca al Namenode para obtener el Datanode en el que escribir el bloque.
-5. El Namenode devuelve la lista de Datanodes en los que escribir el bloque, y el cliente escribe dicho bloque en el primer Datanode obtenido, realizando una comunicación directamente con dicho Datanode.
-6. Una vez escrito el bloque en el primer Datanode, éste es responsable de comunicarse con el siguiente Datanode en la cadena para que escriba una copia del bloque. Una vez todos los Datanodes han escrito la réplica, se devuelve un "Ok" al cliente para que escriba el siguiente bloque.
-
-!!! info
-
-    Al igual que en el caso de la lectura, es importante señalar que el Namenode no recibe en ningún momento los datos del fichero, sino que se limita a resolver las cuestiones relacionadas con la ubicación de cada bloque. De esta manera, liberando al Namenode de la operativa de escritura, permite optimizar el funcionamiento y que el Namenode no se convierta en el cuello de botella de HDFS en las escrituras de fichero.
-
-## 5. Factor de replica
-
-Como sabemos, la replicación es un concepto muy importante en HDFS, ya que nos permite tener una mayor tolerancia a fallos, pero tiene otras implicaciones en cuanto al rendimiento como acabamos de ver.
-
-Sin embargo, tiene una implicación directa en la capacidad de almacenamiento. Veámoslo.
-
-En un clúster, la capacidad de almacenamiento total viene dado por la suma de la capacidad de todos los discos que hay en los Datanodes. Por ejemplo, en un clúster de 20 nodos, con 12 discos de 3 terabytes por nodo, tendremos una capacidad de 36 terabytes por nodo, y 720 terabytes en total.
-
-Ahora bien, si todos los ficheros de HDFS van a tener un factor de
-replicación 3 significará que cada fichero ocupará el triple, al haber 3 copias para cada datos. Esto hace que la capacidad total del clúster baje hasta 240 terabytes.
-
-Además, cuando calculamos la capacidad real de un clúster, hay que dejar otro espacio para que las aplicaciones o los usuarios puedan guardar datos parciales de sus operaciones, logs, etc. Normalmente se reserva un 30 o 40% para este propósito, así que nuestro clúster de 20 nodos y 36 terabytes por nodo, tendrá una capacidad real de unos 150 terabytes. Sigue siendo una capacidad alta, _pero está lejos de los 720 terabytes iniciales_.
-
-Con esto, podemos afirmar por lo tanto que:
-
-1. Un factor de replica alto:
-  * Mejora la tolerancia a fallos.
-  * Mejora la velocidad de lectura porque se pueden utilizar más Datanodes para recuperar un bloque.
-  * Reduce la velocidad de las escrituras porque cada bloque hay que almacenarlo en más Datanodes.
-  * Reduce la capacidad total de almacenamiento de un clúster.
-
-2. Un factor de replica bajo:
-  * Incrementa el riesgo de perder algún dato si se corrompen los Datanodes que almacenan un bloque.
-  * Reduce la velocidad de lectura porque hay que leer cada bloque de uno o pocos Datanodes que lo contienen, y a lo mejor esos Datanodes están ocupados con otras operaciones.
-  * Incrementa la velocidad de escritura, al tener que escribir cada bloque en pocos Datanodes.
-  * Incrementa (o mejor dicho, reduce menos) la capacidad total de almacenamiento del clúster.
-
-Con estos puntos enumerados, normalmente se aplican estas reglas para calcular el **factor de replica óptimo**:
-
-- Para datos temporales, que se van a escribir y quizás no se lean nunca, y que no son críticos, el factor de replica suele ser bajo (1 ó 2).
-- Para datos críticos, que es importante que no se puedan perder, y que suelen ser accedidos muchas veces, como por ejemplo una tabla maestra, el factor de replica suele ser alto (incluso teniendo una copia por cada Datanode si es accedida muchas veces y no ocupa mucho).
-- Para el resto de ficheros, se suele dejar el factor de replica por defecto.
-
-## 6. Manejo y uso de HDFS
-
-!!! example inline end
-
-    Para una primera aproximación y para empezar a familiarizarnos con Apache Hadoop y HDFS usaremos la siguiente [imagen de Cloudera](https://bit.ly/3k3bmWx) _(Necesitas pertenecer a IES Gran Capitán)_
-
-HDFS soporta operaciones similares a los sistemas Unix:
-
-- Lectura, escritura o borrado de ficheros.
-- Creación, listado o borrado de directorios.
-- Usuarios, grupos y permisos.
-
-En cuanto a los interfaces con los que poder usar el sistema de ficheros, ofrece diferentes interfaces, siendo los principales los mencionados a continuación:
-
-- **Cliente de línea de comandos**: HDFS dispone de un amplio número de comandos que pueden ser ejecutados en consola. 
-- **Java API**: HDFS está escrito en Java de forma nativa y ofrece un API que puede ser utilizado por aplicaciones con el mismo lenguaje.
-- **RestFul API(WebHDFS)**: para poder utilizar HDFS desde otros lenguajes, HDFS ofrece su funcionalidad mediante un servicio HTTP mediante el protocolo WebHDFS. Este interfaz, sin embargo, ofrece un rendimiento inferior al API de Java al utilizar HTTP como capa de transporte, por lo que no debería utilizarse para operaciones masivas o con alto volumen de datos.
-- **NFS interface (HDFS NFS Gateway)**: es posible montar HDFS en el sistema de archivos de un cliente local utilizando la puerta de enlace NFSv3 de Hadoop.
-- **Librería C**: HDFS ofrece una librería escrita en C, llamada libhdfs, que tiene un buen rendimiento, pero que no suele ofrecer toda la funcionalidad del API Java.
-
-**Cliente de línea de comandos**
-
-Una vez dentro del sistema, el comando _hadoop fs_ nos proporcionará todas las funcionalidades sobre HDFS. Si se introduce sólo el comando, nos ofrecerá la lista de opciones o comandos disponibles. Algunos de los comandos más utilizados son los siguientes:
-
-!!! info inline end
-
-    <figure style="align: center;">
-        <img src="images/Figura4.8_HDFS_DFS.png" width="200px">
-        <figcaption>Figura 8 HDFS: HDFS DFS</figcaption>
-    </figure>
-
-    `hadoop fs` es soportado por cualquier sistema de archivos genérico que puede apuntar a cualquier sistema de archivos como local, HDFS, FTP, S3, etc. En cambio `hdfs dfs` es exclusivo de HDFS y es el usado en las versiones actuales. 
-
-!!! note 
-
-    En la distribución de cloudera, el sistema de archivos local por defecto está localizado en /home/cloudera y la localización por defecto de HDFS es /user/cloudera
-
-En el caso concreto de interactuar con el sistema de ficheros de Hadoop se utiliza el comando dfs, el cual requiere de otro argumento (empezando con un guion) el cual será uno de los comandos Linux para interactuar con el shell. Podéis consultar la lista de comandos en la [documentación oficial](https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/FileSystemShell.html).
-
-- **Listar contenidos de un directorio**: Para ver los contenidos del directorio HDFS el comando es el siguiente:
-
-    `hdfs dfs -ls /user/cloudera`
-
-- **Crear un directorio**: Para crear un nuevo directorio dentro del sistema de ficheros HDFS.
-
-    `hdfs dfs -mkdir /user/cloudera/prueba`
-
-!!! warning 
-
-    Atención a los permisos necesarios para crear directorios en diferentes puntos del sistema de archivos
-
-
-- **Copiar un fichero** del sistema de archivos local al sistema de archivos HDFS. Se podrá verificar esa copia mediante el comando     _hdfs dfs -ls_ o mediante la operación cat que se menciona a continuación.
-
-    `hdfs dfs -copyFromLocal /home/cloudera/fichero /user/cloudera`
-
-    _Por defecto, el destino de cualquier operación HJDFS es /user/cloudera, de manera que es opcional especificar esa parte de la ruta salvo que sea diferente a la de por defecto._
-
-- **Visualización del contenido de un archivo**: Para ver el contenido de un archivo ubicado en el sistema de archivo HDFS la operación será la siguiente:
-
-    `hdfs dfs -cat /user/cloudera/prueba/fichero`
-
-- **Extraer un fichero** del sistema de archivos HDFS: Con el fin de copiar a nuestros sistema de archivos local un archivo del sistema de archivos de HDFS se utilizará alguno de los siguientes comandos.
-    `hdfs dfs -copyToLocal /user/cloudera/prueba/fichero`
-    `hdfs dfs -get /user/cloudera/prueba/fichero`
-
-- **Mover ficheros** dentro de HDFS: Para mover ficheros almacenados en HDFS a otros directorios de HDFS se podría utilizar el siguiente comando:
-
-    `hdfs dfs -mv /user/cloudera/prueba/fichero /user/cloudera/`
-
-    Se permiten múltiples orígenes de ficheros, lo que obliga a que el destino sea un directorio. El movimiento de ficheros entre diferentes sistemas de archivos no está permitido.
-
-- **Copiar ficheros** dentro de HDFS: Copia un fichero entre diferentes localizaciones dentro de HDFS. También, como mv permite copiar desde diferentes orígenes, pero siempre con un directorio de destino final.
-
-    `hdfs dfs -cp -f /user/cloudera/prueba/fichero /user/cloudera/`
-
-    _la opción -f permitirá sobreescribir el destino si éste existe previamente._
-
-- **Put**: Permite copiar uno o varios orígenes desde el sistema de archivos local al sistema de archivos distribuido.
-
-    `hdfs dfs -put /user/cloudera/prueba/fichero /user/cloudera/`
-
-    También permite leer desde la entrada estándar (stdin) y escribe en el sistema de archivos destino.
-
-    `hdfs dfs -put - /user/cloudera/entrada`
-
-- **Añadir contenido al final del fichero**: A veces es necesario hacer operaciones de concatenación de ficheros, etc., para ello existe la operación _appendToFile_ que permite hacer esta operación.
-    `hdfs dfs -appendToFile fichero_tail /user/cloudera/fichero`
-
-- **Mezcla de ficheros**: se utiliza para combinar varios archivos (o directorios) del sistema de archivos distribuido y luego ponerlo en un solo archivo de salida en nuestro sistema de archivos local. Dispone de una opción -nl con el fin de añadir una nueva línea al final de cada fichero.
-
-    `hdfs dfs -getmerge -nl file1.txt file2.txt /home/cloudera/output.txt`
-
-- **Borrado de ficheros**: La operación rm permitirá borrar los ficheros especificados como argumentos. Con la opción -R se borrarán el directorio y los subdirectorios de forma recursiva.
-
-    `hdfs dfs -rm -r /user/cloudera/prueba`
-
-- **Cambio de permisos a los ficheros**: De la misma forma que en Linux la operación chmod permitirá realizar cambios en los permisos de uso de los ficheros. Con la opción -R hace que el cambio se propague recursivamente a través de la estructura de directorios.
-
-    `hdfs dfs -chmod -R 777 /user/cloudera/prueba`
-
-- **Comprobar uso de disco**: Servirá para comprobar cuando espacio de disco se está usando en HDFS. Si estamos interesados únicamente en el uso de disco de nuestro directorio de usuario el comando será:
-
-    `hdfs dfs -du`
-
-    Si por el contrario queremos conocer cuando espacio de disco está disponible en todo el cluster, el comando será:
-
-    `hdfs dfs -df`
-
-- **Contar número de directorios**: El siguiente comando permite  obtener la información del número de directorios , ficheros y tamaño de los mismos.
-
-    `hdfs dfs -count /user/cloudera`
-
-- **Crea un fichero vacío**:
-
-    `hdfs dfs -touchz /user/cloudera/emptyfile`
-
-- **setrep**: Modifica el factor de replica de un fichero o un directorio. Ya sabes que el factor de replica por defecto es 3. Con este comando se puede modificar para un fichero o directorio concreto.
-
-    `hdfs dfs -setrep 6 /user/cloudera/changerepfile`
-
-!!! tip "Recuerda"
-
-    Recuerda diferencia entre trabajar con HDFS o trabajar con el disco local de la máquina en la que tienes abierto un terminal, que suele ser el nodo frontera. Este esquema te permitirá ver la diferencia:
-
-    <figure style="align: center;">
-        <img src="images/Figura4.9_HDFS_Comandos_HDFS.jpg">
-        <figcaption>Figura 9 HDFS: Comandos HDFS</figcaption>
-    </figure>
-
-    Cuando accedemos por terminal a una máquina, que suele ser la máquina frontera, y navegamos por su sistema de ficheros, lo estaremos haciendo sobre el disco o los discos que tiene esa máquina. Cuando ejecutamos el comando `hdfs dfs` , éste se ejecutará sobre el sistema de ficheros de HDFS, que es diferente al de la máquina en la que estamos.
-
-    Cuando queremos subir un fichero a HDFS, lo habitual es copiarlo primero en la máquina frontera, y posteriormente subirlo a Hadoop con el comando put.
-
-
-## 7. Instalando HDFS
-
-!!! note inline end
-
-    Recordamos de nuevo la instalación de Hadoop vista en el punto anterior
-
-### 7.1 Instalación
+### 2.1 Instalación
 
 1. **Java™** debe ser instalado. Las versiones de Java recomendadas se encuentran descritas en [HadoopJavaVersions](https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions).
 

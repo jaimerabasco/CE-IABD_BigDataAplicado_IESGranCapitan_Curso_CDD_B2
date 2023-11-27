@@ -30,7 +30,7 @@ Estos subprocesos asociados a la tarea se ejecutan de manera **distribuida**, en
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.2_MapReduce_WorkFlow_MapReduce.jpg">
-    <figcaption>Figura4.2_MapReduce WorkFlow (Recuerda que Yarn está entre ambas)</figcaption>
+    <figcaption>Figura4.2_MapReduce WorkFlow</figcaption>
 </figure>
 
 Este sistema de procesamiento se apoya en tecnologías de almacenamiento de datos distribuidas, en cuyos nodos se ejecutan estas operaciones de tipo map y reduce. El sistema de ficheros distribuido de Hadoop es HDFS (Hadoop Distributed File System), encargado de almacenar los ficheros divididos en bloques de datos. HDFS proporciona la división previa de los datos en bloques que necesita MapReduce para ejecutar. Los resultados del procesamiento se pueden almacenar en el mismo sistema de almacenamiento o bien en una base de datos o sistema externo.
@@ -61,8 +61,6 @@ En un trabajo Hadoop MapReduce, se dividen los datos de entrada en fragmentos in
 
 Esta característica, permite ejecutar las tareas de cada fragmento en el nodo donde se almacena, reduciendo el tiempo de acceso a los datos y los movimientos entre nodos del clúster.
 
-El framework también se encarga de gestionar los recursos, planificar, reiniciar y monitorizar las tareas con el gestor de **Hadoop YARN**, que tiene un único _Resource Manager_ y un _Node Manager_ en cada nodo del clúster.
-
 ## 3. WebUI
 
 Podemos observar los trabajos realizados desde la Interfaz WebUI en el puerto 8088 `http://bda-iesgrancapitan:8088`
@@ -90,7 +88,7 @@ Siguiendo MapReduce:
 - Fase de _mapeo_ **(Map)**: Los documentos se parten en pares de clave/valor. Hasta que no se reduzca, podemos tener muchos duplicados.
 - Fase de _reducción_ **(Reduce)**: Es en cierta medida similar a un "group by" de SQL. Las ocurrencias similares se agrupan, y dependiendo de la función de reducción, se puede crear un resultado diferente. En nuestro ejemplo queremos contar los colores, y eso es lo que devuelve nuestra función.
 
-Es un proceso de procesamiento costoso. Los pasos serían los siguientes: _Recuerda que la gestión de la capa de procesamiento la realiza YARN_:
+Es un proceso de procesamiento costoso. Los pasos serían los siguientes:
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.7_MapReduce_Ejemplo1_Detallado.jpg">
@@ -135,8 +133,6 @@ TELEFONICA 3331923
 Intentar este cálculo leyendo el fichero de forma secuencial y teniendo un contador para cada empresa sería un proceso que llevaría días de procesamiento, así que vamos a utilizar MapReduce para realizar este proceso.
 
 Como se describió anteriormente, el primer paso es crear la aplicación, por ejemplo, utilizando lenguaje Java, y enviar el programa al clúster Hadoop utilizando el API de MapReduce para enviar trabajos.
-
-El ***ResourceManager*** de YARN tomará el trabajo y en función de la situación del clúster en cuanto al número de contenedores disponibles, arrancará un ***ApplicationsMaster*** que lanzará la aplicación ***MapReduce***.
 
 Una vez arrancada la aplicación, en primer lugar decidirá cómo partir el fichero de entrada en fragmentos para que los datos puedan ser procesados en paralelo. El componente que realiza esta división de los ficheros de entrada se denomina **InputFormat**.
 
@@ -351,95 +347,85 @@ hadoop jar VentasProductosPorPais.jar /bda/mapreduce/ejercicios/Ventas_Enero23.c
 ```
 _Puedes usar también el comando `yarn jar`_
 
-```
-2023-02-04 21:03:11,414 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at bda-iesgrancapitan/127.0.0.1:8032
-2023-02-04 21:03:11,510 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at bda-iesgrancapitan/127.0.0.1:8032
-2023-02-04 21:03:11,651 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
-2023-02-04 21:03:11,797 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hadoop/.staging/job_1675457727727_0007
-2023-02-04 21:03:12,237 INFO mapred.FileInputFormat: Total input files to process : 1
-2023-02-04 21:03:12,899 INFO mapreduce.JobSubmitter: number of splits:2
-2023-02-04 21:03:13,263 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1675457727727_0007
-2023-02-04 21:03:13,264 INFO mapreduce.JobSubmitter: Executing with tokens: []
-2023-02-04 21:03:13,370 INFO conf.Configuration: resource-types.xml not found
-2023-02-04 21:03:13,370 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
-2023-02-04 21:03:13,407 INFO impl.YarnClientImpl: Submitted application application_1675457727727_0007
-2023-02-04 21:03:13,432 INFO mapreduce.Job: The url to track the job: http://hadoop-VirtualBox:8088/proxy/application_1675457727727_0007/
-2023-02-04 21:03:13,433 INFO mapreduce.Job: Running job: job_1675457727727_0007
-2023-02-04 21:03:18,539 INFO mapreduce.Job: Job job_1675457727727_0007 running in uber mode : false
-2023-02-04 21:03:18,542 INFO mapreduce.Job:  map 0% reduce 0%
-2023-02-04 21:03:23,625 INFO mapreduce.Job:  map 100% reduce 0%
-2023-02-04 21:03:28,697 INFO mapreduce.Job:  map 100% reduce 100%
-2023-02-04 21:03:30,721 INFO mapreduce.Job: Job job_1675457727727_0007 completed successfully
-2023-02-04 21:03:30,771 INFO mapreduce.Job: Counters: 54
+```bash
+2023-11-27 18:47:24,828 INFO impl.MetricsConfig: Loaded properties from hadoop-metrics2.properties
+2023-11-27 18:47:24,910 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+2023-11-27 18:47:24,911 INFO impl.MetricsSystemImpl: JobTracker metrics system started
+2023-11-27 18:47:24,975 WARN impl.MetricsSystemImpl: JobTracker metrics system already initialized!
+2023-11-27 18:47:25,160 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2023-11-27 18:47:25,342 INFO mapred.FileInputFormat: Total input files to process : 1
+2023-11-27 18:47:25,484 INFO mapreduce.JobSubmitter: number of splits:1
+2023-11-27 18:47:25,639 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_local514940019_0001
+2023-11-27 18:47:25,639 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2023-11-27 18:47:25,910 INFO mapreduce.Job: The url to track the job: http://localhost:8080/
+2023-11-27 18:47:25,911 INFO mapreduce.Job: Running job: job_local514940019_0001
+2023-11-27 18:47:25,926 INFO mapred.LocalJobRunner: OutputCommitter set in config null
+2023-11-27 18:47:25,927 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.mapred.FileOutputCommitter
+2023-11-27 18:47:25,932 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2023-11-27 18:47:25,941 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2023-11-27 18:47:26,161 INFO mapred.LocalJobRunner: Waiting for map tasks
+2023-11-27 18:47:26,164 INFO mapred.LocalJobRunner: Starting task: attempt_local514940019_0001_m_000000_0
+2023-11-27 18:47:26,179 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2023-11-27 18:47:26,179 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2023-11-27 18:47:26,207 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+2023-11-27 18:47:26,230 INFO mapred.MapTask: Processing split: hdfs://bda-iesgrancapitan:9000/bda/mapreduce/ejercicios/Ventas_Enero23.csv:0+123637
+2023-11-27 18:47:26,271 INFO mapred.MapTask: numReduceTasks: 1
+2023-11-27 18:47:26,349 INFO mapred.MapTask: (EQUATOR) 0 kvi 26214396(104857584)
+2023-11-27 18:47:26,350 INFO mapred.MapTask: mapreduce.task.io.sort.mb: 100
+2023-11-27 18:47:26,350 INFO mapred.MapTask: soft limit at 83886080
+2023-11-27 18:47:26,350 INFO mapred.MapTask: bufstart = 0; bufvoid = 104857600
+2023-11-27 18:47:26,350 INFO mapred.MapTask: kvstart = 26214396; length = 6553600
+2023-11-27 18:47:26,352 INFO mapred.MapTask: Map output collector class = org.apache.hadoop.mapred.MapTask$MapOutputBuffer
+2023-11-27 18:47:26,464 INFO mapred.LocalJobRunner: 
+2023-11-27 18:47:26,471 INFO mapred.MapTask: Starting flush of map output
+2023-11-27 18:47:26,472 INFO mapred.MapTask: Spilling map output
+2023-11-27 18:47:26,472 INFO mapred.MapTask: bufstart = 0; bufend = 15743; bufvoid = 104857600
+2023-11-27 18:47:26,472 INFO mapred.MapTask: kvstart = 26214396(104857584); kvend = 26210404(104841616); length = 3993/6553600
+2023-11-27 18:47:26,489 INFO mapred.MapTask: Finished spill 0
+2023-11-27 18:47:26,520 INFO mapred.Task: Task:attempt_local514940019_0001_m_000000_0 is done. And is in the process of committing
+2023-11-27 18:47:26,524 INFO mapred.LocalJobRunner: hdfs://bda-iesgrancapitan:9000/bda/mapreduce/ejercicios/Ventas_Enero23.csv:0+123637
+2023-11-27 18:47:26,524 INFO mapred.Task: Task 'attempt_local514940019_0001_m_000000_0' done.
+2023-11-27 18:47:26,530 INFO mapred.Task: Final Counters for attempt_local514940019_0001_m_000000_0: Counters: 23
 	File System Counters
-		FILE: Number of bytes read=17747
-		FILE: Number of bytes written=863934
+		FILE: Number of bytes read=3122
+		FILE: Number of bytes written=657555
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
-		HDFS: Number of bytes read=127607
-		HDFS: Number of bytes written=661
-		HDFS: Number of read operations=11
+		HDFS: Number of bytes read=123637
+		HDFS: Number of bytes written=0
+		HDFS: Number of read operations=5
 		HDFS: Number of large read operations=0
-		HDFS: Number of write operations=2
+		HDFS: Number of write operations=1
 		HDFS: Number of bytes read erasure-coded=0
-	Job Counters 
-		Launched map tasks=2
-		Launched reduce tasks=1
-		Data-local map tasks=2
-		Total time spent by all maps in occupied slots (ms)=6860
-		Total time spent by all reduces in occupied slots (ms)=2325
-		Total time spent by all map tasks (ms)=6860
-		Total time spent by all reduce tasks (ms)=2325
-		Total vcore-milliseconds taken by all map tasks=6860
-		Total vcore-milliseconds taken by all reduce tasks=2325
-		Total megabyte-milliseconds taken by all map tasks=7024640
-		Total megabyte-milliseconds taken by all reduce tasks=2380800
 	Map-Reduce Framework
 		Map input records=999
 		Map output records=999
 		Map output bytes=15743
-		Map output materialized bytes=17753
-		Input split bytes=252
+		Map output materialized bytes=17747
+		Input split bytes=126
 		Combine input records=0
-		Combine output records=0
-		Reduce input groups=58
-		Reduce shuffle bytes=17753
-		Reduce input records=999
-		Reduce output records=58
-		Spilled Records=1998
-		Shuffled Maps =2
+		Spilled Records=999
 		Failed Shuffles=0
-		Merged Map outputs=2
-		GC time elapsed (ms)=182
-		CPU time spent (ms)=1510
-		Physical memory (bytes) snapshot=792735744
-		Virtual memory (bytes) snapshot=8214552576
-		Total committed heap usage (bytes)=663748608
-		Peak Map Physical memory (bytes)=323776512
-		Peak Map Virtual memory (bytes)=2735558656
-		Peak Reduce Physical memory (bytes)=210231296
-		Peak Reduce Virtual memory (bytes)=2747248640
-	Shuffle Errors
-		BAD_ID=0
-		CONNECTION=0
-		IO_ERROR=0
-		WRONG_LENGTH=0
-		WRONG_MAP=0
-		WRONG_REDUCE=0
+		Merged Map outputs=0
+		GC time elapsed (ms)=22
+		Total committed heap usage (bytes)=167841792
 	File Input Format Counters 
-		Bytes Read=127355
-	File Output Format Counters 
-		Bytes Written=661
+		Bytes Read=123637
+2023-11-27 18:47:26,530 INFO mapred.LocalJobRunner: Finishing task: attempt_local514940019_0001_m_000000_0
+2023-11-27 18:47:26,530 INFO mapred.LocalJobRunner: map task executor complete.
+2023-11-27 18:47:26,553 INFO mapred.LocalJobRunner: Waiting for reduce tasks
+2023-11-27 18:47:26,553 INFO mapred.LocalJobRunner: Starting task: attempt_local514940019_0001_r_000000_0
+2023-11-27 18:47:26,558 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
 ```
 
 9. Vemos el fichero resultante y comprobamos si hemos obtenido los datos que teníamos como objetivo
 
-```
+```bash
 hdfs dfs -cat /bda/mapreduce/ejercicios/salida_ventas/part-00000
 ```
-```
-rgentina	1
+```bash
+Argentina	1
 Australia	38
 Austria	7
 Bahrain	1
@@ -503,32 +489,33 @@ United States	462
 
 Vamos a realizar un ejercicio de ejemplo de uso de MapReduce. En este caso vamos a usar una de las aplicaciones que ya vienen dentro de MapReduce, que es el contador de palabras
 
-1. Primero descargamos un fichero en local. En este caso vamos a contar las palabras de "El quijote". Descárgalo de este gist alojado en github
+1. Primero descargamos un fichero en local de este gist alojado en github. En este caso vamos a contar las palabras de "**El quijote**".
 
-```
+```bash
 wget https://gist.githubusercontent.com/jaimerabasco/cb528c32b4c4092e6a0763d8b6bc25c0/raw/54b30a89f3b608d0837bd1fc10bc31e64ba4c7c8/El_Quijote.txt
 ```
 
 2. Crea en HDFS la carpeta donde vas a alojar el fichero
 
-```
+```bash
+// No es necesario si ya los has creado en el ejercicio anterior 
 hdfs dfs -mkdir /bda/mapreduce
 hdfs dfs -mkdir /bda/mapreduce/ejercicios
 ```
 
 3. Copia el fichero del "El quijote" a HDFS
 
-```
+```bash
 hdfs dfs -copyFromLocal El_Quijote.txt /bda/mapreduce/ejercicios
 ```
 
-5. Listamos la lista de ejemplos que nos dispone MapReduce
+4. Listamos la lista de ejemplos que nos dispone MapReduce
 
-```
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar
+```bash
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar
 ```
 
-6. Vemos muchos de ellos. Para este ejercicio nos interesa wordcount
+5. Vemos muchos de ellos. Para este ejercicio nos interesa ***wordcount***
 
 ```
 An example program must be given as the first argument.
@@ -557,64 +544,66 @@ Valid program names are:
   wordstandarddeviation: A map/reduce program that counts the standard deviation of the length of the words in the input files.
 ```
 
-7. Vemos los parametros que necesitamos para wordcount
+7. Vemos los parámetros que necesitamos para wordcount
 
-```
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar wordcount
+```bash
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar wordcount
 Usage: wordcount <in> [<in>...] <out>
 ```
 
 8. Ejecuta el ejemplo de contar palabras sobre el "El quijote". Hay que indicar el fichero de entrada y de salida
 
-```
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar wordcount /bda/mapreduce/ejercicios/El_Quijote.txt /bda/mapreduce/ejercicios/salida_quijote
+```bash
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.jar wordcount /bda/mapreduce/ejercicios/El_Quijote.txt /bda/mapreduce/ejercicios/salida_quijote
 ```
 
-_Si no tienes levantado Yarn tendrás esta salida, ya que se ejecutará MapReduce sobre HDFS_
-```
-/bda/mapreduce/ejercicios/El_Quijote.txt /bda/mapreduce/ejercicios/salida_quijote
-2023-01-28 19:51:13,025 INFO impl.MetricsConfig: Loaded properties from hadoop-metrics2.properties
-2023-01-28 19:51:13,088 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
-2023-01-28 19:51:13,088 INFO impl.MetricsSystemImpl: JobTracker metrics system started
-2023-01-28 19:51:13,335 INFO input.FileInputFormat: Total input files to process : 1
-2023-01-28 19:51:13,403 INFO mapreduce.JobSubmitter: number of splits:1
-2023-01-28 19:51:13,558 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_local1429842606_0001
-2023-01-28 19:51:13,558 INFO mapreduce.JobSubmitter: Executing with tokens: []
-2023-01-28 19:51:13,747 INFO mapreduce.Job: The url to track the job: http://localhost:8080/
-2023-01-28 19:51:13,748 INFO mapreduce.Job: Running job: job_local1429842606_0001
-2023-01-28 19:51:13,751 INFO mapred.LocalJobRunner: OutputCommitter set in config null
-2023-01-28 19:51:13,767 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
-2023-01-28 19:51:13,767 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-2023-01-28 19:51:13,768 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
-2023-01-28 19:51:13,915 INFO mapred.LocalJobRunner: Waiting for map tasks
-2023-01-28 19:51:13,916 INFO mapred.LocalJobRunner: Starting task: attempt_local1429842606_0001_m_000000_0
-2023-01-28 19:51:13,938 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
-2023-01-28 19:51:13,939 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-2023-01-28 19:51:14,006 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
-2023-01-28 19:51:14,023 INFO mapred.MapTask: Processing split: hdfs://bda-iesgrancapitan:9000/bda/mapreduce/ejercicios/El_Quijote.txt:0+2161176
-2023-01-28 19:51:14,081 INFO mapred.MapTask: (EQUATOR) 0 kvi 26214396(104857584)
-2023-01-28 19:51:14,081 INFO mapred.MapTask: mapreduce.task.io.sort.mb: 100
-2023-01-28 19:51:14,081 INFO mapred.MapTask: soft limit at 83886080
-2023-01-28 19:51:14,081 INFO mapred.MapTask: bufstart = 0; bufvoid = 104857600
-2023-01-28 19:51:14,081 INFO mapred.MapTask: kvstart = 26214396; length = 6553600
-2023-01-28 19:51:14,084 INFO mapred.MapTask: Map output collector class = org.apache.hadoop.mapred.MapTask$MapOutputBuffer
-2023-01-28 19:51:14,375 INFO mapred.LocalJobRunner: 
-2023-01-28 19:51:14,376 INFO mapred.MapTask: Starting flush of map output
-2023-01-28 19:51:14,376 INFO mapred.MapTask: Spilling map output
-2023-01-28 19:51:14,376 INFO mapred.MapTask: bufstart = 0; bufend = 3688770; bufvoid = 104857600
-2023-01-28 19:51:14,376 INFO mapred.MapTask: kvstart = 26214396(104857584); kvend = 24677300(98709200); length = 1537097/6553600
-2023-01-28 19:51:14,652 INFO mapred.MapTask: Finished spill 0
-2023-01-28 19:51:14,674 INFO mapred.Task: Task:attempt_local1429842606_0001_m_000000_0 is done. And is in the process of committing
-2023-01-28 19:51:14,678 INFO mapred.LocalJobRunner: map
-2023-01-28 19:51:14,683 INFO mapred.Task: Task 'attempt_local1429842606_0001_m_000000_0' done.
-2023-01-28 19:51:14,687 INFO mapred.Task: Final Counters for attempt_local1429842606_0001_m_000000_0: Counters: 24
+```bash
+2023-11-27 18:59:30,696 INFO impl.MetricsConfig: Loaded properties from hadoop-metrics2.properties
+2023-11-27 18:59:30,801 INFO impl.MetricsSystemImpl: Scheduled Metric snapshot period at 10 second(s).
+2023-11-27 18:59:30,801 INFO impl.MetricsSystemImpl: JobTracker metrics system started
+2023-11-27 18:59:31,074 INFO input.FileInputFormat: Total input files to process : 1
+2023-11-27 18:59:31,149 INFO mapreduce.JobSubmitter: number of splits:1
+2023-11-27 18:59:31,314 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_local498821156_0001
+2023-11-27 18:59:31,315 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2023-11-27 18:59:31,470 INFO mapreduce.Job: The url to track the job: http://localhost:8080/
+2023-11-27 18:59:31,471 INFO mapreduce.Job: Running job: job_local498821156_0001
+2023-11-27 18:59:31,473 INFO mapred.LocalJobRunner: OutputCommitter set in config null
+2023-11-27 18:59:31,477 INFO output.PathOutputCommitterFactory: No output committer factory defined, defaulting to FileOutputCommitterFactory
+2023-11-27 18:59:31,478 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2023-11-27 18:59:31,478 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2023-11-27 18:59:31,478 INFO mapred.LocalJobRunner: OutputCommitter is org.apache.hadoop.mapreduce.lib.output.FileOutputCommitter
+2023-11-27 18:59:31,601 INFO mapred.LocalJobRunner: Waiting for map tasks
+2023-11-27 18:59:31,602 INFO mapred.LocalJobRunner: Starting task: attempt_local498821156_0001_m_000000_0
+2023-11-27 18:59:31,615 INFO output.PathOutputCommitterFactory: No output committer factory defined, defaulting to FileOutputCommitterFactory
+2023-11-27 18:59:31,617 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2023-11-27 18:59:31,617 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2023-11-27 18:59:31,651 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+2023-11-27 18:59:31,657 INFO mapred.MapTask: Processing split: hdfs://bda-iesgrancapitan:9000/bda/mapreduce/ejercicios/El_Quijote.txt:0+2161175
+2023-11-27 18:59:31,741 INFO mapred.MapTask: (EQUATOR) 0 kvi 26214396(104857584)
+2023-11-27 18:59:31,741 INFO mapred.MapTask: mapreduce.task.io.sort.mb: 100
+2023-11-27 18:59:31,741 INFO mapred.MapTask: soft limit at 83886080
+2023-11-27 18:59:31,741 INFO mapred.MapTask: bufstart = 0; bufvoid = 104857600
+2023-11-27 18:59:31,741 INFO mapred.MapTask: kvstart = 26214396; length = 6553600
+2023-11-27 18:59:31,745 INFO mapred.MapTask: Map output collector class = org.apache.hadoop.mapred.MapTask$MapOutputBuffer
+2023-11-27 18:59:32,166 INFO mapred.LocalJobRunner: 
+2023-11-27 18:59:32,182 INFO mapred.MapTask: Starting flush of map output
+2023-11-27 18:59:32,182 INFO mapred.MapTask: Spilling map output
+2023-11-27 18:59:32,183 INFO mapred.MapTask: bufstart = 0; bufend = 3688770; bufvoid = 104857600
+2023-11-27 18:59:32,183 INFO mapred.MapTask: kvstart = 26214396(104857584); kvend = 24677300(98709200); length = 1537097/6553600
+2023-11-27 18:59:32,488 INFO mapreduce.Job: Job job_local498821156_0001 running in uber mode : false
+2023-11-27 18:59:32,488 INFO mapreduce.Job:  map 0% reduce 0%
+2023-11-27 18:59:32,803 INFO mapred.MapTask: Finished spill 0
+2023-11-27 18:59:32,823 INFO mapred.Task: Task:attempt_local498821156_0001_m_000000_0 is done. And is in the process of committing
+2023-11-27 18:59:32,825 INFO mapred.LocalJobRunner: map
+2023-11-27 18:59:32,826 INFO mapred.Task: Task 'attempt_local498821156_0001_m_000000_0' done.
+2023-11-27 18:59:32,830 INFO mapred.Task: Final Counters for attempt_local498821156_0001_m_000000_0: Counters: 24
 	File System Counters
-		FILE: Number of bytes read=281190
-		FILE: Number of bytes written=1528151
+		FILE: Number of bytes read=281548
+		FILE: Number of bytes written=1526135
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
-		HDFS: Number of bytes read=2161176
+		HDFS: Number of bytes read=2161175
 		HDFS: Number of bytes written=0
 		HDFS: Number of read operations=5
 		HDFS: Number of large read operations=0
@@ -631,52 +620,52 @@ _Si no tienes levantado Yarn tendrás esta salida, ya que se ejecutará MapReduc
 		Spilled Records=40067
 		Failed Shuffles=0
 		Merged Map outputs=0
-		GC time elapsed (ms)=21
-		Total committed heap usage (bytes)=328204288
+		GC time elapsed (ms)=31
+		Total committed heap usage (bytes)=167841792
 	File Input Format Counters 
-		Bytes Read=2161176
-2023-01-28 19:51:14,688 INFO mapred.LocalJobRunner: Finishing task: attempt_local1429842606_0001_m_000000_0
-2023-01-28 19:51:14,689 INFO mapred.LocalJobRunner: map task executor complete.
-2023-01-28 19:51:14,692 INFO mapred.LocalJobRunner: Waiting for reduce tasks
-2023-01-28 19:51:14,693 INFO mapred.LocalJobRunner: Starting task: attempt_local1429842606_0001_r_000000_0
-2023-01-28 19:51:14,697 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
-2023-01-28 19:51:14,697 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
-2023-01-28 19:51:14,698 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
-2023-01-28 19:51:14,700 INFO mapred.ReduceTask: Using ShuffleConsumerPlugin: org.apache.hadoop.mapreduce.task.reduce.Shuffle@3a3e72d4
-2023-01-28 19:51:14,702 WARN impl.MetricsSystemImpl: JobTracker metrics system already initialized!
-2023-01-28 19:51:14,716 INFO reduce.MergeManagerImpl: MergerManager: memoryLimit=1064304640, maxSingleShuffleLimit=266076160, mergeThreshold=702441088, ioSortFactor=10, memToMemMergeOutputsThreshold=10
-2023-01-28 19:51:14,733 INFO reduce.EventFetcher: attempt_local1429842606_0001_r_000000_0 Thread started: EventFetcher for fetching Map Completion Events
-2023-01-28 19:51:14,751 INFO mapreduce.Job: Job job_local1429842606_0001 running in uber mode : false
-2023-01-28 19:51:14,751 INFO mapreduce.Job:  map 100% reduce 0%
-2023-01-28 19:51:14,752 INFO reduce.LocalFetcher: localfetcher#1 about to shuffle output of map attempt_local1429842606_0001_m_000000_0 decomp: 605627 len: 605631 to MEMORY
-2023-01-28 19:51:14,759 INFO reduce.InMemoryMapOutput: Read 605627 bytes from map-output for attempt_local1429842606_0001_m_000000_0
-2023-01-28 19:51:14,760 INFO reduce.MergeManagerImpl: closeInMemoryFile -> map-output of size: 605627, inMemoryMapOutputs.size() -> 1, commitMemory -> 0, usedMemory ->605627
-2023-01-28 19:51:14,761 INFO reduce.EventFetcher: EventFetcher is interrupted.. Returning
-2023-01-28 19:51:14,761 INFO mapred.LocalJobRunner: 1 / 1 copied.
-2023-01-28 19:51:14,761 INFO reduce.MergeManagerImpl: finalMerge called with 1 in-memory map-outputs and 0 on-disk map-outputs
-2023-01-28 19:51:14,765 INFO mapred.Merger: Merging 1 sorted segments
-2023-01-28 19:51:14,765 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 605620 bytes
-2023-01-28 19:51:14,795 INFO reduce.MergeManagerImpl: Merged 1 segments, 605627 bytes to disk to satisfy reduce memory limit
-2023-01-28 19:51:14,796 INFO reduce.MergeManagerImpl: Merging 1 files, 605631 bytes from disk
-2023-01-28 19:51:14,796 INFO reduce.MergeManagerImpl: Merging 0 segments, 0 bytes from memory into reduce
-2023-01-28 19:51:14,796 INFO mapred.Merger: Merging 1 sorted segments
-2023-01-28 19:51:14,797 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 605620 bytes
-2023-01-28 19:51:14,797 INFO mapred.LocalJobRunner: 1 / 1 copied.
-2023-01-28 19:51:14,922 INFO Configuration.deprecation: mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
-2023-01-28 19:51:15,166 INFO mapred.Task: Task:attempt_local1429842606_0001_r_000000_0 is done. And is in the process of committing
-2023-01-28 19:51:15,170 INFO mapred.LocalJobRunner: 1 / 1 copied.
-2023-01-28 19:51:15,171 INFO mapred.Task: Task attempt_local1429842606_0001_r_000000_0 is allowed to commit now
-2023-01-28 19:51:15,245 INFO output.FileOutputCommitter: Saved output of task 'attempt_local1429842606_0001_r_000000_0' to hdfs://bda-iesgrancapitan:9000/bda/mapreduce/ejercicios/salida_quijote
-2023-01-28 19:51:15,246 INFO mapred.LocalJobRunner: reduce > reduce
-2023-01-28 19:51:15,246 INFO mapred.Task: Task 'attempt_local1429842606_0001_r_000000_0' done.
-2023-01-28 19:51:15,248 INFO mapred.Task: Final Counters for attempt_local1429842606_0001_r_000000_0: Counters: 30
+		Bytes Read=2161175
+2023-11-27 18:59:32,831 INFO mapred.LocalJobRunner: Finishing task: attempt_local498821156_0001_m_000000_0
+2023-11-27 18:59:32,832 INFO mapred.LocalJobRunner: map task executor complete.
+2023-11-27 18:59:32,856 INFO mapred.LocalJobRunner: Waiting for reduce tasks
+2023-11-27 18:59:32,857 INFO mapred.LocalJobRunner: Starting task: attempt_local498821156_0001_r_000000_0
+2023-11-27 18:59:32,861 INFO output.PathOutputCommitterFactory: No output committer factory defined, defaulting to FileOutputCommitterFactory
+2023-11-27 18:59:32,861 INFO output.FileOutputCommitter: File Output Committer Algorithm version is 2
+2023-11-27 18:59:32,861 INFO output.FileOutputCommitter: FileOutputCommitter skip cleanup _temporary folders under output directory:false, ignore cleanup failures: false
+2023-11-27 18:59:32,861 INFO mapred.Task:  Using ResourceCalculatorProcessTree : [ ]
+2023-11-27 18:59:32,867 INFO mapred.ReduceTask: Using ShuffleConsumerPlugin: org.apache.hadoop.mapreduce.task.reduce.Shuffle@4de8aeff
+2023-11-27 18:59:32,872 WARN impl.MetricsSystemImpl: JobTracker metrics system already initialized!
+2023-11-27 18:59:32,917 INFO reduce.MergeManagerImpl: MergerManager: memoryLimit=693954112, maxSingleShuffleLimit=173488528, mergeThreshold=458009728, ioSortFactor=10, memToMemMergeOutputsThreshold=10
+2023-11-27 18:59:32,939 INFO reduce.EventFetcher: attempt_local498821156_0001_r_000000_0 Thread started: EventFetcher for fetching Map Completion Events
+2023-11-27 18:59:32,972 INFO reduce.LocalFetcher: localfetcher#1 about to shuffle output of map attempt_local498821156_0001_m_000000_0 decomp: 605627 len: 605631 to MEMORY
+2023-11-27 18:59:32,974 INFO reduce.InMemoryMapOutput: Read 605627 bytes from map-output for attempt_local498821156_0001_m_000000_0
+2023-11-27 18:59:32,975 INFO reduce.MergeManagerImpl: closeInMemoryFile -> map-output of size: 605627, inMemoryMapOutputs.size() -> 1, commitMemory -> 0, usedMemory ->605627
+2023-11-27 18:59:32,976 INFO reduce.EventFetcher: EventFetcher is interrupted.. Returning
+2023-11-27 18:59:32,976 INFO mapred.LocalJobRunner: 1 / 1 copied.
+2023-11-27 18:59:32,976 INFO reduce.MergeManagerImpl: finalMerge called with 1 in-memory map-outputs and 0 on-disk map-outputs
+2023-11-27 18:59:32,982 INFO mapred.Merger: Merging 1 sorted segments
+2023-11-27 18:59:32,982 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 605620 bytes
+2023-11-27 18:59:33,049 INFO reduce.MergeManagerImpl: Merged 1 segments, 605627 bytes to disk to satisfy reduce memory limit
+2023-11-27 18:59:33,049 INFO reduce.MergeManagerImpl: Merging 1 files, 605631 bytes from disk
+2023-11-27 18:59:33,050 INFO reduce.MergeManagerImpl: Merging 0 segments, 0 bytes from memory into reduce
+2023-11-27 18:59:33,050 INFO mapred.Merger: Merging 1 sorted segments
+2023-11-27 18:59:33,050 INFO mapred.Merger: Down to the last merge-pass, with 1 segments left of total size: 605620 bytes
+2023-11-27 18:59:33,051 INFO mapred.LocalJobRunner: 1 / 1 copied.
+2023-11-27 18:59:33,164 INFO Configuration.deprecation: mapred.skip.on is deprecated. Instead, use mapreduce.job.skiprecords
+2023-11-27 18:59:33,463 INFO mapred.Task: Task:attempt_local498821156_0001_r_000000_0 is done. And is in the process of committing
+2023-11-27 18:59:33,465 INFO mapred.LocalJobRunner: 1 / 1 copied.
+2023-11-27 18:59:33,465 INFO mapred.Task: Task attempt_local498821156_0001_r_000000_0 is allowed to commit now
+2023-11-27 18:59:33,490 INFO mapreduce.Job:  map 100% reduce 0%
+2023-11-27 18:59:33,526 INFO output.FileOutputCommitter: Saved output of task 'attempt_local498821156_0001_r_000000_0' to hdfs://bda-iesgrancapitan:9000/bda/mapreduce/ejercicios/salida_quijote
+2023-11-27 18:59:33,526 INFO mapred.LocalJobRunner: reduce > reduce
+2023-11-27 18:59:33,526 INFO mapred.Task: Task 'attempt_local498821156_0001_r_000000_0' done.
+2023-11-27 18:59:33,527 INFO mapred.Task: Final Counters for attempt_local498821156_0001_r_000000_0: Counters: 30
 	File System Counters
-		FILE: Number of bytes read=1492484
-		FILE: Number of bytes written=2133782
+		FILE: Number of bytes read=1492842
+		FILE: Number of bytes written=2131766
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
-		HDFS: Number of bytes read=2161176
+		HDFS: Number of bytes read=2161175
 		HDFS: Number of bytes written=448985
 		HDFS: Number of read operations=10
 		HDFS: Number of large read operations=0
@@ -693,8 +682,8 @@ _Si no tienes levantado Yarn tendrás esta salida, ya que se ejecutará MapReduc
 		Shuffled Maps =1
 		Failed Shuffles=0
 		Merged Map outputs=1
-		GC time elapsed (ms)=0
-		Total committed heap usage (bytes)=328204288
+		GC time elapsed (ms)=5
+		Total committed heap usage (bytes)=167841792
 	Shuffle Errors
 		BAD_ID=0
 		CONNECTION=0
@@ -704,18 +693,18 @@ _Si no tienes levantado Yarn tendrás esta salida, ya que se ejecutará MapReduc
 		WRONG_REDUCE=0
 	File Output Format Counters 
 		Bytes Written=448985
-2023-01-28 19:51:15,251 INFO mapred.LocalJobRunner: Finishing task: attempt_local1429842606_0001_r_000000_0
-2023-01-28 19:51:15,252 INFO mapred.LocalJobRunner: reduce task executor complete.
-2023-01-28 19:51:15,753 INFO mapreduce.Job:  map 100% reduce 100%
-2023-01-28 19:51:15,754 INFO mapreduce.Job: Job job_local1429842606_0001 completed successfully
-2023-01-28 19:51:15,796 INFO mapreduce.Job: Counters: 36
+2023-11-27 18:59:33,528 INFO mapred.LocalJobRunner: Finishing task: attempt_local498821156_0001_r_000000_0
+2023-11-27 18:59:33,528 INFO mapred.LocalJobRunner: reduce task executor complete.
+2023-11-27 18:59:34,491 INFO mapreduce.Job:  map 100% reduce 100%
+2023-11-27 18:59:34,493 INFO mapreduce.Job: Job job_local498821156_0001 completed successfully
+2023-11-27 18:59:34,528 INFO mapreduce.Job: Counters: 36
 	File System Counters
-		FILE: Number of bytes read=1773674
-		FILE: Number of bytes written=3661933
+		FILE: Number of bytes read=1774390
+		FILE: Number of bytes written=3657901
 		FILE: Number of read operations=0
 		FILE: Number of large read operations=0
 		FILE: Number of write operations=0
-		HDFS: Number of bytes read=4322352
+		HDFS: Number of bytes read=4322350
 		HDFS: Number of bytes written=448985
 		HDFS: Number of read operations=15
 		HDFS: Number of large read operations=0
@@ -737,91 +726,8 @@ _Si no tienes levantado Yarn tendrás esta salida, ya que se ejecutará MapReduc
 		Shuffled Maps =1
 		Failed Shuffles=0
 		Merged Map outputs=1
-		GC time elapsed (ms)=21
-		Total committed heap usage (bytes)=656408576
-	Shuffle Errors
-		BAD_ID=0
-		CONNECTION=0
-		IO_ERROR=0
-		WRONG_LENGTH=0
-		WRONG_MAP=0
-		WRONG_REDUCE=0
-	File Input Format Counters 
-		Bytes Read=2161176
-	File Output Format Counters 
-		Bytes Written=448985
-```
-
-_Si tienes levantado Yarn tendrás esta otra salida, ya que se ejecutará MapReduce sobre YARN, y podrás observarlo también desde su WebUI_
-
-```
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.jar wordcount /bda/mapreduce/ejercicios/El_Quijote.txt /bda/mapreduce/ejercicios/salida_quijote2
-2023-02-04 21:09:20,088 INFO client.DefaultNoHARMFailoverProxyProvider: Connecting to ResourceManager at bda-iesgrancapitan/127.0.0.1:8032
-2023-02-04 21:09:20,424 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hadoop/.staging/job_1675457727727_0009
-2023-02-04 21:09:20,983 INFO input.FileInputFormat: Total input files to process : 1
-2023-02-04 21:09:21,577 INFO mapreduce.JobSubmitter: number of splits:1
-2023-02-04 21:09:21,924 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1675457727727_0009
-2023-02-04 21:09:21,924 INFO mapreduce.JobSubmitter: Executing with tokens: []
-2023-02-04 21:09:22,056 INFO conf.Configuration: resource-types.xml not found
-2023-02-04 21:09:22,057 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
-2023-02-04 21:09:22,109 INFO impl.YarnClientImpl: Submitted application application_1675457727727_0009
-2023-02-04 21:09:22,137 INFO mapreduce.Job: The url to track the job: http://hadoop-VirtualBox:8088/proxy/application_1675457727727_0009/
-2023-02-04 21:09:22,138 INFO mapreduce.Job: Running job: job_1675457727727_0009
-2023-02-04 21:09:27,287 INFO mapreduce.Job: Job job_1675457727727_0009 running in uber mode : false
-2023-02-04 21:09:27,292 INFO mapreduce.Job:  map 0% reduce 0%
-2023-02-04 21:09:31,461 INFO mapreduce.Job:  map 100% reduce 0%
-2023-02-04 21:09:36,541 INFO mapreduce.Job:  map 100% reduce 100%
-2023-02-04 21:09:38,606 INFO mapreduce.Job: Job job_1675457727727_0009 completed successfully
-2023-02-04 21:09:38,702 INFO mapreduce.Job: Counters: 54
-	File System Counters
-		FILE: Number of bytes read=605631
-		FILE: Number of bytes written=1763627
-		FILE: Number of read operations=0
-		FILE: Number of large read operations=0
-		FILE: Number of write operations=0
-		HDFS: Number of bytes read=2161310
-		HDFS: Number of bytes written=448985
-		HDFS: Number of read operations=8
-		HDFS: Number of large read operations=0
-		HDFS: Number of write operations=2
-		HDFS: Number of bytes read erasure-coded=0
-	Job Counters 
-		Launched map tasks=1
-		Launched reduce tasks=1
-		Data-local map tasks=1
-		Total time spent by all maps in occupied slots (ms)=2239
-		Total time spent by all reduces in occupied slots (ms)=2213
-		Total time spent by all map tasks (ms)=2239
-		Total time spent by all reduce tasks (ms)=2213
-		Total vcore-milliseconds taken by all map tasks=2239
-		Total vcore-milliseconds taken by all reduce tasks=2213
-		Total megabyte-milliseconds taken by all map tasks=2292736
-		Total megabyte-milliseconds taken by all reduce tasks=2266112
-	Map-Reduce Framework
-		Map input records=37863
-		Map output records=384275
-		Map output bytes=3688770
-		Map output materialized bytes=605631
-		Input split bytes=135
-		Combine input records=384275
-		Combine output records=40067
-		Reduce input groups=40067
-		Reduce shuffle bytes=605631
-		Reduce input records=40067
-		Reduce output records=40067
-		Spilled Records=80134
-		Shuffled Maps =1
-		Failed Shuffles=0
-		Merged Map outputs=1
-		GC time elapsed (ms)=64
-		CPU time spent (ms)=2160
-		Physical memory (bytes) snapshot=482865152
-		Virtual memory (bytes) snapshot=5471391744
-		Total committed heap usage (bytes)=309329920
-		Peak Map Physical memory (bytes)=286822400
-		Peak Map Virtual memory (bytes)=2733633536
-		Peak Reduce Physical memory (bytes)=196042752
-		Peak Reduce Virtual memory (bytes)=2737758208
+		GC time elapsed (ms)=36
+		Total committed heap usage (bytes)=335683584
 	Shuffle Errors
 		BAD_ID=0
 		CONNECTION=0
@@ -835,16 +741,8 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.4.j
 		Bytes Written=448985
 ```
 
-9. Comprobamos la ejecución en WebUI de Yarn. Recuerda acceder al puerto `8088`
-
-<figure style="align: center;">
-    <img src="images/Figura4.9_MapReduce_Ejemplo2_WebUI_Yarn.jpg">
-    <figcaption>Figura4.9_MapReduce_Ejemplo2 WebUI Yarn</figcaption>
-</figure>
-
-
-10.  Leemos el fichero de salida. Aquí están listados todas las palabras de El Quijote y cuantas veces aparece cada palabra
+9.   Leemos el fichero de salida. Aquí están listados todas las palabras de El Quijote y cuantas veces aparece cada palabra
 
 ```
-hdfs dfs -cat /bda/mapreduce/ejercicios/salida_quijote2/part-r-00000
+hdfs dfs -cat /bda/mapreduce/ejercicios/salida_quijote/part-r-00000
 ```
