@@ -22,6 +22,7 @@ nav:
     - "HDFS": "UD4 - Apache Hadoop/2_Hadoop_HDFS.md"
     - "Map Reduce": "UD4 - Apache Hadoop/3_Hadoop_Map_Reduce.md"
     - "Yarn": "UD4 - Apache Hadoop/4_Hadoop_Yarn.md"
+    - "Cluster Hadoop": "UD4 - Apache Hadoop/5_Cluster_Hadoop.md"
 #    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
 #    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
 #    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"

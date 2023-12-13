@@ -2,7 +2,7 @@
 
 En este recurso vamos a explicar como se instala y configura un cluster con Apache Hadoop
 
-## 1. Prerequisitos
+## 1. Pre-requisitos
 
 Debemos tener instalado VirtualBox. 
 
@@ -10,9 +10,19 @@ Debemos tener instalado VirtualBox.
 
 Para crear nuestro cluster, vamos a configurar un **red NAT** para que los nodos tenga conexión entre ellos y salida a Internet a través del Host
 
+!!! success
+
+    Hemos elegido esta configuración de red por varios motivos.
+
+    1. Puedas usar tu cluster en tu portátil independientemente de la red o lugar en la que estés conectado
+    
+    2. Sería más sencillo hacerla en **modo bridge**, pero no tenemos IPs suficientes debido al alto número de alumnado, y habría que configurar las IPs cada vez que te conectes a una red distinta a la de clase.
+    
+    3. En todo caso, si decides optar por esta opción, sólo tienes que adaptar los pasos a tu configuración de red. Sería algo más sencilla.
+
 Para ello, explicamos con una imagen como funciona VirtualBox en este tipo de configuración de red
 
-<figure style="align: center;">
+<figure style="align: center; width:900px;">
     <img src="images/Figura4.1_ClusterHadoop_RedNAT_Virtualbox.webp">
     <figcaption>Figura 1 Cluster Hadoop: Red NAT Virtualbox - Fuente: medium.com/@sidlors</figcaption>
 </figure>
@@ -36,7 +46,7 @@ Teniendo en cuenta esto, vamos a configurar nuestra propia subred, que será la 
 
 Vamos a crear una primera máquina que después clonaremos y cambiaremos las configuraciones necesarias. Las máquinas tendrán la siguiente configuración (***siempre que sea posible***):
 
-- **Nombre**: master (las otras dos máquinas se llamarán nodo1, nodo2 y nodo3)
+- **Nombre**: master (las otras 3 máquinas se llamarán nodo1, nodo2 y nodo3)
 - **RAM**: 4GB (_yo por ejemplo, no puedo darle más de 3GB_)
 - **Núcleos**: 2
 - **Disco duro**: 50GB
@@ -59,9 +69,61 @@ Habiendo entendido correctamente lo explicado en los puntos anteriores,podemos c
 </figure>
 
 
+### 1.4 Acceso a las máquinas
+
+Para un manejo más cómodo e intuitivo de las máquinas, podemos preparar cada nodo para que sea accesible desde nuestro anfitrión y conectarnos mediante ssh a cada una de las máquinas.
+
+Para ello debemos añadir otro interfaz de red en modo "Adaptador sólo anfitrión"  
+
+!!! warning
+
+    Si tienes como anfitrión un equipo linux y no puedes configurar un "adaptador sólo anfitrión" debes crearlo y levantarlo manualmente
+
+    ```bash
+    sudo vboxmanage hostonlyif create
+    sudo ifconfig vboxnet0 up
+    ```
+
+    Se creara una interfaz de red 192.168.56.0/24. Puedes cambiarla y configurarla también manualmente
+
+    ```bash
+    sudo vboxmanage hostonlyif ipconfig vboxnet0 --ip 10.0.2.18
+    ```
+
+    Puedes crear todas las que quieras por este proceso. Si se actualiza el kernel de Linux o la versión de Virtualbox se debe repetir este proceso. Para mas información accede a la [documentación oficial de VirtualBox](https://www.virtualbox.org/manual/UserManual.html#vboxmanage-hostonlyif)
+
+    Ahora, una vez dentro de la máquina virtual, no olvides configurar la ip de esta subred.
+    
+    1. Abrimos el archivo `/etc/netplan/00-instaler-config.yaml` y añadir la configuración. Por ejemplo, terminado en la misma ip que la Red NAT
+    2. Esta sería la configuración completa
+
+
+    ```yaml title="00-instaler-config.yaml"
+    network:
+    ethernets:
+        enp3s0:
+            addresses:
+            - 192.168.11.10/24
+            nameservers:
+                addresses: [8.8.8.8, 1.1.1.1]
+            routes:
+            - to: default
+              via: 192.168.11.1
+        enp8s0:
+            addresses:
+            - 192.168.56.10/24
+    version: 2
+    ``` 
+    3. Aplicamos la nueva configuración
+
+    ```bash
+    sudo netplan apply
+    ```
+
+
 ## 2. Nodo Master
 
-Creamos en VirtualBox el nodo `master` configurando el Interfaz de red como Red NAT y elegimos la que acabamos de crear `BDA`
+Creamos en VirtualBox el nodo `master` configurando el Interfaz de red como Red NAT (opcionalmente otra interfaz red sólo anfitrión) y elegimos la que acabamos de crear `BDA`
 
 ### 2.1 Instalación
 
@@ -72,28 +134,26 @@ sudo apt-get install openjdk-8-jdk
 /usr/bin/java -version
 ```
 
-2. **ssh** debe estar instalado y sshd debe estar ejecutándose para usar las secuencias de comandos de Hadoop que administran los demonios ssh remotos de Hadoop, ya que vamos a usar las secuencias de comandos de inicio y detección opcionales.
+2. **ssh** debe estar instalado y sshd debe estar ejecutándose para usar las secuencias de comandos de Hadoop que administran los demonios ssh remotos de Hadoop, ya que vamos a usar las secuencias de comandos de inicio y detección opcionales. Si no lo has hecho durante la instalación, hazlo ahora.
 
 ```bash
 sudo apt-get install ssh
 ```
 
-3. Abre una terminal
-
-4. Para obtener la distribución de Apache Hadoop, descarga la versión estable más reciente desde [Apache Download Mirrors](https://www.apache.org/dyn/closer.cgi/hadoop/common/)
+3. Para obtener la distribución de Apache Hadoop, descarga la versión estable más reciente desde [Apache Download Mirrors](https://www.apache.org/dyn/closer.cgi/hadoop/common/)
 
 ```bash
 wget https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
 ```
 
-5. Una vez descargado, desempaquetamos el archivo descargado con el comando tar y entra dentro de la carpeta:
+4. Una vez descargado, desempaquetamos el archivo descargado con el comando tar y entra dentro de la carpeta:
 
 ```bash
 sudo tar -xzf hadoop-3.3.6.tar.gz -C /opt
 cd /opt/hadoop-3.3.6
 ```
 
-6. Edita el siguiente archivo `etc/hadoop/hadoop-env.sh` para definir la variable de entorno de Java y añádela.
+5. Edita el siguiente archivo `etc/hadoop/hadoop-env.sh` para definir la variable de entorno de Java y añádela.
 
 ```bash
 # Technically, the only required environment variable is JAVA_HOME.
@@ -132,39 +192,23 @@ From source with checksum 5652179ad55f76cb287d9c633bb53bbd
 This command was run using /opt/hadoop-3.3.6/share/hadoop/common/hadoop-common-3.3.6.jar
 ```
 
-### 7.2 Configuración (Pseudo-Distributed Operation)
-
-Hadoop se puede ejecutar en un solo nodo en un modo pseudo-distributed donde cada demonio de Hadoop se ejecuta en un proceso Java separado.
+### 2.2 Configuración
 
 Los archivos que vamos a revisar a continuación se encuentran dentro de la carpeta `$HADOOP_HOME/etc/hadoop`.
 
-1. El archivo que contiene la configuración general del clúster es el archivo `core-site.xml`. En él se configura cual será el sistema de ficheros, que normalmente será hdfs, indicando el dominio del nodo que será el maestro de datos (namenode) de la arquitectura. Podéis sustituir el nombre del dominio `bda-iesgrancapitan` por el que queráis
+1. El archivo que contiene la configuración general del clúster es el archivo `core-site.xml`. En él se configura cual será el sistema de ficheros, que normalmente será hdfs, indicando el dominio del nodo que será el maestro de datos (namenode) de la arquitectura. Podéis sustituir el nombre del dominio `bda-iesgrancapitan` por el que queráis. En mi caso sera `cluster-bda`
 
 ```xml title="core-site.xml"
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://bda-iesgrancapitan:9000</value>
+        <value>hdfs://cluster-bda:9000</value>
     </property>
 </configuration>
 ```
 
-2. El siguiente paso es configurar el archivo `hdfs-site.xml` donde se indica tanto el factor de replica como la ruta donde se almacenan tanto los metadatos (namenode) como los datos en sí (datanode):
+2. El siguiente paso es configurar el archivo `hdfs-site.xml` donde se indica tanto el factor de replica como la ruta donde se almacenan tanto los metadatos (namenode) como los datos en sí (datanode). Aquí puedes consultar todos los parámetros por defecto susceptibles de cambio se encuentran en este [recurso](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
 
-```xml title="hdfs-site.xml"
-<configuration>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-</configuration>
-```
-
-3. **Opcional:** Si quieres especificar la ruta donde se almacenan los metadatos(namenode) y los datos(datanode) donde el propio hadoop los configura por defecto puedes hacerlo cambiando dichos parámetros correspondientes. Todos lo parámetros por defecto susceptibles de cambio se encuentran en este [recurso](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml)
-
-!!! note inline end
-
-    Si tuviésemos un clúster, en el nodo maestro sólo configuraríamos la ruta del namenode y en cada uno de los nodos esclavos, únicamente la ruta del datanode.
 
 ```xml title="hdfs-site.xml"
 <configuration>
@@ -185,35 +229,116 @@ Los archivos que vamos a revisar a continuación se encuentran dentro de la carp
 </configuration>
 ```
 
-4. Crea los directorios de `hadoop-data` configurados anteriormente en `hdfs-site.xml` para cuando ejecutemos **hadoop** y configura los permisos oportunos.
+3. Crea los directorios de `hadoop-data` configurados anteriormente en `hdfs-site.xml` para cuando ejecutemos **hadoop** y configura los permisos oportunos.
 
 ```bash
 sudo mkdir -p /opt/hadoop
 sudo chown -R hadoop:hadoop /opt/hadoop
 ```
 
-5. Comprobamos que podemos entrar por ssh al localhost sin un passphrase:
+4. Configuramos **MapReduce**
 
-```bash
-ssh localhost
-exit //Si hemos podido acceder
+```xml title="mapred-site.xml"
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+</configuration>
 ```
 
-6. Si no puedes entrar por ssh al localhost sin un passphrase, ejecuta los siguientes comandos:
+5. Configuramos **Yarn**
+
+Primero obtenemos la ruta correcta del classpath de Hadoop ejecutamos la siguiente instrucción
+
+```
+echo `hadoop classpath`
+```
+
+Y es esta salida la que tenemos que poner como valor de la propiedad. En mi caso:
+
+```
+/opt/hadoop-3.3.6/etc/hadoop:/opt/hadoop-3.3.6/share/hadoop/common/lib/*:/opt/hadoop-3.3.6/share/hadoop/common/*:/opt/hadoop-3.3.6/share/hadoop/hdfs:/opt/hadoop-3.3.6/share/hadoop/hdfs/lib/*:/opt/hadoop-3.3.6/share/hadoop/hdfs/*:/opt/hadoop-3.3.6/share/hadoop/mapreduce/*:/opt/hadoop-3.3.6/share/hadoop/yarn:/opt/hadoop-3.3.6/share/hadoop/yarn/lib/*:/opt/hadoop-3.3.6/share/hadoop/yarn/*
+```
+
+Por tanto la configuración final será
+
+
+```xml title="yarn-site.xml"
+<configuration>
+    <property>
+        <name>yarn.webapp.ui2.enable</name>
+        <value>true</value>
+    </property>  
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>cluster-bda</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+    <property>
+        <name>yarn.log-aggregation-enable</name>
+        <value>true</value>
+    </property>
+    <property>
+        <name>yarn.application.classpath</name>
+        <value>/opt/hadoop-3.3.6/etc/hadoop:/opt/hadoop-3.3.6/share/hadoop/common/lib/*:/opt/hadoop-3.3.6/share/hadoop/common/*:/opt/hadoop-3.3.6/share/hadoop/hdfs:/opt/hadoop-3.3.6/share/hadoop/hdfs/lib/*:/opt/hadoop-3.3.6/share/hadoop/hdfs/*:/opt/hadoop-3.3.6/share/hadoop/mapreduce/*:/opt/hadoop-3.3.6/share/hadoop/yarn:/opt/hadoop-3.3.6/share/hadoop/yarn/lib/*:/opt/hadoop-3.3.6/share/hadoop/yarn/*</value>
+    </property>
+    <property>
+        <name>yarn.resourcemanager.webapp.address</name>
+        <value>0.0.0.0:8088</value>
+    </property>      
+</configuration>
+```
+
+1. Añade a `/etc/hosts`el nombre de tu dominio indicado en `core-site.xml` para que no te de error de resolución de nombres. En mi caso añado la siguiente linea:
+
+```bash
+192.168.11.10   cluster-bda
+192.168.11.10   master
+192.168.11.11   nodo1
+192.168.11.12   nodo2
+192.168.11.13   nodo3
+```
+
+7. Reiniciamos el servicio
+
+```bash
+sudo systemctl restart systemd-resolved.service
+```
+
+8. Generamos las claves ssh:
 
 ```bash
 ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-chmod 0600 ~/.ssh/authorized_keys
 ```
 
-7. Añade a `/etc/hosts`el nombre de tu dominio indicado en `core-site.xml` para que no te de error de resolución de nombres. En mi caso añado la siguiente linea y reinicia el servicio:
+9. Comprobamos que podemos acceder por ssh
 
 ```bash
-127.0.0.1   bda-iesgrancapitan
+ssh cluter-bda
+#exit
+ssh master
+#exit
 ```
 
-### 7.3 Ejecución
+
+10. Configura el archivo `$HADOOP_HOME/etc/hadoop/workers` que le indica a hadoop los nodos que van a actuar como workers.
+
+```title="workers"
+nodo1
+nodo2
+nodo3
+```
+
+### 2.3 Ejecución
 
 1. Ejecuta el siguiente comando
 
@@ -221,28 +346,7 @@ chmod 0600 ~/.ssh/authorized_keys
 hdfs namenode -format
 ```
 
-2. Debería darte una salida como la siguiente
-
-```bash hl_lines="7 11"
-WARNING: /opt/hadoop-3.3.6/logs does not exist. Creating.
-2023-11-27 11:51:42,564 INFO namenode.NameNode: STARTUP_MSG: 
-/************************************************************
-STARTUP_MSG: Starting NameNode
-STARTUP_MSG:   host = hadoop-VirtualBox/127.0.1.1
-STARTUP_MSG:   args = [-format]
-STARTUP_MSG:   version = 3.3.6
-......
-......
-2023-11-27 11:51:44,678 INFO namenode.FSImage: Allocated new BlockPoolId: BP-693156123-127.0.1.1-1701082304668
-2023-11-27 11:51:45,014 INFO common.Storage: Storage directory /opt/hadoop/hadoop_data/hdfs/namenode has been successfully formatted.
-2023-11-27 11:51:45,164 INFO namenode.FSImageFormatProtobuf: Saving image file /opt/hadoop/hadoop_data/hdfs/namenode/current/fsimage.ckpt_0000000000000000000 using no compression
-2023-11-27 11:51:45,253 INFO namenode.FSImageFormatProtobuf: Image file /opt/hadoop/hadoop_data/hdfs/namenode/current/fsimage.ckpt_0000000000000000000 of size 401 bytes saved in 0 seconds .
-2023-11-27 11:51:45,386 INFO namenode.NNStorageRetentionManager: Going to retain 1 images with txid >= 0
-2023-11-27 11:51:45,430 INFO namenode.FSNamesystem: Stopping services started for active state
-2023-11-27 11:51:45,431 INFO namenode.FSNamesystem: Stopping services started for standby state
-2023-11-27 11:51:45,452 INFO namenode.FSImage: FSImageSaver clean checkpoint: txid=0 when meet shutdown.
-2023-11-27 11:51:45,452 INFO namenode.NameNode: SHUTDOWN_MSG
-```
+2. Comprobamos la correcta configuración
 
 3. Iniciando el demonio Namenode y Datanode
 
@@ -250,452 +354,282 @@ STARTUP_MSG:   version = 3.3.6
 start-dfs.sh
 ```
 
-4. Debería darte una salida como la siguiente
+4. Iniciando Yarn
+   
+```bash
+start-yarn.sh
+```
+
+5. Nos debe levantar el servicio correctamente, indicando que no puede conectarse a los nodos 1, 2 y 3, ya que todavía no los hemos creado.
 
 ```bash
-hadoop@hadoop-VirtualBox:/opt/hadoop-3.3.6$ start-dfs.sh 
-Starting namenodes on [bda-iesgrancapitan]
+nodo3: ssh: Could not resolve hostname nodo3: Temporary failure in name resolution
+nodo2: ssh: Could not resolve hostname nodo2: Temporary failure in name resolution
+nodo1: ssh: Could not resolve hostname nodo1: Temporary failure in name resolution
+```
+
+6. Accede desde el navegador del anfitrión con la ip configurada en la Interfaz de red solo anfitrión. En mi caso a `http://192.168.56.11:9870/` para acceder al interfaz web de HDFS
+
+
+7. Accede también a la WebUI de Yarn `http://192.168.56.11:8088/ui2 `
+
+8. Paramos hadoop
+
+```bash
+stop-all.sh
+```
+
+## 3. Nodos
+
+### 3.1 Clonación de la máquina master
+
+1. Paramos la máquina `master`
+2. Clonamos la máquina 3 veces para crear los 3 nodos del cluster.
+3. A la hora de clonar, genera nuevas direcciones MAC para los interfaces de red
+4. Clonación completa
+
+### 3.2 Configuración nodos
+
+Tenemos que cambiar algunas configuraciones en nuestros nodos:
+- El nombre del hostname
+- Configuración de red
+
+1. Cambiamos el nombre del host:
+
+```bash
+sudo hostnamectl set-hostname nodo1
+```
+
+2. Actualizamos `/etc/hosts` y sustituimos `master` por `nodo1`
+
+3. Accedemos a la configuración de red a través de netplan en el fichero `/etc/netplan/00-instaler-config.yaml` y cambiamos la configuración de las 2 interfaces de red con las ips correspondientes
+
+4. Esta sería la configuración completa
+
+```yaml title="00-instaler-config.yaml"
+network:
+ethernets:
+    enp3s0:
+        addresses:
+        - 192.168.11.11/24
+        nameservers:
+            addresses: [8.8.8.8, 1.1.1.1]
+        routes:
+        - to: default
+            via: 192.168.11.1
+    enp8s0:
+        addresses:
+        - 192.168.56.11/24
+version: 2
+``` 
+
+5. Aplicamos la nueva configuración
+
+```bash
+sudo netplan apply
+```
+
+6. Reiniciamos
+
+```bash
+reboot
+```
+
+7. Realizamos las mismas operaciones en el `nodo2` y `nodo3` con sus correspondientes IPs
+
+## 4. Cluster
+
+### 4.1 Configuración ssh
+
+Por último, nos queda crear las correspondientes claves ssh de los nodos para que exista una correcta comunicación entre todos los nodos del cluster.
+
+1. Todos los nodos del cluster deben tener todas las claves públicas del resto de nodos, para su correcto funcionamiento. Por tanto, vamos a ir generando una por una en cada nodo del cluster y las vamos añadiendo a medida que recorremos el cluster. Finalmente, el fichero resultante en el último nodo del cluster contendrá todas las claves. Este deberá ser copiado en todos los nodos los cluster. Vamos a ver el paso a paso para entenderlo mejor.
+   
+2. Entramos en el `master` y generamos las claves ssh:
+
+```bash
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+3. La copiamos en el siguiente nodo. En nuestro caso `nodo1`
+
+```bash
+scp ~/.ssh/authorized_keys hadoop@nodo1:~/.ssh/authorized_keys
+```
+
+4. Accedemos al nodo `nodo1` por ssh. _Como `nodo1` ya conoce la clave de master, no nos pide contraseña. Así también vamos comprobando que la configuración es correcta en cada nodo_.
+
+```bash
+ssh nodo1
+```
+
+5. Generamos las claves ssh del `nodo1`:
+
+```bash
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+6. Comprobamos que tenemos todas las claves generadas hasta ahora
+
+```bash
+cat ~/.ssh/authorized_keys
+```
+
+```bash
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCTyaPCHbtoUIIu/L+9ykq65descImdc1eXv7WUkDL803hDsedzBiMYW4UrNjr2ZhJAPjiUtnqM3xnlYdgJ2T5sWdSO45Dh3IIRufSCOJNvWG0PMM2klAokhqoW2Vhbh50z/2AXdRU00cMd+uE1ETLBg8kvTc+RDc94ctzdlG9hQpe6psRJ2xoG1kJ8DpvXExrynTgTPbIlGiU8K3Z3+fh5WHOwJOjXu1zNMMTNsKRBf39zW0gkyZOcRpjgg4VO2T2esbXffihRLWgCnYjQf683ctoS8nZEigoQkMV8EgRtcvCnBYYmPy5VL155DqN3c1luR0rOOLxB3WSfAm+rod/jd1SLU1nQzhRryFfWu5YEns+hSO7gZG4RzNtfKVVO78xubiprab2gg2ySIvQH4qE8ytqRq44zn7P/KvkenXRk/PRZaBsSXTejLxORTyo0iR4ssWsoMJDPqmGDQ9xPVobROG0ZDiQ2TWAE/B1ww463a2HHXh58zCcrAc+MW5hJNv0= hadoop@master
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8Y4ksoigj130KJcNRoVZTJ9ehdWkXyb9VMlTi6YZ9WHdvDafJtW2oILCm9PTvOlAjaCJ7D8na5b/CC7BYk2lNAKgw+wQBG9TekCV+HZHcFrXuw6UkdyqQ29rujgyYBqg7dZHtJk8lMBJXY7N/fkSk10uSTNQ3AlqBa6vR23CWVMFhHrkM314/GFcP2aSLoFnIVEm4eyWSPL+5dFchM74EuxJpgP5NqfLrR/nTLQpXn8FJDjj5cxlCGSA/HV82SxJk0TAw4tPH3+q4zuLTzTMkUk8flUPWcon626vt+5wS0cdHo4A0UPsYs10MQ0YiEp00FUFWoQeTVGKvDkRwuMXHjkM+axIiqY9CPIEKT+5O8H/pIJyH0onGOpz4sUhiyj/UzQz4B5J/ky/CAA+TTy2ZWjSX9HN9Sr/0cyVlrjNcIZSpck+XqielhfuRjudEzt9emFCPI1ylRhrE4xt5XfCUSTPp8TnwSrzxGJuIHNbFTaVQ/g2CpkDoBe3xaJ/UaHU= hadoop@nodo1
+```
+
+7. La copiamos en el siguiente nodo. En nuestro caso `nodo2`
+
+```bash
+scp ~/.ssh/authorized_keys hadoop@nodo2:~/.ssh/authorized_keys
+```
+
+8. Accedemos al nodo `node2` por ssh.
+
+```bash
+ssh nodo2
+```
+
+9. Generamos las claves ssh del `nodo2`:
+
+```bash
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+10. Comprobamos que tenemos todas las claves generadas hasta ahora
+
+```bash
+cat ~/.ssh/authorized_keys
+```
+
+11. La copiamos en el siguiente nodo. En nuestro caso `nodo3`
+
+```bash
+scp ~/.ssh/authorized_keys hadoop@nodo3:~/.ssh/authorized_keys
+```
+
+12. Accedemos al nodo `nodo3` por ssh.
+
+```bash
+ssh nodo3
+```
+
+13. Generamos las claves ssh del `nodo2`:
+
+```bash
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+```
+
+14. Comprobamos que tenemos todas las claves generadas hasta ahora
+
+```bash
+cat ~/.ssh/authorized_keys
+```
+
+15.  Una vez terminado todo nuestro cluster, la copiamos en todos los nodos.
+
+```bash
+scp ~/.ssh/authorized_keys hadoop@nodo2:~/.ssh/authorized_keys
+scp ~/.ssh/authorized_keys hadoop@nodo1:~/.ssh/authorized_keys
+scp ~/.ssh/authorized_keys hadoop@master:~/.ssh/authorized_keys
+```
+
+16. Por último, entramos a cada uno de los nodos y cambiamos los permisos de `~/.ssh/authorized_keys`.
+
+```bash
+chmod 0600 ~/.ssh/authorized_keys
+```
+
+17. Cerramos todas las conexiones ssh
+
+### 4.2 Preparando los nodos del cluster
+
+1. Ahora nos queda hacer una correcta gestión de las carpetas de namenode y datanode. Recuerda que los archivos de datanode deben estar en los workers
+
+2. Por tanto, en cada uno de los nodos workers(`nodo1`,`nodo2`,`nodo3`), borramos la carpeta `namenode` y el interior de la carpeta `datanode`, donde tenemos el directorio `current`
+
+```bash
+sudo rm -rf /opt/hadoop/hadoop_data/hdfs/namenode
+sudo rm -rf /opt/hadoop/hadoop_data/hdfs/datanode/current
+```
+
+3. Siguiendo la lógica, en el nodo `master` eliminamos el directorio `datanode`
+
+```bash
+sudo rm -rf /opt/hadoop/hadoop_data/hdfs/datanode
+```
+
+4. Desde el nodo `master`, damos de nuevo formato a HDFS
+
+```bash
+hdfs namenode -format
+```
+
+### 4.3 Levantamos el cluster
+
+1. Iniciando el demonio Namenode y Datanode
+
+```bash
+start-dfs.sh
+```
+
+2. Vemos como arranca `namenode` y `secondarynamenode` en el nodo master y el datanode
+
+```bash
+Starting namenodes on [cluster-bda]
 Starting datanodes
-Starting secondary namenodes [hadoop-VirtualBox]
-hadoop@hadoop-VirtualBox:/opt/hadoop-3.3.6$ jps
-16401 Jps
-15970 NameNode
-16085 DataNode
-16283 SecondaryNameNode
+Starting secondary namenodes [master]
 ```
 
-5. Accede desde el navegador a `http://bda-iesgrancapitan:9870/` para acceder al interfaz web de HDFS
-
-
-<figure style="align: center;">
-    <img src="images/Figura4.1_InstalandoHDFS_InterfazWeb.jpg">
-    <figcaption>Figura 1 Instalando HDFS: Interfaz Web</figcaption>
-</figure>
-
-
-### 7.4 Usando HDFS
-
-Vamos a investigar cuál es el funcionamiento interno de HDFS estudiado en teoría.
-
-Para ello vamos a añadir a HDFS un [fichero de gran volumen](https://files.grouplens.org/datasets/tag-genome-2021/). Accede al enlace y descarga el archivo [genome_2021.zip](https://files.grouplens.org/datasets/tag-genome-2021/genome_2021.zip)
-
-1. Descargamos el archivo en el sistema de archivos local
-
-```bash
-wget https://files.grouplens.org/datasets/tag-genome-2021/genome_2021.zip
-```
-2. Vamos a observar la salida de logs en cada uno de los siguientes pasos, que nos va a servir para afianzar como como funciona HDFS. Observamos el log del namenode. En mi caso:
-
-```bash
-tail -f $HADOOP_HOME/logs/hadoop-hadoop-namenode-hadoop-VirtualBox.log
-```
-
-3. Lo añadimos a HDFS
-
-```bash
-hdfs dfs -copyFromLocal genome_2021.zip /
-```
-
-La salida del log nos indica la división en bloques y la adición de la transacción en el EditLog ()
-
-```bash hl_lines="1 6 30 36"
-2023-11-27 11:58:19,590 INFO org.apache.hadoop.hdfs.server.namenode.FileJournalManager: Finalizing edits file /opt/hadoop/hadoop_data/hdfs/namenode/current/edits_inprogress_0000000000000000001 -> /opt/hadoop/had
-oop_data/hdfs/namenode/current/edits_0000000000000000001-0000000000000000002
-2023-11-27 11:58:19,608 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at 3
-2023-11-27 11:58:20,224 INFO org.apache.hadoop.hdfs.server.namenode.TransferFsImage: Sending fileName: /opt/hadoop/hadoop_data/hdfs/namenode/current/fsimage_0000000000000000000, fileSize: 401. Sent total: 401 by
-tes. Size of last segment intended to send: -1 bytes.
-2023-11-27 11:58:20,496 INFO org.apache.hadoop.hdfs.server.namenode.TransferFsImage: Sending fileName: /opt/hadoop/hadoop_data/hdfs/namenode/current/edits_0000000000000000001-0000000000000000002, fileSize: 42. S
-ent total: 42 bytes. Size of last segment intended to send: -1 bytes.
-2023-11-27 11:58:21,070 INFO org.apache.hadoop.hdfs.server.namenode.ImageServlet: Rejecting a fsimage due to small time delta and txnid delta. Time since previous checkpoint is 395 expecting at least 2700 txnid 
-delta since previous checkpoint is 2 expecting at least 1000000
-2023-11-27 12:37:53,007 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 2 Total time for transactions(ms): 83 Number of transactions batched in Syncs: 0 Number of syncs: 2 SyncTime
-s(ms): 217 
-2023-11-27 12:37:53,265 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741825_1001, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:37:55,015 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741826_1002, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:37:58,097 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741827_1003, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:00,850 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741828_1004, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:03,102 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741829_1005, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:07,189 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741830_1006, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:09,171 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741831_1007, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:13,229 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741832_1008, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:16,796 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741833_1009, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:18,812 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741834_1010, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:22,466 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741835_1011, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:26,859 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741836_1012, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:28,264 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741837_1013, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:31,502 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741838_1014, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:33,935 INFO org.apache.hadoop.hdfs.StateChange: BLOCK* allocate blk_1073741839_1015, replicas=127.0.0.1:9866 for /genome_2021.zip._COPYING_
-2023-11-27 12:38:36,202 INFO org.apache.hadoop.hdfs.StateChange: DIR* completeFile: /genome_2021.zip._COPYING_ is closed by DFSClient_NONMAPREDUCE_-294249091_1
-2023-11-27 12:43:41,454 INFO org.apache.hadoop.http.HttpServer2: Process Thread Dump: jsp requested
-2023-11-27 12:58:22,096 INFO org.apache.hadoop.hdfs.server.namenode.FSNamesystem: Roll Edit Log from 127.0.0.1
-2023-11-27 12:58:22,096 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Rolling edit logs
-2023-11-27 12:58:22,096 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Ending log segment 3, 51
-2023-11-27 12:58:22,096 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 50 Total time for transactions(ms): 83 Number of transactions batched in Syncs: 27 Number of syncs: 23 SyncTimes(ms): 18260 
-2023-11-27 12:58:22,164 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Number of transactions: 50 Total time for transactions(ms): 83 Number of transactions batched in Syncs: 27 Number of syncs: 24 SyncTimes(ms): 18327 
-2023-11-27 12:58:22,164 INFO org.apache.hadoop.hdfs.server.namenode.FileJournalManager: Finalizing edits file /opt/hadoop/hadoop_data/hdfs/namenode/current/edits_inprogress_0000000000000000003 -> /opt/hadoop/hadoop_data/hdfs/namenode/current/edits_0000000000000000003-0000000000000000052
-2023-11-27 12:58:22,178 INFO org.apache.hadoop.hdfs.server.namenode.FSEditLog: Starting log segment at 53
-2023-11-27 12:58:22,546 INFO org.apache.hadoop.hdfs.server.namenode.TransferFsImage: Sending fileName: /opt/hadoop/hadoop_data/hdfs/namenode/current/fsimage_0000000000000000000, fileSize: 401. Sent total: 401 bytes. Size of last segment intended to send: -1 bytes.
-2023-11-27 12:58:22,796 INFO org.apache.hadoop.hdfs.server.namenode.TransferFsImage: Sending fileName: /opt/hadoop/hadoop_data/hdfs/namenode/current/edits_0000000000000000003-0000000000000000052, fileSize: 2741. Sent total: 2741 bytes. Size of last segment intended to send: -1 bytes.
-2023-11-27 12:58:23,463 INFO org.apache.hadoop.hdfs.server.common.Util: Combined time for file download and fsync to all disks took 0,11s. The file download took 0,00s at 0,00 KB/s. Synchronous (fsync) write to disk of /opt/hadoop/hadoop_data/hdfs/namenode/current/fsimage.ckpt_0000000000000000052 took 0,11s.
-2023-11-27 12:58:23,466 INFO org.apache.hadoop.hdfs.server.namenode.TransferFsImage: Downloaded file fsimage.ckpt_0000000000000000052 size 740 bytes.
-2023-11-27 12:58:23,580 INFO org.apache.hadoop.hdfs.server.namenode.NNStorageRetentionManager: Going to retain 2 images with txid >= 0
-```
-
-<figure style="align: center;">
-    <img src="images/Figura4.2_InstalandoHDFS_SecondaryNamenode_to_Namenode.jpg">
-    <figcaption>Figura 2 Instalando HDFS: SecondaryNamenode y Namenode</figcaption>
-</figure>
-
-4. Como puedes observar en el log, se generan un conjunto de ficheros en la carpeta `current`, que continen un conjunto de ficheros cuyos prefijos son:
+3. Iniciamos Yarn
    
-   - _edits_000NNN_: histórico de cambios que se van produciendo.
-   - _edits_inprogress_NNN_: cambios actuales en memoria que no se han persistido.
-   - _fsimagen_000NNN_: snapshot en el tiempo del sistema de ficheros.
-   
-5. Si accedes a la carpeta HDFS `/opt/hadoop/hadoop_data/hdfs/namenode/current` desde nuestro sistema de archivos, puedes observarlos también
-
 ```bash
-hadoop@hadoop-VirtualBox:/opt/hadoop/hadoop_data/hdfs/namenode/current$ ls
-edits_0000000000000000001-0000000000000000002
-edits_0000000000000000003-0000000000000000052
-edits_inprogress_0000000000000000053
-fsimage_0000000000000000000
-fsimage_0000000000000000000.md5
-fsimage_0000000000000000052
-fsimage_0000000000000000052.md5
-seen_txid
-VERSION
+start-yarn.sh
 ```
 
-6. Por otro lado, si accedemos a la carpeta HDFS `/opt/hadoop/hadoop_data/hdfs/datanode` desde nuestro sistema de archivos, y entramos dentro de su subdirectorio creado después de la transacción, también podemos observar la generación de los diferentes bloques
+4. Se inician el `resourcemanager` y el `nodemanagers`
 
 ```bash
-hadoop@hadoop-VirtualBox:/opt/hadoop/hadoop_data/hdfs/datanode/current/BP-693156123-127.0.1.1-1701082304668/current/finalized/subdir0/subdir0$ ls -l 
-total 1897632
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:37 blk_1073741825
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:37 blk_1073741825_1001.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:37 blk_1073741826
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:37 blk_1073741826_1002.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741827
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741827_1003.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741828
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741828_1004.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741829
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741829_1005.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741830
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741830_1006.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741831
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741831_1007.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741832
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741832_1008.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741833
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741833_1009.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741834
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741834_1010.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741835
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741835_1011.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741836
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741836_1012.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741837
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741837_1013.meta
--rw-rw-r-- 1 hadoop hadoop 134217728 nov 27 12:38 blk_1073741838
--rw-rw-r-- 1 hadoop hadoop   1048583 nov 27 12:38 blk_1073741838_1014.meta
--rw-rw-r-- 1 hadoop hadoop  48980391 nov 27 12:38 blk_1073741839
--rw-rw-r-- 1 hadoop hadoop    382667 nov 27 12:38 blk_1073741839_1015.meta
+Starting resourcemanager
+Starting nodemanagers
 ```
 
-7. Comprobamos toda esta información y mucha más adicional a través de la interfaz web de HDFS `http://bda-iesgrancapitan:9870/` (que es mayor que la que vimos con Cloudera, cuya versión de Hadoop es inferior)
-
-### 7.5 Administración
-
-HDFS también permite administración desde linea de comandos. El más usado es la opción `hdfs dfsadmin`
-
-Puedes ver todas las opciones en la [documentación oficial](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html#dfsadmin).
+5. Arrancamos también el servidor de historial de trabajos (JobHistory Server) en un clúster de Hadoop
 
 ```bash
-hadoop@hadoop-VirtualBox:~$ hdfs dfsadmin
-Usage: hdfs dfsadmin
-Note: Administrative commands can only be run as the HDFS superuser.
-	[-report [-live] [-dead] [-decommissioning] [-enteringmaintenance] [-inmaintenance] [-slownodes]]
-	[-safemode <enter | leave | get | wait | forceExit>]
-	[-saveNamespace [-beforeShutdown]]
-	[-rollEdits]
-	[-restoreFailedStorage true|false|check]
-	[-refreshNodes]
-	[-setQuota <quota> <dirname>...<dirname>]
-	[-clrQuota <dirname>...<dirname>]
-	[-setSpaceQuota <quota> [-storageType <storagetype>] <dirname>...<dirname>]
-	[-clrSpaceQuota [-storageType <storagetype>] <dirname>...<dirname>]
-	[-finalizeUpgrade]
-	[-rollingUpgrade [<query|prepare|finalize>]]
-	[-upgrade <query | finalize>]
-	[-refreshServiceAcl]
-	[-refreshUserToGroupsMappings]
-	[-refreshSuperUserGroupsConfiguration]
-	[-refreshCallQueue]
-	[-refresh <host:ipc_port> <key> [arg1..argn]
-	[-reconfig <namenode|datanode> <host:ipc_port|livenodes> <start|status|properties>]
-	[-printTopology]
-	[-refreshNamenodes datanode_host:ipc_port]
-	[-getVolumeReport datanode_host:ipc_port]
-	[-deleteBlockPool datanode_host:ipc_port blockpoolId [force]]
-	[-setBalancerBandwidth <bandwidth in bytes per second>]
-	[-getBalancerBandwidth <datanode_host:ipc_port>]
-	[-fetchImage <local directory>]
-	[-allowSnapshot <snapshotDir>]
-	[-disallowSnapshot <snapshotDir>]
-	[-shutdownDatanode <datanode_host:ipc_port> [upgrade]]
-	[-evictWriters <datanode_host:ipc_port>]
-	[-getDatanodeInfo <datanode_host:ipc_port>]
-	[-metasave filename]
-	[-triggerBlockReport [-incremental] <datanode_host:ipc_port> [-namenode <namenode_host:ipc_port>]]
-	[-listOpenFiles [-blockingDecommission] [-path <path>]]
-	[-help [cmd]]
-
-Generic options supported are:
--conf <configuration file>        specify an application configuration file
--D <property=value>               define a value for a given property
--fs <file:///|hdfs://namenode:port> specify default filesystem URL to use, overrides 'fs.defaultFS' property from configurations.
--jt <local|resourcemanager:port>  specify a ResourceManager
--files <file1,...>                specify a comma-separated list of files to be copied to the map reduce cluster
--libjars <jar1,...>               specify a comma-separated list of jar files to be included in the classpath
--archives <archive1,...>          specify a comma-separated list of archives to be unarchived on the compute machines
-
-The general command line syntax is:
-command [genericOptions] [commandOptions]
+mapred --daemon start historyserver
 ```
 
-Vamos a probar algunas de ellas:
-
-- `hdfs dfsadmin -report`: Realiza un resumen del sistema HDFS, donde podemos comprobar el estado de los diferentes nodos. Es similar al que aparece en el interfaz web.
-- `hdfs dfsadmin -listOpenFiles`: Comprueba si hay algún fichero abierto.
-- `hdfs dfsadmin -printTopology`: Muestra la topología, identificando los nodos que tenemos y al rack al que pertenece cada nodo.
-- `hdfs dfsadmin -safemode enter`: Pone el sistema en modo seguro, el cual evita la modificación de los recursos del sistema de archivos.
-- `hdfs dfsadmin -safemode leave`: Sale del modo seguro.
-
-Otro ejemplo:
-
-- `hdfs fsck`: Comprueba el estado del sistema de ficheros. Si queremos comprobar el estado de un determinado directorio, lo indicamos mediante un segundo parámetro: `hdfs fsck /`
+6. Comprobamos con `jps`. Vemos que se ejecutan los servicios que se tienen que ejecutar en el nodo `master`
 
 ```bash
-hadoop@hadoop-VirtualBox:~$ hdfs fsck /
-onnecting to namenode via http://bda-iesgrancapitan:9870/fsck?ugi=hadoop&path=%2F
-FSCK started by hadoop (auth:SIMPLE) from /127.0.0.1 for path / at Mon Nov 27 13:14:05 CET 2023
-
-
-Status: HEALTHY
- Number of data-nodes:	1
- Number of racks:		1
- Total dirs:			1
- Total symlinks:		0
-
-Replicated Blocks:
- Total size:	1928028583 B
- Total files:	1
- Total blocks (validated):	15 (avg. block size 128535238 B)
- Minimally replicated blocks:	15 (100.0 %)
- Over-replicated blocks:	0 (0.0 %)
- Under-replicated blocks:	0 (0.0 %)
- Mis-replicated blocks:		0 (0.0 %)
- Default replication factor:	1
- Average block replication:	1.0
- Missing blocks:		0
- Corrupt blocks:		0
- Missing replicas:		0 (0.0 %)
- Blocks queued for replication:	0
-
-Erasure Coded Block Groups:
- Total size:	0 B
- Total files:	0
- Total block groups (validated):	0
- Minimally erasure-coded block groups:	0
- Over-erasure-coded block groups:	0
- Under-erasure-coded block groups:	0
- Unsatisfactory placement block groups:	0
- Average block group size:	0.0
- Missing block groups:		0
- Corrupt block groups:		0
- Missing internal blocks:	0
- Blocks queued for replication:	0
-FSCK ended at Mon Nov 27 13:14:06 CET 2023 in 13 milliseconds
-
-
-The filesystem under path '/' is HEALTHY
+2946 ResourceManager
+2741 SecondaryNameNode
+2553 NameNode
+3324 Jps
+3263 JobHistoryServer
 ```
 
-También existen otros comandos interesantes como: `balancer`, `cacheadmin`, `datanode`, `namenode`,... 
-
-Puedes consultar la lista completa en la [documentación oficial](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HDFSCommands.html#Administration_Commands)
-
-
-### 7.6 Snapshots
-
-Mediante ***Snapshots*** podemos guardar la instantánea de como se encuentra todo nuestros datos dentro del sistema de ficheros, que puede servir como copia de seguridad, para un futuro backup.
-
-Vamos a realizar un ejemplo. Creamos un directorio dentro de nuestro HDFS y copiamos nuestro fichero de genoma 2021 dentro de él:
+7. Comprobamos con `jps` en cualquier nodo worker(`nodo1`,`nodo2`,`nodo3`). También vemos que se ejecutan los servicios que se tienen que ejecutar en los nodos worker.
 
 ```bash
-hdfs dfs -mkdir /bda
-hdfs dfs -cp /genome_2021.zip /bda
-hdfs dfs -ls /bda
-```
-Activamos el uso de snapshot en el directorio que queramos obtener una instantánea:
-
-```bash
-hdfs dfsadmin -allowSnapshot /bda
+2790 Jps
+2554 DataNode
+2702 NodeManager
 ```
 
-Procedemos a crear una instantánea indicando la carpeta y el nombre que va a tener
-
-```bash
-hdfs dfs -createSnapshot /bda snapshot_bda_1
-```
-
-Se crea una carpeta oculta dentro de la carpeta que contendrá la información `/bda/.snapshot/snapshot_bda_1`
-
-Puedes verlo también desde la interfaz web de HDFS en su apartado de Snapshot
+8. Comprobamos con nuestra interfaz web de HDFS
 
 <figure style="align: center;">
-    <img src="images/Figura4.3_InstalandoHDFS_Snapshot.jpg">
-    <figcaption>Figura 3 Instalando HDFS: Snapshot</figcaption>
+    <img src="images/Figura4.4_ClusterHadoop_InterfazWeb_Cluster_Datanode.jpg">
+    <figcaption>Figura 4 Cluster Hadoop: Interfaz Web Datanodes Cluster</figcaption>
 </figure>
 
-Vamos a borrar el archivo que hemos copiado y comprobamos
+9. Ya podemos utilizar el cluster. Compruébalo realizando alguno de los ejemplos desarrollados en los puntos anteriores
 
-```bash
-hdfs dfs -rm /bda/genome_2021.zip
-//Deleted /bda/genome_2021.zip
-hdfs dfs -ls /bda/
-```
-Para recuperar el fichero usamos el snapshot creado anteriormente
-
-```bash
-hdfs dfs -cp /bda/.snapshot/snapshot_bda_1/genome_2021.zip /bda/genome_2021.zip
-```
-
-Para comprobar los directorios que actualmente soportan snapshot hacemos un ls de los mismos con su comando correspondiente:
-
-```bash
-hdfs lsSnapshottableDir
-```
-
-Por último, para borrar un snapshot:
-
-```bash
-hdfs dfs -deleteSnapshot /bda snapshot_bda_1
-```
-
-Y si queremos desabilitarlo los snapshot:
-
-```bash
-hdfs dfsadmin -disallowSnapshot /bda
-```
-
-### 7.7 Navegación WebUI HDFS
-
-Desde el apartado `Browser Directory` del Web IU `http://bda-iesgrancapitan:9870/explorer.html` podemos acceder al sistema de ficheros y su contenido de HDFS, incluidos los bloques.
-
-<figure style="align: center;">
-    <img src="images/Figura4.4_InstalandoHDFS_Navegacion_WebUI.jpg">
-    <figcaption>Figura 4 Instalando HDFS: Navegación WebUI</figcaption>
-</figure>
-
-
-### 7.8 Permisos WebUI HDFS
-
-Como hemos comentado en el punto anterior, podemos acceder al sistema de ficheros y su contenido de HDFS. Pero si intentamos borrar algún contenido nos salta un error de permisos: `Permission denied: user=dr.who, access=WRITE, inode="/bda":hadoop:supergroup:drwxr-xr-x`. Esto es debido a que, por defecto, los recursos vía web se realizan desde el usuario `dr.who`
-
-<figure style="align: center;">
-    <img src="images/Figura4.5_InstalandoHDFS_WebUI_Permisos.jpg">
-    <figcaption>Figura 5 Instalando HDFS: Permisos WebUI</figcaption>
-</figure>
-
-Para poder tener permisos para ello podemos modificar los permisos:
-
-```bash
-hdfs dfs -mkdir /bda/prueba_permisos
-hdfs dfs -chmod 777 /bda/prueba_permisos
-hdfs dfs -cp /bda/genome_2021.zip /bda/prueba_permisos/
-//Ya podríamos borrar cualquier archivo dentro del directorio pruebas_permisos desde la WebUI
-```
-
-Otra posibilidad es modificar el archivo de configuraciónb `core-site.xml` y añadir la propiedad para modificar el usuario estático, en mi caso, el usuario `hadoop`
-
-```xml title="core-site.xml"
-<property>
-    <name>hadoop.http.staticuser.user</name>
-    <value>hadoop</value>
-</property>
-```
-
-### 7.9 Acceso a HDFS a través de Python
-
-Para ello, usaremos la libreria [HdfsCLI](https://pypi.org/project/hdfs/). La instalamos mediante `pip`
-
-```bash
-pip install hdfs
-```
-
-Para nuestro ejemplo, vamos a descargar un ejemplo con formato csv y añadirlo a nuestro HDFS
-
-```bash
-wget https://www.ine.es/jaxi/files/tpx/csv_bdsc/53938.csv
-hdfs dfs -mkdir /bda/python
-hdfs dfs -copyFromLocal 53938.csv  /bda/python/
-hdfs dfs -ls /bda/python
-```
-
-[Teniendo como referencia la documentación](https://hdfscli.readthedocs.io/en/latest/quickstart.html#python-bindings), vamos a conectarnos a HDFS y copiar un archivo
-
-Creamos un fichero python con el siguiente código:
-
-```python
-from hdfs import InsecureClient
-
-# Datos de conexión
-HDFS_HOSTNAME = 'bda-iesgrancapitan'
-HDFS_PORT = 9870
-HDFS_CONNECTION = f'http://{HDFS_HOSTNAME}:{HDFS_PORT}'
-
-# En nuestro caso, al no usar Kerberos, creamos una conexión no segura
-hdfs_client = InsecureClient(HDFS_CONNECTION)
-
-#Lectura
-# Leemos el fichero de '53938.csv' que tenemos en HDFS
-fichero = '/bda/python/53938.csv'
-with hdfs_client.read(fichero) as reader:
-    texto = reader.read()
-
-print(texto)
-
-#Escritura
-# Escribimos los elementos de la lista en formato csv
-datos="dni,nombre,apellidos,direccion,cp\n"
-lista = [['123', 'Nombre1', 'Apellidos1', 'Mikasa1', '14000'],
-         ['456', 'Nombre4', 'Apellidos4', 'Mikasa4', '41000'],
-         ['789', 'Nombre7', 'Apellidos7', 'Mikasa7', '19000']]
-for i in range(0, len(lista), 1):
-    for j in range(0, len(lista[i]), 1):
-        if(j<len(lista[i])-1):
-            datos+=f'{lista[i][j]},'
-        else:
-            datos+=f'{lista[i][j]}\n'
-hdfs_client.write("/bda/python/datos.csv", datos)
-```
-
-Ejecutamos el fichero
-
-```bash
-python3 prueba_hdfs_Python.py
-```
-
-Comprobamos la cración del nuevo fichero
-
-```bash
-hadoop@hadoop-VirtualBox:~$ hdfs dfs -ls /bda/python/
-Found 2 items
--rw-r--r--   1 hadoop supergroup      60116 2023-11-27 13:55 /bda/python/53938.csv
--rw-r--r--   1 hadoop supergroup        145 2023-11-27 13:56 /bda/python/datos.csv
-```
-
-Adicionalmente, esta librería te da [funcionalidad opcional](https://pypi.org/project/hdfs/) para `avro`, `dataframe` (con Pandas) y `Kerberos`. Estos casos son los más habituales en el mundo real.
