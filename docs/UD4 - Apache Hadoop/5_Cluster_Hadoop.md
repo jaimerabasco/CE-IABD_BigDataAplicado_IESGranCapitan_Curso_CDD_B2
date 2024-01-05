@@ -24,7 +24,7 @@ Para ello, explicamos con una imagen como funciona VirtualBox en este tipo de co
 
 <figure style="align: center; width:900px;">
     <img src="images/Figura4.1_ClusterHadoop_RedNAT_Virtualbox.webp">
-    <figcaption>Figura 1 Cluster Hadoop: Red NAT Virtualbox - Fuente: medium.com/@sidlors</figcaption>
+    <figcaption>Figura 1 Cluster Hadoop: Red NAT Virtualbox. (Fuente: medium.com/@sidlors)</figcaption>
 </figure>
 
 Puedes observar que podemos configurar nuestra propia subred, dentro de las cuales, hay 2 ips que VirtualBox asigna estáticas dentro de la red: la **puerta de enlace**(primera de la red) y el **DHCP** (tercera de la red). Para más información, consulta la [documentación oficial de VirtualBox](https://www.virtualbox.org/manual/UserManual.html#network_nat_service)
@@ -37,7 +37,7 @@ Teniendo en cuenta esto, vamos a configurar nuestra propia subred, que será la 
 
 <figure style="align: center;">
     <img src="images/Figura4.2_ClusterHadoop_RedNAT.jpg">
-    <figcaption>Figura 2 Cluster Hadoop: Red NAT</figcaption>
+    <figcaption>Figura 2 Cluster Hadoop: Red NAT. (Fuente: Propia)</figcaption>
 </figure>
 
 3. Una vez configurada la Red NAT, podemos empezar a instalar y configurar el cluster.
@@ -65,7 +65,7 @@ Habiendo entendido correctamente lo explicado en los puntos anteriores,podemos c
 
 <figure style="align: center;">
     <img src="images/Figura4.3_ClusterHadoop_InterfazRedMaster.jpg">
-    <figcaption>Figura 3 Cluster Hadoop: Interfaz de Red Nodo Master</figcaption>
+    <figcaption>Figura 3 Cluster Hadoop: Interfaz de Red Nodo Master. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -628,7 +628,7 @@ mapred --daemon start historyserver
 
 <figure style="align: center;">
     <img src="images/Figura4.4_ClusterHadoop_InterfazWeb_Cluster_Datanode.jpg">
-    <figcaption>Figura 4 Cluster Hadoop: Interfaz Web Datanodes Cluster</figcaption>
+    <figcaption>Figura 4 Cluster Hadoop: Interfaz Web Datanodes Cluster. (Fuente: Propia)</figcaption>
 </figure>
 
 9. Ya podemos utilizar el cluster. Compruébalo realizando alguno de los ejemplos desarrollados en los puntos anteriores

@@ -4,6 +4,8 @@ use_directory_urls: false
 
 nav:
   - "Inicio": "index.md"
+  - "Metadatos": "metadatos.md"
+  - "Guía Didáctica": "guia_didactica.md"
   - "UD1 - Gestión de Soluciones":
     - "UD1 - Gestión de soluciones/index.md"
     - "Diseño y Construcción de Soluciones": "UD1 - Gestión de soluciones/1_dis_const_soluc.md"
@@ -23,6 +25,7 @@ nav:
     - "Map Reduce": "UD4 - Apache Hadoop/3_Hadoop_Map_Reduce.md"
     - "Yarn": "UD4 - Apache Hadoop/4_Hadoop_Yarn.md"
     - "Cluster Hadoop": "UD4 - Apache Hadoop/5_Cluster_Hadoop.md"
+  - "Creditos": "creditos.md"
 #    - "Instalando Hadoop (HDFS)": "UD6 - Apache Hadoop/Ejercicios/Instalando_Hadoop.md"
 #    - "Yarn": "UD6 - Apache Hadoop/Yarn.md"
 #    - "MapReduce": "UD6 - Apache Hadoop/Map_Reduce.md"

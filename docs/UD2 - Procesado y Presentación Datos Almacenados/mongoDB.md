@@ -65,7 +65,7 @@ Un **objeto BSON** consiste en una lista ordenada de elementos. Cada elemento co
     
 <figure style="align: center;">
     <img src="images/MongoDB_BSON_1_Tipos.jpg">
-    <figcaption>Figura BSON 1: Tipos de datos BSON</figcaption>
+    <figcaption>Figura BSON 1: Tipos de datos BSON. (Fuente: MongoDB)</figcaption>
 </figure>
 
 Un ejemplo de un objeto BSON podría ser
@@ -100,7 +100,7 @@ EL valor de un Binary Data `bindata` es un array de bytes. Un valor de `bindata`
 
 <figure style="align: center;">
     <img src="images/MongoDB_BSON_2_binData.jpg">
-    <figcaption>Figura BSON 2: Subtipos de datos BSON Binary Data</figcaption>
+    <figcaption>Figura BSON 2: Subtipos de datos BSON Binary Data. (Fuente: MongoDB)</figcaption>
 </figure>
 
 #### ObjectIds
@@ -182,7 +182,7 @@ Vamos a explicar como levantar un contenedor MongoDB con Docker
 
     <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Docker_1.jpg">
-        <figcaption>Figura Docker 1. Docker Desktop on Linux</figcaption>
+        <figcaption>Figura Docker 1. Docker Desktop on Linux. (Fuente: Docker)</figcaption>
     </figure>
 
     Para más información observa los siguientes recursos:
@@ -286,7 +286,7 @@ También podemos crear el contenedor sin bind mount y copiarla directamente con 
 
     <figure style="align: center;">
     <img src="images/MongoDB_Docker_2_Mongosh_Show_dbs.jpg">
-        <figcaption>Figura Docker 2. Mostrar las Bases de datos con Mongos</figcaption>
+        <figcaption>Figura Docker 2. Mostrar las Bases de datos con Mongo. (Fuente: Propia)</figcaption>
     </figure>
 
 11.  Usar la Base de datos (_use nombre_bd_ , también sirve para crear una Base de datos) 
@@ -325,14 +325,14 @@ Podemos hacer uso de una solución gratuita cloud de Mongo Atlas ofrecida por Mo
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_1.jpg">
-    <figcaption>Figura Atlas 1: MongoDB Atlas</figcaption>
+    <figcaption>Figura Atlas 1: MongoDB Atlas. (Fuente: Propia)</figcaption>
 </figure>
 
 Para ello seguimos todos los pasos: ***[Getting Started MongoDB](https://www.mongodb.com/docs/manual/tutorial/getting-started/)***
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Atlas_2.jpg">
-    <figcaption>Figura Atlas 2: MongoDB Atlas. Get Started</figcaption>
+    <figcaption>Figura Atlas 2: MongoDB Atlas. Get Started. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -346,7 +346,7 @@ Para ello seguimos todos los pasos: ***[Getting Started MongoDB](https://www.mon
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_3_Add_IP.jpg">
-    <figcaption>Figura Atlas 3: MongoDB Atlas. Añadir IP</figcaption>
+    <figcaption>Figura Atlas 3: MongoDB Atlas. Añadir IP. (Fuente: MongoDB)</figcaption>
 </figure>
 
 3. Desplegamos cluster gratuito. Creamos una Organización, Proyecto y una Base de Datos del cluster
@@ -355,35 +355,35 @@ Para ello seguimos todos los pasos: ***[Getting Started MongoDB](https://www.mon
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_4_New_Organization.jpg">
-    <figcaption>Figura Atlas 4: Añadir Organización</figcaption>
+    <figcaption>Figura Atlas 4: Añadir Organización. (Fuente: Propia)</figcaption>
 </figure>
 
    - Crear Proyecto
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_5_Add_Project.jpg">
-    <figcaption>Figura Atlas 5: Añadir Proyecto</figcaption>
+    <figcaption>Figura Atlas 5: Añadir Proyecto. (Fuente: Propia)</figcaption>
 </figure>
 
    - Nueva Base de datos
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_6_New_Database.jpg">
-    <figcaption>Figura Atlas 6: Añadir Base de datos</figcaption>
+    <figcaption>Figura Atlas 6: Añadir Base de datos. (Fuente: Propia)</figcaption>
 </figure>
 
    - Creando cluster
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_7_Cluster.jpg">
-    <figcaption>Figura Atlas 7: Cluster</figcaption>
+    <figcaption>Figura Atlas 7: Cluster. (Fuente: Propia)</figcaption>
 </figure>
 
 4. Crear un usuario para la Base de Datos
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_8_New_User.jpg">
-    <figcaption>Figura 8 Atlas: Nuevo usuario</figcaption>
+    <figcaption>Figura 8 Atlas: Nuevo usuario. (Fuente: Propia)</figcaption>
 </figure>
 
 5. Cargar contenido en nuestra Base de Datos. Vamos a usar uno de los Data Set de ejemplo facilitados por el propio MongoDB.
@@ -392,14 +392,14 @@ Para ello seguimos todos los pasos: ***[Getting Started MongoDB](https://www.mon
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_9_LoadDataSample.jpg">
-    <figcaption>Figura Atlas 9. Cargar datos a la Base de Datos</figcaption>
+    <figcaption>Figura Atlas 9. Cargar datos a la Base de Datos. (Fuente: Propia)</figcaption>
 </figure>
 
    - Browser Collections
 
 <figure style="align: center;">
     <img src="images/MongoDB_Atlas_10_BrowserCollections.jpg"/>
-    <figcaption>Figura Atlas 10: Browser Collections</figcaption>
+    <figcaption>Figura Atlas 10: Browser Collections. (Fuente: Propia)</figcaption>
 </figure>
 
 1. Conectarte a tu cluster. Hay varias formas de conexión a tu cluster.
@@ -416,7 +416,7 @@ Para ello seguimos todos los pasos: ***[Getting Started MongoDB](https://www.mon
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Atlas_11_Connect.jpg">
-    <figcaption>Figura Atlas 11. Formas de conexión a Atlas</figcaption>
+    <figcaption>Figura Atlas 11. Formas de conexión a Atlas. (Fuente: Propia)</figcaption>
 </figure>
 
 ### 3.4 MongoDB Shell
@@ -425,14 +425,14 @@ Para esta conexión, solo necesitamos usar el comando `mongosh` con las credenci
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Atlas_12_ConnectShell.jpg">
-    <figcaption>Figura Atlas 12. Connect Mongo Shell</figcaption>
+    <figcaption>Figura Atlas 12. Connect Mongo Shell. (Fuente: Propia)</figcaption>
 </figure>
 
 Y escribiendo después la contraseña establecida nos conectamos a nuestro al servicio cloud
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Atlas_13_Mongosh_connect.jpg">
-    <figcaption>Figura Atlas 13. Connect mongosh</figcaption>
+    <figcaption>Figura Atlas 13. Connect mongosh. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -442,14 +442,14 @@ Y escribiendo después la contraseña establecida nos conectamos a nuestro al se
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_VSCode_1_extension.jpg">
-    <figcaption>Figura MongoDB for VSCode 1. Extensión</figcaption>
+    <figcaption>Figura MongoDB for VSCode 1. Extensión. (Fuente: Propia)</figcaption>
 </figure>
 
 2. Damos a la opción de connect en nuestro MongoDB Atlas y seleccionamos MongoDB for VSCode. Seguimos los pasos que nos indican. Copiamos la url del punto 3 y le añadimos nuestra contraseña
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_VSCode_2_Datos_Conexion.jpg">
-    <figcaption>Figura MongoDB for VSCode 2. Conectando con Mondo Atlas</figcaption>
+    <figcaption>Figura MongoDB for VSCode 2. Conectando con Mondo Atlas. (Fuente: Propia)</figcaption>
 </figure>
 
 3. Vamos a nuestra extensión y le damos a **connecting string** y añadimos la url con nuestra contraseña.
@@ -457,7 +457,7 @@ Y escribiendo después la contraseña establecida nos conectamos a nuestro al se
 
 <figure style="align: center;">
     <img src="images/MongoDB_VSCode_3_Conectado_MongoDB.jpg">
-    <figcaption>Figura MongoDB for VSCode 3. Conectado con Mondo Atlas</figcaption>
+    <figcaption>Figura MongoDB for VSCode 3. Conectado con Mondo Atlas. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -465,7 +465,7 @@ Y escribiendo después la contraseña establecida nos conectamos a nuestro al se
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_VSCode_4_PlayGround_Ejecutado.jpg">
-    <figcaption>Figura MongoDB for VSCode 4. Ejecutando playground</figcaption>
+    <figcaption>Figura MongoDB for VSCode 4. Ejecutando playground. (Fuente: Propia)</figcaption>
 </figure>
 
 5. Observa el código del playground. Presta especial atención a las palabras reservadas `db, use, consolo.log(), print(), printjson()`. Para mas información de uso consulta la [documentación oficial](https://www.mongodb.com/docs/mongodb-vscode/playgrounds/)
@@ -474,7 +474,7 @@ Y escribiendo después la contraseña establecida nos conectamos a nuestro al se
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_VSCode_5_MongoDB_Shell.jpg">
-    <figcaption>Figura MongoDB for VSCode 5. MongoDB Shell en VSCode</figcaption>
+    <figcaption>Figura MongoDB for VSCode 5. MongoDB Shell en VSCode. (Fuente: Propia)</figcaption>
 </figure>
 
 ### 3.6 MongoDB Compass
@@ -499,28 +499,28 @@ Para **comprobar su funcionamiento**, vamos a conectarnos a nuestra Base de Dato
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Compass_1_Datos_conexion.jpg">
-    <figcaption>Figura MongoDB Compass 1. Conexión mediante Compass</figcaption>
+    <figcaption>Figura MongoDB Compass 1. Conexión mediante Compass. (Fuente: Propia)</figcaption>
 </figure>
 
 3. En Compass, abrimos la opción de conexión y copiamos nuestro string de conexión.
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Compass_2_String_conexion.jpg">
-    <figcaption>Figura MongoDB Compass 2. String de conexión</figcaption>
+    <figcaption>Figura MongoDB Compass 2. String de conexión. (Fuente: Propia)</figcaption>
 </figure>
 
 4. Ya podemos usar la GUI de Compass.
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Compass_3_Uso_Compass_1.jpg">
-    <figcaption>Figura MongoDB Compass 3. GUI de Compass 1</figcaption>
+    <figcaption>Figura MongoDB Compass 3. GUI de Compass 1. (Fuente: Propia)</figcaption>
 </figure>
 
 5. Visualizar las Base de Datos, Collections y Documentos. Debajo también se nos abre una conexión con `mongosh` para realizar las operaciones que queramos en terminal si lo deseamos (_la cual podemos minimizar_).
 
 <figure style="align: center; width:600px;">
     <img src="images/MongoDB_Compass_4_Uso_Compass_2.jpg">
-    <figcaption>Figura MongoDB Compass 4. GUI de Compass 2</figcaption>
+    <figcaption>Figura MongoDB Compass 4. GUI de Compass 2. (Fuente: Propia)</figcaption>
 </figure>
 
 ### 3.7 MongoDB Tools
@@ -572,7 +572,7 @@ En MongoDB, las operaciones de inserción tienen como objetivo una única colecc
 
 `db.collection.insertOne()` inserta un único documento dentro de una collection.
 
-!!! note Insert behaivor
+!!! note Insert behavior
 
     El siguiente código inserta un nuevo documento en la colección de inventario. Si el documento no especifica un campo _id, MongoDB agrega el campo _id con un valor ObjectId al nuevo documento.
 

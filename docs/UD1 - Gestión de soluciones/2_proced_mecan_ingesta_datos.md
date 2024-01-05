@@ -24,7 +24,7 @@ Algunas de las fuentes más utilizadas en la actualidad para la obtención de da
 
 <figure style="align: center;">
     <img src="images/Figura1.11_Fuentes_para_la_obtención_de_datos_abiertos.jpg">
-    <figcaption>Figura 1.11: Fuentes para la obtención de datos abiertos</figcaption>
+    <figcaption>Figura 1.11: Fuentes para la obtención de datos abiertos. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -123,7 +123,7 @@ Sea un almacén de datos en el que se pretende almacenar **las ventas llevadas a
 
 <figure style="align: center;">
     <img src="images/Figura1.12_Ejemplo_de_almacén_de_datos_diseñado_en_estrella.jpg">
-    <figcaption>Figura 1.12: Ejemplo de almacén de datos diseñado en estrella.</figcaption>
+    <figcaption>Figura 1.12: Ejemplo de almacén de datos diseñado en estrella. (Fuente: UCLM)</figcaption>
 </figure>
 
 **Ventajas e incovenientes**
@@ -149,7 +149,7 @@ Siguiendo con el ejemplo anterior, en el que se mostraba un almacén de datos pa
 
 <figure style="align: center;">
     <img src="images/Figura1.13_Ejemplo_de_almacén_de_datos_diseñado_en_copo_de_nieve.jpg">
-    <figcaption>Figura 1.13: Ejemplo de almacén de datos diseñado en copo de nieve.</figcaption>
+    <figcaption>Figura 1.13: Ejemplo de almacén de datos diseñado en copo de nieve. (Fuente: UCLM)</figcaption>
 </figure>
 
 

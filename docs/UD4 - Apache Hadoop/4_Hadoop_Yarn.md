@@ -15,7 +15,7 @@ En las primeras versiones de Hadoop, todo el procesamiento se realizaba con _Map
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.1_Yarn_Yarn_en_Hadoop2.jpg">
-    <figcaption>Figura 4.1_Yarn: Arquitectura YARN Hadoop </figcaption>
+    <figcaption>Figura 4.1_Yarn: Arquitectura YARN Hadoop. (Fuente: Ministerio de Educación) </figcaption>
 </figure>
 
 
@@ -23,7 +23,7 @@ Por este motivo, en la versión 2 de Hadoop se introdujo YARN. El objetivo de YA
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.2_Yarn_Estructura_YARN_Hadoop.jpg">
-    <figcaption>Figura 4.2_Yarn: Arquitectura YARN Hadoop </figcaption>
+    <figcaption>Figura 4.2_Yarn: Arquitectura YARN Hadoop. (Fuente: Ministerio de Educación) </figcaption>
 </figure>
 
 ## 1. Contenedores
@@ -37,7 +37,7 @@ Los contenedores se pueden configurar en cuanto al tamaño de memoria y la canti
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.3_Yarn_Nodos_Servicios_YARN.jpg">
-    <figcaption>Figura 4.3_Yarn: Nodos y Servicios YARN </figcaption>
+    <figcaption>Figura 4.3_Yarn: Nodos y Servicios YARN. (Fuente: Ministerio de Educación) </figcaption>
 </figure>
 
 Existe un nodo maestro, el **ResourceManager**, que coordina, asigna y controla la ejecución de todas las tareas, y nodos worker que disponen de un servicio **NodeManager**, que monitoriza el estado de ejecución de las tareas en el worker, así como el estado de
@@ -57,7 +57,7 @@ El ResourceManager tiene dos componentes principales::
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.4_Yarn_Arquitectura_Yarn.png">
-    <figcaption>Figura 4.4_Yarn: Arquitectura YARN </figcaption>
+    <figcaption>Figura 4.4_Yarn: Arquitectura YARN. (Fuente: Apache Hadoop) </figcaption>
 </figure>
 
 ### 1.2 Node Manager
@@ -91,7 +91,7 @@ YARN, en concreto, el _ResourceManager_, es invocado por los clientes cuando qui
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.5_Yarn_Funcionamiento_YARN.jpg">
-    <figcaption>Figura 4.5_Yarn: Funcionamiento YARN </figcaption>
+    <figcaption>Figura 4.5_Yarn: Funcionamiento YARN. (Fuente: Ministerio de Educación) </figcaption>
 </figure>
 
 
@@ -233,7 +233,7 @@ http://bda-iesgrancapitan:8088/cluster
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.6_Yarn_WebUI_YARN_Antigua.jpg">
-    <figcaption>Figura 4.6_Yarn: WebUI YARN Antigua</figcaption>
+    <figcaption>Figura 4.6_Yarn: WebUI YARN Antigua. (Fuente: Propia)</figcaption>
 </figure>
 
 2. Versión actual de Hadoop Yarn. En mi caso:
@@ -243,7 +243,7 @@ http://bda-iesgrancapitan:8088/ui2
 ```
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.7_Yarn_WebUI_YARN_Nueva.jpg">
-    <figcaption>Figura 4.7_Yarn: WebUI YARN Nueva</figcaption>
+    <figcaption>Figura 4.7_Yarn: WebUI YARN Nueva. (Fuente: Propia)</figcaption>
 </figure>
 
 Ya podemos acceder a la interfaz de YARN. Además de en el log, podemos observar aquí todos los trabajos que se van realizando. Lo comprobaremos cuando lancemos alguna aplicación MapReduce en la siguiente parte del tema
@@ -344,14 +344,14 @@ hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.6.j
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.8_Yarn_WebUI_YARN_wordcount_1.jpg">
-    <figcaption>Figura 4.8_Yarn: WebUI YARN Wordcount</figcaption>
+    <figcaption>Figura 4.8_Yarn: WebUI YARN Wordcount. (Fuente: Propia)</figcaption>
 </figure>
 
 5. Detalle de la ejecución del _job wordcount_
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.9_Yarn_WebUI_YARN_wordcount_2.jpg">
-    <figcaption>Figura 4.8_Yarn: WebUI YARN detalle Wordcount job</figcaption>
+    <figcaption>Figura 4.8_Yarn: WebUI YARN detalle Wordcount job. (Fuente: Propia)</figcaption>
 </figure>
 
 6. Leemos el fichero de salida. Aquí están listados todas las palabras de El Quijote y cuantas veces aparece cada palabra

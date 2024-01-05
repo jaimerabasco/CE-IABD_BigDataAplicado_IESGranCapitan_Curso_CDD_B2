@@ -8,7 +8,7 @@ Para entender las diferencias entre estos tipos de bases de datos, piense en el 
 
 <figure style="align: center;">
     <img src="images/Figura1.14_Teorema_CAP_1.png">
-    <figcaption>Figura 1.14: Teorema de CAP</figcaption>
+    <figcaption>Figura 1.14: Teorema de CAP. (Fuente: Microsoft)</figcaption>
 </figure>
 
 El teorema indica que los sistemas de datos distribuidos ofrecerán un equilibrio entre consistencia, disponibilidad y tolerancia a particiones. Además, cualquier almacén de datos **solo puede garantizar dos de las tres propiedades**:
@@ -19,14 +19,14 @@ El teorema indica que los sistemas de datos distribuidos ofrecerán un equilibri
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.15_Teorema_CAP_2.jpg">
-    <figcaption>Figura 1.15: Teorema de CAP 2</figcaption>
+    <figcaption>Figura 1.15: Teorema de CAP 2. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 El teorema usa estas definiciones para afirmar que no es posible ofrecer las tres garantías de forma simultánea. O lo que es lo mismo, en cada instante se debe sacrificar alguna de ellas para garantizar las otras dos.
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.16_Teorema_CAP_3.jpg">
-    <figcaption>Figura 1.16: Teorema de CAP 3</figcaption>
+    <figcaption>Figura 1.16: Teorema de CAP 3. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 Como aplicación práctica, todos los sistemas distribuidos como las bases de datos sufren fallos e interrupciones de red y es necesario que sigan funcionando. Por esta razón, los sistemas deben elegir entre ser consistentes o disponibles y balancear estas dos garantías.
@@ -35,7 +35,7 @@ Podemos observarlo en la figura anterior, donde **cuando se produce una partici�
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.17_Teorema_CAP_4.jpg">
-    <figcaption>Figura 1.17: Teorema de CAP 4</figcaption>
+    <figcaption>Figura 1.17: Teorema de CAP 4. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 Si un sistema favorece la consistencia frente a la disponibilidad en el caso de una partición de red, será **CP**, mientras que si favorece la disponibilidad en este caso será **AP**. Los sistemas **ACID** como las bases de datos relacionales, eligen la consistencia sobre disponibilidad, mientras que los sistemas **BASE** eligen la disponibilidad.
@@ -47,7 +47,7 @@ El término **NoSQL** proviene del inglés y está formado por las palabras "No"
 
 <figure style="align: center;">
     <img src="images/Figura1.18_Ecosistema_NoSQL.jpg">
-    <figcaption>Figura 1.18: Ecosistema NoSQL</figcaption>
+    <figcaption>Figura 1.18: Ecosistema NoSQL. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 ### 2.1 NoSQL vs Relacional (SQL)
@@ -88,7 +88,7 @@ En la actualidad, las aplicaciones web modernas, el auge de la computación ubic
 
 <figure style="align: center;">
     <img src="images/Figura1.19_Tipos_BBDD_NoSQL.png">
-    <figcaption>Figura 1.19: Tipos BBDD NoSQL</figcaption>
+    <figcaption>Figura 1.19: Tipos BBDD NoSQL. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 #### 2.2.1 Documentales
@@ -97,7 +97,7 @@ Estas bases de datos almacenan datos autocontenidos llamados documentos. Cada do
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.20_NoSQL_Documentales.jpg">
-    <figcaption>Figura 1.20: NoSQL Documentales</figcaption>
+    <figcaption>Figura 1.20: NoSQL Documentales. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 Algunos ejemplos de Base de datos NoSQL de tipo documental son MongoDB, CouchDB y DynamoDB.
@@ -110,7 +110,7 @@ La ventaja de estas bases de datos es su gran velocidad de lectura y de escritur
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.21_NoSQL_clave_valor.jpg">
-    <figcaption>Figura 1.21: NoSQL clave valor</figcaption>
+    <figcaption>Figura 1.21: NoSQL clave valor. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 Algunos ejemplos de Base de datos NoSQL de tipo clave-valor son DynamoDB, Redis.
@@ -123,7 +123,7 @@ Son muy populares en sistemas de analítica ya que funcionan de forma similar a 
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.22_NoSQL_Tabular.jpg">
-    <figcaption>Figura 1.22: NoSQL Tabular</figcaption>
+    <figcaption>Figura 1.22: NoSQL Tabular. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 Algunos ejemplos de Base de datos NoSQL de tipo tabular son Cassandra, HBase, Druid o BigTable.
@@ -136,7 +136,7 @@ Su estructura consiste en dos componentes principales. Los nodos son los datos e
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.23_NoSQL_Grafo.jpg">
-    <figcaption>Figura 1.23: NoSQL Grafo</figcaption>
+    <figcaption>Figura 1.23: NoSQL Grafo. (Fuente: medium.baqend.com)</figcaption>
 </figure>
 
 Algunos ejemplos de Base de datos NoSQL de tipo grafo son Neo4J, DEX, InfiniteGraph.
@@ -523,7 +523,7 @@ Donde V representa el conjunto de nodos o vértices y E representa el conjunto d
 
 <figure style="align: center;">
     <img src="images/Figura1.24_Grafo.jpg">
-    <figcaption>Figura 1.24: Grafo que representa las principales autovías de España</figcaption>
+    <figcaption>Figura 1.24: Grafo que representa las principales autovías de España. (Fuente: Propia)</figcaption>
 </figure>
 
 Una **base de datos orientada a grafos** es, por tanto, un sistema de bases de datos que implementa métodos de creación, lectura, actualización y eliminación de datos en un modelo expresado en forma de grafo. Existen dos aspectos fundamentales en este tipo de sistemas: el primero de ellos hace referencia al **almacenamiento de los datos**. En una base de datos orientada a grafos, los datos pueden almacenarse siguiendo el modelo relacional, lo que implica mapear la estructura del grafo a una estructura relacional, o bien, almacenarse de forma **nativa** utilizando modelos de datos propios para almacenar estructuras de tipo grafo. La ventaja de mapear los grafos a una estructura relacional radica en que la gestión y consulta de los datos se realizará de forma tradicional a través de un backend conocido como, por ejemplo, MySQL. Por su parte, la ventaja del almacenamiento nativo de grafos radica es que existen modelos de datos e implementaciones que aseguran y garantizan el buen rendimiento y la escalabilidad del sistema.
@@ -572,7 +572,7 @@ Aunque existen diferentes tipos de modelos de datos basados en grafos, cada sist
 
 <figure style="align: center;">
     <img src="images/Figura1.25_Ejemplo_grafo_relaciones_seguimiento_canales_Youtube.jpg">
-    <figcaption>Figura 1.25: Ejemplo de grafo relaciones de seguimiento de canales Youtube</figcaption>
+    <figcaption>Figura 1.25: Ejemplo de grafo relaciones de seguimiento de canales Youtube. (Fuente: Propia)</figcaption>
 </figure>
 
 Uno de los modelos de datos basado en grafos más popular es el **modelo de grafo de propiedades etiquetadas**. Un grafo representado mediante este modelo, debe cumplir las siguientes características principales:

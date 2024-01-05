@@ -6,7 +6,7 @@ Fue inicialmente concebido para resolver un problema de escalabilidad en Nutch, 
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.1_Hadoop_Componentes_básicos_de_Hadoop.png">
-    <figcaption>Figura 1 Hadoop: Componentes básicos de Hadoop</figcaption>
+    <figcaption>Figura 1 Hadoop: Componentes básicos de Hadoop. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 Al mismo tiempo, Google había publicado los documentos que describían su novedoso sistema de archivos distribuidos, el Google File System (GFS), y MapReduce, un framework de computación para procesamiento paralelo. La exitosa implementación de estos conceptos en Nutch resultó en dos proyectos separados, el segundo se convirtió en Hadoop, un proyecto Apache de primera clase.
@@ -35,7 +35,7 @@ Sus características son:
 
 <figure style="align: center;">
     <img src="images/Figura4.2_Hadoop_Caract_datos_heterogeneos.png">
-    <figcaption>Figura 2 Hadoop: Datos heterogéneos</figcaption>
+    <figcaption>Figura 2 Hadoop: Datos heterogéneos. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 - **Portable**: Se puede instalar en todo tipos de hardware y sistemas operativos.
@@ -43,7 +43,7 @@ Sus características son:
 
 <figure style="align: center;">
     <img src="images/Figura4.3_Hadoop_Caract_escalado.png">
-    <figcaption>Figura 3 Hadoop: Escalable</figcaption>
+    <figcaption>Figura 3 Hadoop: Escalable. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 - **Distribuido**: Hadoop se basa en una infraestructura que tiene muchos servidores (también llamados nodos) que trabajan conjuntamente para almacenar y para procesar los datos, a diferencia de los sistemas centralizados, donde todo se realiza en un único servidor.
@@ -52,7 +52,7 @@ Sus características son:
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.4_Hadoop_Ecosistema_Hadoop.jpg">
-    <figcaption>Figura 4 Hadoop: Ecosistema Hadoop</figcaption>
+    <figcaption>Figura 4 Hadoop: Ecosistema Hadoop. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 El **núcleo de Hadoop** se compone de:
@@ -122,7 +122,7 @@ propietario (Cloudera Manager, Cloudera Navigator, etc.). _[CDN Cloudera](https:
 
 <figure style="align: center;">
     <img src="images/Figura4.5_Hadoop_Distribución_Cloudera.png">
-    <figcaption>Figura 5 Hadoop: Distribución Cloudera. Fuente: Cloudera</figcaption>
+    <figcaption>Figura 5 Hadoop: Distribución Cloudera. (Fuente: Cloudera)</figcaption>
 </figure>
 
 !!! note "CDH Cloudera" 
@@ -167,7 +167,7 @@ Esto lo logra mediante un entorno distribuido de datos y procesos. El procesamie
 
 <figure style="align: center;">
     <img src="images/Figura4.6_Hadoop_Arquitectura_Hadoop.png">
-    <figcaption>Figura 6 Hadoop: Arquitectura Hadoop</figcaption>
+    <figcaption>Figura 6 Hadoop: Arquitectura Hadoop. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 El hardware típico donde se ejecuta un cluster Hadoop sería:

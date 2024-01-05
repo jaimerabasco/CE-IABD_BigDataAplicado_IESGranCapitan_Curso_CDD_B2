@@ -10,7 +10,7 @@ A partir de información, es posible construir conocimiento. El **conocimiento**
 
 <figure style="align: center;">
     <img src="images/Figura1.1.jpg">
-    <figcaption>Figura 1.1: Relación entre datos, información y conocimiento en el proceso de toma de decisiones</figcaption>
+    <figcaption>Figura 1.1: Relación entre datos, información y conocimiento en el proceso de toma de decisiones. (Fuente: UCLM)</figcaption>
 </figure>
 
 Por tanto, datos, información y conocimiento están estrechamente relacionados entre sí y dirigen cualquier proceso de toma de decisiones  La [figura1.1][figura1.1] muestra la relación entre datos, información y conocimiento, en un proceso genérico de **toma de decisiones**. Más concretamente, en el ejemplo del suspenso de Pablo en matemáticas, el proceso de toma de decisión acerca de la calificación de Pablo se estructuraría de la siguiente forma:
@@ -91,7 +91,7 @@ Algunos autores coinciden en que big data son datos cuyo **volumen** es demasiad
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.2_Las_tres_Vs_del_big_data.png">
-    <figcaption>Figura 1.2: Definición de big data en base a “Las tres Vs del big data"</figcaption>
+    <figcaption>Figura 1.2: Definición de big data en base a “Las tres Vs del big data". (Fuente: Researchgate)</figcaption>
 </figure>
 
 
@@ -105,7 +105,7 @@ Otros autores amplían las características que han de tener los datos que forma
 
 <figure style="align: center; width: 600px;">
     <img src="images/Figura1.3_Las_ocho_Vs_del_big_data.svg">
-    <figcaption>Figura 1.3: Definición de big data en base a “Las ocho Vs del big data”</figcaption>
+    <figcaption>Figura 1.3: Definición de big data en base a “Las ocho Vs del big data”. (Fuente: Linkedin)</figcaption>
 </figure>
 
 Dado que no existe una definición uniforme para el término big data, muchos autores definen el término en función de aquellas características que consideran más relevantes, por lo que es común encontrar “las cinco Vs del big data”, “las siete Vs del big data” o “las diez Vs del big data” según cada autor, apareciendo distintos términos para describir el big data, como también pueden ser **visualización** o **vulnerabilidad**, entre otros. 
@@ -248,7 +248,7 @@ El objetivo principal de esta arquitectura, poco utilizada en la práctica, es *
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura1.4_Almacén_de_datos._Arquitectura_de_una_capa.png">
-    <figcaption>Figura 1.4. Almacén de datos. Arquitectura de una capa.</figcaption>
+    <figcaption>Figura 1.4. Almacén de datos. Arquitectura de una capa. (Fuente: UCLM)</figcaption>
 </figure>
 
 
@@ -270,7 +270,7 @@ Fue diseñada con el objetivo de solucionar el problema de la separación que pr
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura1.5_Almacén_de_datos._Arquitectura_de_dos_capas.png">
-    <figcaption>Figura 1.5. Almacén de datos. Arquitectura de dos capas.</figcaption>
+    <figcaption>Figura 1.5. Almacén de datos. Arquitectura de dos capas. (Fuente: UCLM)</figcaption>
 </figure>
 
 
@@ -284,7 +284,7 @@ Esta capa de datos reconciliados también puede implementarse de forma virtual e
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura1.6_Almacén_de_datos._Arquitectura_de_tres_capas.png">
-    <figcaption>Figura 1.6. Almacén de datos. Arquitectura de tres capas.</figcaption>
+    <figcaption>Figura 1.6. Almacén de datos. Arquitectura de tres capas. (Fuente: UCLM)</figcaption>
 </figure>
 
 
@@ -332,7 +332,7 @@ Entre las características más importantes de los data lakes se encuentra su fl
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura1.7_Data_Lake.webp">
-    <figcaption>Figura 1.7. Data Lake</figcaption>
+    <figcaption>Figura 1.7. Data Lake. (Fuente: AprenderBigData.com)</figcaption>
 </figure>
 
 ### 6.2 Data Lake vs Data Warehouse
@@ -350,7 +350,7 @@ Así, un **data lake almacena datos sin procesar** y que todavía **no tienen un
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura1.9_DataWarehouse_vs_DataLake_2.png">
-    <figcaption>Figura 1.9. Data Warehouse vs Data Lake 2</figcaption>
+    <figcaption>Figura 1.9. Data Warehouse vs Data Lake 2. (Fuente: Huawei)</figcaption>
 </figure>
 
 Por su lado, un **data warehouse cuenta con datos procesados** y que ya se están usando, por lo que tienen una **finalidad concreta**.

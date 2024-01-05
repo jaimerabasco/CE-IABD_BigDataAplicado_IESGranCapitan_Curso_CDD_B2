@@ -22,7 +22,7 @@ En Neo4j, la información se organiza como nodos, relaciones y propiedades.
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Introduccion_1.svg">
-    <figcaption>Figura Neo4j Introducción 1: Bloques de construcción de un modelo de Base de datos de grafos</figcaption>
+    <figcaption>Figura Neo4j Introducción 1: Bloques de construcción de un modelo de Base de datos de grafos. (Fuente: Neo4J)</figcaption>
 </figure>
 
 Los **nodos** son las entidades del grafo:
@@ -45,7 +45,7 @@ Neo4j es una ***base de datos de grafos nativa***, lo que significa que implemen
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Introduccion_2.svg">
-    <figcaption>Figura Neo4j Introducción 2: Ejemplo de esquema de grafo</figcaption>
+    <figcaption>Figura Neo4j Introducción 2: Ejemplo de esquema de grafo. (Fuente: Neo4J)</figcaption>
 </figure>
 
 ¿Qué hace que Neo4j sea el grafo con el que es más fácil trabajar?
@@ -80,7 +80,7 @@ Puede encontrar más información sobre numerosos casos de uso en los que los da
 
 <figure style="align: center; width:900px;">
     <img src="images/Neo4j_Introduccion_3.svg">
-    <figcaption>Figura Neo4j Introducción 3: Casos de uso</figcaption>
+    <figcaption>Figura Neo4j Introducción 3: Casos de uso. (Fuente: Neo4J)</figcaption>
 </figure>
 
 
@@ -194,7 +194,7 @@ Vamos a explicar como levantar un contenedor Neo4j con Docker
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Docker_1.jpg">
-    <figcaption>Figura Docker Neo4j 1: Conexión al Neo4j</figcaption>
+    <figcaption>Figura Docker Neo4j 1: Conexión al Neo4j. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -235,7 +235,7 @@ Para poder hacer uso de Neo4j de forma gratuita, Neo4j proporciona [Neo4j Sandbo
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_1.jpg">
-    <figcaption>Figura Neo4j Sandbox 1: Proyectos </figcaption>
+    <figcaption>Figura Neo4j Sandbox 1: Proyectos. (Fuente: Propia) </figcaption>
 </figure>
 
 4. Elige uno.
@@ -243,28 +243,28 @@ Para poder hacer uso de Neo4j de forma gratuita, Neo4j proporciona [Neo4j Sandbo
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_2.jpg">
-    <figcaption>Figura Neo4j Sandbox 2: Creando una instancia </figcaption>
+    <figcaption>Figura Neo4j Sandbox 2: Creando una instancia. (Fuente: Propia) </figcaption>
 </figure>
 
 6. Desplegamos las opciones
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_3.jpg">
-    <figcaption>Figura Neo4j Sandbox 3: Opciones de una instancia </figcaption>
+    <figcaption>Figura Neo4j Sandbox 3: Opciones de una instancia. (Fuente: Propia) </figcaption>
 </figure>
 
 7. Vamos a _connection details_ y copiamos la contraseña
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_4.jpg">
-    <figcaption>Figura Neo4j Sandbox 4: Details project </figcaption>
+    <figcaption>Figura Neo4j Sandbox 4: Details project. (Fuente: Propia) </figcaption>
 </figure>
 
 8. Abrimos la instancia en el navegador (tenemos varios opciones a elegir)
 
 <figure style="align: center;">
     <img src="images/Neo4j_Sandbox_5.jpg">
-    <figcaption>Figura Neo4j Sandbox 5: Abriendo una instancia </figcaption>
+    <figcaption>Figura Neo4j Sandbox 5: Abriendo una instancia. (Fuente: Propia) </figcaption>
 </figure>
 
 1.  Se abre una nueva ventana con la instancia levantada para acceder a ella
@@ -274,7 +274,7 @@ Para poder hacer uso de Neo4j de forma gratuita, Neo4j proporciona [Neo4j Sandbo
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_6.jpg">
-    <figcaption>Figura Neo4j Sandbox 6: Accediendo a una instancia </figcaption>
+    <figcaption>Figura Neo4j Sandbox 6: Accediendo a una instancia. (Fuente: Propia) </figcaption>
 </figure>
 
 11.  Se conecta a la base de datos. A la izquierda nos aparece una guía de uso, que dependerá de la instancia elegida.
@@ -282,14 +282,14 @@ Para poder hacer uso de Neo4j de forma gratuita, Neo4j proporciona [Neo4j Sandbo
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_7.jpg">
-    <figcaption>Figura Neo4j Sandbox 7: Esquema de la base de datos </figcaption>
+    <figcaption>Figura Neo4j Sandbox 7: Esquema de la base de datos. (Fuente: Propia) </figcaption>
 </figure>
 
 13. Ejecutamos esta otra instrucción para ver toda la base de datos `match(n) return n`
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_8.svg">
-    <figcaption>Figura Neo4j Sandbox 8: Datos de la base de datos </figcaption>
+    <figcaption>Figura Neo4j Sandbox 8: Datos de la base de datos. (Fuente: Propia) </figcaption>
 </figure>
 
 14. Una consulta de ejemplo, donde buscamos todas las películas que se estrenaron después del año 2000 limitando el resultado a 5 elementos 
@@ -304,7 +304,7 @@ RETURN m LIMIT 5
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Sandbox_9.jpg">
-    <figcaption>Figura Neo4j Sandbox 9: Consulta a la base de datos </figcaption>
+    <figcaption>Figura Neo4j Sandbox 9: Consulta a la base de datos. (Fuente: Propia) </figcaption>
 </figure>
 
 ## 4. Get started Neo4j
@@ -404,7 +404,7 @@ El grafo resultado es el siguiente
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Importando_datos_2.svg">
-    <figcaption>Figura Neo4j Importando Datos 2: Grafo de ejemplo resultante </figcaption>
+    <figcaption>Figura Neo4j Importando Datos 2: Grafo de ejemplo resultante. (Fuente: Propia) </figcaption>
 </figure>
 
 
@@ -414,7 +414,7 @@ Otra alternativa es la **creación de un grafo desde cero**, especificando para 
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Creacion_grafos_1.jpg">
-    <figcaption>Figura Neo4j Creación de un grafo 1: Grafo de ejemplo </figcaption>
+    <figcaption>Figura Neo4j Creación de un grafo 1: Grafo de ejemplo. (Fuente: Propia) </figcaption>
 </figure>
 
 Para representar este grafo en Neo4j, se puede escribir el siguiente fragmento de código:
@@ -457,7 +457,7 @@ MATCH(n) return (n)
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Creacion_grafos_2.jpg">
-    <figcaption>Figura Neo4j Creación de un grafo 2: Visualización del grafo de co-ocurrencia de hashtags </figcaption>
+    <figcaption>Figura Neo4j Creación de un grafo 2: Visualización del grafo de co-ocurrencia de hashtags. (Fuente: Propia) </figcaption>
 </figure>
 
 ### 4.3 Eliminar nodos y grafos
@@ -517,7 +517,7 @@ Por ejemplo, usando el grafo anterior del punto importación de datos. Es posibl
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Importando_datos_2.svg">
-    <figcaption>Figura Neo4j Importando Datos 2: Grafo de ejemplo resultante </figcaption>
+    <figcaption>Figura Neo4j Importando Datos 2: Grafo de ejemplo resultante. (Fuente: Propia) </figcaption>
 </figure>
 
 !!! info inline end
@@ -716,7 +716,7 @@ _Listado 4.12: Importación de un grafo social_
 
 <figure style="align: center; width:600px;">
     <img src="images/Neo4j_Medida_centralidad_1.svg">
-    <figcaption>Figura Neo4j. Medida de centralidad 1: Visualización de un grafo social </figcaption>
+    <figcaption>Figura Neo4j. Medida de centralidad 1: Visualización de un grafo social. (Fuente: Propia) </figcaption>
 </figure>
 
 ### 8.1 Centralidad de grado ([Degree Centrality](https://neo4j.com/docs/graph-data-science/current/algorithms/degree-centrality/))
@@ -766,7 +766,7 @@ _Cálculo de la centralidad de grado_
 
 <figure style="align: center;">
     <img src="images/Neo4j_GDS_Ecuacion_Cercania.jpg">
-    <figcaption>Figura Neo4j. Ecuación de cercanía</figcaption>
+    <figcaption>Figura Neo4j. Ecuación de cercanía. (Fuente: Neo4J)</figcaption>
 </figure>
 
 Donde _n_ es el número de nodos del grafo y _d(u, v)_ es la distancia del camino mínimo entre _u_ y _v_. **La cercanía es una métrica muy utilizada para estimar tiempos de llegada en redes logísticas, para descubrir actores en posiciones privilegiadas en redes sociales o para estudiar la prominencia de palabras en un documento en el campo de la minería de textos**. Para obtener la cercanía en el grafo social de ejemplo, se puede utilizar el fragmento de código mostrado en el listado 4.14. En el grafo de la imagen, Doug y David tienen una cercanía de 1.
@@ -793,7 +793,7 @@ _Cálculo de la cercanía_
 
 <figure style="align: center;">
     <img src="images/Neo4j_GDS_Ecuacion_Intermediacion.jpg">
-    <figcaption>Figura Neo4j. Ecuación de intermediacion</figcaption>
+    <figcaption>Figura Neo4j. Ecuación de intermediación. (Fuente: Neo4J)</figcaption>
 </figure>
 
 Donde _u_ es el nodo del cual se calcula la intermediación _(B),s_ y _t_ son nodos del grafo, _p(u)_ es el número de caminos mínimos entre _s_ y _t_ que pasan por _u_ y _p_ es el número de caminos mínimos entre s y t. Para el cálculo de la intermediación, se puede utilizar el siguiente código. Al ejecutar este listado, se obtiene que Alice tiene la mayor intermediación, teniendo un valor de 10.
@@ -806,7 +806,7 @@ CALL gds.graph.project(
 )
 ```
 
-Como no tenemos ninguna propiedad/coste/puntución en la relación, no hay que indicarla. Si la quisiéramos tener en cuenta habría que añadirla dentro de follow de la siguiente forma:
+Como no tenemos ninguna propiedad/coste/puntuación en la relación, no hay que indicarla. Si la quisiéramos tener en cuenta habría que añadirla dentro de follow de la siguiente forma:
 
 ```
 CALL gds.graph.project(
@@ -865,7 +865,7 @@ Este coeficiente **proporciona una medida cuantitativa del grado de agrupación 
 
 <figure style="align: center;">
     <img src="images/Neo4j_GDS_Ecuacion_Coeficiente_local.jpg">
-    <figcaption>Figura Neo4j Ecuación de coeficiente local</figcaption>
+    <figcaption>Figura Neo4j Ecuación de coeficiente local. (Fuente: Neo4J)</figcaption>
 </figure>
 
 Donde _u_ es un nodo, _R(u)_ es el número de relaciones que a través de los vecinos de _u_ (lo cual puede medirse con el número de triángulos que pasan por _u_ y _k(u)_ es el grado de _u_. El cálculo del coeficiente local de clustering puede realizarse por medio del siguiente código. Los actores Bridget, Charles, Mark y Michael tienen el mayor coeficiente local de clustering, que es 1. 
@@ -924,7 +924,7 @@ El método de vecinos comunes se basa en la idea genérica de que dos actores de
 
 <figure style="align: center;">
     <img src="images/Neo4j_GDS_Ecuacion_Vecinos_comunes.jpg">
-    <figcaption>Figura Neo4j Ecuación de vecinos comunes</figcaption>
+    <figcaption>Figura Neo4j Ecuación de vecinos comunes. (Fuente: Neo4J)</figcaption>
 </figure>
 
 Donde _N(x)_ es el conjunto de nodos adyacentes a _x_ y _N(y)_ es el conjunto de nodos adyacentes a _y_. Cuanto mayor es el valor de _CN_ calculado, existe mayor posibilidad de que se produzca un nuevo enlace entre _x_ e _y_. En el grafo social de ejemplo, el cálculo de vecinos comunes para Charles y Bridget se puede realizar a través del siguiente código. El resultado de este cálculo es 2.
@@ -943,7 +943,7 @@ Este método se basa en la idea general de que cuanto más conectado está un no
 
 <figure style="align: center;">
     <img src="images/Neo4j_GDS_Ecuacion_Adhesión_preferencial.jpg">
-    <figcaption>Figura Neo4j Ecuación de adhesión preferencial</figcaption>
+    <figcaption>Figura Neo4j Ecuación de adhesión preferencial. (Fuente: Neo4J)</figcaption>
 </figure>
 
 En el grafo social de ejemplo, el cálculo de adhesión preferencial para Charles y Bridget se puede realizar a través del siguiente código. El resultado de este cálculo es 10.
@@ -962,7 +962,7 @@ Se trata de una métrica compleja que evalúa la cercanía de un par de nodos pa
 
 <figure style="align: center;">
     <img src="images/Neo4j_GDS_Ecuacion_Asignación_recursos.jpg">
-    <figcaption>Figura Neo4j Ecuación de asignación de recursos</figcaption>
+    <figcaption>Figura Neo4j Ecuación de asignación de recursos. (Fuente: Neo4J)</figcaption>
 </figure>
 
 En el grafo social de ejemplo, el cálculo de la asignación de recursos para Charles y Bridget se puede realizar a través del siguiente código. El resultado de este cálculo es 0.309.
@@ -992,7 +992,7 @@ Toda la documentación de los mismos se encuentra también en la [documentación
    
 <figure style="align: center;">
     <img src="images/Neo4j_Ejemplo_twitter-data-model.svg">
-    <figcaption>Figura Neo4j Ejemplo. Data model Twitter</figcaption>
+    <figcaption>Figura Neo4j Ejemplo. Data model Twitter. (Fuente: Propia)</figcaption>
 </figure>
 
 - Quién te está mencionando en Twitter

@@ -45,7 +45,7 @@ Los **Clusters** están formados por colecciones de computadores de similares ca
 
 <figure style="align: center; ">
     <img src="images/Figura3.1_Esquema_organizacion_servicio_supercomputacion_cluster.png">
-    <figcaption>Figura 3.1: Esquema de organización de un servicio de supercomputación en Cluster . Fuente: Universidad de Castilla La Mancha </figcaption>
+    <figcaption>Figura 3.1: Esquema de organización de un servicio de supercomputación en Cluster. (Fuente: UCLM) </figcaption>
 </figure>
 
 ## 3.3 Grid Computing
@@ -56,7 +56,7 @@ Las **arquitecturas SOA** (Service Oriented Architecture) están basadas en la a
 
 <figure style="align: center; ">
     <img src="images/Figura3.2_Esquema_arquitectura_SOA.png">
-    <figcaption>Figura 3.2: Arquitecturas SOA </figcaption>
+    <figcaption>Figura 3.2: Arquitecturas SOA. (Fuente: appseconnect)</figcaption>
 </figure>
 
 Las **arquitecturas Peer-To-Peer** son agregaciones de programas equivalentes que se ejecutan sobre plataformas heterogéneas y que comparten parte de su memoria y capacidad de cómputo. Estas plataformas presentan una alta tolerancia a errores, dado que cada nodo tiene la misma función que el resto. Este tipo de arquitecturas son más habituales en un tipo de computación conocido como _Volunteer Computing_.
@@ -79,7 +79,7 @@ Algunas de las desventajas que tiene esta tecnología son: los riesgos de seguri
 
 <figure style="align: center; ">
     <img src="images/Figura3.3_GridComputing_vs_CloudComputing.jpg">
-    <figcaption>Figura 3.3: Grid Computing vs Cloud Computing</figcaption>
+    <figcaption>Figura 3.3: Grid Computing vs Cloud Computing. (Fuente: Medium)</figcaption>
 </figure>
 
 ## 3.4 Cloud Computing
@@ -168,12 +168,12 @@ Un proceso de big data tiene cinco etapas:
 
 <figure style="align: center; ">
     <img src="images/Figura3.4_Estados_BigData_Pipeline.webp">
-    <figcaption>Figura 3.4: Estados de un BigData Pipeline</figcaption>
+    <figcaption>Figura 3.4: Estados de un BigData Pipeline. (Fuente: ml4devs)</figcaption>
 </figure>
 
 ### 3.5.2. Arquitectura
 
-Hay varias opciones de arquitecturas que ofrecen diferentes compensaciones de rendimiento y costes. Es decir, habrá distintas soluciones arquitectónicas dependiendo del tipo de soporte, análisis y BI que necesitemos y recursos de los que dispongamos en cada caso.Para decidir que arquitectura, deberías hacerte algunas preguntas para identificar requisitos, como por ejemplo::
+Hay varias opciones de arquitecturas que ofrecen diferentes compensaciones de rendimiento y costes. Es decir, habrá distintas soluciones arquitectónicas dependiendo del tipo de soporte, análisis y BI que necesitemos y recursos de los que dispongamos en cada caso.Para decidir que arquitectura, deberías hacerte algunas preguntas para identificar requisitos, como por ejemplo:
 
 - ¿Necesita información en tiempo real o por lotes?
 - ¿Cuál es la tolerancia al estancamiento de su aplicación?
@@ -184,7 +184,7 @@ Como ejemplo general que abarca un gran numero de escenarios de arquitecturas, t
 
 <figure style="align: center; ">
     <img src="images/Figura3.5_Arquitectura_Estados_BigData_Pipeline.webp">
-    <figcaption>Figura 3.5: Arquitectura de un BigData Pipeline</figcaption>
+    <figcaption>Figura 3.5: Arquitectura de un BigData Pipeline. (Fuente: ml4devs)</figcaption>
 </figure>
 
 ### 3.5.3 Data Pipeline en la nube
@@ -193,7 +193,7 @@ En la imagen se muestra Los Data Pipeline en los diferentes servicios de Cloud C
 
 <figure style="align: center; width:900px;">
     <img src="images/Figura3.6_BigData_Pipeline.webp">
-    <figcaption>Figura 3.6: BigData Pipeline on AWS, Azure and GCP</figcaption>
+    <figcaption>Figura 3.6: BigData Pipeline on AWS, Azure and GCP. (Fuente: ml4devs)</figcaption>
 </figure>
 
 ### 3.5.4 Bases de datos en la nube
@@ -202,7 +202,7 @@ Como información adicional, y para completar el gran ecosistema de cloud comput
 
 <figure style="align: center; width:900px;">
     <img src="images/Figura3.7_BigData_Cloud_Database.jpg">
-    <figcaption>Figura 3.7: Cloud DataBase on AWS, Azure and GCP</figcaption>
+    <figcaption>Figura 3.7: Cloud DataBase on AWS, Azure and GCP. (Fuente: ml4devs)</figcaption>
 </figure>
 
 
@@ -263,7 +263,7 @@ En el sistema de _streaming_, hay tres tipos de estrategia para realizar la gest
 
 <figure style="align: center; ">
     <img src="images/Figura3.8_Esquema_nodos_streaming.png">
-    <figcaption>Figura 3.8: Esquema de nodos en streaming. Upstream Nu y downstream Nd </figcaption>
+    <figcaption>Figura 3.8: Esquema de nodos en streaming. Upstream Nu y downstream Nd. (Fuente: UCLM) </figcaption>
 </figure>
 
 - **Espera activa (Active Standby)**: Cuando el sistema transmite datos para el nodo maestro, también transmite una copia de los datos para una replica del nodo al mismo tiempo. Cuando el nodo maestro falla, una de las réplicas del nodo asume completamente el trabajo, y los nodos suplentes necesitan la asignación de los mismos recursos del sistema. De esta manera, el tiempo de recuperación del fallo es más corto, pero el rendimiento de los datos es menor. También desperdicia más recursos del sistema.

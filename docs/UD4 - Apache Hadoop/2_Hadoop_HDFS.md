@@ -21,7 +21,7 @@ _Recuerda las características con esta imagen_
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.1_HDFS_Características_HDFS.png">
-    <figcaption>Figura 1 HDFS: Características HDFS</figcaption>
+    <figcaption>Figura 1 HDFS: Características HDFS. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 ## 2. Bloques
@@ -36,14 +36,14 @@ Al tener varias réplicas de cada bloque en diferentes nodos, en caso de que un 
 
 <figure style="align: center;width:600px;">
     <img src="images/Figura4.2_HDFS_Bloques_HDFS.png">
-    <figcaption>Figura 2 HDFS: Bloques HDFS</figcaption>
+    <figcaption>Figura 2 HDFS: Bloques HDFS. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 En el ejemplo anterior, si se cayera el nodo 3, HDFS dispondría de otras dos copias por cada bloque que almacena del fichero.
 
 <figure style="align: center;width:800px;">
     <img src="images/Figura4.3_HDFS_Factor_Replicación_HDFS.png">
-    <figcaption>Figura 3 HDFS: Factor Replicación HDFS</figcaption>
+    <figcaption>Figura 3 HDFS: Factor Replicación HDFS. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 El factor de replica puede configurarse a nivel de fichero o directorio, es decir, podemos elegir un factor de replica diferente para los ficheros o directorios que consideremos. Cuanto mayor sea el factor de replica, más difícil será que perdamos los datos e incluso mejorará el rendimiento en las lecturas, porque para leer un bloque, HDFS podrá utilizar cualquier nodo. Sin embargo, un factor de replica alto hace que las escrituras tengan peor rendimiento, al tener que hacer muchas copias en cada escritura, y además, consumirá más espacio real en disco.
@@ -100,7 +100,7 @@ Secondary Namenode no es un **nodo de respaldo**. Su principal función es almac
 
 <figure style="align: center;">
     <img src="images/Figura4.4_HDFS_Relacion_NameNode_DataNode.png">
-    <figcaption>Figura 4 HDFS: Relación entre NameNode y DataNode</figcaption>
+    <figcaption>Figura 4 HDFS: Relación entre NameNode y DataNode. (Fuente: Telefónica Tech)</figcaption>
 </figure>
 
 **DataNode**
@@ -119,7 +119,7 @@ está corrupto y garantizar su integridad.
 
 <figure style="align: center;">
     <img src="images/Figura4.5_HDFS_Resumen_Nodos_HDFS.jpg">
-    <figcaption>Figura 5 HDFS: Resumen Nodos HDFS</figcaption>
+    <figcaption>Figura 5 HDFS: Resumen Nodos HDFS. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 ## 4. Funcionamiento (Lectura y Escritura)
@@ -138,7 +138,7 @@ En el caso de las lecturas, un ***esquema simplificado*** de esta operación ser
 
 <figure style="align: center;">
     <img src="images/Figura4.6_HDFS_Lectura_HDFS.jpg">
-    <figcaption>Figura 6 HDFS: Lectura HDFS</figcaption>
+    <figcaption>Figura 6 HDFS: Lectura HDFS. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 1. El cliente que desea leer un fichero de HDFS, mediante una librería instalada en su equipo, realiza una llamada al Namenode para conocer qué bloques forman un fichero (llamemos X al fichero), así como los Datanodes que contienen cada uno de los bloques.
@@ -157,7 +157,7 @@ En el caso de las escrituras, un esquema simplificado de esta operación sería:
 
 <figure style="align: center;">
     <img src="images/Figura4.7_HDFS_Escritura_HDFS.jpg">
-    <figcaption>Figura 7 HDFS: Escritura HDFS</figcaption>
+    <figcaption>Figura 7 HDFS: Escritura HDFS. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 1. El cliente, que desea escribir un fichero, invoca a un servicio del Namenode para solicitar la creación del fichero, indicándole en la llamada el nombre y la ruta en la que desea guardarlo.
@@ -551,7 +551,7 @@ hadoop@hadoop-VirtualBox:/opt/hadoop-3.3.6$ jps
 
 <figure style="align: center;">
     <img src="images/Figura4.1_InstalandoHDFS_InterfazWeb.jpg">
-    <figcaption>Figura 1 Instalando HDFS: Interfaz Web</figcaption>
+    <figcaption>Figura 1 Instalando HDFS: Interfaz Web. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -625,10 +625,10 @@ s(ms): 217
 
 <figure style="align: center;">
     <img src="images/Figura4.2_InstalandoHDFS_SecondaryNamenode_to_Namenode.jpg">
-    <figcaption>Figura 2 Instalando HDFS: SecondaryNamenode y Namenode</figcaption>
+    <figcaption>Figura 2 Instalando HDFS: SecondaryNamenode y Namenode. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
-4. Como puedes observar en el log, se generan un conjunto de ficheros en la carpeta `current`, que continen un conjunto de ficheros cuyos prefijos son:
+4. Como puedes observar en el log, se generan un conjunto de ficheros en la carpeta `current`, que contienen un conjunto de ficheros cuyos prefijos son:
    
    - _edits_000NNN_: histórico de cambios que se van produciendo.
    - _edits_inprogress_NNN_: cambios actuales en memoria que no se han persistido.
@@ -839,7 +839,7 @@ Puedes verlo también desde la interfaz web de HDFS en su apartado de Snapshot
 
 <figure style="align: center;">
     <img src="images/Figura4.3_InstalandoHDFS_Snapshot.jpg">
-    <figcaption>Figura 3 Instalando HDFS: Snapshot</figcaption>
+    <figcaption>Figura 3 Instalando HDFS: Snapshot. (Fuente: Propia)</figcaption>
 </figure>
 
 Vamos a borrar el archivo que hemos copiado y comprobamos
@@ -879,7 +879,7 @@ Desde el apartado `Browser Directory` del Web IU `http://bda-iesgrancapitan:9870
 
 <figure style="align: center;">
     <img src="images/Figura4.4_InstalandoHDFS_Navegacion_WebUI.jpg">
-    <figcaption>Figura 4 Instalando HDFS: Navegación WebUI</figcaption>
+    <figcaption>Figura 4 Instalando HDFS: Navegación WebUI. (Fuente: Propia)</figcaption>
 </figure>
 
 
@@ -889,7 +889,7 @@ Como hemos comentado en el punto anterior, podemos acceder al sistema de fichero
 
 <figure style="align: center;">
     <img src="images/Figura4.5_InstalandoHDFS_WebUI_Permisos.jpg">
-    <figcaption>Figura 5 Instalando HDFS: Permisos WebUI</figcaption>
+    <figcaption>Figura 5 Instalando HDFS: Permisos WebUI. (Fuente: Propia)</figcaption>
 </figure>
 
 Para poder tener permisos para ello podemos modificar los permisos:

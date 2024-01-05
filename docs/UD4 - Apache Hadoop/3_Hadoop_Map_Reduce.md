@@ -18,7 +18,7 @@ Para ello, usa un paradigma de programación funcional en dos fases, la de **map
 
     <figure style="align: center; width:600px;">
         <img src="images/Figura4.1_MapReduce_Historial_Busqueda_Google.jpg">
-        <figcaption>Figura4.1_MapReduce: Historial de Búsquedas en Google</figcaption>
+        <figcaption>Figura4.1_MapReduce: Historial de Búsquedas en Google. (Fuente: Ministerio de Educación)</figcaption>
     </figure>
 
     Sin embargo, es importante entender y comprender bien MapReduce por dos motivos:
@@ -30,14 +30,14 @@ Estos subprocesos asociados a la tarea se ejecutan de manera **distribuida**, en
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.2_MapReduce_WorkFlow_MapReduce.jpg">
-    <figcaption>Figura4.2_MapReduce WorkFlow</figcaption>
+    <figcaption>Figura4.2_MapReduce WorkFlow. (Fuente: Apache Hadoop)</figcaption>
 </figure>
 
 Este sistema de procesamiento se apoya en tecnologías de almacenamiento de datos distribuidas, en cuyos nodos se ejecutan estas operaciones de tipo map y reduce. El sistema de ficheros distribuido de Hadoop es HDFS (Hadoop Distributed File System), encargado de almacenar los ficheros divididos en bloques de datos. HDFS proporciona la división previa de los datos en bloques que necesita MapReduce para ejecutar. Los resultados del procesamiento se pueden almacenar en el mismo sistema de almacenamiento o bien en una base de datos o sistema externo.
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.3_MapReduce_Esquema_fases_MapReduce.jpg">
-    <figcaption>Figura4.3_MapReduce_Esquema de fases de MapReduce</figcaption>
+    <figcaption>Figura4.3_MapReduce_Esquema de fases de MapReduce. (Fuente: AprenderBigData)</figcaption>
 </figure>
 
 ## 2. Fases y Funcionamiento
@@ -54,7 +54,7 @@ De todas estas fases debes saber que el programador sólo suele programar la fas
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.4_MapReduce_FrameworkMapReduce.jpg">
-    <figcaption>Figura4.4_MapReduce_Framework MapReduce</figcaption>
+    <figcaption>Figura4.4_MapReduce_Framework MapReduce. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 En un trabajo Hadoop MapReduce, se dividen los datos de entrada en fragmentos independientes que son procesados por los mappers en paralelo. A continuación, se ordenan los resultados del map, que son la entrada para los reducers. Generalmente, las entradas y salidas de los trabajos se almacenan en un sistema de ficheros, siendo los nodos de almacenamiento y de cómputo los mismos. También es muy común que la lógica de la aplicación no se pueda descomponer en una única ejecución de MapReduce, por lo que se encadenan varias de estas fases, tratando los resultados de una como entrada para los mappers de la siguiente fase.
@@ -67,7 +67,7 @@ Podemos observar los trabajos realizados desde la Interfaz WebUI en el puerto 80
 
 <figure style="align: center;">
     <img src="images/Figura4.5_MapReduce_WebUI.jpg">
-    <figcaption>Figura4.5_MapReduce_WebUI</figcaption>
+    <figcaption>Figura4.5_MapReduce_WebUI. (Fuente: Propia)</figcaption>
 </figure>
 
 ## 4. Ejemplos
@@ -80,7 +80,7 @@ El siguiente gráfico muestra un ejemplo de una empresa que fabrica juguetes de 
 
 <figure style="align: center;">
     <img src="images/Figura4.6_MapReduce_Ejemplo1_Map_y_Reduce.jpg">
-    <figcaption>Figura4.6_MapReduce_Ejemplo1_Map y Reduce</figcaption>
+    <figcaption>Figura4.6_MapReduce_Ejemplo1_Map y Reduce. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 Siguiendo MapReduce:
@@ -92,7 +92,7 @@ Es un proceso de procesamiento costoso. Los pasos serían los siguientes:
 
 <figure style="align: center; width:600px;">
     <img src="images/Figura4.7_MapReduce_Ejemplo1_Detallado.jpg">
-    <figcaption>Figura4.7_MapReduce_Ejemplo1 Detallado</figcaption>
+    <figcaption>Figura4.7_MapReduce_Ejemplo1 Detallado. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 1. Lectura desde HDFS de los ficheros de entrada.
@@ -181,7 +181,7 @@ En la siguiente imagen puede verse de forma gráfica el ejemplo anterior:
 
 <figure style="align: center;">
     <img src="images/Figura4.8_MapReduce_Ejemplo2_Detallado.jpg">
-    <figcaption>Figura4.8_MapReduce_Ejemplo2 Detallado</figcaption>
+    <figcaption>Figura4.8_MapReduce_Ejemplo2 Detallado. (Fuente: Ministerio de Educación)</figcaption>
 </figure>
 
 !!! Note "Sobre los ejemplos"
