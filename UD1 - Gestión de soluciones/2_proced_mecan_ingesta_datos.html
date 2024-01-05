@@ -1,0 +1,1294 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD1%20-%20Gesti%C3%B3n%20de%20soluciones/2_proced_mecan_ingesta_datos.html">
+      
+      
+        <link rel="prev" href="1_dis_const_soluc.html">
+      
+      
+        <link rel="next" href="3_form_datos_almacenamiento.html">
+      
+      
+      <link rel="icon" href="../images/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Procedimientos y Mecanismos de Ingesta de Datos - Big Data Aplicado</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Procedimientos y Mecanismos de Ingesta de Datos - Big Data Aplicado" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD1 - Gestión de soluciones/2_proced_mecan_ingesta_datos.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD1%20-%20Gesti%C3%B3n%20de%20soluciones/2_proced_mecan_ingesta_datos.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Procedimientos y Mecanismos de Ingesta de Datos - Big Data Aplicado" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD1 - Gestión de soluciones/2_proced_mecan_ingesta_datos.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ud-1-gestion-de-soluciones-procedimientos-y-mecanismos-de-ingesta-de-datos" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../index.html" title="Big Data Aplicado" class="md-header__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Big Data Aplicado
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Procedimientos y Mecanismos de Ingesta de Datos
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Big Data Aplicado" class="md-nav__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Big Data Aplicado
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadatos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadatos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guia_didactica.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía Didáctica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD1 - Gestión de Soluciones
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD1 - Gestión de Soluciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="1_dis_const_soluc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diseño y Construcción de Soluciones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Procedimientos y Mecanismos de Ingesta de Datos
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="2_proced_mecan_ingesta_datos.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Procedimientos y Mecanismos de Ingesta de Datos
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-el-proceso-de-extraccion-transformacion-y-carga-etl" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. El proceso de Extracción, Transformación y Carga (ETL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. El proceso de Extracción, Transformación y Carga (ETL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-extraccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 ⬆️ Extracción
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-transformacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 🔄 Transformación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 🔀 Carga
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-frameworks-etl" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 ⬆️🔄🔀 Frameworks ETL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-diseno-en-estrella" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Diseño en Estrella
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-diseno-en-copo-de-nieve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Diseño en Copo de Nieve
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3_form_datos_almacenamiento.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formato de Datos Adecuado para el Almacenamiento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD2 - Procesado y Presentación Datos Almacenados
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD2 - Procesado y Presentación Datos Almacenados
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/mongoDB.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/neo4j.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neo4j
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD3 - Introducción a la computación paralela y distribuida
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD3 - Introducción a la computación paralela y distribuida
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/comput_paralela_distribuida.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Computación Paralela y Distribuida
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD4%20-%20Apache%20Hadoop/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD4 - Apache Hadoop
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD4 - Apache Hadoop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/1_Plataforma_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plataforma y Ecosistema Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/2_Hadoop_HDFS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HDFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/3_Hadoop_Map_Reduce.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Reduce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/4_Hadoop_Yarn.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yarn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/5_Cluster_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creditos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creditos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-el-proceso-de-extraccion-transformacion-y-carga-etl" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. El proceso de Extracción, Transformación y Carga (ETL)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. El proceso de Extracción, Transformación y Carga (ETL)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-extraccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 ⬆️ Extracción
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-transformacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 🔄 Transformación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-carga" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 🔀 Carga
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-frameworks-etl" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 ⬆️🔄🔀 Frameworks ETL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-diseno-en-estrella" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Diseño en Estrella
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-diseno-en-copo-de-nieve" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Diseño en Copo de Nieve
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ud-1-gestion-de-soluciones-procedimientos-y-mecanismos-de-ingesta-de-datos">UD 1 Gestión de Soluciones - Procedimientos y Mecanismos de Ingesta de Datos<a class="headerlink" href="#ud-1-gestion-de-soluciones-procedimientos-y-mecanismos-de-ingesta-de-datos" title="Permanent link">&para;</a></h1>
+<p>En esta sección se profundizará en cada una de las <strong>etapas necesarias para diseñar e implementar un almacén de datos</strong>. Para ello, en primer lugar se describirá el proceso de <strong>Extracción, Transformación y Carga (ETL)</strong>, fundamental para construir y alimentar un almacén de datos. Después, se desarrollarán dos de los diseños más extendidos de almacén de datos: el <strong>diseño en estrella</strong> y el <strong>diseño en copo de nieve</strong>.</p>
+<h2 id="1-el-proceso-de-extraccion-transformacion-y-carga-etl">1. El proceso de Extracción, Transformación y Carga (ETL)<a class="headerlink" href="#1-el-proceso-de-extraccion-transformacion-y-carga-etl" title="Permanent link">&para;</a></h2>
+<p>El proceso ETL es el encargado de extraer, limpiar e integrar los datos provenientes de las fuentes de datos para alimentar el almacén de datos. Este proceso también es el encargado de alimentar la capa de datos reconciliados en la arquitectura de tres capas. El proceso ETL tiene lugar cuando se puebla el almacén de datos y se lleva a cabo cada vez que el almacén de datos se actualiza. A continuación, se describen detalladamente cada una de las fases de las que consta este proceso</p>
+<h3 id="11-extraccion">1.1 ⬆️ Extracción<a class="headerlink" href="#11-extraccion" title="Permanent link">&para;</a></h3>
+<p>Etapa que consiste en la <strong>lectura de los datos de las distintas fuentes de las que provienen</strong>. Cuando un almacén de datos se rellena por primera vez, se suele utilizar la técnica de <strong>extracción estática</strong>, la cual consiste en extraer una instantánea de los datos operacionales. A partir de entonces, se utiliza la <strong>extracción incremental</strong> para actualizar periódicamente los datos del almacén de datos, recogiendo los cambios aplicados desde la última extracción. Para ello, se utiliza el registro mantenido por el SGBD que, por ejemplo, asocia una <strong>marca de tiempo (timestamp)</strong> a los datos operacionales para registrar cuando fueron modificados y agilizar el proceso de extracción.</p>
+<p>En la actualidad, existe una gran cantidad de conjuntos de datos o <em>data sets</em> públicos, conocidos bajo el nombre de Open Data, que abarcan una gran cantidad de dominios y con los que es posible trabajar para construir soluciones big data.  </p>
+<div class="admonition note">
+<p class="admonition-title">Open Data</p>
+<p>📋 <strong>Open Data</strong>: Se trata de datos que han sido generados por una fuente en particular, que abarcan un dominio temático o disciplinar y tienen atributos, dentro de los cuales está la frecuencia de actualización. Además, cuentan con una licencia específica que indica las condiciones de reutilización de los mismos.</p>
+</div>
+<p><strong>La fuente de los datos es en muchos de los casos el estado</strong> nacional, provincial, municipal u organizaciones comerciales. En otras ocasiones, <strong>la fuente de los datos es fruto del estudio o medición por parte de particulares</strong>. Los <strong>atributos</strong> de los conjuntos de datos deben especificar cómo fueron obtenidos, incluyendo fechas de obtención, actualización y validez, así como el público involucrado, la metodología de recogida o muestreo, etc.</p>
+<p>Algunas de las fuentes más utilizadas en la actualidad para la obtención de datos abiertos provienen de <strong>los centros nacionales e internacionales de estadísticas</strong>, como son el Instituto Nacional de Estadística de España (INE) <sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> , eurostat <sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> , la oficina europea de estadísticas, la Organización Mundial de la Salud (OMS) <sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> ... Por otra parte, existen <strong>repositorios públicos de datos abiertos y a disposición de los usuarios como UCI4 <sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> o Kaggle <sup id="fnref:5"><a class="footnote-ref" href="#fn:5">5</a></sup></strong> , que es una comunidad de científicos de datos donde empresas y organizaciones suben sus datos y plantean problemas que son resueltos por los miembros de la comunidad. La figura 1.8 muestra las fuentes de datos que se acaban de mencionar.</p>
+<figure style="align: center;">
+    <img src="images/Figura1.11_Fuentes_para_la_obtención_de_datos_abiertos.jpg">
+    <figcaption>Figura 1.11: Fuentes para la obtención de datos abiertos. (Fuente: Propia)</figcaption>
+</figure>
+
+<h3 id="12-transformacion">1.2 🔄 Transformación<a class="headerlink" href="#12-transformacion" title="Permanent link">&para;</a></h3>
+<p>La etapa de transformación es la fase clave para <strong>transformar los datos operativos en datos con un formato específico para alimentar un almacén de datos</strong>. En esta etapa, <strong>los datos se limpian y se transforman, añadiéndoles contexto y significado</strong>. En caso de implementar un almacén de datos siguiendo una arquitectura de tres capas, <strong>el proceso de transformación es el encargado de obtener la capa de datos reconciliados</strong>. Si bien es cierto que algunos autores separan la limpieza y la transformación de los datos en dos etapas distintas, en este capítulo se considerarán ambas dentro de la fase de transformación.</p>
+<div class="admonition info">
+<p class="admonition-title">Transformación</p>
+<p>📄 La etapa de <strong>transformación</strong> engloba todos los procesos de limpieza y manipulación de los datos, con el objetivo de transformar los datos operativos propios de sistemas relacionales (OLTP) en datos preparados para ser incluidos dentro del almacén de datos (OLAP).</p>
+</div>
+<p>La <strong>limpieza de los datos</strong> o <em>data cleaning</em> engloba todos aquellos procedimientos necesarios para detectar y resolver situaciones problemáticas con los datos de partida que pudieran suponer problemas potenciales a la hora de analizarlos. Así pues, los datos de partida pueden ser <strong>incompletos</strong>, es decir, pueden contener atributos sin valor o valores agregados, <strong>incorrectos</strong> que incluyan errores o valores sin ningún significado, lo cual es común cuando los datos se introducen manualmente en el sistema, o inconsistentes cuando los cambios no son propagados a todos los módulos del sistema, los rangos de un determinado atributo son cambiantes, existen datos duplicados...</p>
+<p>Otra tarea muy importante que se debe abordar en la fase de limpieza es la gestión de los <strong>datos perdidos</strong>. Se trata de <strong>datos que no están disponibles para algunas de las variables en alguna instancia</strong>. Esto puede ser debido, por ejemplo, a que no se registraran las modificaciones sufridas por los datos, se produjera un mal funcionamiento del equipo, los datos nunca fueron rellenados o no existían en el momento en que fueron completados, se eliminaron por ser inconsistentes con la información registrada...</p>
+<p>En general, se distinguen <strong>dos tipos de situaciones cuando existen valores perdidos: datos perdidos completamente aleatorios y datos perdidos de forma no completamente aleatoria</strong>. En el segundo caso, puede ser interesante intentar analizar la razón de la pérdida de los datos, la cual puede ser indicativa. En muchas ocasiones, los valores perdidos tienen relación con un subconjunto de variables predictoras y no se encuentran aleatoriamente distribuidos por todas ellas. Por todo ello, las aproximaciones más comunes a la hora de gestionar datos perdidos son:</p>
+<ul>
+<li>
+<p><strong>Eliminación de instancias que contengan valores perdidos</strong>: consiste en establecer un porcentaje umbral de tal forma que, si una instancia contiene un número de valores perdidos que supera este porcentaje, la instancia se descarta. Se trata de una técnica útil cuando el conjunto de datos es grande y el número de instancias con valores perdidos no es muy elevado. No obstante, esta estrategia se debe utilizar con precaución, ya que puede suponer una excesiva pérdida de información si el conjunto de datos no es muy grande, el número de instancias con valores perdidos es alto o el porcentaje umbral es muy pequeño.</p>
+</li>
+<li>
+<p><strong>Asignación de valores fijos</strong>: consiste en asignar un valor fijo a todos los valores perdidos de todas las variables. Este valor puede ser el número 0 o incluso un valor desconocido <em>Unknown</em> o no numérico (NaN, Not a Number) en función del lenguaje de programación utilizado.</p>
+</li>
+<li>
+<p><strong>Asignación de valores de referencia</strong>: asigna un valor de referencia a los valores perdidos para cada variable. Estos valores de referencia suelen ser medidas de centralización como la media o la mediana de los valores de cada variable.</p>
+</li>
+<li>
+<p><strong>Imputación de valores perdidos</strong>: consiste en la aplicación de técnicas más sofisticadas, como pueden ser técnicas estadísticas o de aprendizaje automático para predecir o averiguar los valores que se han perdido.</p>
+</li>
+</ul>
+<p>Finalmente, la etapa de limpieza de datos también se encarga de la <strong>detección de valores anómalos o outliers</strong>. Se trata de valores que se han introducido de forma errónea o bien a una deformación en la distribución de valores. El proceso de detección de anomalías consiste, fundamentalmente, en dos etapas: en primer lugar, <strong>asumir que existe un modelo generador de datos</strong>, como podría ser una distribución de probabilidad. En segundo lugar, considerar que <strong>las anomalías representan un modelo generador distinto</strong>, que no coincide con el original. Existen multitud de técnicas para detectar y descartar o imputar valores anómalos, como lo son técnicas estadísticas basadas en la desviación y el rango intercuartílico o técnicas de aprendizaje automático.</p>
+<p>Después de la etapa de limpieza, comienza la etapa de <strong>transformación/manipulación</strong>. En ella, los datos se preparan para su carga en el almacén de datos. Para ello, se transformarán los datos provenientes de sistemas transaccionales OLTP en datos preparados para su análisis OLAP. A continuación, se muestran algunos de los procesos de transformación más comunes:</p>
+<ul>
+<li>
+<p><strong>Estandarización de códigos y formatos de representación</strong>: incluye tareas como transformar la información EBCDIC a formato ASCII o Unicode, convertir números cardinales en ordinales o viceversa, homogeneización y tratamiento de fechas, expandir codificaciones añadiendo textos descriptivos, unificación de códigos (sexo, estado civil, etc) y estándares (medidas, monedas, etc). </p>
+</li>
+<li>
+<p><strong>Conversiones y combinaciones de campos</strong>: realización de agregaciones y cálculos simples (importe neto, beneficio, realización de cuentas y promedios), cálculos derivados con valores numéricos y textuales... </p>
+</li>
+<li>
+<p><strong>Correcciones</strong>: en caso de que no se pudiera hacer en el origen o en la etapa de limpieza, se deben corregir errores tipográficos, datos sin sentido ni significado, resolver conflictos de dominio de variables, aclaración de datos ambiguos y asignación de valores a datos nulos.</p>
+</li>
+<li>
+<p><strong>Integración de varias fuentes</strong>: implica la resolución de claves y utilización de diccionarios de datos y repositorios de metadatos para el diseño del almacén de datos.</p>
+</li>
+<li>
+<p><strong>Eliminación de datos y/o registros duplicados</strong>: frecuente cuando se trabaja con distintas fuentes de datos provenientes de diferentes dimensiones o departamentos de la organización. Para ello, es muy útil el uso de funciones de búsqueda y agrupamiento aproximado.</p>
+</li>
+<li>
+<p><strong>Escalado y centrado</strong>: para reducir los efectos adversos de contar con datos dispersos, es muy útil utilizar técnicas para escalar y centrar los datos. Una posible transformación consiste en restar a cada valor de cada instancia el valor medio de la variable correspondiente y después dividir los valores por la desviación estándar. De esta forma, los valores se escalan y se centran entorno al cero. Esta transformación también puede hacerse entorno al valor de la media o la mediana. También es posible escalar los valores en el intervalo [0−1] o aplicar el logaritmo, para reducir la dispersión de los datos y mejorar la visualización.</p>
+</li>
+<li>
+<p><strong>Discretización</strong>: la aplicación de muchas técnicas de aprendizaje automático requiere que los valores de las variables sean discreto, en lugar de continuos. La discretización es el proceso por el cual se divide un intervalo de valores continuos en tantos fragmentos como etiquetas o valores discretos se quieran asignar, sustituyendo los valores originales por la etiqueta o valor discreto correspondiente.</p>
+</li>
+<li>
+<p><strong>Selección de características</strong>: permite reducir el coste computacional de trabajar con todas las variables del conjunto de datos cuando, en muchas ocasiones, existen variables que no aportan información para el aprendizaje. Además de reducir el coste computacional, se reduce el número de dimensiones del conjunto de datos, mejorando la visualización y mejorando el rendimiento de los modelos no solo en términos de tiempo, sino también de rendimiento, puesto que existen métodos de aprendizaje cuyo rendimiento es peor cuando se ejecutan utilizando variables no significativas.</p>
+</li>
+</ul>
+<h3 id="13-carga">1.3 🔀 Carga<a class="headerlink" href="#13-carga" title="Permanent link">&para;</a></h3>
+<p>Se trata de la última fase de cara a incluir datos en el almacén de datos. <strong>La carga inicial de los datos puede requerir bastante tiempo al cargar de forma progresiva todos los datos históricos</strong>, por lo que es normal realizarla en horas de baja carga de los sistemas. Una vez que el almacén de datos ha sido inicialmente cargado, las sucesivas cargas de datos se pueden realizar de dos formas:</p>
+<ul>
+<li>
+<p><strong>Refresco</strong>: El almacén de datos se reescribe completamente, de forma que se reemplazan los datos antiguos. El refresco <strong>es utilizado habitualmente junto con la extracción estática</strong> y suele ser una estrategia muy utilizada para <strong>la carga inicial</strong> del almacén de datos, aunque puede también realizarse a posteriori.</p>
+</li>
+<li>
+<p><strong>Actualización</strong>: <strong>Se añaden al almacén de datos solamente aquellos datos nuevos que se pretenden incluir, sin eliminar ni modificar los datos ya existentes</strong>. Esta técnica es <strong>utilizada frecuentemente junto con la extracción incremental</strong> para actualizar regularmente el almacén de datos. Se trata de una estrategia de carga <strong>compleja de diseñar</strong>, ya que requiere que sea eficiente computacionalmente. Para ello, se requieren mecanismos de detección del cambio como aquellos basados en la marca de tiempo (timestamp) o la utilización de tablas de log, entre otros.</p>
+</li>
+</ul>
+<h3 id="14-frameworks-etl">1.4 ⬆️🔄🔀 Frameworks ETL<a class="headerlink" href="#14-frameworks-etl" title="Permanent link">&para;</a></h3>
+<p>Recientemente, han aparecido múltiples <em>frameworks</em> que ofrecen herramientas tecnológicas para dar un soporte integrado al proceso ETL. A continuación, se describen algunos de los más utilizados:</p>
+<ul>
+<li>
+<p><strong><a href="http://bubbles.databrewery.org">Bubbles</a></strong>: Se trata de un framework ETL escrito en Python, aunque es posible utilizarlo desde otros lenguajes. Ofrece un marco de trabajo sencillo, donde el proceso ETL se describe como una secuencia de nodos conectados que representan los datos y las distintas operaciones que se pueden realizar con ellos. De esta forma, es posible construir un grafo que implemente el proceso ETL completo para un conjunto de datos.</p>
+</li>
+<li>
+<p><strong><a href="https://camel.apache.org">Apache Camel</a></strong>: Este framework escrito en lenguaje Java y de acceso abierto se enfoca en facilitar la integración entre distintas fuentes de datos, haciendo el proceso más accesible a los desarrolladores, ofreciendo distintas herramientas para dar soporte al proceso ETL.</p>
+</li>
+<li>
+<p><strong><a href="https://help.hitachivantara.com/Documentation/Pentaho/9.3/Products/Pentaho_Data_Integration">Keetle</a></strong>: Es el framework de Pentaho para dar soporte al proceso ETL. Pentaho es una suite o conjunto de programas para construir soluciones de inteligencia de negocio y Keetle es su entorno de trabajo ETL. Similar a Bubbles, ofrece un entorno de trabajo sencillo para implementar un proceso ETL a través de nodos y conexiones entre ellos. Además, Keetle es de acceso abierto.</p>
+</li>
+</ul>
+<h2 id="2-diseno-en-estrella">2. Diseño en Estrella<a class="headerlink" href="#2-diseno-en-estrella" title="Permanent link">&para;</a></h2>
+<p>A la hora de diseñar un almacén de datos, existen dos alternativas ampliamente utilizadas: el <strong>diseño en estrella</strong>, que promueve el diseño directo de estructuras lógicas sobre el modelo relacional, y el <strong>diseño en copo de nieve</strong>, como variante del diseño en estrella.</p>
+<p>El proceso de desarrollo de un almacén de datos siguiendo el diseño en estrella puede estructurarse según las siguientes fases:</p>
+<ol>
+<li>
+<p><strong>Elegir un proceso de negocio a modelar</strong>: cualquier proceso de negocio puede ser modelado como un almacén de datos. No obstante, serán de especial interés aquellos procesos <strong>necesarios para la toma de decisiones y que involucran a diferentes unidades de la organización</strong>.</p>
+</li>
+<li>
+<p><strong>Escoger la granularidad del proceso de negocio</strong>: Los datos almacenados en el almacén de datos <strong>deben expresarse siempre al mismo nivel de detalle</strong>. Por este motivo es necesario escoger un nivel de granularidad al comienzo del diseño del almacén de datos.</p>
+</li>
+<li>
+<p><strong>Selección de medidas/hechos</strong>: indican <strong>qué se necesita medir o evaluar enel proceso de negocio</strong> con el fin de dar respuesta a las necesidades de información y toma de decisiones por las cuales se pretende diseñar el almacénde datos. Por ejemplo, en el ámbito logístico las medidas podrían ser las unidades aceptadas odevueltas, mientras que en el ámbito del control de calidad podrían ser lasunidades producidas, defectuosas, costo de la producción.</p>
+</li>
+<li>
+<p><strong>Elegir las dimensiones que se aplicarán a cada medida o hecho</strong>: las dimensiones especifican <strong>las distintas propiedades de las medidas o hechos que se pretenden almacenar e integrar dentro del almacén de datos</strong>. Por ejemplo, si las medidas seleccionadas están relacionadas con las ventas de una determinada empresa, las dimensiones podrían ser: fecha de la venta, vendedor ,cliente, producto...</p>
+</li>
+</ol>
+<p>A la hora de diseñar el almacén de datos siguiendo el diseño en estrella, se crea una <strong>tabla central, también llamada tabla de hechos, tabla factual o fact table</strong>. Esta tabla es la que posee los datos (medidas o hechos) sobre las diferentes combinaciones de las dimensiones. En algunas ocasiones, un diseño en estrella presenta más de una tabla de hechos. Los hechos introducidos pueden ser de distintos tipos: <strong>completamente aditivos</strong> (total de ventas de un departamento), <strong>no aditivos</strong> (márgen de beneficios expresado como porcentaje) o <strong>semiaditivos</strong> (como datos intermedios que pueden agregarse con datos de otras dimensiones).</p>
+<p>Rodeando a la tabla de hechos, se encuentra u<strong>na tabla por cada una de las dimensiones definidas</strong>. La clave primaria de la tabla de hechos se crea combinando las claves primarias de sus dimensiones relacionadas, de forma que está compuesta por las claves ajenas de las tablas de dimensiones que relaciona. De esta forma, la tabla de hechos presenta una relación del tipo “muchos a muchos” entre todas las tablas de dimensiones que relaciona, a la vez que una relación “muchos a uno” con cada tabla de dimensión por separado. Este esquema con forma de estrella da nombre a este tipo de diseño.</p>
+<p><strong>Ejemplo</strong></p>
+<p>Sea un almacén de datos en el que se pretende almacenar <strong>las ventas llevadas a cabo en una organización</strong>. La tabla central de hechos representa los datos de cada venta, mientras que las dimensiones que rodean a la tabla central recogen datos sobre los productos vendidos, la fecha de la venta, el canal de distribución y el lugar de entrega. La <a href="images/Figura1.12_Ejemplo_de_almac%C3%A9n_de_datos_dise%C3%B1ado_en_estrella.jpg" title="Figura1.12_Ejemplo de almacén de datos diseñado en estrella.jpg">figura1.12</a> muestra un ejemplo de este esquema de almacén de datos.</p>
+<figure style="align: center;">
+    <img src="images/Figura1.12_Ejemplo_de_almacén_de_datos_diseñado_en_estrella.jpg">
+    <figcaption>Figura 1.12: Ejemplo de almacén de datos diseñado en estrella. (Fuente: UCLM)</figcaption>
+</figure>
+
+<p><strong>Ventajas e incovenientes</strong></p>
+<p>Entre las <strong>ventajas del diseño en estrella</strong>, destaca ser un diseño <strong>fácil de modificar que proporciona tiempos rápidos de respuesta</strong>, simplificando la navegación de los medatadatos. Además, este diseño <strong>permite simular vistas de los datos que obtendrán los usuarios finales y facilita la interacción con otras herramientas</strong>.</p>
+<p>Sin embargo, el diseño en estrella presenta algunos <strong>inconvenientes</strong> que surgen, por ejemplo, cuando <strong>se combinan dimensiones con distintos niveles de detalle</strong>. Además, cuando se pretende limitar los niveles de una dimensión se debe añadir un campo de nivel o utilizar un modelo de tipo constelación, donde se incluyen diferentes estrellas que almacenan tablas de hechos agregadas, lo cual <strong>añade complejidad al esquema</strong>. </p>
+<p><strong>Resumen</strong></p>
+<p>📄 El <strong>diseño en estrella</strong> permite crear un almacén de datos con una estructura centralizada. El diseño se compone de una tabla de hechos central, que recoge los valores de las medidas del proceso de negocio que se pretende modelar. Rodeando a la tabla de hechos, se incluyen tantas tablas como dimensiones se hayan especificado en el modelo, las cuales se relacionan entre sí a través de la tabla de hechos.</p>
+<h2 id="3-diseno-en-copo-de-nieve">3. Diseño en Copo de Nieve<a class="headerlink" href="#3-diseno-en-copo-de-nieve" title="Permanent link">&para;</a></h2>
+<p>Otro de los diseños más extendidos a la hora de implementar un almacén de datos es el <strong>diseño en copo de nieve</strong>. De hecho, el diseño de copo de nieve es considerado una variante o derivado del diseño en estrella y, por tanto, puede construirse a partir de este siguiendo las mismas etapas que se describieron en la sección anterior. </p>
+<p>Este diseño es muy utilizado cuando se dispone de <strong>tablas de dimensión con una gran cantidad de atributos</strong>. En esta circunstancia, el diseño de copo de nieve permite <strong>normalizar las tablas de dimensión</strong>, ofreciendo un mejor rendimiento cuando las consultas realizadas sobre el almacén de datos requieren del uso de operadores de agregación. De esta forma, la tabla de hechos deja de ser la única tabla que presenta relaciones con las demás, apareciendo nuevas relaciones que se dan entre las tablas normalizadas que componen las tablas de dimensiones. Este esquema, que incluye ramificaciones en cada dimensión que se corresponden con las tablas necesarias para su normalización, guarda un gran parecido con la estructura de un copo de nieve, lo cual da nombre a este diseño.</p>
+<p><strong>La diferencia entre los diseños en estrella y copo de nieve radica fundamentalmente en la modelización de las tablas de dimensiones</strong>. Para obtener un diseño en copo de nieve, basta con partir de un diseño en estrella en el que, tras un proceso de normalización, se obtienen varias tablas de dimensión a partir de una tabla desnormalizada. Dentro del diseño de copo de nieve, es posible distinguir entre <strong>copo de nieve parcial</strong>, en el que solo algunas de las dimensiones son normalizadas y <strong>copo de nieve completo</strong>, en el que todas las dimensiones del esquema son normalizadas.</p>
+<p>Siguiendo con el ejemplo anterior, en el que se mostraba un almacén de datos para representar las ventas realizadas por una organización, la <a href="images/Figura1.13_Ejemplo_de_almac%C3%A9n_de_datos_dise%C3%B1ado_en_copo_de_nieve.jpg" title="Figura1.13_Ejemplo de almacén de datos diseñado en copo de nieve.jpg">figura1.13</a> muestra un diseño para un almacén de datos siguiendo un esquema de copo de nieve parcial, en el que las dimensiones geográfica y producto han sido normalizadas. </p>
+<figure style="align: center;">
+    <img src="images/Figura1.13_Ejemplo_de_almacén_de_datos_diseñado_en_copo_de_nieve.jpg">
+    <figcaption>Figura 1.13: Ejemplo de almacén de datos diseñado en copo de nieve. (Fuente: UCLM)</figcaption>
+</figure>
+
+<p><strong>Ventajas e Inconvenientes</strong></p>
+<p>La normalización de las tablas de dimensiones proporciona al diseño de copo de nieve la <strong>mejora de la eficiencia en la realización de consultas complejas que requieren el uso de operadores de agregación</strong>. Sin embargo, este diseño es conceptualmente más difícil de implementar, ya que <strong>incluye un mayor número de tablas</strong> y requiere de realizar muchos joins entre ellas, lo que <strong>incrementa los tiempos de consulta</strong>.</p>
+<p>En ocasiones, se requiere diseñar un almacén de datos que contenga más de una tabla de hechos. Para ello, el <strong>esquema o diseño en constelación</strong> permite crear un almacén de datos de forma similar al diseño en estrella, con la diferencia de que este modelo incluye más de una tabla de hechos. Además, cada tabla de hechos puede vincularse con todas o solo algunas tablas de dimensiones. Este esquema contribuye a la reutilización de las tablas de dimensiones, las cuales se pueden relacionar con más de una tabla de hechos.</p>
+<p><strong>Resumen</strong></p>
+<p>📄 El <strong>diseño en copo de nieve</strong> permite crear un almacén de datos a partir de un diseño en estrella. Para ello, las tablas de dimensiones se normalizan, generando más de una tabla para cada una de las dimensiones, mejorando la eficiencia de consultas complejas que requieren el uso de operadores avanzados.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://www.ine.es">https://www.ine.es</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://ec.europa.eu/eurostat">https://ec.europa.eu/eurostat</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://www.who.int/es/data/gho/publications/world-health-statistics">https://www.who.int/es/data/gho/publications/world-health-statistics</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://archive.ics.uci.edu/">https://archive.ics.uci.edu/</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+<li id="fn:5">
+<p><a href="https://www.kaggle.com">https://www.kaggle.com</a>&#160;<a class="footnote-backref" href="#fnref:5" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2023-2024 Jaime Rabasco - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jaimerabasco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<jaimerabasco@iesgrancapitan.org>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.indexes", "toc.follow", "navigation.top", "header.autohide", "announce.dismiss", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1591 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD1%20-%20Gesti%C3%B3n%20de%20soluciones/1_dis_const_soluc.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="2_proced_mecan_ingesta_datos.html">
+      
+      
+      <link rel="icon" href="../images/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Diseño y Construcción de Soluciones - Big Data Aplicado</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Diseño y Construcción de Soluciones - Big Data Aplicado" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD1 - Gestión de soluciones/1_dis_const_soluc.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD1%20-%20Gesti%C3%B3n%20de%20soluciones/1_dis_const_soluc.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Diseño y Construcción de Soluciones - Big Data Aplicado" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD1 - Gestión de soluciones/1_dis_const_soluc.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ud-1-gestion-de-soluciones-diseno-y-construccion-de-soluciones" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../index.html" title="Big Data Aplicado" class="md-header__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Big Data Aplicado
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Diseño y Construcción de Soluciones
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Big Data Aplicado" class="md-nav__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Big Data Aplicado
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadatos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadatos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guia_didactica.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía Didáctica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD1 - Gestión de Soluciones
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD1 - Gestión de Soluciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Diseño y Construcción de Soluciones
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="1_dis_const_soluc.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Diseño y Construcción de Soluciones
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-de-los-datos-al-conocimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introducción de los datos al conocimiento
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-la-carrera-entre-los-datos-y-la-tecnologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. La carrera entre los datos y la tecnología
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-los-datos-los-de-ayer-y-los-de-hoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Los datos: los de ayer y los de hoy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-soluciones-big-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Soluciones Big Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-almacenes-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Almacenes de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Almacenes de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-sistemas-de-ayuda-a-la-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Sistemas de ayuda a la decisión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-almacenes-de-datos-concepto" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Almacenes de datos: Concepto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-almacenes-de-datos-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Almacenes de datos: Arquitectura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-data-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Data Lake
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Data Lake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-concepto" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Concepto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-data-lake-vs-data-warehouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Data Lake vs Data Warehouse
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2_proced_mecan_ingesta_datos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procedimientos y Mecanismos de Ingesta de Datos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3_form_datos_almacenamiento.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formato de Datos Adecuado para el Almacenamiento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD2 - Procesado y Presentación Datos Almacenados
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD2 - Procesado y Presentación Datos Almacenados
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/mongoDB.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/neo4j.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neo4j
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD3 - Introducción a la computación paralela y distribuida
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD3 - Introducción a la computación paralela y distribuida
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/comput_paralela_distribuida.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Computación Paralela y Distribuida
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD4%20-%20Apache%20Hadoop/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD4 - Apache Hadoop
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD4 - Apache Hadoop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/1_Plataforma_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plataforma y Ecosistema Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/2_Hadoop_HDFS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HDFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/3_Hadoop_Map_Reduce.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Reduce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/4_Hadoop_Yarn.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yarn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/5_Cluster_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creditos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creditos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion-de-los-datos-al-conocimiento" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introducción de los datos al conocimiento
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-la-carrera-entre-los-datos-y-la-tecnologia" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. La carrera entre los datos y la tecnología
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-los-datos-los-de-ayer-y-los-de-hoy" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Los datos: los de ayer y los de hoy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-soluciones-big-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Soluciones Big Data
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-almacenes-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Almacenes de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Almacenes de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-sistemas-de-ayuda-a-la-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Sistemas de ayuda a la decisión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-almacenes-de-datos-concepto" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Almacenes de datos: Concepto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-almacenes-de-datos-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Almacenes de datos: Arquitectura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-data-lake" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Data Lake
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Data Lake">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-concepto" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Concepto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-data-lake-vs-data-warehouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Data Lake vs Data Warehouse
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ud-1-gestion-de-soluciones-diseno-y-construccion-de-soluciones">UD 1 Gestión de Soluciones - Diseño y Construcción de Soluciones<a class="headerlink" href="#ud-1-gestion-de-soluciones-diseno-y-construccion-de-soluciones" title="Permanent link">&para;</a></h1>
+<h2 id="1-introduccion-de-los-datos-al-conocimiento">1. Introducción de los datos al conocimiento<a class="headerlink" href="#1-introduccion-de-los-datos-al-conocimiento" title="Permanent link">&para;</a></h2>
+<p>El <strong>dato</strong> es una representación sintáctica, generalmente numérica, que puede manejar un dispositivo electrónico - normalmente un ordenador - sin significado por sí solo. Sin embargo, el dato es a su vez el ingrediente fundamental y el elemento de entrada necesario en cualquier sistema y/o proceso que pretenda extraer información o conocimiento sobre un dominio determinado. En este sentido, 7 es un dato, como también lo es π o como son los términos aprobado o suspenso.</p>
+<p>Por su parte, la <strong>información</strong> es el dato interpretado, es decir, el dato con significado. Para obtener información, ha sido necesario un proceso en el que, a partir de un dato como elemento de entrada, se realice una <strong>interpretación</strong> de ese dato que permita obtener su significado, es decir, información a partir de él. La información es también el elemento de entrada y de salida en cualquier proceso de toma de decisiones. Partiendo de los datos del ejemplo anterior, información obtenida a partir de los mismos puede ser: El 7 es un número primo, π es una constante cuyo valor es 3, 141592653..., María ha aprobado el examen de conducir, Pablo está suspenso en matemáticas.</p>
+<p>A partir de información, es posible construir conocimiento. El <strong>conocimiento</strong> es información aprendida, que se traduce a su vez en reglas, asociaciones, algoritmos, etc. que permiten resolver el proceso de toma de decisiones. Así pues, la información obtenida a partir de los datos permite generar conocimiento, es decir, aprender. El conocimiento no es estático, como tampoco lo es siempre el aprendizaje. Aprender, construir conocimiento, implica necesariamente contrastar y validar el conocimiento construido con nueva información que permita, a su vez, guiar el aprendizaje y construir conocimiento nuevo. Siguiendo con los ejemplos anteriores, el conocimiento que permite obtener que el 7 es un número primo puede ser el <em>algoritmo de Eratóstenes</em>. Por otra parte, el conocimiento que permite obtener el valor del número π puede extraerse de los resultados de los trabajos de <em>Jones, Euler o Arquímedes</em>, mientras que el aprobado de María en el examen de conducir y el suspenso de Pablo en matemáticas, se pueden obtener de la regla que en una escala de diez asigna el aprobado a notas mayores o iguales que 5 y el suspenso a notas menores.</p>
+<figure style="align: center;">
+    <img src="images/Figura1.1.jpg">
+    <figcaption>Figura 1.1: Relación entre datos, información y conocimiento en el proceso de toma de decisiones. (Fuente: UCLM)</figcaption>
+</figure>
+
+<p>Por tanto, datos, información y conocimiento están estrechamente relacionados entre sí y dirigen cualquier proceso de toma de decisiones  La <a href="images/Figura1.1.jpg" title="Figura 1: Relación entre datos, información y conocimiento en el proceso de toma de decisiones">figura1.1</a> muestra la relación entre datos, información y conocimiento, en un proceso genérico de <strong>toma de decisiones</strong>. Más concretamente, en el ejemplo del suspenso de Pablo en matemáticas, el proceso de toma de decisión acerca de la calificación de Pablo se estructuraría de la siguiente forma:</p>
+<ol>
+<li>
+<p>El profesor corrige el examen de Pablo, que ha sacado un 3. Esta calificación, por sí sola, es simplemente un dato.</p>
+</li>
+<li>
+<p>A continuación, el profesor calcula la calificación final de Pablo, en base a la nota del examen, sus trabajos y prácticas de laboratorio. <em>La nota final de Pablo es un 4</em>. Esto último es información.</p>
+</li>
+<li>
+<p>¿Ha aprobado Pablo? La información de entrada al proceso de decisión es su calificación final de 4 puntos, obtenida en el paso anterior. El conocimiento del profesor sobre el sistema de calificación le indica que una nota menor a 5 puntos se corresponde con un suspenso y, en caso contrario, con un aprobado.</p>
+</li>
+<li>
+<p>La información de salida tras este proceso de decisión es que <em>Pablo está suspenso en matemáticas</em>.</p>
+</li>
+</ol>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Siguiendo el ejemplo anterior ¿Cómo se produce el proceso de toma de decisiones para determinar si un número es primo?</p>
+</div>
+<p>Aunque se trate de un ejemplo trivial, la importancia del proceso de toma de decisiones no lo es. En <strong>marketing</strong>, por ejemplo, se analizan bases de datos de clientes para identificar distintos grupos e intentar predecir el comportamiento de estos. En el mundo de las <strong>finanzas</strong>, las inversiones realizadas por grandes empresas responden a un proceso complejo de toma de decisiones donde los datos son el eje fundamental de este proceso. En <strong>medicina</strong>, existe una gran cantidad de sistemas de ayuda a la decisión que permiten a los doctores contrastar y validar sus diagnósticos de forma precoz. En definitiva, no hay área de conocimiento ni ámbito de aplicación que escape al proceso de toma de decisiones.</p>
+<h2 id="2-la-carrera-entre-los-datos-y-la-tecnologia">2. La carrera entre los datos y la tecnología<a class="headerlink" href="#2-la-carrera-entre-los-datos-y-la-tecnologia" title="Permanent link">&para;</a></h2>
+<p>Que los datos son el elemento fundamental en cualquier proceso y/o sistema de <strong>toma de decisiones</strong> no es algo nuevo. Sin embargo, los datos no siempre han estado al alcance de los expertos y no siempre ha sido posible ni sencillo procesarlos según las necesidades concretas de cada caso de aplicación.</p>
+<p>La información, por tanto, siempre ha sido poder y el gran reto ha sido y sigue siendo extraer información a partir de datos para generar conocimiento. Para ello, es necesario contar con dos factores que deben estar alineados: <strong>datos y tecnología</strong>.</p>
+<p>Obtener <strong>datos</strong> no ha sido siempre una tarea fácil. Esto es debido principalmente a que la gran cantidad de sensores disponibles en la actualidad, que permiten registrar magnitudes de cualquier proceso, no existía como a día de hoy. Además, los sensores existentes en esta época (finales del siglo XX y comienzos del siglo XXI) no estaban ampliamente extendidos, ya que sus prestaciones estaban lejos de las que ofrecen hoy y sus precios no estaban al alcance de cualquier usuario. Por tanto, los procesos que se monitorizaban y de los cuales se recogían datos eran, sobretodo, procesos industriales realizados en grandes empresas. Por todos estos motivos, tradicionalmente se recurría a <strong>modelos de simulación</strong> que, a través de la implementación de un modelo matemático, permitían generar datos realistas de un proceso.</p>
+<p>Los datos generados mediante simulación son conocidos como <strong>datos sintéticos</strong> mientras que los datos provenientes de las lecturas de un sensor se conocen como <strong>datos reales</strong>.</p>
+<p>Pero con los datos no es suficiente. Es necesario también contar con la tecnología necesaria para su procesamiento. Generar, almacenar y procesar todos estos datos no es una tarea trivial, y plantea una serie de problemas tecnológicos a resolver.</p>
+<ul>
+<li>Primer problema tecnológico a resolver, el <strong>almacenamiento</strong>. Algunas soluciones propuestas pasan por los <strong>sistemas de información distribuida</strong>, entendidos como un conjunto de ordenadores separados físicamente y conectados en red destinados al almacenamiento de datos o por los <strong>sistemas de información en la nube</strong>, que permiten adquirir espacio de almacenamiento en servidores privados, dejando la gestión de estos servidores en manos del proveedor.</li>
+<li>
+<p>El segundo problema tecnológico es el <strong>procesamiento</strong> de los datos almacenados. Este aspecto cobra especial relevancia en función del caso de aplicación, pudiendo distinguirse entre procesamiento on-line (en línea/<strong>stream</strong>) y procesamiento off-line (fuera de línea/<strong>batch</strong>).</p>
+</li>
+<li>
+<p>💻 En el caso del <strong>procesamiento on-line/stream processing</strong>, los datos son procesados a medida que son generados, ya que se requiere una respuesta en tiempo real. Por ejemplo, en un sistema de control del tráfico que permite regular los semáforos en función del tráfico actual, el sistema debe regular el semáforo a medida que se van generando e interpretando los datos del tráfico en un instante de tiempo dado.</p>
+</li>
+<li>❎ Por otra parte, en el caso del <strong>procesamiento off-line/batch processing</strong>, no es necesario que los datos se procesen a medida que se generan. Por ejemplo, en un sistema de detección del fraude bancario, comprobar si un cliente ha realizado algún movimiento fraudulento es una tarea que puede llevarse a cabo off-line, por ejemplo, haciendo un análisis de los movimientos del cliente en un momento dado, sin tener por qué diagnosticar cada movimiento que este va realizando.</li>
+</ul>
+<p>En este sentido, la <strong>computación distribuida</strong>, en donde múltiples máquinas realizan el procesamiento optimizando el rendimiento o la <strong>computación en la nube</strong>, que permite adquirir recursos de procesamiento al igual que se puede adquirir espacio de almacenamiento, son dos soluciones al problema del procesamiento.</p>
+<p>Otras alternativas son la <strong>programación paralela</strong> y la <strong>programación multi-procesador</strong>, que permiten, respectivamente, aprovechar el paralelismo de múltiples hilos de ejecución dentro de un procesador y realizar el procesamiento dividiéndolo en múltiples hilos en diferentes procesadores</p>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Piensa en procesos cotidianos que requieran un procesamiento on-line y en otros que requieran un procesamiento off-line.</p>
+</div>
+<p>⏳ En la actualidad, la proliferación de una gran cantidad de sensores con altas prestaciones y precios asequibles que permiten monitorizar y generar datos sobre cualquier proceso ha supuesto un <strong>incremento exponencial en la cantidad de datos generados</strong>. Es posible monitorizar casi cualquier proceso, incluyendo los domésticos como el consumo eléctrico de un hogar, la presencia dentro del mismo o procesos cotidianos como la actividad física, entre otros muchos. Hoy, los datos llevan la delantera en la carrera entre datos y tecnología. Si bien es cierto que la tecnología ha experimentado grandes avances en los últimos años, la cantidad de datos generada no deja de crecer. Esto supone un <strong>reto permanente para la tecnología</strong>, que sigue evolucionando a nivel hardware con la aparición de arquitecturas con mayores posibilidades de procesamiento, almacenamiento y a nivel software, con la aparición de modelos de programación que optimizan el procesamiento de los datos.</p>
+<h2 id="3-los-datos-los-de-ayer-y-los-de-hoy">3. Los datos: los de ayer y los de hoy<a class="headerlink" href="#3-los-datos-los-de-ayer-y-los-de-hoy" title="Permanent link">&para;</a></h2>
+<p>Al igual que la tecnología ha ido evolucionando para dar respuesta a la ingente cantidad de datos que ha comenzado a generarse, estos últimos también han experimentado una gran evolución. Esta evolución, o revolución, no está únicamente relacionada con la <strong>cantidad</strong> de datos (como se expuso en el anterior apartado) sino también con el <strong>tipo</strong> y el <strong>formato</strong> de los mismos.</p>
+<p>💾 Tradicionalmente, el tipo y formato de datos con el que se ha trabajado para extraer información y conocimiento a partir de ellos era ciertamente <strong>limitado</strong>. En muchas ocasiones se trataba de ficheros de datos estructurados de forma tabular, donde cada fila del conjunto de datos representaba una instancia del mismo y cada columna una variable o atributo de la instancia. El formato de archivo que se manejaba solían ser <strong>formatos de hojas de cálculo</strong> (.xlsx, .ods, .numbers etc) o <strong>ficheros separados por comas</strong> (.csv). Muy pocos eran los procesos en los que se trabajaba con otros tipos de datos como texto, imágenes, audio e incluso vídeos, ya que los formatos de estos tipos de datos eran limitados hace unos años, su procesamiento más complejo y la tecnología para ello aún en desarrollo.</p>
+<p>Aunque a día de hoy también se sigue trabajando con archivos de datos en forma de hojas de cálculo y/o archivos tradicionales para generar conocimiento a partir de ellos, las posibilidades actuales son prácticamente <strong>ilimitadas</strong>.</p>
+<ul>
+<li>
+<p>✏️ En cuanto al <em>texto</em>, las técnicas de inteligencia artificial y procesamiento del lenguaje natural hacen posible la extracción de conocimiento a partir de <strong>grandes volúmenes de textos</strong>, que pueden provenir de páginas web, archivos .pdf, redes sociales, etc.</p>
+</li>
+<li>
+<p>📹 El desarrollo de hardware con mejores prestaciones y los nuevos modelos de programación permiten procesar en la actualidad <strong>grandes cantidades de imágenes, audios y vídeos</strong> con una gran variedad de técnicas de inteligencia artificial en tiempos razonables.</p>
+</li>
+<li>
+<p>⚫ Finalmente, han aparecido nuevos tipos y formatos de datos, como por ejemplo, aquellos datos generados a partir de <strong>grafos</strong>, los cuales se tratarán en próximas secciones y capítulos con más detenimiento. Estos datos se corresponden, por ejemplo, con datos geográficos obtenidos a partir de mapas como los generados en aplicaciones como Google Maps u Open Street Maps o datos de seguimiento y actividad en redes sociales de gran valor en campañas publicitarias entre otros muchos.</p>
+</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Haz una búsqueda y elabora un listado con distintos tipos de datos y los formatos de almacenamiento más utilizados con los que se trabaja en ciencia de datos y big data.</p>
+</div>
+<p>Los diferentes tipos y formatos de datos, los de ayer y los de hoy, son la materia básica fundamental en cualquier proceso de extracción de información y de conocimiento. Después, las metodologías empleadas para ello y arquitecturas hardware sobre las que se realice el procesamiento de los mismos, permitirán definir <strong>procesos y metodologías de big data</strong>, aplicadas a un ámbito concreto.</p>
+<h2 id="4-soluciones-big-data">4. Soluciones Big Data<a class="headerlink" href="#4-soluciones-big-data" title="Permanent link">&para;</a></h2>
+<p>En esta nueva era tecnológica en la que nos hayamos inmersos, a diario se generan enormes cantidades de datos, del orden de <strong>petabytes</strong> (más de un millón de gigabytes) <strong>en muy cortos periódos de tiempo</strong>. Hoy en día, cualquier dispositivo como puede ser un reloj, un coche, un smartphone, etc está conectado a Internet generando, enviando y recibiendo una gran cantidad de datos. Tanto es así, que se estima que el 90 % de los datos disponibles en el mundo ha sido generado en los últimos años. Sin lugar a dudas, esta y las próximas generaciones serán las generaciones del big data.</p>
+<p>Esta realidad descrita anteriormente demanda la capacidad de enviar y recibir datos e información a gran velocidad, así como la capacidad de almacenar tal cantidad de datos y procesarlos en tiempo real. Así pues, la gran cantidad de datos disponibles junto con las herramientas, tanto hardware como software, que existen a disposición para analizarlos se conoce como <strong><em>big data</em></strong>.</p>
+<p>✌️ No existe una definición precisa del término <strong>big data</strong>, ni tampoco un término en castellano que permita denominar este concepto. A veces se usan en castellano los término <em>datos masivos</em> o <em>grandes volúmenes de datos</em> para hacer referencia al big data. Por este motivo, a menudo el concepto de big data es definido en función de las características que poseen los datos y los procesos que forman parte de este nuevo paradigma de computación. Esto es lo que se conoce como ✌️ <strong>las Vs del big data</strong> ✌️.</p>
+<p>Algunos autores coinciden en que big data son datos cuyo <strong>volumen</strong> es demasiado grande como para procesarlos con las tecnologías y técnicas tradicionales, requiriendo nuevas arquitecturas hardware, modelos de programación y algoritmos para su procesamiento. Además, se trata de datos que se presentan en una gran <strong>variedad</strong> de estructuras y formatos: datos sintéticos, provenientes de sensores, numéricos, textuales, imágenes, audio, vídeo... Finalmente, se trata de datos que requieren ser procesados a gran <strong>velocidad</strong> para poder extraer valor y conocimiento de ellos. Esta concepción se conoce como las tres Vs del big data (ver <a href="images/Figura1.2_Las_tres_Vs_del_big_data.png" title="Las tres Vs del big data">figura1.2</a>).</p>
+<figure style="align: center; width: 600px;">
+    <img src="images/Figura1.2_Las_tres_Vs_del_big_data.png">
+    <figcaption>Figura 1.2: Definición de big data en base a “Las tres Vs del big data". (Fuente: Researchgate)</figcaption>
+</figure>
+
+<p>Otros autores amplían las características que han de tener los datos que forman parte del big data, incluyendo “otras Vs” como lo son:</p>
+<ul>
+<li>✌️ <strong>Volatilidad</strong>, referida al tiempo durante el cual los datos recogidos son válidos y a durante cuánto tiempo deberán ser almacenados.</li>
+<li>✌️ <strong>Valor</strong>, referido a la utilidad de los datos obtenidos para extraer conocimiento y tomar decisiones a partir de ellos.</li>
+<li>✌️ <strong>Validez</strong>, referida a lo precisos que son los datos para el uso que se pretende darles. El uso de datos validados permitirá ahorrar tiempo en etapas como la limpieza y el preprocesamiento de los datos.</li>
+<li>✌️ <strong><em>Veracidad</em></strong>, relacionada con la confiabilidad del origen del cual provienen los datos con los que se trabajará así como la incertidumbre o el ruido que pudiera existir en ellos.</li>
+<li>✌️ <strong>Variabilidad</strong>, frente a la variedad de estructuras y formatos, hace referencia a la complejidad del conjunto de datos, es decir, al número de variables que contiene. Estas características, unidas a las tres Vs descritas anteriormente, se conocen como las ocho Vs del big data (ver <a href="images/Figura1.3_Las_ocho_Vs_del_big_data.svg" title="Las ocho Vs del big data">figura1.3</a>).</li>
+</ul>
+<figure style="align: center; width: 600px;">
+    <img src="images/Figura1.3_Las_ocho_Vs_del_big_data.svg">
+    <figcaption>Figura 1.3: Definición de big data en base a “Las ocho Vs del big data”. (Fuente: Linkedin)</figcaption>
+</figure>
+
+<p>Dado que no existe una definición uniforme para el término big data, muchos autores definen el término en función de aquellas características que consideran más relevantes, por lo que es común encontrar “las cinco Vs del big data”, “las siete Vs del big data” o “las diez Vs del big data” según cada autor, apareciendo distintos términos para describir el big data, como también pueden ser <strong>visualización</strong> o <strong>vulnerabilidad</strong>, entre otros. </p>
+<p>Son muchas las <strong>soluciones a nivel hardware y software</strong>, que se han propuesto a los problemas derivados del almacenamiento y el procesamiento de big data. A continuación, se describen los fundamentos de tres de ellas, las cuales serán desarrolladas a nivel teórico, tecnológico y práctico en los siguientes capítulos.</p>
+<h2 id="5-almacenes-de-datos">5. Almacenes de datos<a class="headerlink" href="#5-almacenes-de-datos" title="Permanent link">&para;</a></h2>
+<p>💾 Tradicionalmente hablando, cuando nos referimos a almacenes de datos, podemos hablar de las <strong>bases de datos relacionales</strong> son colecciones de datos integrados, almacenados en un soporte secundario no volátil y con redundancia controlada. La definición de los datos y la estructura de la base de datos debe estar basada en un modelo de datos que permita captar las interrelaciones y restricciones existentes en el dominio que se pretende modelizar. A su vez, un <strong>Sistema Gestor de Bases de Datos (SGBD)</strong> se compone de una colección de datos estructurados e interrelacionados (una base de datos) así como de un conjunto de programas para acceder a dichos datos.</p>
+<p>💾 Las bases de datos tradicionales, siguiendo la definición anterior, están basadas generalmente en sistemas relacionales u objeto-relacionales. Para el acceso, procesamiento y recuperación de los datos, se sigue el modelo <strong>Online Transaction Processing (OLTP)</strong>. Una transacción es una interacción completa con un sistema de base de datos, que representa una unidad de trabajo. Así pues, una transacción representa cualquier cambio que se produzca en una base de datos.</p>
+<p>💾 El modelo OLTP, traducido al castellano como <strong>procesamiento de transacciones en línea</strong>, permite gestionar los cambios de la base de datos mediante la inserción, actualización y eliminación de información de la misma a través de transacciones básicas que son procesadas en tiempos muy pequeños.</p>
+<p>💾 Con respecto a la recuperación de información de la base de datos, se utilizan operadores clásicos (concatenación, proyección, selección, agrupamiento...) para realizar consultas básicas y sencillas (realizadas, mayoritariamente, en lenguaje SQL y extensiones del mismo).</p>
+<p>💾 Finalmente, las opciones de visualización de los datos recuperados son limitadas, mostrándose fundamentalmente los resultados de forma tabular y requiriendo un procesamiento adicional y más complejo en caso de querer presentar datos complejos.</p>
+<p>🔁 La revolución en la generación, almacenamiento y procesamiento de los datos, así como la irrupción del <strong>big data</strong>, han puesto a prueba el modelo de funcionamiento, rendimiento y escalabilidad de las bases de datos relacionales tradicionales. En la actualidad, se requiere de soluciones integradas que aúnen datos y tecnología para almacenar y procesar grandes cantidades de datos con diferentes estructuras y formatos con el objetivo de facilitar la consulta, el análisis y la toma de decisiones sobre los mismos. En este sentido, la <strong>inteligencia de negocio</strong>, más conocida por el término inglés <strong>business intelligence</strong>, investiga en el diseño y desarrollo de este tipo de soluciones. La inteligencia de negocio puede definirse como <strong><em>la capacidad de una empresa de estudiar sus acciones y comportamientos pasados para entender dónde ha estado la empresa, determinar la situación actual y predecir o cambiar lo que sucederá en el futuro, utilizando las soluciones tecnológicas más apropiadas para optimizar el proceso de toma de decisiones</em></strong>.</p>
+<p>Estas nuevas soluciones requerirán un modelo de procesamiento diferente a <strong>OLTP</strong>. Esto es así, ya que el objetivo perseguido por la inteligencia de negocio está menos orientado al ámbito transaccional y más enfocado al ámbito analítico. Las nuevas soluciones utilizan el modelo <strong>Online analytical processing (OLAP)</strong>.</p>
+<p>La principal diferencia entre OLTP y OLAP estriba en que mientras que el primero es un sistema de procesamiento de transacciones en línea, el segundo es un sistema de <strong>recuperación y análisis</strong> de datos en línea. Por tanto, OLAP complementa a SQL aportando la capacidad de analizar datos desde distintas variables y dimensiones, mejorando el proceso de toma de decisiones. Para ello, OLAP permite realizar cálculos y consolidaciones entre datos de distintas dimensiones, creando modelos que no presentan limitaciones conceptuales ni físicas, presentando y visualizando la información de forma flexible, esto es, en diferentes formatos.</p>
+<p>Los sistemas OLAP están basados, generalmente, en sistemas o interfaces multidimensionales que proporcionan facilidades para la transformación de los datos, permitiendo obtener nuevos datos más combinados y agregados que los obtenidos mediante las consultas simples realizadas por OLTP. Al contrario que en OLTP, las unidades de trabajo de OLAP son más complejas que en OLTP y consumen más tiempo.</p>
+<p>Finalmente, en cuanto a la visualización de los mismos, los sistemas OLAP permiten la visualización y el análisis multidimensional a partir de diferentes vistas de los datos, presentando los resultados en forma matricial y con mayores posibilidades estéticas y visuales. La tabla 1.1 muestra un resumen con las principales diferencias entre los sistemas <strong>OLTP y OLAP</strong>.</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;"></th>
+<th style="text-align: center;"><strong>Bases de datos relacionales(OLTP)</strong></th>
+<th style="text-align: center;"><strong>Soluciones Business Intelligence(OLAP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Concepto</strong></td>
+<td style="text-align: center;">Sistema de procesamiento de transacciones en línea</td>
+<td style="text-align: center;">Sistema de recuperación y análisis de datos en línea</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Funciones</strong></td>
+<td style="text-align: center;">Gestión de transacciones: inserción, actualización, eliminación...</td>
+<td style="text-align: center;">Análisis de datos para dar soporte a la toma de decisiones</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Procesamiento</strong></td>
+<td style="text-align: center;">Transacciones cortas</td>
+<td style="text-align: center;">Procesamientos de análisis complejos</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Tiempo</strong></td>
+<td style="text-align: center;">Las transacciones requieren poco tiempo de ejecución</td>
+<td style="text-align: center;">Los análisis requieren mayor tiempo de ejecución</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Consultas</strong></td>
+<td style="text-align: center;">Simples, utilizando operadores básicos tradicionales</td>
+<td style="text-align: center;">Complejas, permitiendo analizar los datos desde múltiples dimensiones</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Visualización</strong></td>
+<td style="text-align: center;">Básica. Muestra los datos en forma tabular</td>
+<td style="text-align: center;">Muestra los datos en forma matricial. Mayores posibilidades gráficas</td>
+</tr>
+</tbody>
+</table>
+<p><em>Tabla 1.1: Tabla resumen y comparativa entre OLTP y OLAP</em>
+</center></p>
+<h3 id="51-sistemas-de-ayuda-a-la-decision">5.1. Sistemas de ayuda a la decisión<a class="headerlink" href="#51-sistemas-de-ayuda-a-la-decision" title="Permanent link">&para;</a></h3>
+<p>En una empresa u organización, los datos generados a diario son, principalmente, aquellos derivados de las operaciones rutinarias de la empresa. Estos datos, tradicionalmente, se almacenaban en <strong>bases de datos relacionales</strong> y su manipulación se correspondía con <strong>transacciones</strong> realizadas sobre la base de datos. Sin embargo, el objetivo de cualquier organización es seleccionar esos datos para realizar estudios y análisis que permitan generar informes que, a su vez, permitan a la empresa <strong>extraer información para tomar decisiones estratégicas</strong> que conduzcan a la organización al éxito.</p>
+<p>El crecimiento exponencial de los datos manejados por una organización ha hecho que los computadores sean las únicas herramientas capaces de procesar estos datos para obtener información y ofrecer ayuda en la toma de decisiones. En este contexto, aparecen los <strong>sistemas de ayuda a la decisión</strong> o <em>Decision Support Systems (DSS)</em> que ayudan a quienes ocupan puestos de gestión a tomar decisiones o elegir entre diferentes alternativas. </p>
+<div class="admonition info">
+<p class="admonition-title">Sistema de ayuda a la decisión</p>
+<p>📄 <strong>Sistema de ayuda a la decisión</strong>: Conjunto de técnicas y herramientas tecnológicas desarrolladas para procesar y analizar datos para ofrecer soporte en la toma decisiones a quienes ocupan puestos de gestión o dirección en una organización. Para ello, el sistema combina los recursos de los gestores junto con los recursos computacionales para optimizar el proceso de toma de decisiones.</p>
+</div>
+<p>Mientras que las bases de datos relacionales han sido tradicionalmente el componente del <em>back-end</em> en el diseño de sistemas de ayuda a la decisión, los almacenes de datos se han convertido en una opción mucho más competitiva como elemento <em>back-end</em> al mejorar el rendimiento de éstas.</p>
+<p>Los <strong>campos de aplicación</strong> de los almacenes de datos no se reducen únicamente al ámbito empresarial, sino que cubren multitud de dominios como las <strong>ciencias naturales, demografía, epidemiología o educación, entre otros muchos</strong>. La propiedad común a todos estos campos y que hace de los almacenes de datos una adecuada solución en estos ámbitos <strong>es la necesidad de almacenamiento y herramientas de análisis que permitan obtener en tiempos razonables información y conocimiento útiles para mejorar el proceso de toma de decisiones</strong>.</p>
+<h3 id="52-almacenes-de-datos-concepto">5.2. Almacenes de datos: Concepto<a class="headerlink" href="#52-almacenes-de-datos-concepto" title="Permanent link">&para;</a></h3>
+<p>La aparición de los <strong>almacenes de datos</strong> está ligada, principalmente, a una serie de retos que es necesario abordar para <strong>convertir los datos transaccionales</strong> con los que trabaja una base de datos relacional en <strong>información para generar conocimiento y dar soporte al proceso de toma de decisiones</strong></p>
+<ul>
+<li>
+<p><strong>Accesibilidad</strong>: Desde cualquier dispositivo, a cualquier tipo de usuario y a gran cantidad de información que no puede ser almacenada de forma centralizada. La accesibilidad, en este sentido, debe hacer frente al problema de la <strong>escalabilidad</strong> del sistema y de los datos que este maneja.</p>
+</li>
+<li>
+<p><strong>Integración</strong>: Referente a la gestión de datos heterogéneos, con distintos formatos, y provenientes de distintos ámbitos de la organización. Una correcta integración debe garantizar a su vez la corrección y completitud de los datos integrados.</p>
+</li>
+<li>
+<p><strong>Consultas mejoradas</strong>: Permitiendo incluir operadores avanzados y dar soporte a herramientas y procedimientos que posibiliten obtener el máximo partido de los datos existentes. De este modo, será posible obtener <strong>información precisa para realizar un análisis eficiente</strong>.</p>
+</li>
+<li>
+<p><strong>Representación multidimensional</strong>: Proporciona herramientas para analizar de forma multi-dimensional los datos del sistema, incluyendo datos de <strong>diferentes unidades</strong> de la organización con el objetivo de proporcionar herramientas de <strong>análisis y visualización multi-dimensional</strong> para mejorar el proceso de toma de decisiones.</p>
+</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Almacén de datos (Data Warehouse)</p>
+<p>📚 Por tanto, un <strong>almacén de datos</strong>, más conocido por el término <strong><em>data warehouse</em></strong> (en inglés), es una solución de <strong>business intelligence</strong> que combina tecnologías y componentes con el objetivo de ayudar al uso estratégico de los datos por parte de una organización. Esta solución debe proveer a la empresa, de forma integrada, de capacidad de almacenamiento de una gran cantidad de datos así como de herramientas de análisis de los mismos que, frente al procesamiento de transacciones, permita transformar los datos en información para ponerla a disposición de la organización y optimizar el proceso de toma de decisiones.</p>
+<p>📄 O bien, más resumidamente, según W. Inmon (conocido por ser el “padre” del concepto de <strong>Almacén de datos (Data Warehouse)</strong>): Colección de datos orientados a temas, integrados, variante en el tiempo y no volátil que da soporte al proceso de toma de decisiones de la dirección.</p>
+</div>
+<p>Para entender correctamente esta definición, es necesario ahondar en las características que incluye la misma.</p>
+<ul>
+<li>
+<p><strong>Orientados a temas</strong>: Es decir, no orientado a procesos (transacciones), sino a entidades de mayor nivel de abstracción como “artículo” o “pedido”.</p>
+</li>
+<li>
+<p><strong>Integrados</strong>: Almacenados en un formato uniforme y consistente, lo que implica depurar o limpiar los datos para poder integrarlos.</p>
+</li>
+<li>
+<p><strong>Variante en el tiempo</strong>: Asociados a un instante de tiempo (mes, trimestre, año...)</p>
+</li>
+<li>
+<p><strong>No volátiles</strong>: Se trata de datos persistentes que no cambian una vez se incluyen en el almacén de datos.</p>
+</li>
+</ul>
+<p>El diseño y funcionamiento de los almacenes de datos se basa en el sistema de procesamiento analítico en-línea, <strong>OLAP</strong>. Este sistema se encarga del análisis, interpretación y toma de decisiones acerca del negocio, en contraposición a los sistemas de procesamiento de transacciones en línea, <strong>OLTP</strong>.</p>
+<p>Así pues, los sistemas <strong>OLTP están dirigidos por la tecnología y orientados a automatizar las operaciones del día a día</strong> de la organización, mientras que los sistemas <strong>OLAP están dirigidos por el negocio y proporcionan herramientas para tomar decisiones a largo plazo</strong>, mejorando la estrategia y la competitividad de la organización. La tabla 1.2 muestra una comparativa entre las principales características de las bases de datos operacionales (OLTP) y los almacenes de datos (OLAP).</p>
+<p><center></p>
+<table>
+<thead>
+<tr>
+<th>Característica</th>
+<th style="text-align: center;"><strong>BBDD Operacionales(OLTP)</strong></th>
+<th style="text-align: center;"><strong>Almacén Datos(OLAP)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Objetivo</strong></td>
+<td style="text-align: center;">Depende de la aplicación</td>
+<td style="text-align: center;">Toma de decisiones</td>
+</tr>
+<tr>
+<td><strong>Usuarios</strong></td>
+<td style="text-align: center;">Miles</td>
+<td style="text-align: center;">Cientos</td>
+</tr>
+<tr>
+<td><strong>Trabajo con...</strong></td>
+<td style="text-align: center;">Transacciones predefinidas</td>
+<td style="text-align: center;">Consultas y análisis específicos</td>
+</tr>
+<tr>
+<td><strong>Acceso</strong></td>
+<td style="text-align: center;">Lectura y escritura a cientos de registros</td>
+<td style="text-align: center;">Principalmente lecutra. Miles de registros</td>
+</tr>
+<tr>
+<td><strong>Datos</strong></td>
+<td style="text-align: center;">Detallados, numéricos y alfanuméricos</td>
+<td style="text-align: center;">Agregados, principalmente numéricos</td>
+</tr>
+<tr>
+<td><strong>Integración</strong></td>
+<td style="text-align: center;">En función de la aplicación</td>
+<td style="text-align: center;">Basados en temas, con mayor nivel de abstracción</td>
+</tr>
+<tr>
+<td><strong>Calidad</strong></td>
+<td style="text-align: center;">Medida en términos de integridad</td>
+<td style="text-align: center;">Medida en términos de consistencia</td>
+</tr>
+<tr>
+<td><strong>Temporalidad Datos</strong></td>
+<td style="text-align: center;">Solo datos actuales</td>
+<td style="text-align: center;">Datos actuales e históricos</td>
+</tr>
+<tr>
+<td><strong>Actualizaciones</strong></td>
+<td style="text-align: center;">Continuas</td>
+<td style="text-align: center;">Periódicas</td>
+</tr>
+<tr>
+<td><strong>Modelo</strong></td>
+<td style="text-align: center;">Normalizado</td>
+<td style="text-align: center;">Desnormalizado, multidimensional</td>
+</tr>
+<tr>
+<td><strong>Optimización</strong></td>
+<td style="text-align: center;">Para acceso OLTP a parte de la BBDD</td>
+<td style="text-align: center;">Para acceso OLAP a gran parte de la BBDD</td>
+</tr>
+</tbody>
+</table>
+<p><em>Tabla 1.2. Diferencias entre BBDD Operacionales y Almacenes de Datos</em>
+</center></p>
+<h3 id="53-almacenes-de-datos-arquitectura">5.3 Almacenes de datos: Arquitectura<a class="headerlink" href="#53-almacenes-de-datos-arquitectura" title="Permanent link">&para;</a></h3>
+<p>Las arquitecturas disponibles para el <strong>diseño de almacenes de datos</strong> se basan, principalmente, en garantizar que el sistema cumpla una serie de propiedades esenciales para su óptimo funcionamiento</p>
+<ul>
+<li>
+<p><strong>Separación</strong>: De los datos transaccionales y los datos estratégicos que sirven como punto de partida a la toma de de decisiones.</p>
+</li>
+<li>
+<p><strong>Escalabilidad</strong>: A nivel hardware y software, para actualizarse y garantizar el correcto funcionamiento del sistema a medida que el número de datos y usuarios aumenta.</p>
+</li>
+<li>
+<p><strong>Extensiones</strong>: Permitiendo integrar e incluir nuevas aplicaciones sin necesidad de rediseñar el sistema completo.</p>
+</li>
+<li>
+<p><strong>Seguridad</strong>: Monitorizando el acceso a los datos estratégicos guardados en el almacén de datos.</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Almacén de datos</p>
+<p>📄 Las arquitecturas de <strong>almacenes de datos</strong> se clasifican, fundamentalmente, en dos tipos: arquitecturas orientadas a la estructura y arquitecturas orientadas a la empresa.</p>
+</div>
+<h4 id="531-arquitecturas-orientadas-a-la-estructura">5.3.1 Arquitecturas orientadas a la estructura<a class="headerlink" href="#531-arquitecturas-orientadas-a-la-estructura" title="Permanent link">&para;</a></h4>
+<p>Las arquitecturas orientadas a la estructura reciben su nombre debido a que están diseñadas poniendo especial énfasis en el <strong>número de capas y elementos que componen la arquitectura del sistema de almacén de datos</strong>. De acuerdo con este criterio, es posible distinguir las siguientes arquitecturas.</p>
+<p><strong><em>Arquitectura de una capa</em></strong></p>
+<p>El objetivo principal de esta arquitectura, poco utilizada en la práctica, es <strong>minimizar la cantidad de datos almacenados eliminando para ello los datos redundantes</strong>. La <a href="images/Figura1.4_Almac%C3%A9n_de_datos._Arquitectura_de_una_capa.png" title="Figura 1.5: Almacén de datos. Arquitectura de una capa.">figura1.4</a> muestra un esquema de este tipo de arquitectura. En ella, el almacén de datos creado es virtual, existiendo un middleware que interpreta los datos operacionales y ofrece una vista multidimensional de ellos.</p>
+<p><strong>El principal inconveniente</strong> de esta arquitectura es que su simplicidad hace que el sistema <strong>no cumpla la propiedad de separación</strong>, ya que los procesos de análisis se realizan sobre los datos operacionales.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Figura1.4_Almacén_de_datos._Arquitectura_de_una_capa.png">
+    <figcaption>Figura 1.4. Almacén de datos. Arquitectura de una capa. (Fuente: UCLM)</figcaption>
+</figure>
+
+<p><strong><em>Arquitectura de dos capas</em></strong></p>
+<p>Fue diseñada con el objetivo de solucionar el problema de la separación que presentaba la arquitectura de una capa. Este esquema consigue <strong>subrayar la separación entre los datos disponibles y el almacén de datos</strong> a través de los siguientes componentes (ver <a href="images/Figura1.5_Almac%C3%A9n_de_datos._Arquitectura_de_dos_capas.png" title="Figura 1.6: Almacén de datos. Arquitectura de dos capas.">figura1.5</a>:</p>
+<ul>
+<li>
+<p><strong>Capa de origen (fuente)</strong>: Se corresponde con los orígenes y fuentes de los datos heterogéneos que se pretenden incorporar al almacén de datos.</p>
+</li>
+<li>
+<p><strong>Puesta a punto</strong>: Proceso por el cual se utilizan herramientas de Extracción, Transformación y Carga (ETL) para extraer, limpiar, filtrar, validar y cargar datos en el almacén de datos.</p>
+</li>
+<li>
+<p><strong>Capa de almacén de datos</strong>: Almacenamiento centralizado de la información en el almacén de datos, el cual puede ser utilizado para crear <em>data marts</em> o repositorios de metadatos.</p>
+</li>
+<li>
+<p><strong>Análisis</strong>: Conjunto de procesos a partir de los cuales los datos son analizados de forma eficiente y flexible, generando informes y simulando escenarios hipotéticos para dar soporte a la toma de decisiones.</p>
+</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Data mart</p>
+<p>📋 <strong>Data mart</strong> es un subconjunto o agregación de los datos almacenados en un almacén de datos primario que incluye información relevante sobre un área específica del negocio.</p>
+</div>
+<figure style="align: center; width:600px;">
+    <img src="images/Figura1.5_Almacén_de_datos._Arquitectura_de_dos_capas.png">
+    <figcaption>Figura 1.5. Almacén de datos. Arquitectura de dos capas. (Fuente: UCLM)</figcaption>
+</figure>
+
+<p><strong><em>Arquitectura de tres capas</em></strong></p>
+<p>Este tercer tipo de arquitectura incluye una capa llamada de <strong>datos reconciliados</strong> o almacén de datos operativos. Con esta capa, los datos operativos obtenidos tras la limpieza y depuración son integrados y validados, proporcionando un modelo de datos de referencia para toda la organización.</p>
+<p>De este modo, <strong>el almacén de datos no se nutre de los datos de origen directamente, sino de los datos reconciliados generados</strong>, los cuales también son utilizados para realizar de forma más eficiente tareas operativas, como la realización de informes o la alimentación de datos a procesos operativos.</p>
+<p>Esta capa de datos reconciliados también puede implementarse de forma virtual en una arquitectura de dos capas, ya que se define como una vista integrada y coherente de los datos de origen. La <a href="images/Figura1.6_Almac%C3%A9n_de_datos._Arquitectura_de_tres_capas.png" title="Figura 1.6: Almacén de datos. Arquitectura de tres capas.">figura1.6</a> muestra de forma gráfica este tipo de arquitectura</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Figura1.6_Almacén_de_datos._Arquitectura_de_tres_capas.png">
+    <figcaption>Figura 1.6. Almacén de datos. Arquitectura de tres capas. (Fuente: UCLM)</figcaption>
+</figure>
+
+<h4 id="532-arquitecturas-orientadas-a-la-empresa">5.3.2. Arquitecturas orientadas a la empresa<a class="headerlink" href="#532-arquitecturas-orientadas-a-la-empresa" title="Permanent link">&para;</a></h4>
+<p>Esta clasificación distingue <strong>cinco tipos de arquitecturas</strong> que combinan las capas mencionadas en la primera clasificación para diseñar almacenes de datos.</p>
+<p><strong><em>1. Arquitectura de data marts independientes</em></strong></p>
+<p>Arquitectura preliminar en la que <strong>los distintos data marts son diseñados de forma independiente y construidos de forma no integrada</strong>. Suele utilizarse en los inicios de implementación de proyectos de almacenes de datos y reemplazada a medida que el proyecto va creciendo.</p>
+<p><strong><em>2. Arquitectura en bus</em></strong></p>
+<p>Similar a la anterior, <strong>asegura la integración lógica de los data marts creados</strong>, ofreciendo una visión amplia de los datos de la empresa y permitiendo realizar análisis rigurosos de los procesos que en ella se llevan a cabo.</p>
+<p><strong><em>3. Arquitectura hub-and-spoke (centro y radio)</em></strong></p>
+<p>Esta arquitectura es <strong>muy utilizada en almacenes de datos de tamaños medio y grande</strong>. Su diseño pone especial énfasis en garantizar la escalabilidad del sistema y permitir añadir extensiones al mismo.</p>
+<p>Para ello, <strong>los datos se almacenan de forma atómica y normalizada en una capa de datos reconciliados que alimenta a los data marts</strong> construidos que contienen, a su vez, los datos agregados de forma multidimensional. Los usuarios acceden a los data marts, si bien es cierto que también pueden hacer consultas directamente sobre los datos reconciliados.</p>
+<p><strong><em>4. Arquitectura centralizada</em></strong></p>
+<p>Se trata de un caso particular de la arquitectura hub-and-spoke. En ella, <strong>la capa de datos reconciliados y los data marts se almacenan en un único repositorio físico</strong>.</p>
+<p><strong><em>5. Arquitectura federada</em></strong></p>
+<p>Se trata de un tipo de arquitectura <strong>muy utilizada en entornos dinámicos, cuando se pretende integrar almacenes de datos o data marts existentes con otros para ofrecer un entorno único e integrado de soporte a la toma de decisiones</strong>. De esta forma, cada almacén de datos y cada data mart es integrado virtual o físicamente con lo demás. Para ello, se utilizan una serie de técnicas y herramientas avanzadas como son las ontologías, consultas distribuidas e interoperatividad de metadatos, entre otras.</p>
+<h2 id="6-data-lake">6. Data Lake<a class="headerlink" href="#6-data-lake" title="Permanent link">&para;</a></h2>
+<h3 id="61-concepto">6.1 Concepto<a class="headerlink" href="#61-concepto" title="Permanent link">&para;</a></h3>
+<p>Un data lake o lago de datos es un repositorio centralizado que permite almacenar, compartir, gobernar y descubrir todos los datos estructurados y no estructurados de una organización a cualquier escala. Es el lugar en el que se vuelcan los datos en bruto.</p>
+<p>Los data lakes no requieren un esquema predefinido, se pueden almacenar y procesar datos sin esquema y en cualquier formato sin la necesidad de conocer cómo se van a explotar en el futuro. Esta característica evita que sean necesarios complejos procesos <strong>ETL (Extracción, Transformación y Carga)</strong> (que explicaremos en el próximo punto) de limpieza y preparación.</p>
+<p>Entre las características más importantes de los data lakes se encuentra su flexibilidad en almacenar diferentes tipos de datos, que proporciona la agilidad necesaria para los procesos de ingesta. También es muy importante que proporcione suficiente trazabilidad, y de esta manera poder determinar los cambios que han sufrido los datos en los procesos de transformación o ingesta.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Figura1.7_Data_Lake.webp">
+    <figcaption>Figura 1.7. Data Lake. (Fuente: AprenderBigData.com)</figcaption>
+</figure>
+
+<h3 id="62-data-lake-vs-data-warehouse">6.2 Data Lake vs Data Warehouse<a class="headerlink" href="#62-data-lake-vs-data-warehouse" title="Permanent link">&para;</a></h3>
+<p>Los <em>data lake</em> y los <em>data warehouse</em> se utilizan de forma generalizada para el <strong>almacenamiento de big data</strong>, pero, aunque ambos son almacenes de datos, estos <strong>no son términos intercambiables</strong>. Un data lake o "lago de datos" es un gran conjunto de datos <strong>en bruto</strong>, que todavía <strong>no tiene una finalidad definida</strong>. En cambio, un data warehouse o "almacén de datos" es un depósito de datos que <strong>ya están estructurados y filtrados</strong> y han sido procesados para un <strong>propósito concreto</strong>.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Figura1.8_DataWarehouse_vs_DataLake_1.webp">
+    <figcaption>Figura 1.8. Data Warehouse vs Data Lake 1</figcaption>
+</figure>
+
+<p>A menudo se confunden estos dos tipos de almacenamiento de datos, pero son mucho más diferentes de lo que puede parecer a simple vista. De hecho, lo único que tienen en común es que contienen grandes cantidades de datos. Es importante realizar la distinción, ya que <strong>los data lake y los data warehouse atienden a diferentes propósitos</strong>, por lo que requieren un enfoque diferente para ser optimizados adecuadamente.</p>
+<p>Así, un <strong>data lake almacena datos sin procesar</strong> y que todavía <strong>no tienen una finalidad determinada</strong>. Sus usuarios finales son los <strong>científicos de datos</strong> y su <em>accesibilidad es elevada.</em> Además, en un data lake, justamente por esta fácil accesibilidad, se pueden actualizar los datos rápidamente.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Figura1.9_DataWarehouse_vs_DataLake_2.png">
+    <figcaption>Figura 1.9. Data Warehouse vs Data Lake 2. (Fuente: Huawei)</figcaption>
+</figure>
+
+<p>Por su lado, un <strong>data warehouse cuenta con datos procesados</strong> y que ya se están usando, por lo que tienen una <strong>finalidad concreta</strong>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2023-2024 Jaime Rabasco - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jaimerabasco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<jaimerabasco@iesgrancapitan.org>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.indexes", "toc.follow", "navigation.top", "header.autohide", "announce.dismiss", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

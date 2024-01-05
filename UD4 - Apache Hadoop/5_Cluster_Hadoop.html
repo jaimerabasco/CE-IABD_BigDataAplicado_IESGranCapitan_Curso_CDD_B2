@@ -1,0 +1,1892 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD4%20-%20Apache%20Hadoop/5_Cluster_Hadoop.html">
+      
+      
+        <link rel="prev" href="4_Hadoop_Yarn.html">
+      
+      
+        <link rel="next" href="../creditos.html">
+      
+      
+      <link rel="icon" href="../images/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Cluster Hadoop - Big Data Aplicado</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Cluster Hadoop - Big Data Aplicado" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD4 - Apache Hadoop/5_Cluster_Hadoop.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD4%20-%20Apache%20Hadoop/5_Cluster_Hadoop.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Cluster Hadoop - Big Data Aplicado" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD4 - Apache Hadoop/5_Cluster_Hadoop.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ud-4-apache-hadoop-cluster" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../index.html" title="Big Data Aplicado" class="md-header__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Big Data Aplicado
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cluster Hadoop
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Big Data Aplicado" class="md-nav__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Big Data Aplicado
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadatos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadatos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guia_didactica.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía Didáctica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD1 - Gestión de Soluciones
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD1 - Gestión de Soluciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/1_dis_const_soluc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diseño y Construcción de Soluciones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/2_proced_mecan_ingesta_datos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procedimientos y Mecanismos de Ingesta de Datos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/3_form_datos_almacenamiento.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formato de Datos Adecuado para el Almacenamiento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD2 - Procesado y Presentación Datos Almacenados
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD2 - Procesado y Presentación Datos Almacenados
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/mongoDB.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/neo4j.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neo4j
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD3 - Introducción a la computación paralela y distribuida
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD3 - Introducción a la computación paralela y distribuida
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/comput_paralela_distribuida.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Computación Paralela y Distribuida
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD4 - Apache Hadoop
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD4 - Apache Hadoop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="1_Plataforma_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plataforma y Ecosistema Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2_Hadoop_HDFS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HDFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3_Hadoop_Map_Reduce.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Reduce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4_Hadoop_Yarn.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yarn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Cluster Hadoop
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="5_Cluster_Hadoop.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Hadoop
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pre-requisitos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Pre-requisitos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-configurar-red-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Configurar Red NAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configuracion-de-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Configuración de las máquinas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-configuracion-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Configuración de red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-acceso-a-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Acceso a las máquinas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-nodo-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Nodo Master
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Nodo Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Instalación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Configuración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Ejecución
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Nodos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nodos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-clonacion-de-la-maquina-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Clonación de la máquina master
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuracion-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Configuración nodos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-configuracion-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Configuración ssh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-preparando-los-nodos-del-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Preparando los nodos del cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-levantamos-el-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Levantamos el cluster
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creditos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creditos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-pre-requisitos" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Pre-requisitos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Pre-requisitos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-configurar-red-nat" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Configurar Red NAT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-configuracion-de-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Configuración de las máquinas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-configuracion-de-red" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Configuración de red
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-acceso-a-las-maquinas" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Acceso a las máquinas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-nodo-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Nodo Master
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Nodo Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Instalación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-configuracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Configuración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-ejecucion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Ejecución
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Nodos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Nodos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-clonacion-de-la-maquina-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Clonación de la máquina master
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-configuracion-nodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Configuración nodos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Cluster
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Cluster">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-configuracion-ssh" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Configuración ssh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-preparando-los-nodos-del-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Preparando los nodos del cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-levantamos-el-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Levantamos el cluster
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ud-4-apache-hadoop-cluster">UD 4 - Apache Hadoop - Cluster<a class="headerlink" href="#ud-4-apache-hadoop-cluster" title="Permanent link">&para;</a></h1>
+<p>En este recurso vamos a explicar como se instala y configura un cluster con Apache Hadoop</p>
+<h2 id="1-pre-requisitos">1. Pre-requisitos<a class="headerlink" href="#1-pre-requisitos" title="Permanent link">&para;</a></h2>
+<p>Debemos tener instalado VirtualBox. </p>
+<h3 id="11-configurar-red-nat">1.1 Configurar Red NAT<a class="headerlink" href="#11-configurar-red-nat" title="Permanent link">&para;</a></h3>
+<p>Para crear nuestro cluster, vamos a configurar un <strong>red NAT</strong> para que los nodos tenga conexión entre ellos y salida a Internet a través del Host</p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>Hemos elegido esta configuración de red por varios motivos.</p>
+<ol>
+<li>
+<p>Puedas usar tu cluster en tu portátil independientemente de la red o lugar en la que estés conectado</p>
+</li>
+<li>
+<p>Sería más sencillo hacerla en <strong>modo bridge</strong>, pero no tenemos IPs suficientes debido al alto número de alumnado, y habría que configurar las IPs cada vez que te conectes a una red distinta a la de clase.</p>
+</li>
+<li>
+<p>En todo caso, si decides optar por esta opción, sólo tienes que adaptar los pasos a tu configuración de red. Sería algo más sencilla.</p>
+</li>
+</ol>
+</div>
+<p>Para ello, explicamos con una imagen como funciona VirtualBox en este tipo de configuración de red</p>
+<figure style="align: center; width:900px;">
+    <img src="images/Figura4.1_ClusterHadoop_RedNAT_Virtualbox.webp">
+    <figcaption>Figura 1 Cluster Hadoop: Red NAT Virtualbox. (Fuente: medium.com/@sidlors)</figcaption>
+</figure>
+
+<p>Puedes observar que podemos configurar nuestra propia subred, dentro de las cuales, hay 2 ips que VirtualBox asigna estáticas dentro de la red: la <strong>puerta de enlace</strong>(primera de la red) y el <strong>DHCP</strong> (tercera de la red). Para más información, consulta la <a href="https://www.virtualbox.org/manual/UserManual.html#network_nat_service">documentación oficial de VirtualBox</a></p>
+<p>Teniendo en cuenta esto, vamos a configurar nuestra propia subred, que será la <code>192.168.11.0/24</code></p>
+<ol>
+<li>
+<p>Abrimos la configuración de VirtualBox para crear una nueva red NAT en <code>Preferencias -&gt; Redes -&gt; Redes NAT -&gt; Agregar nueva red NAT</code></p>
+</li>
+<li>
+<p>Creamos una nueva Red NAT llamada <code>BDA</code>. Usaremos la red <code>192.168.11.0/24</code> con DHCP Deshabilitado. Puedes elegir cualquier otra si quieres.</p>
+</li>
+</ol>
+<figure style="align: center;">
+    <img src="images/Figura4.2_ClusterHadoop_RedNAT.jpg">
+    <figcaption>Figura 2 Cluster Hadoop: Red NAT. (Fuente: Propia)</figcaption>
+</figure>
+
+<ol start="3">
+<li>Una vez configurada la Red NAT, podemos empezar a instalar y configurar el cluster.</li>
+</ol>
+<h3 id="12-configuracion-de-las-maquinas">1.2 Configuración de las máquinas<a class="headerlink" href="#12-configuracion-de-las-maquinas" title="Permanent link">&para;</a></h3>
+<p>Vamos a crear una primera máquina que después clonaremos y cambiaremos las configuraciones necesarias. Las máquinas tendrán la siguiente configuración (<strong><em>siempre que sea posible</em></strong>):</p>
+<ul>
+<li><strong>Nombre</strong>: master (las otras 3 máquinas se llamarán nodo1, nodo2 y nodo3)</li>
+<li><strong>RAM</strong>: 4GB (<em>yo por ejemplo, no puedo darle más de 3GB</em>)</li>
+<li><strong>Núcleos</strong>: 2</li>
+<li><strong>Disco duro</strong>: 50GB</li>
+<li><strong>Interfaz de red</strong>: Red NAT ("BDA"): 192.0.11.10 (las s de las otras 3 máquinas serán 192.0.11.11, 192.0.11.12 y 192.0.11.13)</li>
+<li><strong>Sistema operativo</strong>: Ubuntu server 22.04</li>
+<li><strong>Usuario</strong>: hadoop</li>
+</ul>
+<h3 id="13-configuracion-de-red">1.3 Configuración de red<a class="headerlink" href="#13-configuracion-de-red" title="Permanent link">&para;</a></h3>
+<p>Habiendo entendido correctamente lo explicado en los puntos anteriores,podemos configurar la interfaz de red de forma manual, con la siguiente configuración:</p>
+<ul>
+<li><strong>Subred</strong>: <code>192.168.11.0/24</code></li>
+<li><strong>Direción Ip</strong>: <code>192.168.11.10</code></li>
+<li><strong>Puerta de enlace</strong>: <code>192.168.11.1</code> </li>
+<li><strong>DNS</strong>: <code>8.8.8.8,1.1.1.1</code></li>
+</ul>
+<figure style="align: center;">
+    <img src="images/Figura4.3_ClusterHadoop_InterfazRedMaster.jpg">
+    <figcaption>Figura 3 Cluster Hadoop: Interfaz de Red Nodo Master. (Fuente: Propia)</figcaption>
+</figure>
+
+<h3 id="14-acceso-a-las-maquinas">1.4 Acceso a las máquinas<a class="headerlink" href="#14-acceso-a-las-maquinas" title="Permanent link">&para;</a></h3>
+<p>Para un manejo más cómodo e intuitivo de las máquinas, podemos preparar cada nodo para que sea accesible desde nuestro anfitrión y conectarnos mediante ssh a cada una de las máquinas.</p>
+<p>Para ello debemos añadir otro interfaz de red en modo "Adaptador sólo anfitrión"  </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Si tienes como anfitrión un equipo linux y no puedes configurar un "adaptador sólo anfitrión" debes crearlo y levantarlo manualmente</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>vboxmanage<span class="w"> </span>hostonlyif<span class="w"> </span>create
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>ifconfig<span class="w"> </span>vboxnet0<span class="w"> </span>up
+</span></code></pre></div>
+<p>Se creara una interfaz de red 192.168.56.0/24. Puedes cambiarla y configurarla también manualmente</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>vboxmanage<span class="w"> </span>hostonlyif<span class="w"> </span>ipconfig<span class="w"> </span>vboxnet0<span class="w"> </span>--ip<span class="w"> </span><span class="m">10</span>.0.2.18
+</span></code></pre></div>
+<p>Puedes crear todas las que quieras por este proceso. Si se actualiza el kernel de Linux o la versión de Virtualbox se debe repetir este proceso. Para mas información accede a la <a href="https://www.virtualbox.org/manual/UserManual.html#vboxmanage-hostonlyif">documentación oficial de VirtualBox</a></p>
+<p>Ahora, una vez dentro de la máquina virtual, no olvides configurar la ip de esta subred.</p>
+<ol>
+<li>Abrimos el archivo <code>/etc/netplan/00-instaler-config.yaml</code> y añadir la configuración. Por ejemplo, terminado en la misma ip que la Red NAT</li>
+<li>Esta sería la configuración completa</li>
+</ol>
+<p><div class="language-yaml highlight"><span class="filename">00-instaler-config.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="nt">ethernets</span><span class="p">:</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">enp3s0</span><span class="p">:</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.11.10/24</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><a href="#__codelineno-2-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><a href="#__codelineno-2-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">            </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">8.8.8.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.1.1.1</span><span class="p p-Indicator">]</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><a href="#__codelineno-2-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9"></a><a href="#__codelineno-2-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10"></a><a href="#__codelineno-2-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.11.1</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11"></a><a href="#__codelineno-2-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">    </span><span class="nt">enp8s0</span><span class="p">:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12"></a><a href="#__codelineno-2-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13"></a><a href="#__codelineno-2-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.56.10/24</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14"></a><a href="#__codelineno-2-14"><span class="linenos" data-linenos="14 "></span></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span></code></pre></div>
+3. Aplicamos la nueva configuración</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</span></code></pre></div>
+</div>
+<h2 id="2-nodo-master">2. Nodo Master<a class="headerlink" href="#2-nodo-master" title="Permanent link">&para;</a></h2>
+<p>Creamos en VirtualBox el nodo <code>master</code> configurando el Interfaz de red como Red NAT (opcionalmente otra interfaz red sólo anfitrión) y elegimos la que acabamos de crear <code>BDA</code></p>
+<h3 id="21-instalacion">2.1 Instalación<a class="headerlink" href="#21-instalacion" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Java™</strong> debe ser instalado. Las versiones de Java recomendadas se encuentran descritas en <a href="https://cwiki.apache.org/confluence/display/HADOOP/Hadoop+Java+Versions">HadoopJavaVersions</a>.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>openjdk-8-jdk
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a>/usr/bin/java<span class="w"> </span>-version
+</span></code></pre></div>
+<ol start="2">
+<li><strong>ssh</strong> debe estar instalado y sshd debe estar ejecutándose para usar las secuencias de comandos de Hadoop que administran los demonios ssh remotos de Hadoop, ya que vamos a usar las secuencias de comandos de inicio y detección opcionales. Si no lo has hecho durante la instalación, hazlo ahora.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>ssh
+</span></code></pre></div>
+<ol start="3">
+<li>Para obtener la distribución de Apache Hadoop, descarga la versión estable más reciente desde <a href="https://www.apache.org/dyn/closer.cgi/hadoop/common/">Apache Download Mirrors</a></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a>wget<span class="w"> </span>https://dlcdn.apache.org/hadoop/common/hadoop-3.3.6/hadoop-3.3.6.tar.gz
+</span></code></pre></div>
+<ol start="4">
+<li>Una vez descargado, desempaquetamos el archivo descargado con el comando tar y entra dentro de la carpeta:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>tar<span class="w"> </span>-xzf<span class="w"> </span>hadoop-3.3.6.tar.gz<span class="w"> </span>-C<span class="w"> </span>/opt
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">cd</span><span class="w"> </span>/opt/hadoop-3.3.6
+</span></code></pre></div>
+<ol start="5">
+<li>Edita el siguiente archivo <code>etc/hadoop/hadoop-env.sh</code> para definir la variable de entorno de Java y añádela.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1"># Technically, the only required environment variable is JAVA_HOME.</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-8-openjdk-amd64/
+</span></code></pre></div>
+<ol start="7">
+<li>Para poder usar los comandos de HDFS en cualquier lugar del sistema, sin tener que hacerlo desde el directorio de Hadoop (por ejemplo <code>/opt/hadoop-3.3.6/bin</code>), creamos las variables de entorno y añadimos al PATH. Para ello abrimos el archivo <code>~/.bashrc</code> y añadimos al final el siguiente código y ejecuta el comando <code>source ~/.bashrc</code></li>
+</ol>
+<div class="language-bash highlight"><span class="filename">~/.bashrc</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_HOME</span><span class="o">=</span>/opt/hadoop-3.3.6
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos="2 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_INSTALL</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos="3 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_MAPRED_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos="4 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_COMMON_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos="5 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_HDFS_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos="6 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_YARN_HOME</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos="7 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_COMMON_LIB_NATIVE_DIR</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>/lib/native
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8"></a><a href="#__codelineno-9-8"><span class="linenos" data-linenos="8 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="nv">$HADOOP_HOME</span>/sbin:<span class="nv">$HADOOP_HOME</span>/bin
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9"></a><a href="#__codelineno-9-9"><span class="linenos" data-linenos="9 "></span></a><span class="nb">export</span><span class="w"> </span><span class="nv">HADOOP_OPTS</span><span class="o">=</span><span class="s2">&quot;-Djava.library.path=</span><span class="nv">$HADOOP_HOME</span><span class="s2">/lib/native&quot;</span>
+</span></code></pre></div>
+<ol start="8">
+<li>Ejecuta el siguiente comando. Si no da error, podemos continuar</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos="1 "></span></a>hadoop<span class="w"> </span>version
+</span></code></pre></div>
+<p>Nos debe salir la versión de hadoop</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a>Hadoop<span class="w"> </span><span class="m">3</span>.3.6
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a>Source<span class="w"> </span>code<span class="w"> </span>repository<span class="w"> </span>https://github.com/apache/hadoop.git<span class="w"> </span>-r<span class="w"> </span>1be78238728da9266a4f88195058f08fd012bf9c
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos="3 "></span></a>Compiled<span class="w"> </span>by<span class="w"> </span>ubuntu<span class="w"> </span>on<span class="w"> </span><span class="m">2023</span>-06-18T08:22Z
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos="4 "></span></a>Compiled<span class="w"> </span>on<span class="w"> </span>platform<span class="w"> </span>linux-x86_64
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos="5 "></span></a>Compiled<span class="w"> </span>with<span class="w"> </span>protoc<span class="w"> </span><span class="m">3</span>.7.1
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><a href="#__codelineno-11-6"><span class="linenos" data-linenos="6 "></span></a>From<span class="w"> </span><span class="nb">source</span><span class="w"> </span>with<span class="w"> </span>checksum<span class="w"> </span>5652179ad55f76cb287d9c633bb53bbd
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7"></a><a href="#__codelineno-11-7"><span class="linenos" data-linenos="7 "></span></a>This<span class="w"> </span><span class="nb">command</span><span class="w"> </span>was<span class="w"> </span>run<span class="w"> </span>using<span class="w"> </span>/opt/hadoop-3.3.6/share/hadoop/common/hadoop-common-3.3.6.jar
+</span></code></pre></div>
+<h3 id="22-configuracion">2.2 Configuración<a class="headerlink" href="#22-configuracion" title="Permanent link">&para;</a></h3>
+<p>Los archivos que vamos a revisar a continuación se encuentran dentro de la carpeta <code>$HADOOP_HOME/etc/hadoop</code>.</p>
+<ol>
+<li>El archivo que contiene la configuración general del clúster es el archivo <code>core-site.xml</code>. En él se configura cual será el sistema de ficheros, que normalmente será hdfs, indicando el dominio del nodo que será el maestro de datos (namenode) de la arquitectura. Podéis sustituir el nombre del dominio <code>bda-iesgrancapitan</code> por el que queráis. En mi caso sera <code>cluster-bda</code></li>
+</ol>
+<div class="language-xml highlight"><span class="filename">core-site.xml</span><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="nt">&lt;configuration&gt;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2"></a><a href="#__codelineno-12-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3"></a><a href="#__codelineno-12-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>fs.defaultFS<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4"></a><a href="#__codelineno-12-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>hdfs://cluster-bda:9000<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5"></a><a href="#__codelineno-12-5"><span class="linenos" data-linenos="5 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6"></a><a href="#__codelineno-12-6"><span class="linenos" data-linenos="6 "></span></a><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></div>
+<ol start="2">
+<li>El siguiente paso es configurar el archivo <code>hdfs-site.xml</code> donde se indica tanto el factor de replica como la ruta donde se almacenan tanto los metadatos (namenode) como los datos en sí (datanode). Aquí puedes consultar todos los parámetros por defecto susceptibles de cambio se encuentran en este <a href="https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/hdfs-default.xml">recurso</a></li>
+</ol>
+<div class="language-xml highlight"><span class="filename">hdfs-site.xml</span><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="nt">&lt;configuration&gt;</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>1<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><a href="#__codelineno-13-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><a href="#__codelineno-13-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><a href="#__codelineno-13-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>dfs.namenode.name.dir<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a><a href="#__codelineno-13-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>/opt/hadoop/hadoop_data/hdfs/namenode<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><a href="#__codelineno-13-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><a href="#__codelineno-13-11"><span class="linenos" data-linenos="11 "></span></a>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><a href="#__codelineno-13-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a><a href="#__codelineno-13-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>dfs.datanode.data.dir<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14"></a><a href="#__codelineno-13-14"><span class="linenos" data-linenos="14 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>/opt/hadoop/hadoop_data/hdfs/datanode<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15"></a><a href="#__codelineno-13-15"><span class="linenos" data-linenos="15 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16"></a><a href="#__codelineno-13-16"><span class="linenos" data-linenos="16 "></span></a><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></div>
+<ol start="3">
+<li>Crea los directorios de <code>hadoop-data</code> configurados anteriormente en <code>hdfs-site.xml</code> para cuando ejecutemos <strong>hadoop</strong> y configura los permisos oportunos.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/opt/hadoop
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>hadoop:hadoop<span class="w"> </span>/opt/hadoop
+</span></code></pre></div>
+<ol start="4">
+<li>Configuramos <strong>MapReduce</strong></li>
+</ol>
+<div class="language-xml highlight"><span class="filename">mapred-site.xml</span><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="nt">&lt;configuration&gt;</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2"></a><a href="#__codelineno-15-2"><span class="linenos" data-linenos="2 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3"></a><a href="#__codelineno-15-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4"></a><a href="#__codelineno-15-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5"></a><a href="#__codelineno-15-5"><span class="linenos" data-linenos="5 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6"></a><a href="#__codelineno-15-6"><span class="linenos" data-linenos="6 "></span></a><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></div>
+<ol start="5">
+<li>Configuramos <strong>Yarn</strong></li>
+</ol>
+<p>Primero obtenemos la ruta correcta del classpath de Hadoop ejecutamos la siguiente instrucción</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a>echo `hadoop classpath`
+</span></code></pre></div>
+<p>Y es esta salida la que tenemos que poner como valor de la propiedad. En mi caso:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a>/opt/hadoop-3.3.6/etc/hadoop:/opt/hadoop-3.3.6/share/hadoop/common/lib/*:/opt/hadoop-3.3.6/share/hadoop/common/*:/opt/hadoop-3.3.6/share/hadoop/hdfs:/opt/hadoop-3.3.6/share/hadoop/hdfs/lib/*:/opt/hadoop-3.3.6/share/hadoop/hdfs/*:/opt/hadoop-3.3.6/share/hadoop/mapreduce/*:/opt/hadoop-3.3.6/share/hadoop/yarn:/opt/hadoop-3.3.6/share/hadoop/yarn/lib/*:/opt/hadoop-3.3.6/share/hadoop/yarn/*
+</span></code></pre></div>
+<p>Por tanto la configuración final será</p>
+<div class="language-xml highlight"><span class="filename">yarn-site.xml</span><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="nt">&lt;configuration&gt;</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2"></a><a href="#__codelineno-18-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3"></a><a href="#__codelineno-18-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.webapp.ui2.enable<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4"></a><a href="#__codelineno-18-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5"></a><a href="#__codelineno-18-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span><span class="w">  </span>
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6"></a><a href="#__codelineno-18-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7"></a><a href="#__codelineno-18-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.resourcemanager.hostname<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8"></a><a href="#__codelineno-18-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>cluster-bda<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9"></a><a href="#__codelineno-18-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10"></a><a href="#__codelineno-18-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11"></a><a href="#__codelineno-18-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12"></a><a href="#__codelineno-18-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13"></a><a href="#__codelineno-18-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14"></a><a href="#__codelineno-18-14"><span class="linenos" data-linenos="14 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15"></a><a href="#__codelineno-18-15"><span class="linenos" data-linenos="15 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services.mapreduce_shuffle.class<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16"></a><a href="#__codelineno-18-16"><span class="linenos" data-linenos="16 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-17"><a id="__codelineno-18-17" name="__codelineno-18-17"></a><a href="#__codelineno-18-17"><span class="linenos" data-linenos="17 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-18-18"><a id="__codelineno-18-18" name="__codelineno-18-18"></a><a href="#__codelineno-18-18"><span class="linenos" data-linenos="18 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-19"><a id="__codelineno-18-19" name="__codelineno-18-19"></a><a href="#__codelineno-18-19"><span class="linenos" data-linenos="19 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.log-aggregation-enable<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-20"><a id="__codelineno-18-20" name="__codelineno-18-20"></a><a href="#__codelineno-18-20"><span class="linenos" data-linenos="20 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>true<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-21"><a id="__codelineno-18-21" name="__codelineno-18-21"></a><a href="#__codelineno-18-21"><span class="linenos" data-linenos="21 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-18-22"><a id="__codelineno-18-22" name="__codelineno-18-22"></a><a href="#__codelineno-18-22"><span class="linenos" data-linenos="22 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-23"><a id="__codelineno-18-23" name="__codelineno-18-23"></a><a href="#__codelineno-18-23"><span class="linenos" data-linenos="23 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.application.classpath<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-24"><a id="__codelineno-18-24" name="__codelineno-18-24"></a><a href="#__codelineno-18-24"><span class="linenos" data-linenos="24 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>/opt/hadoop-3.3.6/etc/hadoop:/opt/hadoop-3.3.6/share/hadoop/common/lib/*:/opt/hadoop-3.3.6/share/hadoop/common/*:/opt/hadoop-3.3.6/share/hadoop/hdfs:/opt/hadoop-3.3.6/share/hadoop/hdfs/lib/*:/opt/hadoop-3.3.6/share/hadoop/hdfs/*:/opt/hadoop-3.3.6/share/hadoop/mapreduce/*:/opt/hadoop-3.3.6/share/hadoop/yarn:/opt/hadoop-3.3.6/share/hadoop/yarn/lib/*:/opt/hadoop-3.3.6/share/hadoop/yarn/*<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-25"><a id="__codelineno-18-25" name="__codelineno-18-25"></a><a href="#__codelineno-18-25"><span class="linenos" data-linenos="25 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span>
+</span><span id="__span-18-26"><a id="__codelineno-18-26" name="__codelineno-18-26"></a><a href="#__codelineno-18-26"><span class="linenos" data-linenos="26 "></span></a><span class="w">    </span><span class="nt">&lt;property&gt;</span>
+</span><span id="__span-18-27"><a id="__codelineno-18-27" name="__codelineno-18-27"></a><a href="#__codelineno-18-27"><span class="linenos" data-linenos="27 "></span></a><span class="w">        </span><span class="nt">&lt;name&gt;</span>yarn.resourcemanager.webapp.address<span class="nt">&lt;/name&gt;</span>
+</span><span id="__span-18-28"><a id="__codelineno-18-28" name="__codelineno-18-28"></a><a href="#__codelineno-18-28"><span class="linenos" data-linenos="28 "></span></a><span class="w">        </span><span class="nt">&lt;value&gt;</span>0.0.0.0:8088<span class="nt">&lt;/value&gt;</span>
+</span><span id="__span-18-29"><a id="__codelineno-18-29" name="__codelineno-18-29"></a><a href="#__codelineno-18-29"><span class="linenos" data-linenos="29 "></span></a><span class="w">    </span><span class="nt">&lt;/property&gt;</span><span class="w">      </span>
+</span><span id="__span-18-30"><a id="__codelineno-18-30" name="__codelineno-18-30"></a><a href="#__codelineno-18-30"><span class="linenos" data-linenos="30 "></span></a><span class="nt">&lt;/configuration&gt;</span>
+</span></code></pre></div>
+<ol>
+<li>Añade a <code>/etc/hosts</code>el nombre de tu dominio indicado en <code>core-site.xml</code> para que no te de error de resolución de nombres. En mi caso añado la siguiente linea:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="m">192</span>.168.11.10<span class="w">   </span>cluster-bda
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2"></a><a href="#__codelineno-19-2"><span class="linenos" data-linenos="2 "></span></a><span class="m">192</span>.168.11.10<span class="w">   </span>master
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3"></a><a href="#__codelineno-19-3"><span class="linenos" data-linenos="3 "></span></a><span class="m">192</span>.168.11.11<span class="w">   </span>nodo1
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4"></a><a href="#__codelineno-19-4"><span class="linenos" data-linenos="4 "></span></a><span class="m">192</span>.168.11.12<span class="w">   </span>nodo2
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5"></a><a href="#__codelineno-19-5"><span class="linenos" data-linenos="5 "></span></a><span class="m">192</span>.168.11.13<span class="w">   </span>nodo3
+</span></code></pre></div>
+<ol start="7">
+<li>Reiniciamos el servicio</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>systemd-resolved.service
+</span></code></pre></div>
+<ol start="8">
+<li>Generamos las claves ssh:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-P<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_rsa
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="9">
+<li>Comprobamos que podemos acceder por ssh</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><a href="#__codelineno-22-1"><span class="linenos" data-linenos="1 "></span></a>ssh<span class="w"> </span>cluter-bda
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><a href="#__codelineno-22-2"><span class="linenos" data-linenos="2 "></span></a><span class="c1">#exit</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><a href="#__codelineno-22-3"><span class="linenos" data-linenos="3 "></span></a>ssh<span class="w"> </span>master
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><a href="#__codelineno-22-4"><span class="linenos" data-linenos="4 "></span></a><span class="c1">#exit</span>
+</span></code></pre></div>
+<ol start="10">
+<li>Configura el archivo <code>$HADOOP_HOME/etc/hadoop/workers</code> que le indica a hadoop los nodos que van a actuar como workers.</li>
+</ol>
+<div class="language-text highlight"><span class="filename">workers</span><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><a href="#__codelineno-23-1"><span class="linenos" data-linenos="1 "></span></a>nodo1
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><a href="#__codelineno-23-2"><span class="linenos" data-linenos="2 "></span></a>nodo2
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a><a href="#__codelineno-23-3"><span class="linenos" data-linenos="3 "></span></a>nodo3
+</span></code></pre></div>
+<h3 id="23-ejecucion">2.3 Ejecución<a class="headerlink" href="#23-ejecucion" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Ejecuta el siguiente comando</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><a href="#__codelineno-24-1"><span class="linenos" data-linenos="1 "></span></a>hdfs<span class="w"> </span>namenode<span class="w"> </span>-format
+</span></code></pre></div>
+<ol start="2">
+<li>
+<p>Comprobamos la correcta configuración</p>
+</li>
+<li>
+<p>Iniciando el demonio Namenode y Datanode</p>
+</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><a href="#__codelineno-25-1"><span class="linenos" data-linenos="1 "></span></a>start-dfs.sh
+</span></code></pre></div>
+<ol start="4">
+<li>Iniciando Yarn</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><a href="#__codelineno-26-1"><span class="linenos" data-linenos="1 "></span></a>start-yarn.sh
+</span></code></pre></div>
+<ol start="5">
+<li>Nos debe levantar el servicio correctamente, indicando que no puede conectarse a los nodos 1, 2 y 3, ya que todavía no los hemos creado.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><a href="#__codelineno-27-1"><span class="linenos" data-linenos="1 "></span></a>nodo3:<span class="w"> </span>ssh:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>resolve<span class="w"> </span>hostname<span class="w"> </span>nodo3:<span class="w"> </span>Temporary<span class="w"> </span>failure<span class="w"> </span><span class="k">in</span><span class="w"> </span>name<span class="w"> </span>resolution
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><a href="#__codelineno-27-2"><span class="linenos" data-linenos="2 "></span></a>nodo2:<span class="w"> </span>ssh:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>resolve<span class="w"> </span>hostname<span class="w"> </span>nodo2:<span class="w"> </span>Temporary<span class="w"> </span>failure<span class="w"> </span><span class="k">in</span><span class="w"> </span>name<span class="w"> </span>resolution
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><a href="#__codelineno-27-3"><span class="linenos" data-linenos="3 "></span></a>nodo1:<span class="w"> </span>ssh:<span class="w"> </span>Could<span class="w"> </span>not<span class="w"> </span>resolve<span class="w"> </span>hostname<span class="w"> </span>nodo1:<span class="w"> </span>Temporary<span class="w"> </span>failure<span class="w"> </span><span class="k">in</span><span class="w"> </span>name<span class="w"> </span>resolution
+</span></code></pre></div>
+<ol start="6">
+<li>
+<p>Accede desde el navegador del anfitrión con la ip configurada en la Interfaz de red solo anfitrión. En mi caso a <code>http://192.168.56.11:9870/</code> para acceder al interfaz web de HDFS</p>
+</li>
+<li>
+<p>Accede también a la WebUI de Yarn <code>http://192.168.56.11:8088/ui2</code></p>
+</li>
+<li>
+<p>Paramos hadoop</p>
+</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><a href="#__codelineno-28-1"><span class="linenos" data-linenos="1 "></span></a>stop-all.sh
+</span></code></pre></div>
+<h2 id="3-nodos">3. Nodos<a class="headerlink" href="#3-nodos" title="Permanent link">&para;</a></h2>
+<h3 id="31-clonacion-de-la-maquina-master">3.1 Clonación de la máquina master<a class="headerlink" href="#31-clonacion-de-la-maquina-master" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Paramos la máquina <code>master</code></li>
+<li>Clonamos la máquina 3 veces para crear los 3 nodos del cluster.</li>
+<li>A la hora de clonar, genera nuevas direcciones MAC para los interfaces de red</li>
+<li>Clonación completa</li>
+</ol>
+<h3 id="32-configuracion-nodos">3.2 Configuración nodos<a class="headerlink" href="#32-configuracion-nodos" title="Permanent link">&para;</a></h3>
+<p>Tenemos que cambiar algunas configuraciones en nuestros nodos:
+- El nombre del hostname
+- Configuración de red</p>
+<ol>
+<li>Cambiamos el nombre del host:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><a href="#__codelineno-29-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>hostnamectl<span class="w"> </span>set-hostname<span class="w"> </span>nodo1
+</span></code></pre></div>
+<ol start="2">
+<li>
+<p>Actualizamos <code>/etc/hosts</code> y sustituimos <code>master</code> por <code>nodo1</code></p>
+</li>
+<li>
+<p>Accedemos a la configuración de red a través de netplan en el fichero <code>/etc/netplan/00-instaler-config.yaml</code> y cambiamos la configuración de las 2 interfaces de red con las ips correspondientes</p>
+</li>
+<li>
+<p>Esta sería la configuración completa</p>
+</li>
+</ol>
+<div class="language-yaml highlight"><span class="filename">00-instaler-config.yaml</span><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><a href="#__codelineno-30-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="nt">network</span><span class="p">:</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><a href="#__codelineno-30-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="nt">ethernets</span><span class="p">:</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><a href="#__codelineno-30-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="w">    </span><span class="nt">enp3s0</span><span class="p">:</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><a href="#__codelineno-30-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><a href="#__codelineno-30-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.11.11/24</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><a href="#__codelineno-30-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="w">        </span><span class="nt">nameservers</span><span class="p">:</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><a href="#__codelineno-30-7"><span class="linenos" data-linenos=" 7 "></span></a><span class="w">            </span><span class="nt">addresses</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">8.8.8.8</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.1.1.1</span><span class="p p-Indicator">]</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a><a href="#__codelineno-30-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="w">        </span><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9"></a><a href="#__codelineno-30-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10"></a><a href="#__codelineno-30-10"><span class="linenos" data-linenos="10 "></span></a><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">via</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.11.1</span>
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11"></a><a href="#__codelineno-30-11"><span class="linenos" data-linenos="11 "></span></a><span class="w">    </span><span class="nt">enp8s0</span><span class="p">:</span>
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12"></a><a href="#__codelineno-30-12"><span class="linenos" data-linenos="12 "></span></a><span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13"></a><a href="#__codelineno-30-13"><span class="linenos" data-linenos="13 "></span></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.56.11/24</span>
+</span><span id="__span-30-14"><a id="__codelineno-30-14" name="__codelineno-30-14"></a><a href="#__codelineno-30-14"><span class="linenos" data-linenos="14 "></span></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</span></code></pre></div>
+<ol start="5">
+<li>Aplicamos la nueva configuración</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><a href="#__codelineno-31-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>netplan<span class="w"> </span>apply
+</span></code></pre></div>
+<ol start="6">
+<li>Reiniciamos</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><a href="#__codelineno-32-1"><span class="linenos" data-linenos="1 "></span></a>reboot
+</span></code></pre></div>
+<ol start="7">
+<li>Realizamos las mismas operaciones en el <code>nodo2</code> y <code>nodo3</code> con sus correspondientes IPs</li>
+</ol>
+<h2 id="4-cluster">4. Cluster<a class="headerlink" href="#4-cluster" title="Permanent link">&para;</a></h2>
+<h3 id="41-configuracion-ssh">4.1 Configuración ssh<a class="headerlink" href="#41-configuracion-ssh" title="Permanent link">&para;</a></h3>
+<p>Por último, nos queda crear las correspondientes claves ssh de los nodos para que exista una correcta comunicación entre todos los nodos del cluster.</p>
+<ol>
+<li>
+<p>Todos los nodos del cluster deben tener todas las claves públicas del resto de nodos, para su correcto funcionamiento. Por tanto, vamos a ir generando una por una en cada nodo del cluster y las vamos añadiendo a medida que recorremos el cluster. Finalmente, el fichero resultante en el último nodo del cluster contendrá todas las claves. Este deberá ser copiado en todos los nodos los cluster. Vamos a ver el paso a paso para entenderlo mejor.</p>
+</li>
+<li>
+<p>Entramos en el <code>master</code> y generamos las claves ssh:</p>
+</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><a href="#__codelineno-33-1"><span class="linenos" data-linenos="1 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-P<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_rsa
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><a href="#__codelineno-33-2"><span class="linenos" data-linenos="2 "></span></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="3">
+<li>La copiamos en el siguiente nodo. En nuestro caso <code>nodo1</code></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><a href="#__codelineno-34-1"><span class="linenos" data-linenos="1 "></span></a>scp<span class="w"> </span>~/.ssh/authorized_keys<span class="w"> </span>hadoop@nodo1:~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="4">
+<li>Accedemos al nodo <code>nodo1</code> por ssh. <em>Como <code>nodo1</code> ya conoce la clave de master, no nos pide contraseña. Así también vamos comprobando que la configuración es correcta en cada nodo</em>.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><a href="#__codelineno-35-1"><span class="linenos" data-linenos="1 "></span></a>ssh<span class="w"> </span>nodo1
+</span></code></pre></div>
+<ol start="5">
+<li>Generamos las claves ssh del <code>nodo1</code>:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><a href="#__codelineno-36-1"><span class="linenos" data-linenos="1 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-P<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_rsa
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><a href="#__codelineno-36-2"><span class="linenos" data-linenos="2 "></span></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="6">
+<li>Comprobamos que tenemos todas las claves generadas hasta ahora</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><a href="#__codelineno-37-1"><span class="linenos" data-linenos="1 "></span></a>cat<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><a href="#__codelineno-38-1"><span class="linenos" data-linenos="1 "></span></a>ssh-rsa<span class="w"> </span>AAAAB3NzaC1yc2EAAAADAQABAAABgQCTyaPCHbtoUIIu/L+9ykq65descImdc1eXv7WUkDL803hDsedzBiMYW4UrNjr2ZhJAPjiUtnqM3xnlYdgJ2T5sWdSO45Dh3IIRufSCOJNvWG0PMM2klAokhqoW2Vhbh50z/2AXdRU00cMd+uE1ETLBg8kvTc+RDc94ctzdlG9hQpe6psRJ2xoG1kJ8DpvXExrynTgTPbIlGiU8K3Z3+fh5WHOwJOjXu1zNMMTNsKRBf39zW0gkyZOcRpjgg4VO2T2esbXffihRLWgCnYjQf683ctoS8nZEigoQkMV8EgRtcvCnBYYmPy5VL155DqN3c1luR0rOOLxB3WSfAm+rod/jd1SLU1nQzhRryFfWu5YEns+hSO7gZG4RzNtfKVVO78xubiprab2gg2ySIvQH4qE8ytqRq44zn7P/KvkenXRk/PRZaBsSXTejLxORTyo0iR4ssWsoMJDPqmGDQ9xPVobROG0ZDiQ2TWAE/B1ww463a2HHXh58zCcrAc+MW5hJNv0<span class="o">=</span><span class="w"> </span>hadoop@master
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a><a href="#__codelineno-38-2"><span class="linenos" data-linenos="2 "></span></a>ssh-rsa<span class="w"> </span>AAAAB3NzaC1yc2EAAAADAQABAAABgQC8Y4ksoigj130KJcNRoVZTJ9ehdWkXyb9VMlTi6YZ9WHdvDafJtW2oILCm9PTvOlAjaCJ7D8na5b/CC7BYk2lNAKgw+wQBG9TekCV+HZHcFrXuw6UkdyqQ29rujgyYBqg7dZHtJk8lMBJXY7N/fkSk10uSTNQ3AlqBa6vR23CWVMFhHrkM314/GFcP2aSLoFnIVEm4eyWSPL+5dFchM74EuxJpgP5NqfLrR/nTLQpXn8FJDjj5cxlCGSA/HV82SxJk0TAw4tPH3+q4zuLTzTMkUk8flUPWcon626vt+5wS0cdHo4A0UPsYs10MQ0YiEp00FUFWoQeTVGKvDkRwuMXHjkM+axIiqY9CPIEKT+5O8H/pIJyH0onGOpz4sUhiyj/UzQz4B5J/ky/CAA+TTy2ZWjSX9HN9Sr/0cyVlrjNcIZSpck+XqielhfuRjudEzt9emFCPI1ylRhrE4xt5XfCUSTPp8TnwSrzxGJuIHNbFTaVQ/g2CpkDoBe3xaJ/UaHU<span class="o">=</span><span class="w"> </span>hadoop@nodo1
+</span></code></pre></div>
+<ol start="7">
+<li>La copiamos en el siguiente nodo. En nuestro caso <code>nodo2</code></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><a href="#__codelineno-39-1"><span class="linenos" data-linenos="1 "></span></a>scp<span class="w"> </span>~/.ssh/authorized_keys<span class="w"> </span>hadoop@nodo2:~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="8">
+<li>Accedemos al nodo <code>node2</code> por ssh.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><a href="#__codelineno-40-1"><span class="linenos" data-linenos="1 "></span></a>ssh<span class="w"> </span>nodo2
+</span></code></pre></div>
+<ol start="9">
+<li>Generamos las claves ssh del <code>nodo2</code>:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><a href="#__codelineno-41-1"><span class="linenos" data-linenos="1 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-P<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_rsa
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><a href="#__codelineno-41-2"><span class="linenos" data-linenos="2 "></span></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="10">
+<li>Comprobamos que tenemos todas las claves generadas hasta ahora</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><a href="#__codelineno-42-1"><span class="linenos" data-linenos="1 "></span></a>cat<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="11">
+<li>La copiamos en el siguiente nodo. En nuestro caso <code>nodo3</code></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><a href="#__codelineno-43-1"><span class="linenos" data-linenos="1 "></span></a>scp<span class="w"> </span>~/.ssh/authorized_keys<span class="w"> </span>hadoop@nodo3:~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="12">
+<li>Accedemos al nodo <code>nodo3</code> por ssh.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><a href="#__codelineno-44-1"><span class="linenos" data-linenos="1 "></span></a>ssh<span class="w"> </span>nodo3
+</span></code></pre></div>
+<ol start="13">
+<li>Generamos las claves ssh del <code>nodo2</code>:</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><a href="#__codelineno-45-1"><span class="linenos" data-linenos="1 "></span></a>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>rsa<span class="w"> </span>-P<span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span>-f<span class="w"> </span>~/.ssh/id_rsa
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><a href="#__codelineno-45-2"><span class="linenos" data-linenos="2 "></span></a>cat<span class="w"> </span>~/.ssh/id_rsa.pub<span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="14">
+<li>Comprobamos que tenemos todas las claves generadas hasta ahora</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a><a href="#__codelineno-46-1"><span class="linenos" data-linenos="1 "></span></a>cat<span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="15">
+<li>Una vez terminado todo nuestro cluster, la copiamos en todos los nodos.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a><a href="#__codelineno-47-1"><span class="linenos" data-linenos="1 "></span></a>scp<span class="w"> </span>~/.ssh/authorized_keys<span class="w"> </span>hadoop@nodo2:~/.ssh/authorized_keys
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2"></a><a href="#__codelineno-47-2"><span class="linenos" data-linenos="2 "></span></a>scp<span class="w"> </span>~/.ssh/authorized_keys<span class="w"> </span>hadoop@nodo1:~/.ssh/authorized_keys
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3"></a><a href="#__codelineno-47-3"><span class="linenos" data-linenos="3 "></span></a>scp<span class="w"> </span>~/.ssh/authorized_keys<span class="w"> </span>hadoop@master:~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="16">
+<li>Por último, entramos a cada uno de los nodos y cambiamos los permisos de <code>~/.ssh/authorized_keys</code>.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a><a href="#__codelineno-48-1"><span class="linenos" data-linenos="1 "></span></a>chmod<span class="w"> </span><span class="m">0600</span><span class="w"> </span>~/.ssh/authorized_keys
+</span></code></pre></div>
+<ol start="17">
+<li>Cerramos todas las conexiones ssh</li>
+</ol>
+<h3 id="42-preparando-los-nodos-del-cluster">4.2 Preparando los nodos del cluster<a class="headerlink" href="#42-preparando-los-nodos-del-cluster" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Ahora nos queda hacer una correcta gestión de las carpetas de namenode y datanode. Recuerda que los archivos de datanode deben estar en los workers</p>
+</li>
+<li>
+<p>Por tanto, en cada uno de los nodos workers(<code>nodo1</code>,<code>nodo2</code>,<code>nodo3</code>), borramos la carpeta <code>namenode</code> y el interior de la carpeta <code>datanode</code>, donde tenemos el directorio <code>current</code></p>
+</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a><a href="#__codelineno-49-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/opt/hadoop/hadoop_data/hdfs/namenode
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2"></a><a href="#__codelineno-49-2"><span class="linenos" data-linenos="2 "></span></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/opt/hadoop/hadoop_data/hdfs/datanode/current
+</span></code></pre></div>
+<ol start="3">
+<li>Siguiendo la lógica, en el nodo <code>master</code> eliminamos el directorio <code>datanode</code></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a><a href="#__codelineno-50-1"><span class="linenos" data-linenos="1 "></span></a>sudo<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>/opt/hadoop/hadoop_data/hdfs/datanode
+</span></code></pre></div>
+<ol start="4">
+<li>Desde el nodo <code>master</code>, damos de nuevo formato a HDFS</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1"></a><a href="#__codelineno-51-1"><span class="linenos" data-linenos="1 "></span></a>hdfs<span class="w"> </span>namenode<span class="w"> </span>-format
+</span></code></pre></div>
+<h3 id="43-levantamos-el-cluster">4.3 Levantamos el cluster<a class="headerlink" href="#43-levantamos-el-cluster" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Iniciando el demonio Namenode y Datanode</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1"></a><a href="#__codelineno-52-1"><span class="linenos" data-linenos="1 "></span></a>start-dfs.sh
+</span></code></pre></div>
+<ol start="2">
+<li>Vemos como arranca <code>namenode</code> y <code>secondarynamenode</code> en el nodo master y el datanode</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a><a href="#__codelineno-53-1"><span class="linenos" data-linenos="1 "></span></a>Starting<span class="w"> </span>namenodes<span class="w"> </span>on<span class="w"> </span><span class="o">[</span>cluster-bda<span class="o">]</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2"></a><a href="#__codelineno-53-2"><span class="linenos" data-linenos="2 "></span></a>Starting<span class="w"> </span>datanodes
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3"></a><a href="#__codelineno-53-3"><span class="linenos" data-linenos="3 "></span></a>Starting<span class="w"> </span>secondary<span class="w"> </span>namenodes<span class="w"> </span><span class="o">[</span>master<span class="o">]</span>
+</span></code></pre></div>
+<ol start="3">
+<li>Iniciamos Yarn</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1"></a><a href="#__codelineno-54-1"><span class="linenos" data-linenos="1 "></span></a>start-yarn.sh
+</span></code></pre></div>
+<ol start="4">
+<li>Se inician el <code>resourcemanager</code> y el <code>nodemanagers</code></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1"></a><a href="#__codelineno-55-1"><span class="linenos" data-linenos="1 "></span></a>Starting<span class="w"> </span>resourcemanager
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2"></a><a href="#__codelineno-55-2"><span class="linenos" data-linenos="2 "></span></a>Starting<span class="w"> </span>nodemanagers
+</span></code></pre></div>
+<ol start="5">
+<li>Arrancamos también el servidor de historial de trabajos (JobHistory Server) en un clúster de Hadoop</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1"></a><a href="#__codelineno-56-1"><span class="linenos" data-linenos="1 "></span></a>mapred<span class="w"> </span>--daemon<span class="w"> </span>start<span class="w"> </span>historyserver
+</span></code></pre></div>
+<ol start="6">
+<li>Comprobamos con <code>jps</code>. Vemos que se ejecutan los servicios que se tienen que ejecutar en el nodo <code>master</code></li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1"></a><a href="#__codelineno-57-1"><span class="linenos" data-linenos="1 "></span></a><span class="m">2946</span><span class="w"> </span>ResourceManager
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2"></a><a href="#__codelineno-57-2"><span class="linenos" data-linenos="2 "></span></a><span class="m">2741</span><span class="w"> </span>SecondaryNameNode
+</span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3"></a><a href="#__codelineno-57-3"><span class="linenos" data-linenos="3 "></span></a><span class="m">2553</span><span class="w"> </span>NameNode
+</span><span id="__span-57-4"><a id="__codelineno-57-4" name="__codelineno-57-4"></a><a href="#__codelineno-57-4"><span class="linenos" data-linenos="4 "></span></a><span class="m">3324</span><span class="w"> </span>Jps
+</span><span id="__span-57-5"><a id="__codelineno-57-5" name="__codelineno-57-5"></a><a href="#__codelineno-57-5"><span class="linenos" data-linenos="5 "></span></a><span class="m">3263</span><span class="w"> </span>JobHistoryServer
+</span></code></pre></div>
+<ol start="7">
+<li>Comprobamos con <code>jps</code> en cualquier nodo worker(<code>nodo1</code>,<code>nodo2</code>,<code>nodo3</code>). También vemos que se ejecutan los servicios que se tienen que ejecutar en los nodos worker.</li>
+</ol>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1"></a><a href="#__codelineno-58-1"><span class="linenos" data-linenos="1 "></span></a><span class="m">2790</span><span class="w"> </span>Jps
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2"></a><a href="#__codelineno-58-2"><span class="linenos" data-linenos="2 "></span></a><span class="m">2554</span><span class="w"> </span>DataNode
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3"></a><a href="#__codelineno-58-3"><span class="linenos" data-linenos="3 "></span></a><span class="m">2702</span><span class="w"> </span>NodeManager
+</span></code></pre></div>
+<ol start="8">
+<li>Comprobamos con nuestra interfaz web de HDFS</li>
+</ol>
+<figure style="align: center;">
+    <img src="images/Figura4.4_ClusterHadoop_InterfazWeb_Cluster_Datanode.jpg">
+    <figcaption>Figura 4 Cluster Hadoop: Interfaz Web Datanodes Cluster. (Fuente: Propia)</figcaption>
+</figure>
+
+<ol start="9">
+<li>Ya podemos utilizar el cluster. Compruébalo realizando alguno de los ejemplos desarrollados en los puntos anteriores</li>
+</ol>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2023-2024 Jaime Rabasco - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jaimerabasco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<jaimerabasco@iesgrancapitan.org>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.indexes", "toc.follow", "navigation.top", "header.autohide", "announce.dismiss", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

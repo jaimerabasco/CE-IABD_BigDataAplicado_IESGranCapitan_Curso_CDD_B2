@@ -1,0 +1,2720 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/neo4j.html">
+      
+      
+        <link rel="prev" href="mongoDB.html">
+      
+      
+        <link rel="next" href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/index.html">
+      
+      
+      <link rel="icon" href="../images/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Neo4j - Big Data Aplicado</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Neo4j - Big Data Aplicado" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD2 - Procesado y Presentación Datos Almacenados/neo4j.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/neo4j.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Neo4j - Big Data Aplicado" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD2 - Procesado y Presentación Datos Almacenados/neo4j.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ud-2-procesado-y-presentacion-datos-almacenados-neo4j" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../index.html" title="Big Data Aplicado" class="md-header__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Big Data Aplicado
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Neo4j
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Big Data Aplicado" class="md-nav__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Big Data Aplicado
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadatos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadatos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guia_didactica.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía Didáctica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD1 - Gestión de Soluciones
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD1 - Gestión de Soluciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/1_dis_const_soluc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diseño y Construcción de Soluciones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/2_proced_mecan_ingesta_datos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procedimientos y Mecanismos de Ingesta de Datos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/3_form_datos_almacenamiento.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formato de Datos Adecuado para el Almacenamiento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD2 - Procesado y Presentación Datos Almacenados
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD2 - Procesado y Presentación Datos Almacenados
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mongoDB.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Neo4j
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="neo4j.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Neo4j
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introducción
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-una-graph-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 ¿Qué es una Graph Database?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-propiedades-del-modelo-de-grafo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Propiedades del modelo de grafo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-que-es-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 ¿Qué es Neo4j?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-por-que-graph-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 ¿Por qué Graph Database?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-donde-y-como-se-utiliza-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. ¿Dónde y cómo se utiliza Neo4j?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cypher" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Cypher
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Cypher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-que-es-cypher" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 ¿Qué es Cypher?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-diferencias-en-cypher-y-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Diferencias en Cypher y SQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-instalacion-y-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Instalación y uso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Instalación y uso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-neo4j-aura" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Neo4j Aura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-auradb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 AuraDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-aurads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 AuraDS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-sandbox-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Sandbox Neo4j
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-get-started-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Get started Neo4j
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Get started Neo4j">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-importacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Importación de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-creacion-de-grafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Creación de grafos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-eliminar-nodos-y-grafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Eliminar nodos y grafos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-neo4j-graph-data-science" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Neo4j Graph Data Science
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-recorridos-sobre-grafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Recorridos sobre grafos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Recorridos sobre grafos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-recorrido-en-anchura-bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Recorrido en anchura (BFS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-recorrido-en-profundidad-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Recorrido en profundidad (DFS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-caminos-minimos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Caminos mínimos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Caminos mínimos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-algoritmo-de-dijkstra" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Algoritmo de Dijkstra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-algoritmo-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Algoritmo A*
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-medidas-de-centralidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Medidas de centralidad
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Medidas de centralidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-centralidad-de-grado-degree-centrality" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Centralidad de grado (Degree Centrality)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-cercania-closeness-centrality" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Cercanía (Closeness Centrality)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-intermediacion-betweenness-centrality" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 Intermediación (Betweenness Centrality)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-deteccion-de-comunidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Detección de comunidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Detección de comunidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-conteo-de-triangulostriangle-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Conteo de triángulos(Triangle Count)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-coeficiente-local-de-clustering-local-clustering-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Coeficiente local de clustering (Local Clustering Coefficient)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-componentes-fuertemente-conexas-strongly-connected-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 Componentes fuertemente conexas (Strongly Connected Components)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-prediccion-de-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Predicción de enlaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Predicción de enlaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-vecinos-comunes-common-neighbors" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 Vecinos comunes (Common Neighbors)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-adhesion-preferencial-preferential-attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.2 Adhesión preferencial (Preferential Attachment)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-asignacion-de-recursos-resource-allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3 Asignación de recursos (Resource Allocation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Ejemplo
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD3 - Introducción a la computación paralela y distribuida
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD3 - Introducción a la computación paralela y distribuida
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/comput_paralela_distribuida.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Computación Paralela y Distribuida
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD4%20-%20Apache%20Hadoop/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD4 - Apache Hadoop
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD4 - Apache Hadoop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/1_Plataforma_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plataforma y Ecosistema Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/2_Hadoop_HDFS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HDFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/3_Hadoop_Map_Reduce.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Reduce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/4_Hadoop_Yarn.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yarn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/5_Cluster_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creditos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creditos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Introducción
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Introducción">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-que-es-una-graph-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 ¿Qué es una Graph Database?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-propiedades-del-modelo-de-grafo" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Propiedades del modelo de grafo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-que-es-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 ¿Qué es Neo4j?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-por-que-graph-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 ¿Por qué Graph Database?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-donde-y-como-se-utiliza-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5. ¿Dónde y cómo se utiliza Neo4j?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-cypher" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Cypher
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Cypher">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-que-es-cypher" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 ¿Qué es Cypher?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-diferencias-en-cypher-y-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Diferencias en Cypher y SQL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-instalacion-y-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Instalación y uso
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Instalación y uso">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-neo4j-aura" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Neo4j Aura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-auradb" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 AuraDB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-aurads" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 AuraDS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35-sandbox-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Sandbox Neo4j
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-get-started-neo4j" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Get started Neo4j
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Get started Neo4j">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-importacion-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 Importación de datos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-creacion-de-grafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Creación de grafos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-eliminar-nodos-y-grafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Eliminar nodos y grafos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-neo4j-graph-data-science" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Neo4j Graph Data Science
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-recorridos-sobre-grafos" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Recorridos sobre grafos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Recorridos sobre grafos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-recorrido-en-anchura-bfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.1 Recorrido en anchura (BFS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-recorrido-en-profundidad-dfs" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.2 Recorrido en profundidad (DFS)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-caminos-minimos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Caminos mínimos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Caminos mínimos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-algoritmo-de-dijkstra" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Algoritmo de Dijkstra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-algoritmo-a" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Algoritmo A*
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-medidas-de-centralidad" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Medidas de centralidad
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Medidas de centralidad">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-centralidad-de-grado-degree-centrality" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.1 Centralidad de grado (Degree Centrality)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-cercania-closeness-centrality" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.2 Cercanía (Closeness Centrality)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#83-intermediacion-betweenness-centrality" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.3 Intermediación (Betweenness Centrality)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-deteccion-de-comunidades" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Detección de comunidades
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Detección de comunidades">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-conteo-de-triangulostriangle-count" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.1 Conteo de triángulos(Triangle Count)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-coeficiente-local-de-clustering-local-clustering-coefficient" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.2 Coeficiente local de clustering (Local Clustering Coefficient)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-componentes-fuertemente-conexas-strongly-connected-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      9.3 Componentes fuertemente conexas (Strongly Connected Components)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-prediccion-de-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Predicción de enlaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Predicción de enlaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-vecinos-comunes-common-neighbors" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.1 Vecinos comunes (Common Neighbors)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-adhesion-preferencial-preferential-attachment" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.2 Adhesión preferencial (Preferential Attachment)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-asignacion-de-recursos-resource-allocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      10.3 Asignación de recursos (Resource Allocation)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-machine-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Machine Learning
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Ejemplo
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ud-2-procesado-y-presentacion-datos-almacenados-neo4j">UD 2 - Procesado y Presentación Datos Almacenados - Neo4j<a class="headerlink" href="#ud-2-procesado-y-presentacion-datos-almacenados-neo4j" title="Permanent link">&para;</a></h1>
+<p>En esta sección se profundiza en una tecnología concreta de bases de datos orientadas a grafos. Aunque existe un amplio abanico de tecnologías que dan soporte a este tipo de bases de datos, como lo son OrientDB1<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> , FlockDB<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> o InfiniteGraph<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup> , en esta sección se profundiza en el trabajo con bases de datos orientadas a grafos utilizando Neo4j<sup id="fnref:4"><a class="footnote-ref" href="#fn:4">4</a></sup> .</p>
+<h2 id="1-introduccion">1. Introducción<a class="headerlink" href="#1-introduccion" title="Permanent link">&para;</a></h2>
+<h3 id="11-que-es-una-graph-database">1.1 ¿Qué es una Graph Database?<a class="headerlink" href="#11-que-es-una-graph-database" title="Permanent link">&para;</a></h3>
+<p>Una base de datos orientada a grafos <strong>almacena nodos y relaciones en lugar de tablas o documentos</strong>. Los datos se almacenan del mismo modo que se podrían esbozar ideas en una pizarra. Sus datos se almacenan sin restringirlos a un modelo predefinido, lo que permite una forma muy flexible de pensar y utilizarlos.</p>
+<p>Para obtener más información sobre los fundamentos de los grafos, consulta los <a href="https://neo4j.com/docs/getting-started/appendix/graphdb-concepts/">conceptos de bases de datos orientados a grafos</a>.</p>
+<h3 id="12-propiedades-del-modelo-de-grafo">1.2 Propiedades del modelo de grafo<a class="headerlink" href="#12-propiedades-del-modelo-de-grafo" title="Permanent link">&para;</a></h3>
+<p>En Neo4j, la información se organiza como nodos, relaciones y propiedades.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Introduccion_1.svg">
+    <figcaption>Figura Neo4j Introducción 1: Bloques de construcción de un modelo de Base de datos de grafos. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>Los <strong>nodos</strong> son las entidades del grafo:</p>
+<ul>
+<li>Los nodos se pueden etiquetar con <em>labels</em> que representen sus diferentes roles en su dominio (por ejemplo, <code>Persona</code>).</li>
+<li>Los nodos pueden contener cualquier número de pares clave-valor o propiedades (por ejemplo, <code>nombre</code>).</li>
+<li>Las etiquetas de los nodos también pueden adjuntar metadatos (como índices o información de restricciones) a ciertos nodos.</li>
+</ul>
+<p>Las <strong>relaciones</strong> proporcionan conexiones dirigidas y con nombre entre dos entidades de nodo (por ejemplo, Persona <code>LOVES</code> a Persona).</p>
+<ul>
+<li>Las relaciones siempre tienen una dirección, un tipo, un nodo inicial y un nodo final, y pueden tener propiedades, al igual que los nodos.</li>
+<li>Los nodos pueden tener cualquier número o tipo de relaciones sin sacrificar el rendimiento.</li>
+<li>Aunque las relaciones siempre son dirigidas, se pueden navegar eficientemente en cualquier dirección.</li>
+</ul>
+<p>Si deseas obtener más información sobre cualquiera de estos, puede leer más en <a href="https://neo4j.com/docs/getting-started/data-modeling/">Modelado de datos de grafos</a>.
+​</p>
+<h3 id="13-que-es-neo4j">1.3 ¿Qué es Neo4j?<a class="headerlink" href="#13-que-es-neo4j" title="Permanent link">&para;</a></h3>
+<p>Neo4j es una <strong><em>base de datos de grafos nativa</em></strong>, lo que significa que implementa un modelo de grafos real hasta el nivel de almacenamiento. Los datos se almacenan a medida que los escribe en la pizarra, en lugar de como una "abstracción de grafo" encima de otra tecnología. Más allá del grafo central, Neo4j también proporciona: transacciones ACID (<em>ojo, igual que las RDBMS)</em>, soporte de clúster y conmutación por error en tiempo de ejecución.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Introduccion_2.svg">
+    <figcaption>Figura Neo4j Introducción 2: Ejemplo de esquema de grafo. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>¿Qué hace que Neo4j sea el grafo con el que es más fácil trabajar?</p>
+<ul>
+<li><strong>Cypher®</strong>, un lenguaje de consulta declarativo similar a SQL, pero optimizado para grafos. Ahora lo utilizan otras bases de datos como SAP HANA Graph y Redis Graph a través del <a href="https://opencypher.org/">proyecto openCypher</a>.</li>
+<li><strong>Recorridos de tiempo constante</strong> en grafos grandes tanto en profundidad como en anchura debido a la representación eficiente de nodos y relaciones. Permite ampliar a miles de millones de nodos en hardware moderado.</li>
+<li>Esquema de grafo de propiedades <strong>flexibles</strong> que puede adaptarse con el tiempo, lo que permite materializar y agregar nuevas relaciones más adelante para atajar y acelerar los datos del dominio cuando el negocio necesita cambios.</li>
+<li><strong><a href="https://neo4j.com/docs/create-applications/">Controladores</a></strong> para lenguajes de programación populares, incluidos Java, JavaScript, .NET, Python y muchos más.</li>
+</ul>
+<h3 id="14-por-que-graph-database">1.4 ¿Por qué Graph Database?<a class="headerlink" href="#14-por-que-graph-database" title="Permanent link">&para;</a></h3>
+<p>Vivimos en un mundo conectado y comprender la mayoría de los dominios requiere procesar conjuntos ricos de conexiones para comprender lo que realmente está sucediendo. A menudo encontramos que las conexiones entre elementos son tan importantes como los elementos mismos.</p>
+<p>¿De qué otra manera la gente hace esto hoy? Si bien las bases de datos relacionales existentes pueden almacenar estas relaciones, las consultan con costosas operaciones <code>JOIN</code>o búsquedas cruzadas, a menudo ligadas a un esquema rígido. Resulta que las bases de datos "relacionales" no manejan de manera eficiente las relaciones. En una base de datos de grafos, no hay <code>JOIN</code> ni búsquedas. Las relaciones se almacenan de forma nativa junto con los elementos de datos (los nodos) en un formato mucho más flexible. Todo lo relacionado con el sistema está optimizado para recorrer los datos rápidamente; Millones de conexiones por segundo, por núcleo.</p>
+<p>Las bases de datos de grafos abordan grandes desafíos que muchos de nosotros enfrentamos a diario. Los problemas de datos modernos a menudo implican relaciones de muchos a muchos con datos heterogéneos que establecen necesidades para:</p>
+<ul>
+<li>Navegar por jerarquías profundas.</li>
+<li>Encontrar conexiones ocultas entre elementos distantes.</li>
+<li>Descubrir las interrelaciones entre elementos.</li>
+</ul>
+<p>Ya sea una red social, una red de pago o una red de carreteras, encontrarás que todo es un grafo interconectado de relaciones. Y cuando se quieren hacer preguntas sobre el mundo real, muchas preguntas se refieren a las relaciones más que a los elementos de datos individuales.</p>
+<p>Vivimos en un mundo conectado y comprender la mayoría de los dominios requiere procesar conjuntos ricos de conexiones para comprender lo que realmente está sucediendo. A menudo encontramos que las conexiones entre elementos son tan importantes como los elementos mismos.</p>
+<h3 id="15-donde-y-como-se-utiliza-neo4j">1.5. ¿Dónde y cómo se utiliza Neo4j?<a class="headerlink" href="#15-donde-y-como-se-utiliza-neo4j" title="Permanent link">&para;</a></h3>
+<p>Neo4j es utilizado hoy por miles de nuevas empresas, instituciones educativas y grandes empresas en todos los sectores, incluidos servicios financieros, gobiernos, energía, tecnología, comercio minorista y manufactura. Desde nuevas tecnologías innovadoras hasta impulsar negocios, los usuarios generan información con grafos, generan nuevos ingresos y mejoran su eficiencia general.</p>
+<p>Puede encontrar más información sobre numerosos casos de uso en los que los datos conectados son más importantes en la <a href="https://neo4j.com/use-cases/">web de Neo4j - Casos de uso</a>.</p>
+<figure style="align: center; width:900px;">
+    <img src="images/Neo4j_Introduccion_3.svg">
+    <figcaption>Figura Neo4j Introducción 3: Casos de uso. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<h2 id="2-cypher">2. Cypher<a class="headerlink" href="#2-cypher" title="Permanent link">&para;</a></h2>
+<h3 id="21-que-es-cypher">2.1 ¿Qué es Cypher?<a class="headerlink" href="#21-que-es-cypher" title="Permanent link">&para;</a></h3>
+<p>Cypher es el lenguaje de consulta de grafos declarativos de Neo4j. Fue creado en 2011 por ingenieros de Neo4j como un lenguaje equivalente a SQL para bases de datos de grafos. Al igual que SQL, Cypher permite a los usuarios centrarse en qué recuperar del grafo, en lugar de cómo recuperarlo. Como tal, Cypher permite a los usuarios aprovechar todo el potencial de sus bases de datos de grafos al permitir consultas eficientes y expresivas que revelan conexiones y grupos de datos previamente desconocidos.</p>
+<p>Cypher proporciona una forma visual de hacer coincidir patrones y relaciones. Se basa en el siguiente tipo de sintaxis ascii-art: <code>(nodos)-[:CONNECT_TO]→(otherNodes)</code>. Los paréntesis se utilizan para nodos circulares y <code>-[:ARROWS]→</code> para relaciones. Escribir una consulta es efectivamente como dibujar un patrón a través de los datos del grafo. En otras palabras, entidades como los nodos y sus relaciones se integran visualmente en las consultas. Esto convierte a Cypher en un lenguaje muy intuitivo tanto para leer como para escribir.</p>
+<h3 id="22-diferencias-en-cypher-y-sql">2.2 Diferencias en Cypher y SQL<a class="headerlink" href="#22-diferencias-en-cypher-y-sql" title="Permanent link">&para;</a></h3>
+<p>Cypher y SQL son similares en muchos aspectos. Por ejemplo, comparten muchas de las mismas palabras clave, como <code>WHERE</code> y <code>ORDER BY</code>. Sin embargo, existen algunas diferencias importantes entre los dos:</p>
+<h4 id="cypher-es-flexible-en-cuanto-a-esquemas">Cypher es flexible en cuanto a esquemas<a class="headerlink" href="#cypher-es-flexible-en-cuanto-a-esquemas" title="Permanent link">&para;</a></h4>
+<p>Si bien es posible y recomendable aplicar esquemas parciales utilizando índices y restricciones, Cypher y Neo4j ofrecen un mayor grado de flexibilidad de esquemas que SQL y una base de datos relacional. Más específicamente, los nodos y las relaciones en una base de datos Neo4j no necesitan tener una propiedad específica establecida porque otros nodos o relaciones en el mismo grafo tienen esa propiedad (a menos que haya una restricción de existencia creada en esa propiedad específica). Esto significa que no se requiere que los usuarios utilicen un esquema fijo para representar datos y que pueden agregar nuevos atributos y relaciones a medida que evolucionan sus grafos.</p>
+<h4 id="orden-de-consulta">Orden de consulta<a class="headerlink" href="#orden-de-consulta" title="Permanent link">&para;</a></h4>
+<p>Las consultas SQL comienzan con lo que un usuario quiere devolver, mientras que las consultas Cypher terminan con la cláusula de devolución. Por ejemplo, considere las dos consultas siguientes (ambas buscan en una base de datos títulos de películas con una calificación superior a 7):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">SQL</label><label for="__tabbed_1_2">Cypher</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><a href="#__codelineno-0-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">SELECT</span><span class="w"> </span><span class="n">movie</span><span class="p">.</span><span class="n">name</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><a href="#__codelineno-0-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">FROM</span><span class="w"> </span><span class="n">movie</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a><a href="#__codelineno-0-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">WHERE</span><span class="w"> </span><span class="n">movie</span><span class="p">.</span><span class="n">rating</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">7</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><a href="#__codelineno-1-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">movie</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><a href="#__codelineno-1-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">WHERE</span><span class="w"> </span><span class="n">movie</span><span class="p">.</span><span class="n">rating</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="m">7</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><a href="#__codelineno-1-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">RETURN</span><span class="w"> </span><span class="n">movie</span><span class="p">.</span><span class="n">title</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<h4 id="las-consultas-cifradas-son-mas-concisas">Las consultas cifradas son más concisas<a class="headerlink" href="#las-consultas-cifradas-son-mas-concisas" title="Permanent link">&para;</a></h4>
+<p>Debido a su método intuitivo, similar a una pizarra, para construir cláusulas, las consultas Cypher suelen ser más concisas que sus consultas SQL equivalentes. Por ejemplo, considere las siguientes dos consultas (ambas buscando en una base de datos los nombres de los actores de la película The Matrix):</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">SQL</label><label for="__tabbed_2_2">Cypher</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><a href="#__codelineno-2-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">SELECT</span><span class="w"> </span><span class="n">actors</span><span class="p">.</span><span class="n">name</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a><a href="#__codelineno-2-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">FROM</span><span class="w"> </span><span class="n">actors</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><a href="#__codelineno-2-3"><span class="linenos" data-linenos="3 "></span></a><span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">acted_in</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">acted_in</span><span class="p">.</span><span class="n">actor_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">actors</span><span class="p">.</span><span class="n">id</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><a href="#__codelineno-2-4"><span class="linenos" data-linenos="4 "></span></a><span class="w">    </span><span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">movies</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">movies</span><span class="p">.</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">acted_in</span><span class="p">.</span><span class="n">movie_id</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><a href="#__codelineno-2-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">WHERE</span><span class="w"> </span><span class="n">movies</span><span class="p">.</span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;The Matrix&quot;</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><a href="#__codelineno-3-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">actor</span><span class="p">:</span><span class="n">Actor</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">ACTED_IN</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">movie</span><span class="p">:</span><span class="n">Movie</span><span class="w"> </span><span class="p">{</span><span class="n">title</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The Matrix&#39;</span><span class="p">})</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2"></a><a href="#__codelineno-3-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">RETURN</span><span class="w"> </span><span class="n">actor</span><span class="p">.</span><span class="n">name</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Toda la información de Cypher con Neo4j puedes consultarla en la <a href="https://neo4j.com/docs/cypher-manual/current/introduction/">documentación oficial</a>. También puedes consultar la <a href="https://neo4j.com/docs/cypher-cheat-sheet/5/neo4j-community/">Cypher Cheat Sheet</a></p>
+<h2 id="3-instalacion-y-uso">3. Instalación y uso<a class="headerlink" href="#3-instalacion-y-uso" title="Permanent link">&para;</a></h2>
+<h3 id="31-docker">3.1 Docker<a class="headerlink" href="#31-docker" title="Permanent link">&para;</a></h3>
+<p>Vamos a explicar como levantar un contenedor Neo4j con Docker</p>
+<ol>
+<li>Instalar Neo4j en Docker.</li>
+<li>Vamos a la <a href="https://hub.docker.com/_/neo4j">imagen oficial de Ne4j en docker</a></li>
+<li>Observa con detenimiento la información que nos facilita la imagen oficial para el despliegue y configuración de los contenedores</li>
+<li>
+<p>Seguimos los pasos, que tienen este formato</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><a href="#__codelineno-4-1"><span class="linenos" data-linenos="1 "></span></a>docker run \
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><a href="#__codelineno-4-2"><span class="linenos" data-linenos="2 "></span></a>--publish=7474:7474 --publish=7687:7687 \
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a><a href="#__codelineno-4-3"><span class="linenos" data-linenos="3 "></span></a>--volume=$HOME/neo4j/data:/data \
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><a href="#__codelineno-4-4"><span class="linenos" data-linenos="4 "></span></a>neo4j
+</span></code></pre></div>
+</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Dadas las características de la imagen facilitada por Neo4j, hay que indicar la versión a usar en el contenedor en lugar de la última <code>latest</code></p>
+</div>
+<ol start="5">
+<li>Necesitaremos añadir el módulo <strong>Graph Data Science</strong> para poder realizar operaciones de grafos sobre nuestra Base de Datos y <strong>APOC Cypher</strong>. Por tanto consultamos la documentación que nos facilitan para ello</li>
+</ol>
+<div class="admonition warning inline end">
+<p class="admonition-title">Warning</p>
+<p>Para los <strong>Sistemas Operativos Windows</strong>, se necesita usar el carácter de escape <code>\</code> que permita interpretar al sistema operativo la doble comilla dentro de una comilla simple.</p>
+</div>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Linux</label><label for="__tabbed_3_2">Windows</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><a href="#__codelineno-5-1"><span class="linenos" data-linenos="1 "></span></a>docker run -it \
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><a href="#__codelineno-5-2"><span class="linenos" data-linenos="2 "></span></a>--name neo4j-bda1 \
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><a href="#__codelineno-5-3"><span class="linenos" data-linenos="3 "></span></a>--publish=7474:7474 --publish=7687:7687 \
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><a href="#__codelineno-5-4"><span class="linenos" data-linenos="4 "></span></a>--env NEO4J_AUTH=none \
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><a href="#__codelineno-5-5"><span class="linenos" data-linenos="5 "></span></a>--env NEO4J_PLUGINS=&#39;[&quot;apoc&quot;, &quot;graph-data-science&quot;]&#39; \
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><a href="#__codelineno-5-6"><span class="linenos" data-linenos="6 "></span></a>neo4j:5.13.0
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><a href="#__codelineno-6-1"><span class="linenos" data-linenos="1 "></span></a>docker run -it --name neo4j-bda1 --publish=7474:7474 --publish=7687:7687 --env NEO4J_AUTH=none --env NEO4J_PLUGINS=&#39;[\&quot;apoc\&quot;, \&quot;graph-data-science\&quot;]&#39; neo4j:5.13.0
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<ol start="6">
+<li>Entramos en neo4j =&gt; <a href="http://localhost:7474/">http://localhost:7474/</a></li>
+<li>Conectamos sin usuario ni contraseña</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Docker_1.jpg">
+    <figcaption>Figura Docker Neo4j 1: Conexión al Neo4j. (Fuente: Propia)</figcaption>
+</figure>
+
+<h3 id="32-neo4j-aura">3.2 Neo4j Aura<a class="headerlink" href="#32-neo4j-aura" title="Permanent link">&para;</a></h3>
+<p>Neo4j Aura es una plataforma de grafos rápida, escalable, siempre activa y totalmente automatizada que se ofrece como un servicio en la nube.</p>
+<p>Aura incluye <strong>AuraDB</strong>, la base de datos orientada a grafos como servicio para desarrolladores que crean aplicaciones inteligentes, y <strong>AuraDS</strong>, la ciencia de datos orientada a grafos como servicio para científicos de datos que crean modelos predictivos y flujos de trabajo analíticos.</p>
+<p>Para más información consulta la <a href="https://neo4j.com/docs/aura/">documentación oficial</a></p>
+<h3 id="33-auradb">3.3 AuraDB<a class="headerlink" href="#33-auradb" title="Permanent link">&para;</a></h3>
+<p>Neo4j AuraDB es un servicio de base de datos orientados a grafos en la nube (<em>Database as a service</em>) totalmente administrado.</p>
+<p>Neo4j AuraDB es la <strong>base de datos orientada a grafos</strong> totalmente administrada como servicio (<em>Database as a service</em>) que ayuda a crear aplicaciones inteligentes basadas en el contexto más rápido con consultas ultrarrápidas, información en tiempo real, herramientas de desarrollo integradas, visualización de datos e integraciones respaldadas por la comunidad de desarrolladores de grafos más grande.</p>
+<p>AuraDB es confiable, seguro y totalmente automatizado, lo que le permite concentrarse en crear aplicaciones de grafos sin preocuparse por la administración de la base de datos. Tiene versiones gratuitas (AuraDB Free) y de pago (AuraDB Professional and AuraDB Enterprise). Pero no podemos usar Graph Data Science (que nos interesa como analistas y científicos de datos)</p>
+<p>Para más información consulta la <a href="https://neo4j.com/docs/aura/auradb/">documentación oficial</a></p>
+<h3 id="34-aurads">3.4 AuraDS<a class="headerlink" href="#34-aurads" title="Permanent link">&para;</a></h3>
+<p>Neo4j AuraDS es la <strong>solución de ciencia de datos como servicio</strong> totalmente administrada para científicos de datos que unifica la superficie de aprendizaje automático (ML) y la base de datos orientada a grafos en un único espacio de trabajo, lo que facilita descubrir las conexiones en big data y responder preguntas críticas para el negocio.</p>
+<p>No tiene versión gratuita. Para más información consulta la <a href="https://neo4j.com/docs/aura/aurads/">documentación oficial</a></p>
+<h3 id="35-sandbox-neo4j">3.5 Sandbox Neo4j<a class="headerlink" href="#35-sandbox-neo4j" title="Permanent link">&para;</a></h3>
+<p>Para poder hacer uso de Neo4j de forma gratuita, Neo4j proporciona <a href="https://neo4j.com/sandbox/">Neo4j Sandbox</a>, una instancia gratuita de Neo4j basada en la nube, donde podemos aprender sobre Neo4j, probar sus ideas o jugar con los ejemplos de datos prediseñados.</p>
+<ol>
+<li>Accedemos al servicio de <a href="https://sandbox.neo4j.com/">Neo4j sandbox</a></li>
+<li>Nos registramos/logueamos en Neo4j</li>
+<li>Nos muestra una serie de proyectos para crear una instancia sobre ellos.</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_1.jpg">
+    <figcaption>Figura Neo4j Sandbox 1: Proyectos. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="4">
+<li>Elige uno.</li>
+<li>Esperamos mientras crea la instancia</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_2.jpg">
+    <figcaption>Figura Neo4j Sandbox 2: Creando una instancia. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="6">
+<li>Desplegamos las opciones</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_3.jpg">
+    <figcaption>Figura Neo4j Sandbox 3: Opciones de una instancia. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="7">
+<li>Vamos a <em>connection details</em> y copiamos la contraseña</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_4.jpg">
+    <figcaption>Figura Neo4j Sandbox 4: Details project. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="8">
+<li>Abrimos la instancia en el navegador (tenemos varios opciones a elegir)</li>
+</ol>
+<figure style="align: center;">
+    <img src="images/Neo4j_Sandbox_5.jpg">
+    <figcaption>Figura Neo4j Sandbox 5: Abriendo una instancia. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol>
+<li>Se abre una nueva ventana con la instancia levantada para acceder a ella</li>
+<li>Tenemos varias opciones de acceso (Elige la que quieras)<ol>
+<li>Single sing on: Nos abrirá una nueva pestaña y nos pedirá nuestras credenciales de Neo4j</li>
+<li>Username / Password: Neo4j (por defecto) / la copiada en el paso anterior de <em>connection details</em></li>
+</ol>
+</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_6.jpg">
+    <figcaption>Figura Neo4j Sandbox 6: Accediendo a una instancia. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="11">
+<li>Se conecta a la base de datos. A la izquierda nos aparece una guía de uso, que dependerá de la instancia elegida.</li>
+<li>Ejecutamos la siguiente instrucción para ver es esquema del grafo <code>CALL db.schema.visualization()</code> y ejecutamos.</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_7.jpg">
+    <figcaption>Figura Neo4j Sandbox 7: Esquema de la base de datos. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="13">
+<li>Ejecutamos esta otra instrucción para ver toda la base de datos <code>match(n) return n</code></li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_8.svg">
+    <figcaption>Figura Neo4j Sandbox 8: Datos de la base de datos. (Fuente: Propia) </figcaption>
+</figure>
+
+<ol start="14">
+<li>Una consulta de ejemplo, donde buscamos todas las películas que se estrenaron después del año 2000 limitando el resultado a 5 elementos </li>
+</ol>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><a href="#__codelineno-7-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">Movie</span><span class="p">)</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><a href="#__codelineno-7-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">WHERE</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">released</span><span class="w"> </span><span class="p">&gt;</span><span class="w"> </span><span class="m">2000</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><a href="#__codelineno-7-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">RETURN</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="m">5</span>
+</span></code></pre></div>
+<ol start="15">
+<li>Podemos observar el resultado del grafo, la tabla resultante, en texto o el código</li>
+</ol>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Sandbox_9.jpg">
+    <figcaption>Figura Neo4j Sandbox 9: Consulta a la base de datos. (Fuente: Propia) </figcaption>
+</figure>
+
+<h2 id="4-get-started-neo4j">4. Get started Neo4j<a class="headerlink" href="#4-get-started-neo4j" title="Permanent link">&para;</a></h2>
+<p>Para comenzar a trabajar con Neo4j, es necesario <strong>crear un grafo o bien partir de un grafo ya existente</strong> que se importa dentro del área de trabajo de Neo4j. A continuación, se muestra cómo implementar ambos procedimientos.</p>
+<h3 id="41-importacion-de-datos">4.1 Importación de datos<a class="headerlink" href="#41-importacion-de-datos" title="Permanent link">&para;</a></h3>
+<p>Imaginemos un caso en el que se pretende importar un grafo a partir de un fichero .csv. En el ejemplo que se muestra a continuación, se dispone de dos ficheros .csv que contienen, respectivamente, <strong>la definición de los nodos y de las aristas del grafo que se pretende importar</strong>.</p>
+<h4 id="definicion-y-importacion-de-los-nodos">Definición y importación de los nodos<a class="headerlink" href="#definicion-y-importacion-de-los-nodos" title="Permanent link">&para;</a></h4>
+<p>Así pues, el archivo csv siguiente muestra los nodos del grafo. Para cada nodo se almacena su identificador, latitud, longitud y población</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><a href="#__codelineno-8-1"><span class="linenos" data-linenos=" 1 "></span></a>id,latitude,longitude,population
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><a href="#__codelineno-8-2"><span class="linenos" data-linenos=" 2 "></span></a>&quot;Amsterdam&quot;,52.379189,4.899431,821752
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><a href="#__codelineno-8-3"><span class="linenos" data-linenos=" 3 "></span></a>&quot;Utrecht&quot;,52.092876,5.104480,334176
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a><a href="#__codelineno-8-4"><span class="linenos" data-linenos=" 4 "></span></a>&quot;Den Haag&quot;,52.078663,4.288788,514861
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><a href="#__codelineno-8-5"><span class="linenos" data-linenos=" 5 "></span></a>&quot;Immingham&quot;,53.61239,-0.22219,9642
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><a href="#__codelineno-8-6"><span class="linenos" data-linenos=" 6 "></span></a>&quot;Doncaster&quot;,53.52285,-1.13116,302400
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><a href="#__codelineno-8-7"><span class="linenos" data-linenos=" 7 "></span></a>&quot;Hoek van Holland&quot;,51.9775,4.13333,9382
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><a href="#__codelineno-8-8"><span class="linenos" data-linenos=" 8 "></span></a>&quot;Felixstowe&quot;,51.96375,1.3511,23689
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a><a href="#__codelineno-8-9"><span class="linenos" data-linenos=" 9 "></span></a>&quot;Ipswich&quot;,52.05917,1.15545,133384
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><a href="#__codelineno-8-10"><span class="linenos" data-linenos="10 "></span></a>&quot;Colchester&quot;,51.88921,0.90421,104390
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><a href="#__codelineno-8-11"><span class="linenos" data-linenos="11 "></span></a>&quot;London&quot;,51.509865,-0.118092,8787892
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><a href="#__codelineno-8-12"><span class="linenos" data-linenos="12 "></span></a>&quot;Rotterdam&quot;,51.9225,4.47917,623652
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><a href="#__codelineno-8-13"><span class="linenos" data-linenos="13 "></span></a>&quot;Gouda&quot;,52.01667,4.70833,70939
+</span></code></pre></div>
+<em>Definición de nodos de un grafo</em></p>
+<p>Dados este fichero, es posible <strong>importar los nodos del grafo</strong>:</p>
+<p><div class="language-cypher highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1"></a><a href="#__codelineno-9-1"><span class="linenos" data-linenos="1 "></span></a><span class="w"> </span><span class="c1">// Importamos los nodos</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2"></a><a href="#__codelineno-9-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">WITH</span><span class="w"> </span><span class="s">&quot;https://github.com/neo4j-graph-analytics/book/raw/master/data/transport-nodes.csv&quot;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">uri</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3"></a><a href="#__codelineno-9-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">LOAD</span><span class="w"> </span><span class="n">CSV</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">HEADERS</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">uri</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">row</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4"></a><a href="#__codelineno-9-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">MERGE</span><span class="w"> </span><span class="p">(</span><span class="n">place</span><span class="p">:</span><span class="n">Place</span><span class="w"> </span><span class="p">{</span><span class="n">ciudad</span><span class="p">:</span><span class="n">row</span><span class="p">.</span><span class="n">id</span><span class="p">})</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5"></a><a href="#__codelineno-9-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">SET</span><span class="w"> </span><span class="n">place</span><span class="p">.</span><span class="n">latitude</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">toFloat</span><span class="p">(</span><span class="n">row</span><span class="p">.</span><span class="n">latitude</span><span class="p">),</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6"></a><a href="#__codelineno-9-6"><span class="linenos" data-linenos="6 "></span></a><span class="n">place</span><span class="p">.</span><span class="n">longitude</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">toFloat</span><span class="p">(</span><span class="n">row</span><span class="p">.</span><span class="n">latitude</span><span class="p">),</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7"></a><a href="#__codelineno-9-7"><span class="linenos" data-linenos="7 "></span></a><span class="n">place</span><span class="p">.</span><span class="n">population</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">toInteger</span><span class="p">(</span><span class="n">row</span><span class="p">.</span><span class="n">population</span><span class="p">)</span>
+</span></code></pre></div>
+<em>Importación de nodos</em></p>
+<p>Así, en el listado anterior se define como identificador de recurso la dirección donde se encuentra el archivo que se pretende cargar, el cual es cargado a través de la instrucción <strong>LOAD CSV</strong>. La instrucción <strong>MERGE</strong> permite definir cada fila como nodo de un grafo de tipo lugar (place) y añadir a cada nodo la propiedad id cuyo valor será el identificador de la fila en la que se encuentra cada nodo dentro del fichero csv. Finalmente, los valores de latitud y longitud se convierten en valores de tipo real y la población en un valor de tipo entero.</p>
+<h4 id="definicion-y-importacion-de-las-relaciones-de-los-nodos">Definición y importación de las relaciones de los nodos<a class="headerlink" href="#definicion-y-importacion-de-las-relaciones-de-los-nodos" title="Permanent link">&para;</a></h4>
+<p>Por su parte, el siguiente archivo csv especifica cada uno de los enlaces entre los nodos del grafo. Para cada uno de los enlaces se identifica el origen y destino del enlace, el tipo de relación que se define entre ellos y el coste. </p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1"></a><a href="#__codelineno-10-1"><span class="linenos" data-linenos=" 1 "></span></a>src,dst,relationship,cost
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2"></a><a href="#__codelineno-10-2"><span class="linenos" data-linenos=" 2 "></span></a>&quot;Amsterdam&quot;,&quot;Utrecht&quot;,&quot;EROAD&quot;,46
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3"></a><a href="#__codelineno-10-3"><span class="linenos" data-linenos=" 3 "></span></a>&quot;Amsterdam&quot;,&quot;Den Haag&quot;,&quot;EROAD&quot;,59
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4"></a><a href="#__codelineno-10-4"><span class="linenos" data-linenos=" 4 "></span></a>&quot;Den Haag&quot;,&quot;Rotterdam&quot;,&quot;EROAD&quot;,26
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5"></a><a href="#__codelineno-10-5"><span class="linenos" data-linenos=" 5 "></span></a>&quot;Amsterdam&quot;,&quot;Immingham&quot;,&quot;EROAD&quot;,369
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6"></a><a href="#__codelineno-10-6"><span class="linenos" data-linenos=" 6 "></span></a>&quot;Immingham&quot;,&quot;Doncaster&quot;,&quot;EROAD&quot;,74
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7"></a><a href="#__codelineno-10-7"><span class="linenos" data-linenos=" 7 "></span></a>&quot;Doncaster&quot;,&quot;London&quot;,&quot;EROAD&quot;,277
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8"></a><a href="#__codelineno-10-8"><span class="linenos" data-linenos=" 8 "></span></a>&quot;Hoek van Holland&quot;,&quot;Den Haag&quot;,&quot;EROAD&quot;,27
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9"></a><a href="#__codelineno-10-9"><span class="linenos" data-linenos=" 9 "></span></a>&quot;Felixstowe&quot;,&quot;Hoek van Holland&quot;,&quot;EROAD&quot;,207
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10"></a><a href="#__codelineno-10-10"><span class="linenos" data-linenos="10 "></span></a>&quot;Ipswich&quot;,&quot;Felixstowe&quot;,&quot;EROAD&quot;,22
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11"></a><a href="#__codelineno-10-11"><span class="linenos" data-linenos="11 "></span></a>&quot;Colchester&quot;,&quot;Ipswich&quot;,&quot;EROAD&quot;,32
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12"></a><a href="#__codelineno-10-12"><span class="linenos" data-linenos="12 "></span></a>&quot;London&quot;,&quot;Colchester&quot;,&quot;EROAD&quot;,106
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13"></a><a href="#__codelineno-10-13"><span class="linenos" data-linenos="13 "></span></a>&quot;Gouda&quot;,&quot;Rotterdam&quot;,&quot;EROAD&quot;,25
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14"></a><a href="#__codelineno-10-14"><span class="linenos" data-linenos="14 "></span></a>&quot;Gouda&quot;,&quot;Utrecht&quot;,&quot;EROAD&quot;,35
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15"></a><a href="#__codelineno-10-15"><span class="linenos" data-linenos="15 "></span></a>&quot;Den Haag&quot;,&quot;Gouda&quot;,&quot;EROAD&quot;,32
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16"></a><a href="#__codelineno-10-16"><span class="linenos" data-linenos="16 "></span></a>&quot;Hoek van Holland&quot;,&quot;Rotterdam&quot;,&quot;EROAD&quot;,33
+</span></code></pre></div>
+<em>Definición de aristas de un grafo</em></p>
+<p>Dado este fichero, es posible <strong>importar las relaciones de los nodos del grafo</strong>. Análogamente a la importación de nodos, a continuación mostramos el código necesario para la <strong>importación del fichero que contiene los enlaces</strong> entre los nodos del grafo.</p>
+<p><div class="language-cypher highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1"></a><a href="#__codelineno-11-1"><span class="linenos" data-linenos="1 "></span></a><span class="c1">//Importamos las relaciones</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2"></a><a href="#__codelineno-11-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">WITH</span><span class="w"> </span><span class="s">&quot;https://github.com/neo4j-graph-analytics/book/raw/master/data/transport-relationships.csv&quot;</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">uri</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3"></a><a href="#__codelineno-11-3"><span class="linenos" data-linenos="3 "></span></a><span class="n">LOAD</span><span class="w"> </span><span class="n">CSV</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">HEADERS</span><span class="w"> </span><span class="n">FROM</span><span class="w"> </span><span class="n">uri</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">row</span>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4"></a><a href="#__codelineno-11-4"><span class="linenos" data-linenos="4 "></span></a><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">origin</span><span class="p">:</span><span class="n">Place</span><span class="w"> </span><span class="p">{</span><span class="n">ciudad</span><span class="p">:</span><span class="w"> </span><span class="n">row</span><span class="p">.</span><span class="n">src</span><span class="p">})</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5"></a><a href="#__codelineno-11-5"><span class="linenos" data-linenos="5 "></span></a><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">destination</span><span class="p">:</span><span class="n">Place</span><span class="w"> </span><span class="p">{</span><span class="n">ciudad</span><span class="p">:</span><span class="w"> </span><span class="n">row</span><span class="p">.</span><span class="n">dst</span><span class="p">})</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6"></a><a href="#__codelineno-11-6"><span class="linenos" data-linenos="6 "></span></a><span class="k">MERGE</span><span class="w"> </span><span class="p">(</span><span class="n">origin</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">EROAD</span><span class="w"> </span><span class="p">{</span><span class="n">distance</span><span class="p">:</span><span class="w"> </span><span class="n">toInteger</span><span class="p">(</span><span class="n">row</span><span class="p">.</span><span class="n">cost</span><span class="p">)}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">destination</span><span class="p">)</span>
+</span></code></pre></div>
+<em>Importación de aristas</em></p>
+<p>La diferencia principal de este listado con respecto al anterior, es que en este se necesita identificar mediante la instrucción <strong>MATCH</strong> los nodos de origen y destino de cada uno de los enlaces, lo cual es posible mediante los atributos “src” y “dst” incluidos en el archivo .csv. Finalmente, se utiliza la sentencia <strong>MERGE</strong> para crear una relación entre “origin” y “destination” de tipo <strong>EROAD</strong> que contiene la propiedad “distance” cuyo valor es el coste que aparecía en el fichero .csv.</p>
+<p>Podemos comprobarlo listando todo el grafo</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1"></a><a href="#__codelineno-12-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">match</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">n</span>
+</span></code></pre></div>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Importando_datos_1.jpg">
+    <figcaption>Figura Neo4j Importando Datos 1: Importando datos</figcaption>
+</figure>
+
+<p>El grafo resultado es el siguiente</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Importando_datos_2.svg">
+    <figcaption>Figura Neo4j Importando Datos 2: Grafo de ejemplo resultante. (Fuente: Propia) </figcaption>
+</figure>
+
+<h3 id="42-creacion-de-grafos">4.2 Creación de grafos<a class="headerlink" href="#42-creacion-de-grafos" title="Permanent link">&para;</a></h3>
+<p>Otra alternativa es la <strong>creación de un grafo desde cero</strong>, especificando para ello sus nodos y enlaces. La siguiente imagen muestra un ejemplo de un <strong>grafo de coocurrencia de hashtags</strong> en el que cada uno de los nodos es un hashtag y los enlaces entre ellos se producen cuando dos hashtags aparecieron en un mismo tweet. Sobre cada enlace, se puede apreciar un valor que indica en cuántos tweets concurrieron los hashtags conectados por medio de dicha arista.</p>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Creacion_grafos_1.jpg">
+    <figcaption>Figura Neo4j Creación de un grafo 1: Grafo de ejemplo. (Fuente: Propia) </figcaption>
+</figure>
+
+<p>Para representar este grafo en Neo4j, se puede escribir el siguiente fragmento de código:</p>
+<p><div class="language-cypher highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1"></a><a href="#__codelineno-13-1"><span class="linenos" data-linenos=" 1 "></span></a><span class="k">CREATE</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2"></a><a href="#__codelineno-13-2"><span class="linenos" data-linenos=" 2 "></span></a><span class="p">(</span><span class="n">JS</span><span class="p">:</span><span class="n">Hashtag</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;JoaquinSabina&#39;</span><span class="p">}),</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3"></a><a href="#__codelineno-13-3"><span class="linenos" data-linenos=" 3 "></span></a><span class="p">(</span><span class="n">RS</span><span class="p">:</span><span class="n">Hashtag</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Rusia2018&#39;</span><span class="p">}),</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4"></a><a href="#__codelineno-13-4"><span class="linenos" data-linenos=" 4 "></span></a><span class="p">(</span><span class="n">AG</span><span class="p">:</span><span class="n">Hashtag</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Argentina&#39;</span><span class="p">}),</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5"></a><a href="#__codelineno-13-5"><span class="linenos" data-linenos=" 5 "></span></a><span class="p">(</span><span class="n">FD</span><span class="p">:</span><span class="n">Hashtag</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Feliz Domingo&#39;</span><span class="p">}),</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6"></a><a href="#__codelineno-13-6"><span class="linenos" data-linenos=" 6 "></span></a><span class="p">(</span><span class="n">MS</span><span class="p">:</span><span class="n">Hashtag</span><span class="w"> </span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Messi&#39;</span><span class="p">}),</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7"></a><a href="#__codelineno-13-7"><span class="linenos" data-linenos=" 7 "></span></a>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8"></a><a href="#__codelineno-13-8"><span class="linenos" data-linenos=" 8 "></span></a><span class="p">(</span><span class="n">JS</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">52</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">FD</span><span class="p">),</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9"></a><a href="#__codelineno-13-9"><span class="linenos" data-linenos=" 9 "></span></a><span class="p">(</span><span class="n">FD</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">52</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">JS</span><span class="p">),</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10"></a><a href="#__codelineno-13-10"><span class="linenos" data-linenos="10 "></span></a><span class="p">(</span><span class="n">RS</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">183</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">FD</span><span class="p">),</span>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11"></a><a href="#__codelineno-13-11"><span class="linenos" data-linenos="11 "></span></a><span class="p">(</span><span class="n">FD</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">183</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">RS</span><span class="p">),</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12"></a><a href="#__codelineno-13-12"><span class="linenos" data-linenos="12 "></span></a><span class="p">(</span><span class="n">RS</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">73</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">AG</span><span class="p">),</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13"></a><a href="#__codelineno-13-13"><span class="linenos" data-linenos="13 "></span></a><span class="p">(</span><span class="n">AG</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">73</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">RS</span><span class="p">),</span>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14"></a><a href="#__codelineno-13-14"><span class="linenos" data-linenos="14 "></span></a><span class="p">(</span><span class="n">AG</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">112</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">MS</span><span class="p">),</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15"></a><a href="#__codelineno-13-15"><span class="linenos" data-linenos="15 "></span></a><span class="p">(</span><span class="n">MS</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">112</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">AG</span><span class="p">),</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16"></a><a href="#__codelineno-13-16"><span class="linenos" data-linenos="16 "></span></a><span class="p">(</span><span class="n">FD</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">81</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">MS</span><span class="p">),</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17"></a><a href="#__codelineno-13-17"><span class="linenos" data-linenos="17 "></span></a><span class="p">(</span><span class="n">MS</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="w"> </span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="w"> </span><span class="m">81</span><span class="p">}</span><span class="o">]-&gt;</span><span class="p">(</span><span class="n">FD</span><span class="p">)</span>
+</span></code></pre></div>
+<em>Creación grafo de co-ocurrencia de hashtags</em></p>
+<p>Tal y como se puede ver, en primer lugar se definen los nodos y sus propiedades y a continuación los enlaces y sus propiedades. <strong>Todo grafo en Neo4j tiene aristas dirigidas, si bien es cierto que cuando se ejecutan las consultas puede no tenerse en cuenta la dirección de las aristas</strong>. Por este motivo, se han especificado las aristas en ambas direcciones. En caso de querer crear una arista que sea interpretada como no dirigida, se debe crear sin el operador flecha que determina el sentido de la arista. Esto es posible hacerlo solo fuera de la instrucción <strong>CREATE</strong>. El listado 4.6 muestra cómo crear la primera relación del grafo solo que de forma no dirigida.</p>
+<p><div class="language-cypher highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1"></a><a href="#__codelineno-14-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="p">(</span><span class="n">JS</span><span class="p">:</span><span class="n">Hashtag</span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="s">&#39;JoaquinSabina&#39;</span><span class="p">})</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2"></a><a href="#__codelineno-14-2"><span class="linenos" data-linenos="2 "></span></a><span class="k">MATCH</span><span class="p">(</span><span class="n">FD</span><span class="p">:</span><span class="n">Hashtag</span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="s">&#39;Feliz Domingo&#39;</span><span class="p">})</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3"></a><a href="#__codelineno-14-3"><span class="linenos" data-linenos="3 "></span></a><span class="k">MERGE</span><span class="w"> </span><span class="p">(</span><span class="n">JS</span><span class="p">)</span><span class="o">-[</span><span class="p">:</span><span class="n">COOC</span><span class="p">{</span><span class="n">ntweet</span><span class="p">:</span><span class="m">52</span><span class="p">}</span><span class="o">]-</span><span class="p">(</span><span class="n">FD</span><span class="p">)</span>
+</span></code></pre></div>
+<em>Creación de una arista no dirigida</em></p>
+<p>Para <strong>mostrar el grafo</strong>, es posible utilizar el siguiente comando. La figura 4.3 muestra cómo quedaría el grafo creado en el listado 4.5.</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1"></a><a href="#__codelineno-15-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></code></pre></div>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Creacion_grafos_2.jpg">
+    <figcaption>Figura Neo4j Creación de un grafo 2: Visualización del grafo de co-ocurrencia de hashtags. (Fuente: Propia) </figcaption>
+</figure>
+
+<h3 id="43-eliminar-nodos-y-grafos">4.3 Eliminar nodos y grafos<a class="headerlink" href="#43-eliminar-nodos-y-grafos" title="Permanent link">&para;</a></h3>
+<p>Siguiendo con el ejemplo anterior, para eliminar un nodo creado, es posible utilizar el comando:</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1"></a><a href="#__codelineno-16-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="p">(</span><span class="n">JS</span><span class="p">:</span><span class="n">Hashtag</span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="s">&#39;JoaquinSabina&#39;</span><span class="p">})</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="p">(</span><span class="n">JS</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Sin embargo, <strong>un nodo solo puede ser eliminado si se eliminan las relaciones</strong> que contiene. Para ello, es posible utilizar el comando:</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1"></a><a href="#__codelineno-17-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="p">(</span><span class="n">JS</span><span class="p">:</span><span class="n">Hashtag</span><span class="p">{</span><span class="n">name</span><span class="p">:</span><span class="s">&#39;JoaquinSabina&#39;</span><span class="p">})</span><span class="w"> </span><span class="n">detach</span><span class="w"> </span><span class="k">delete</span><span class="w"> </span><span class="p">(</span><span class="n">JS</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Mientras que, para eliminar todos los nodos y aristas, es posible escribir:</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1"></a><a href="#__codelineno-18-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">MATCH</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="n">detach</span><span class="w"> </span><span class="k">delete</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="5-neo4j-graph-data-science">5. Neo4j Graph Data Science<a class="headerlink" href="#5-neo4j-graph-data-science" title="Permanent link">&para;</a></h2>
+<p>La biblioteca <strong>Neo4j Graph Data Science (GDS)</strong> proporciona versiones paralelas implementadas de manera eficiente de <strong>algoritmos de grafos</strong> comunes, expuestos como procedimientos <strong>Cypher</strong>. Además, GDS incluye canales de aprendizaje automático para entrenar modelos predictivos supervisados para resolver problemas de grafos, como la predicción de relaciones faltantes.</p>
+<p>Los algoritmos de grafos se utilizan para calcular métricas de grafos, nodos o relaciones. Pueden proporcionar información sobre entidades relevantes en el grafo (centralidades, clasificación) o estructuras inherentes como comunidades (detección de comunidades, partición de grafos, agrupación), etc.</p>
+<p>Para <strong>verificar la instalación</strong> ejecuta:</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1"></a><a href="#__codelineno-19-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">RETURN</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">version</span><span class="p">();</span>
+</span></code></pre></div>
+<p>Para listar todos los procedimientos disponibles ejecuta:</p>
+<div class="language-cypher highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1"></a><a href="#__codelineno-20-1"><span class="linenos" data-linenos="1 "></span></a><span class="k">CALL</span><span class="w"> </span><span class="n">gds</span><span class="p">.</span><span class="n">list</span><span class="p">();</span>
+</span></code></pre></div>
+<p>La biblioteca Neo4j Graph Data Science contiene una gran cantidad de algoritmos, los cuales detallaremos a continuación.</p>
+<h2 id="6-recorridos-sobre-grafos">6. Recorridos sobre grafos<a class="headerlink" href="#6-recorridos-sobre-grafos" title="Permanent link">&para;</a></h2>
+<p>Los recorridos sobre grafos son una utilidad imprescindible en el trabajo con esta estructura de datos. Del mismo modo, los recorridos también son una herramienta fundamental cuando se trabaja con bases de datos orientadas a grafos.</p>
+<p><strong>Un recorrido sobre grafos es un procedimiento sistemático que permite explorar un grafo examinando todos sus vértices y aristas, comenzando desde un vértice inicial</strong>. A la hora de recorrer un grafo, existen dos tipos de recorridos: el <strong>recorrido en anchura</strong> (denotado BFS, por sus siglas en inglés) y el <strong>recorrido en profundidad</strong> (denotado DFS, también por sus siglas en inglés).</p>
+<h3 id="61-recorrido-en-anchura-bfs">6.1 Recorrido en anchura (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/bfs/">BFS</a>)<a class="headerlink" href="#61-recorrido-en-anchura-bfs" title="Permanent link">&para;</a></h3>
+<p>El recorrido en anchura, también conocido por sus siglas en inglés <em>Breadth First Search (BFS)</em> es un procedimiento que permite recorrer un grafo, explorando todos sus nodos y aristas.</p>
+<p>El recorrido en anchura parte de un nodo inicial. A continuación, el método comienza a explorar todos los nodos hijo del nodo inicial seleccionado que se encuentran a un salto. Una vez visitados, comienzan a explorarse los nodos hijo del siguiente nivel y así sucesivamente hasta haber recorrido el grafo completo. Este recorrido es muy utilizado cuando se busca un camino con el número mínimo de aristas entre dos vértices dados o cuando se busca un ciclo simple, es decir, una secuencia de nodos y aristas que se pueden describir circularmente en el que todos los nodos y aristas son distintos.</p>
+<p>Por ejemplo, usando el grafo anterior del punto importación de datos. Es posible recorrerlo utilizando BFS escribiendo el siguiente código Neo4j que aparece en el listado 4.7. </p>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Importando_datos_2.svg">
+    <figcaption>Figura Neo4j Importando Datos 2: Grafo de ejemplo resultante. (Fuente: Propia) </figcaption>
+</figure>
+
+<div class="admonition info inline end">
+<p class="admonition-title">Info</p>
+<p><strong>Solamente hay que crear un <code>project graph</code> del algoritmo si es la misma configuración. Es decir, es reutilizable</strong></p>
+</div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1"></a><a href="#__codelineno-21-1"><span class="linenos" data-linenos="1 "></span></a>// Creamos el grafo. 
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2"></a><a href="#__codelineno-21-2"><span class="linenos" data-linenos="2 "></span></a>CALL gds.graph.project(
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3"></a><a href="#__codelineno-21-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;myGraph_BFR&#39;,
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4"></a><a href="#__codelineno-21-4"><span class="linenos" data-linenos="4 "></span></a>    &#39;Place&#39;,
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5"></a><a href="#__codelineno-21-5"><span class="linenos" data-linenos="5 "></span></a>    &#39;EROAD&#39;
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6"></a><a href="#__codelineno-21-6"><span class="linenos" data-linenos="6 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1"></a><a href="#__codelineno-22-1"><span class="linenos" data-linenos="1 "></span></a>//Realizamos la búsqueda en anchura
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2"></a><a href="#__codelineno-22-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (a:Place{id:&#39;Doncaster&#39;})
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3"></a><a href="#__codelineno-22-3"><span class="linenos" data-linenos="3 "></span></a>WITH id(a) AS startNode
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4"></a><a href="#__codelineno-22-4"><span class="linenos" data-linenos="4 "></span></a>CALL gds.bfs.stream(&#39;myGraph_BFR&#39;, {sourceNode: startNode})
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5"></a><a href="#__codelineno-22-5"><span class="linenos" data-linenos="5 "></span></a>YIELD path
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6"></a><a href="#__codelineno-22-6"><span class="linenos" data-linenos="6 "></span></a>UNWIND [ n in nodes(path) | n.id ] AS tags
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7"></a><a href="#__codelineno-22-7"><span class="linenos" data-linenos="7 "></span></a>RETURN tags
+</span></code></pre></div>
+<em>Recorrido en anchura (BFS)</em></p>
+<p>En el código anterior, se define un grafo llamado <em>myGraph_BFR</em> el cual está formado por nodos de tipo Place y cuyas relaciones son del tipo <strong>EROAD</strong> y tienen una propiedad, denominada <em>distance</em>. A continuación, se define el nodo inicial con las sentencias <strong>MATCH</strong> y <strong>WITH</strong>. Después, se llama al método que realiza el recorrido BFS sobre el grafo anterior partiendo desde el nodo inicial para producir un camino (<em>path</em>). Finalmente, se devuelven todos los nodos que forman parte del camino, mostrando los identificadores de cada uno de ellos. El resultado del recorrido es: Doncaster, London, Colchester, Ipswich, Felixstowe, Hoek van Holand, Den Haag, Rotterdam, Gouda, Utrecht.</p>
+<h3 id="62-recorrido-en-profundidad-dfs">6.2 Recorrido en profundidad (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/dfs/">DFS</a>)<a class="headerlink" href="#62-recorrido-en-profundidad-dfs" title="Permanent link">&para;</a></h3>
+<p>El recorrido en profundidad, también conocido por sus siglas en inglés <em>Depth First Search (DFS)</em> es un procedimiento alternativo al recorrido en anchura para explorar un grafo, recorriendo todos sus nodos y aristas.</p>
+<p>El procedimiento para recorrer un grafo mediante el método DFS es el siguiente: en primer lugar, se parte de un nodo inicial. A partir de él, se empiezan a recorrer todos sus hijos hasta el último nivel. Una vez llegados al último nivel del grafo, se vuelve hacia atrás recorriendo todos los hijos de los nodos de niveles anteriores. </p>
+<p>En Neo4j, el procedimiento para recorrer un grafo utilizando el recorrido DFS se muestra a continuación. El procedimiento, como se puede comprobar, es prácticamente idéntico al código BFS, solo que cambiando el método de recorrido. El resultado obtenido es: Doncaster, London, Colchester, Ipswich, Felixstowe, Hoek van Holland, Rotterdam, Den Haag, Gouda, Utrecht.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1"></a><a href="#__codelineno-23-1"><span class="linenos" data-linenos="1 "></span></a>// Creamos el grafo. 
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2"></a><a href="#__codelineno-23-2"><span class="linenos" data-linenos="2 "></span></a>CALL gds.graph.project(
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3"></a><a href="#__codelineno-23-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;myGraph_DFS&#39;,
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4"></a><a href="#__codelineno-23-4"><span class="linenos" data-linenos="4 "></span></a>    &#39;Place&#39;,
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5"></a><a href="#__codelineno-23-5"><span class="linenos" data-linenos="5 "></span></a>    &#39;EROAD&#39;
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6"></a><a href="#__codelineno-23-6"><span class="linenos" data-linenos="6 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1"></a><a href="#__codelineno-24-1"><span class="linenos" data-linenos="1 "></span></a>//Realizamos la búsqueda en Profundidad
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2"></a><a href="#__codelineno-24-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (a:Place{ciudad:&#39;Doncaster&#39;})
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3"></a><a href="#__codelineno-24-3"><span class="linenos" data-linenos="3 "></span></a>WITH id(a) AS startNode
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4"></a><a href="#__codelineno-24-4"><span class="linenos" data-linenos="4 "></span></a>CALL gds.dfs.stream(&#39;myGraph_DFS&#39;, {sourceNode: startNode})
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5"></a><a href="#__codelineno-24-5"><span class="linenos" data-linenos="5 "></span></a>YIELD path
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6"></a><a href="#__codelineno-24-6"><span class="linenos" data-linenos="6 "></span></a>UNWIND [ n in nodes(path) | n.ciudad ] AS tags
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7"></a><a href="#__codelineno-24-7"><span class="linenos" data-linenos="7 "></span></a>RETURN tags
+</span></code></pre></div>
+<em>Recorrido en profundidad (DFS)</em></p>
+<h2 id="7-caminos-minimos">7. Caminos mínimos<a class="headerlink" href="#7-caminos-minimos" title="Permanent link">&para;</a></h2>
+<p>El cálculo y la obtención de caminos mínimos dentro de un grafo es uno de los problemas clásicos en teoría de grafos con multitud de aplicaciones en el mundo real. <strong>Un camino dentro de un grafo es un conjunto de nodos y aristas que conectan un par de nodos del grafo</strong>. En el caso de los <strong>grafos no pesados</strong>, es decir, aquellos cuyas aristas no tienen coste, el cálculo del camino mínimo se obtiene <strong>minimizando el número de saltos</strong> entre el nodo origen y el nodo destino. En el caso de los <strong>grafos pesados</strong>, aquellos cuyas aristas tienen coste, el cálculo del camino mínimo se obtiene a través del camino en el que <strong>la suma de los costes de sus aristas es mínima</strong>.</p>
+<p>Junto con los recorridos de grafos, los métodos de obtención de caminos mínimos son muy útiles cuando se trabaja en <strong>entornos dinámicos</strong>, donde aparecen y desaparecen continuamente aristas del grafo o sus costes cambian dinámicamente. El cálculo de caminos mínimos también es muy útil en aplicaciones que deben dar <strong>respuestas en tiempo real</strong>. Algunos ejemplos claros pueden ser encontrar rutas entre dos localidades, como ocurre en Google Maps u obtener los grados de separación entre una empresa y un empleado potencial al que se quiere contratar, como puede ocurrir en LinkedIn.</p>
+<h3 id="71-algoritmo-de-dijkstra">7.1 Algoritmo de Dijkstra<a class="headerlink" href="#71-algoritmo-de-dijkstra" title="Permanent link">&para;</a></h3>
+<p>El <strong>algoritmo de Dijkstra</strong> es uno de los algoritmos más utilizados en teoría de grafos para la obtención de caminos mínimos. Este algoritmo tiene 2 versiones: uno que indica un nodo origen y el camino mínimo a todos los demás, y otro donde muestra el camino mínimo indicando un nodo origen y destino.</p>
+<ul>
+<li><strong>Algoritmo de Dijkstra: Single-Source Shortest Path (de un nodo a todos los demás)</strong></li>
+</ul>
+<p>Dado el grafo de ciudades con el que se está trabajando a lo largo de este capítulo, el siguiente código permite obtener <strong>los caminos mínimos entre un nodo del grafo y todos los demás nodos alcanzables(<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/dijkstra-single-source/">Single-Source Shortest Path</a>)</strong>.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1"></a><a href="#__codelineno-25-1"><span class="linenos" data-linenos="1 "></span></a>// Creamos el grafo. 
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2"></a><a href="#__codelineno-25-2"><span class="linenos" data-linenos="2 "></span></a>CALL gds.graph.project(
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3"></a><a href="#__codelineno-25-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;myGraph_Dijkstra&#39;,
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4"></a><a href="#__codelineno-25-4"><span class="linenos" data-linenos="4 "></span></a>    &#39;Place&#39;,
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5"></a><a href="#__codelineno-25-5"><span class="linenos" data-linenos="5 "></span></a>    &#39;EROAD&#39;,
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6"></a><a href="#__codelineno-25-6"><span class="linenos" data-linenos="6 "></span></a>    {
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7"></a><a href="#__codelineno-25-7"><span class="linenos" data-linenos="7 "></span></a>        relationshipProperties: &#39;distance&#39;
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8"></a><a href="#__codelineno-25-8"><span class="linenos" data-linenos="8 "></span></a>    }
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9"></a><a href="#__codelineno-25-9"><span class="linenos" data-linenos="9 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1"></a><a href="#__codelineno-26-1"><span class="linenos" data-linenos=" 1 "></span></a>MATCH (source:Place {ciudad: &#39;Amsterdam&#39;})
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2"></a><a href="#__codelineno-26-2"><span class="linenos" data-linenos=" 2 "></span></a>CALL gds.allShortestPaths.dijkstra.stream(&#39;myGraph_Dijkstra&#39;, {
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3"></a><a href="#__codelineno-26-3"><span class="linenos" data-linenos=" 3 "></span></a>    sourceNode: source,
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4"></a><a href="#__codelineno-26-4"><span class="linenos" data-linenos=" 4 "></span></a>    relationshipWeightProperty: &#39;distance&#39;
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5"></a><a href="#__codelineno-26-5"><span class="linenos" data-linenos=" 5 "></span></a>})
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6"></a><a href="#__codelineno-26-6"><span class="linenos" data-linenos=" 6 "></span></a>YIELD index, sourceNode, targetNode, totalCost, nodeIds, costs, path
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7"></a><a href="#__codelineno-26-7"><span class="linenos" data-linenos=" 7 "></span></a>RETURN
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8"></a><a href="#__codelineno-26-8"><span class="linenos" data-linenos=" 8 "></span></a>    index,
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9"></a><a href="#__codelineno-26-9"><span class="linenos" data-linenos=" 9 "></span></a>    gds.util.asNode(sourceNode).ciudad AS sourceNodeName,
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10"></a><a href="#__codelineno-26-10"><span class="linenos" data-linenos="10 "></span></a>    gds.util.asNode(targetNode).ciudad AS targetNodeName,
+</span><span id="__span-26-11"><a id="__codelineno-26-11" name="__codelineno-26-11"></a><a href="#__codelineno-26-11"><span class="linenos" data-linenos="11 "></span></a>    totalCost,
+</span><span id="__span-26-12"><a id="__codelineno-26-12" name="__codelineno-26-12"></a><a href="#__codelineno-26-12"><span class="linenos" data-linenos="12 "></span></a>    [nodeId IN nodeIds | gds.util.asNode(nodeId).ciudad] AS nodeNames,
+</span><span id="__span-26-13"><a id="__codelineno-26-13" name="__codelineno-26-13"></a><a href="#__codelineno-26-13"><span class="linenos" data-linenos="13 "></span></a>    costs,
+</span><span id="__span-26-14"><a id="__codelineno-26-14" name="__codelineno-26-14"></a><a href="#__codelineno-26-14"><span class="linenos" data-linenos="14 "></span></a>    nodes(path) as path
+</span><span id="__span-26-15"><a id="__codelineno-26-15" name="__codelineno-26-15"></a><a href="#__codelineno-26-15"><span class="linenos" data-linenos="15 "></span></a>ORDER BY index
+</span></code></pre></div>
+<em>Ejecución del algoritmo de Dijkstra sobre el nodo Amsterdam</em></p>
+<p>En el listado anterior, se utiliza la sentencia <strong>MATCH</strong> para definir el nodo de origen y, posteriormente, se guarda el grafo incluyendo el nodo de origen y la propiedad de distancia que es la utilizada para obtener el camino mínimo.</p>
+<ul>
+<li><strong>Algoritmo de Dijkstra: Single Source-Target Shortest Path (de un nodo origen a otro destino)</strong></li>
+</ul>
+<p>A continuación, se producirá un conjunto de caminos en el que se mostrará información completa del nodo de origen, destino, coste total y camino recorrido así como los distintos costes parciales. En caso de querer obtener el <strong>camino mínimo entre un par de nodos concretos(<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/dijkstra-source-target/">Single Source-Target Shortest Path</a>)</strong>, es posible utilizar el siguiente código análogo al anterior.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1"></a><a href="#__codelineno-27-1"><span class="linenos" data-linenos=" 1 "></span></a>MATCH (source:Place {ciudad: &#39;Amsterdam&#39;}), (target:Place {ciudad: &#39;London&#39;})
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2"></a><a href="#__codelineno-27-2"><span class="linenos" data-linenos=" 2 "></span></a>CALL gds.shortestPath.dijkstra.stream(&#39;myGraph_Dijkstra&#39;, {
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3"></a><a href="#__codelineno-27-3"><span class="linenos" data-linenos=" 3 "></span></a>    sourceNode: source,
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4"></a><a href="#__codelineno-27-4"><span class="linenos" data-linenos=" 4 "></span></a>    targetNode: target,
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5"></a><a href="#__codelineno-27-5"><span class="linenos" data-linenos=" 5 "></span></a>    relationshipWeightProperty: &#39;distance&#39;
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6"></a><a href="#__codelineno-27-6"><span class="linenos" data-linenos=" 6 "></span></a>})
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7"></a><a href="#__codelineno-27-7"><span class="linenos" data-linenos=" 7 "></span></a>YIELD index, sourceNode, targetNode, totalCost, nodeIds, costs, path
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8"></a><a href="#__codelineno-27-8"><span class="linenos" data-linenos=" 8 "></span></a>RETURN
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9"></a><a href="#__codelineno-27-9"><span class="linenos" data-linenos=" 9 "></span></a>    index,
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10"></a><a href="#__codelineno-27-10"><span class="linenos" data-linenos="10 "></span></a>    gds.util.asNode(sourceNode).ciudad AS sourceNodeName,
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11"></a><a href="#__codelineno-27-11"><span class="linenos" data-linenos="11 "></span></a>    gds.util.asNode(targetNode).ciudad AS targetNodeName,
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12"></a><a href="#__codelineno-27-12"><span class="linenos" data-linenos="12 "></span></a>    totalCost,
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13"></a><a href="#__codelineno-27-13"><span class="linenos" data-linenos="13 "></span></a>    [nodeId IN nodeIds | gds.util.asNode(nodeId).ciudad] AS nodeNames,
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14"></a><a href="#__codelineno-27-14"><span class="linenos" data-linenos="14 "></span></a>    costs,
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15"></a><a href="#__codelineno-27-15"><span class="linenos" data-linenos="15 "></span></a>    nodes(path) as path
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16"></a><a href="#__codelineno-27-16"><span class="linenos" data-linenos="16 "></span></a>ORDER BY index
+</span></code></pre></div>
+<em>Ejecución del algoritmo de Dijkstra sobre el par de nodos Amsterdam-London</em></p>
+<p>El camino mínimo entre Amsterdam y Londres es el formado por: Amsterdam Immingham, Doncaster, London. Este camino tiene un coste total de 720.</p>
+<h3 id="72-algoritmo-a">7.2 <a href="https://neo4j.com/docs/graph-data-science/current/algorithms/astar/">Algoritmo A*</a><a class="headerlink" href="#72-algoritmo-a" title="Permanent link">&para;</a></h3>
+<p>El <strong>algoritmo A* es una técnica de búsqueda informada</strong> que permite, al igual que el algoritmo de Dijkstra, <strong>calcular el camino mínimo entre dos nodos dados cualesquiera</strong>. Al contrario que el algoritmo de Dijkstra, cuando se va a seleccionar el siguiente nodo del camino, la técnica A<em> no solo se tiene en cuanta la distancia ya calculada, sino que </em><em>este algoritmo combina la distancia calculada con el resultado de una función heurística</em><em>. Esta función toma un nodo como entrada y devuelve un valor que corresponde con el coste de llegar al nodo objetivo desde ese nodo. Esta técnica, que se conoce también como de </em><em>búsqueda informada</em><em>, continúa el recorrido del grafo en cada iteración desde el nodo con el menor coste combinado entre la distancia ya calculada y la función heurística. El siguiente código muestra cómo obtener el camino mínimo mediante el método A</em> entre Amsterdam y Londres.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1"></a><a href="#__codelineno-28-1"><span class="linenos" data-linenos=" 1 "></span></a>// Creamos el grafo. 
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2"></a><a href="#__codelineno-28-2"><span class="linenos" data-linenos=" 2 "></span></a>CALL gds.graph.project(
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3"></a><a href="#__codelineno-28-3"><span class="linenos" data-linenos=" 3 "></span></a>    &#39;myGraph_A&#39;,
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4"></a><a href="#__codelineno-28-4"><span class="linenos" data-linenos=" 4 "></span></a>    &#39;Place&#39;,
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5"></a><a href="#__codelineno-28-5"><span class="linenos" data-linenos=" 5 "></span></a>    &#39;EROAD&#39;,
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6"></a><a href="#__codelineno-28-6"><span class="linenos" data-linenos=" 6 "></span></a>    {
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7"></a><a href="#__codelineno-28-7"><span class="linenos" data-linenos=" 7 "></span></a>        nodeProperties: [&#39;latitude&#39;, &#39;longitude&#39;, &#39;population&#39;],
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8"></a><a href="#__codelineno-28-8"><span class="linenos" data-linenos=" 8 "></span></a>        relationshipProperties: &#39;distance&#39;
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9"></a><a href="#__codelineno-28-9"><span class="linenos" data-linenos=" 9 "></span></a>    }
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10"></a><a href="#__codelineno-28-10"><span class="linenos" data-linenos="10 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1"></a><a href="#__codelineno-29-1"><span class="linenos" data-linenos=" 1 "></span></a>MATCH (source:Place {ciudad: &#39;Amsterdam&#39;}), (target:Place {ciudad: &#39;London&#39;})
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2"></a><a href="#__codelineno-29-2"><span class="linenos" data-linenos=" 2 "></span></a>CALL gds.shortestPath.astar.stream(&#39;myGraph_A&#39;, {
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3"></a><a href="#__codelineno-29-3"><span class="linenos" data-linenos=" 3 "></span></a>    sourceNode: source,
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4"></a><a href="#__codelineno-29-4"><span class="linenos" data-linenos=" 4 "></span></a>    targetNode: target,
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5"></a><a href="#__codelineno-29-5"><span class="linenos" data-linenos=" 5 "></span></a>    latitudeProperty: &#39;latitude&#39;,
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6"></a><a href="#__codelineno-29-6"><span class="linenos" data-linenos=" 6 "></span></a>    longitudeProperty: &#39;longitude&#39;,
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7"></a><a href="#__codelineno-29-7"><span class="linenos" data-linenos=" 7 "></span></a>    relationshipWeightProperty: &#39;distance&#39;
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8"></a><a href="#__codelineno-29-8"><span class="linenos" data-linenos=" 8 "></span></a>})
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9"></a><a href="#__codelineno-29-9"><span class="linenos" data-linenos=" 9 "></span></a>YIELD index, sourceNode, targetNode, totalCost, nodeIds, costs, path
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10"></a><a href="#__codelineno-29-10"><span class="linenos" data-linenos="10 "></span></a>RETURN
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11"></a><a href="#__codelineno-29-11"><span class="linenos" data-linenos="11 "></span></a>    index,
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12"></a><a href="#__codelineno-29-12"><span class="linenos" data-linenos="12 "></span></a>    gds.util.asNode(sourceNode).ciudad AS sourceNodeName,
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13"></a><a href="#__codelineno-29-13"><span class="linenos" data-linenos="13 "></span></a>    gds.util.asNode(targetNode).ciudad AS targetNodeName,
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14"></a><a href="#__codelineno-29-14"><span class="linenos" data-linenos="14 "></span></a>    totalCost,
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15"></a><a href="#__codelineno-29-15"><span class="linenos" data-linenos="15 "></span></a>    [nodeId IN nodeIds | gds.util.asNode(nodeId).ciudad] AS nodeNames,
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16"></a><a href="#__codelineno-29-16"><span class="linenos" data-linenos="16 "></span></a>    costs,
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17"></a><a href="#__codelineno-29-17"><span class="linenos" data-linenos="17 "></span></a>    nodes(path) as path
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18"></a><a href="#__codelineno-29-18"><span class="linenos" data-linenos="18 "></span></a>ORDER BY index
+</span></code></pre></div>
+<em>Ejecución del algoritmo A* sobre el par de nodos Amsterdam-London</em></p>
+<p>Como se puede ver, este fragmento de código es similar a los vistos anteriormente, solo que a la hora de guardar el grafo, se almacenan los propiedades de latitud y longitud, necesarias en Neo4j para ejecutar el algoritmo A*.</p>
+<h2 id="8-medidas-de-centralidad">8. Medidas de centralidad<a class="headerlink" href="#8-medidas-de-centralidad" title="Permanent link">&para;</a></h2>
+<p><strong>La centralidad se define como la relevancia de un nodo dentro de un grafo</strong>. Por tanto, el estudio de medidas de centralidad permite <strong>identificar nodos relevantes dentro de un grafo</strong>. Esta identificación permitirá entender el comportamiento de la red, qué nodos permiten viralizar con mayor rapidez el contenido de la red, desde qué nodos la información está más accesible, etc. El estudio de medidas de centralidad tiene multitud de aplicaciones, aunque son especialmente notables las relacionadas con los ámbitos de la <strong>publicidad y el marketing</strong>, donde el estudio de estas métricas permite identificar actores relevantes dentro de una red a los que se puede contratar para anunciar un producto o identificar sobre qué actores enviar información para alcanzar a más usuarios.</p>
+<p>Respecto a las medidas de centralidad, no existe una única medida sino que, en función de los datos y del propósito que se pretende alcanzar, se utilizan unas métricas u otras. a continuación, se van a definir tres medidas de centralidad con las que se realizarán ejemplos en Neo4j: <strong>centralidad de grado, cercanía e intermediación</strong>. </p>
+<p>Para trabajar con medidas de centralidad, se va a importar un grafo social que servirá de ejemplo para el cálculo de estas métricas. El siguiente código muestra lo necesario para su creación. Por otra parte, mostramos la imagen del grafo importado.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1"></a><a href="#__codelineno-30-1"><span class="linenos" data-linenos=" 1 "></span></a>// Importamos los nodos
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2"></a><a href="#__codelineno-30-2"><span class="linenos" data-linenos=" 2 "></span></a>WITH &quot;https://github.com/neo4j-graph-analytics/book/raw/master/data/&quot; AS base
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3"></a><a href="#__codelineno-30-3"><span class="linenos" data-linenos=" 3 "></span></a>WITH base + &quot;social-nodes.csv&quot; AS uri
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4"></a><a href="#__codelineno-30-4"><span class="linenos" data-linenos=" 4 "></span></a>LOAD CSV WITH HEADERS FROM uri AS row
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5"></a><a href="#__codelineno-30-5"><span class="linenos" data-linenos=" 5 "></span></a>MERGE (:User {id: row.id})
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6"></a><a href="#__codelineno-30-6"><span class="linenos" data-linenos=" 6 "></span></a>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7"></a><a href="#__codelineno-30-7"><span class="linenos" data-linenos=" 7 "></span></a>//Importamos las relaciones
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8"></a><a href="#__codelineno-30-8"><span class="linenos" data-linenos=" 8 "></span></a>WITH &quot;https://github.com/neo4j-graph-analytics/book/raw/master/data/&quot; AS base
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9"></a><a href="#__codelineno-30-9"><span class="linenos" data-linenos=" 9 "></span></a>WITH base + &quot;social-relationships.csv&quot; AS uri
+</span><span id="__span-30-10"><a id="__codelineno-30-10" name="__codelineno-30-10"></a><a href="#__codelineno-30-10"><span class="linenos" data-linenos="10 "></span></a>LOAD CSV WITH HEADERS FROM uri AS row
+</span><span id="__span-30-11"><a id="__codelineno-30-11" name="__codelineno-30-11"></a><a href="#__codelineno-30-11"><span class="linenos" data-linenos="11 "></span></a>MATCH (source:User {id: row.src})
+</span><span id="__span-30-12"><a id="__codelineno-30-12" name="__codelineno-30-12"></a><a href="#__codelineno-30-12"><span class="linenos" data-linenos="12 "></span></a>MATCH (destination:User {id: row.dst})
+</span><span id="__span-30-13"><a id="__codelineno-30-13" name="__codelineno-30-13"></a><a href="#__codelineno-30-13"><span class="linenos" data-linenos="13 "></span></a>MERGE (source)-[:FOLLOWS]-&gt;(destination)
+</span></code></pre></div>
+<em>Listado 4.12: Importación de un grafo social</em></p>
+<figure style="align: center; width:600px;">
+    <img src="images/Neo4j_Medida_centralidad_1.svg">
+    <figcaption>Figura Neo4j. Medida de centralidad 1: Visualización de un grafo social. (Fuente: Propia) </figcaption>
+</figure>
+
+<h3 id="81-centralidad-de-grado-degree-centrality">8.1 Centralidad de grado (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/degree-centrality/">Degree Centrality</a>)<a class="headerlink" href="#81-centralidad-de-grado-degree-centrality" title="Permanent link">&para;</a></h3>
+<p><strong>El grado de un nodo en un grafo se define como el número de aristas o conexiones que entran o salen de un nodo</strong>. Así pues, en un nodo de un grafo se distinguen dos grados: el <strong>grado de entrada</strong>, correspondiente al conjunto de conexiones que entran a un nodo y el <strong>grado de salida</strong>, que se corresponde con el conjunto de aristas que salen de un nodo. El primero indica la <strong>prominencia</strong> de un nodo dentro de la red, mientras que el segundo la <strong>influencia</strong> del nodo dentro del grafo. Esta medida de centralidad es muy utilizada para identificar actores prominentes o influyentes o para identificar conductas fraudulentas, caracterizadas en ocasiones por una actividad anormal. Para calcular la centralidad de grado en este grafo, se almacenará en primer lugar el grafo creado y, a continuación, se ejecutará el método que calcula la centralidad de grado según el siguiente código. El nodo con mayor grado es Doug, que tiene un grado de 5, seguido de Alice que tiene un grado de 3.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1"></a><a href="#__codelineno-31-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2"></a><a href="#__codelineno-31-2"><span class="linenos" data-linenos="2 "></span></a>&#39;myGraph_centralidad_grado&#39;,
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3"></a><a href="#__codelineno-31-3"><span class="linenos" data-linenos="3 "></span></a>&#39;User&#39;,
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4"></a><a href="#__codelineno-31-4"><span class="linenos" data-linenos="4 "></span></a>{
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5"></a><a href="#__codelineno-31-5"><span class="linenos" data-linenos="5 "></span></a>    FOLLOWS: {
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6"></a><a href="#__codelineno-31-6"><span class="linenos" data-linenos="6 "></span></a>    orientation: &#39;REVERSE&#39;
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7"></a><a href="#__codelineno-31-7"><span class="linenos" data-linenos="7 "></span></a>    }
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8"></a><a href="#__codelineno-31-8"><span class="linenos" data-linenos="8 "></span></a>}
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9"></a><a href="#__codelineno-31-9"><span class="linenos" data-linenos="9 "></span></a>)
+</span></code></pre></div>
+<p>Como no tenemos ninguna propiedad/coste/puntuación en la relación, no hay que indicarla. Si la quisiéramos tener en cuenta habría que añadirla dentro de follow de la siguiente forma:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1"></a><a href="#__codelineno-32-1"><span class="linenos" data-linenos=" 1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2"></a><a href="#__codelineno-32-2"><span class="linenos" data-linenos=" 2 "></span></a>&#39;myGraph_centralidad_grado&#39;,
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3"></a><a href="#__codelineno-32-3"><span class="linenos" data-linenos=" 3 "></span></a>&#39;User&#39;,
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4"></a><a href="#__codelineno-32-4"><span class="linenos" data-linenos=" 4 "></span></a>{
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5"></a><a href="#__codelineno-32-5"><span class="linenos" data-linenos=" 5 "></span></a>    FOLLOWS: {
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6"></a><a href="#__codelineno-32-6"><span class="linenos" data-linenos=" 6 "></span></a>    orientation: &#39;REVERSE&#39;,
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7"></a><a href="#__codelineno-32-7"><span class="linenos" data-linenos=" 7 "></span></a>    properties: [&#39;score&#39;]
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8"></a><a href="#__codelineno-32-8"><span class="linenos" data-linenos=" 8 "></span></a>    }
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9"></a><a href="#__codelineno-32-9"><span class="linenos" data-linenos=" 9 "></span></a>}
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10"></a><a href="#__codelineno-32-10"><span class="linenos" data-linenos="10 "></span></a>)
+</span></code></pre></div>
+<p>La <strong>centralidad de grado</strong> de este grafo sería</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1"></a><a href="#__codelineno-33-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.degree.stream(&#39;myGraph_centralidad_grado&#39;)
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2"></a><a href="#__codelineno-33-2"><span class="linenos" data-linenos="2 "></span></a>YIELD nodeId, score
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3"></a><a href="#__codelineno-33-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.util.asNode(nodeId).id AS id, score AS followers
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4"></a><a href="#__codelineno-33-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY followers DESC, id DESC
+</span></code></pre></div>
+<em>Cálculo de la centralidad de grado</em></p>
+<h3 id="82-cercania-closeness-centrality">8.2 Cercanía (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/closeness-centrality/">Closeness Centrality</a>)<a class="headerlink" href="#82-cercania-closeness-centrality" title="Permanent link">&para;</a></h3>
+<p><strong>La cercanía es una medida de centralidad que determina qué nodos del grafo expanden rápida y eficientemente la información a través del grafo</strong>. Para calcular esta medida, se obtiene <strong>la suma del inverso de las distancias de un nodo al resto</strong>. De esta forma, dado un nodo u la cercanía del mismo se calcula por medio de la siguiente ecuación:</p>
+<figure style="align: center;">
+    <img src="images/Neo4j_GDS_Ecuacion_Cercania.jpg">
+    <figcaption>Figura Neo4j. Ecuación de cercanía. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>Donde <em>n</em> es el número de nodos del grafo y <em>d(u, v)</em> es la distancia del camino mínimo entre <em>u</em> y <em>v</em>. <strong>La cercanía es una métrica muy utilizada para estimar tiempos de llegada en redes logísticas, para descubrir actores en posiciones privilegiadas en redes sociales o para estudiar la prominencia de palabras en un documento en el campo de la minería de textos</strong>. Para obtener la cercanía en el grafo social de ejemplo, se puede utilizar el fragmento de código mostrado en el listado 4.14. En el grafo de la imagen, Doug y David tienen una cercanía de 1.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1"></a><a href="#__codelineno-34-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2"></a><a href="#__codelineno-34-2"><span class="linenos" data-linenos="2 "></span></a>    &#39;myGraph_cercania&#39;,
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3"></a><a href="#__codelineno-34-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;User&#39;,
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4"></a><a href="#__codelineno-34-4"><span class="linenos" data-linenos="4 "></span></a>    &#39;FOLLOWS&#39;
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5"></a><a href="#__codelineno-34-5"><span class="linenos" data-linenos="5 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1"></a><a href="#__codelineno-35-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.closeness.stream(&#39;myGraph_cercania&#39;)
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2"></a><a href="#__codelineno-35-2"><span class="linenos" data-linenos="2 "></span></a>YIELD nodeId, score
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3"></a><a href="#__codelineno-35-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.util.asNode(nodeId).id AS id, score
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4"></a><a href="#__codelineno-35-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY score DESC
+</span></code></pre></div>
+<em>Cálculo de la cercanía</em></p>
+<h3 id="83-intermediacion-betweenness-centrality">8.3 Intermediación (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/betweenness-centrality/">Betweenness Centrality</a>)<a class="headerlink" href="#83-intermediacion-betweenness-centrality" title="Permanent link">&para;</a></h3>
+<p><strong>La intermediación es una medida de centralidad que permite detectar la influencia que tiene un nodo o actor del grafo en el flujo de información o de recursos de la red</strong>. El cálculo de la intermediación permite identificar a nodos que hacen de puentes entre distintas porciones del grafo. Esta medida de centralidad <strong>es muy utilizada para la identificación de influencers y el estudio de la viralización de mensajes en redes sociales.</strong> Intuitivamente, la intermediación de un nodo <strong>será mayor en tanto en cuanto dicho nodo aparezca en los caminos mínimos de cualquier otro par de nodos</strong>. Más formalmente, la intermediación puede calcularse según la siguiente ecuación.</p>
+<figure style="align: center;">
+    <img src="images/Neo4j_GDS_Ecuacion_Intermediacion.jpg">
+    <figcaption>Figura Neo4j. Ecuación de intermediación. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>Donde <em>u</em> es el nodo del cual se calcula la intermediación <em>(B),s</em> y <em>t</em> son nodos del grafo, <em>p(u)</em> es el número de caminos mínimos entre <em>s</em> y <em>t</em> que pasan por <em>u</em> y <em>p</em> es el número de caminos mínimos entre s y t. Para el cálculo de la intermediación, se puede utilizar el siguiente código. Al ejecutar este listado, se obtiene que Alice tiene la mayor intermediación, teniendo un valor de 10.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1"></a><a href="#__codelineno-36-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2"></a><a href="#__codelineno-36-2"><span class="linenos" data-linenos="2 "></span></a>    &#39;myGraph_intermediacion&#39;,
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3"></a><a href="#__codelineno-36-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;User&#39;,
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4"></a><a href="#__codelineno-36-4"><span class="linenos" data-linenos="4 "></span></a>    &#39;FOLLOWS&#39;
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5"></a><a href="#__codelineno-36-5"><span class="linenos" data-linenos="5 "></span></a>)
+</span></code></pre></div>
+<p>Como no tenemos ninguna propiedad/coste/puntuación en la relación, no hay que indicarla. Si la quisiéramos tener en cuenta habría que añadirla dentro de follow de la siguiente forma:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1"></a><a href="#__codelineno-37-1"><span class="linenos" data-linenos=" 1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2"></a><a href="#__codelineno-37-2"><span class="linenos" data-linenos=" 2 "></span></a>    &#39;myGraph_intermediacion&#39;,
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3"></a><a href="#__codelineno-37-3"><span class="linenos" data-linenos=" 3 "></span></a>    &#39;User&#39;,
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4"></a><a href="#__codelineno-37-4"><span class="linenos" data-linenos=" 4 "></span></a>    {
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5"></a><a href="#__codelineno-37-5"><span class="linenos" data-linenos=" 5 "></span></a>        FOLLOWS:
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6"></a><a href="#__codelineno-37-6"><span class="linenos" data-linenos=" 6 "></span></a>        {
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7"></a><a href="#__codelineno-37-7"><span class="linenos" data-linenos=" 7 "></span></a>            properties: &#39;weight&#39;
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8"></a><a href="#__codelineno-37-8"><span class="linenos" data-linenos=" 8 "></span></a>        }
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9"></a><a href="#__codelineno-37-9"><span class="linenos" data-linenos=" 9 "></span></a>    }
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10"></a><a href="#__codelineno-37-10"><span class="linenos" data-linenos="10 "></span></a>)
+</span></code></pre></div>
+<p>El <strong>cálculo de la indeterminación</strong> sería</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1"></a><a href="#__codelineno-38-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.betweenness.stream(&#39;myGraph_intermediacion&#39;)
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2"></a><a href="#__codelineno-38-2"><span class="linenos" data-linenos="2 "></span></a>YIELD nodeId, score
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3"></a><a href="#__codelineno-38-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.util.asNode(nodeId).id AS id, score
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4"></a><a href="#__codelineno-38-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY score DESC
+</span></code></pre></div>
+<em>Cálculo de la intermediación</em></p>
+<h2 id="9-deteccion-de-comunidades">9. Detección de comunidades<a class="headerlink" href="#9-deteccion-de-comunidades" title="Permanent link">&para;</a></h2>
+<p>A la hora de trabajar con grafos reales, que presentan una gran cantidad de nodos y enlaces, muchas veces se pretende <strong>identificar comunidades</strong> dentro del grafo para aplicar algoritmos sobre ellas. <strong>Una comunidad es, por tanto, un conjunto de nodos que presentan más relaciones entre sí que con el resto de nodos fuera de la comunidad</strong>. La detección e identificación de comunidades permite <strong>identificar comportamientos emergentes y de rebaño dentro de una red</strong>. De esta forma, es posible detectar y predecir hábitos de los usuarios. A continuación, se van a aplicar tres métodos de detección de comunidades sobre el grafo social de ejemplo que se ha utilizado en secciones anteriores.</p>
+<h3 id="91-conteo-de-triangulostriangle-count">9.1 Conteo de triángulos(<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/triangle-count/">Triangle Count</a>)<a class="headerlink" href="#91-conteo-de-triangulostriangle-count" title="Permanent link">&para;</a></h3>
+<p><strong>Un triángulo es un conjunto de tres nodos que tienen relaciones entre sí</strong>. El conteo de triángulos para un nodo dado, permite estudiar o inspeccionar de forma global un grafo y, aplicado sobre componentes conexas, permite inspeccionar regiones de un grafo. Para aplicar este método, es necesario almacenar el grafo teniendo en cuenta que las aristas deben almacenarse como <strong>UNDIRECTED</strong>. El siguiente código muestra el fragmento de código necesario para aplicar este método sobre el grafo social de ejemplo. La ejecución de este método da como resultado que Alice y Doug son aquellos que pertenecen a más triángulos, un total de 5.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1"></a><a href="#__codelineno-39-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2"></a><a href="#__codelineno-39-2"><span class="linenos" data-linenos="2 "></span></a>    &#39;myGraph_conteo_triangulo&#39;,
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3"></a><a href="#__codelineno-39-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;User&#39;,
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4"></a><a href="#__codelineno-39-4"><span class="linenos" data-linenos="4 "></span></a>    {
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5"></a><a href="#__codelineno-39-5"><span class="linenos" data-linenos="5 "></span></a>        FOLLOWS: {
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6"></a><a href="#__codelineno-39-6"><span class="linenos" data-linenos="6 "></span></a>        orientation: &#39;UNDIRECTED&#39;
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7"></a><a href="#__codelineno-39-7"><span class="linenos" data-linenos="7 "></span></a>        }
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8"></a><a href="#__codelineno-39-8"><span class="linenos" data-linenos="8 "></span></a>    }
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9"></a><a href="#__codelineno-39-9"><span class="linenos" data-linenos="9 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1"></a><a href="#__codelineno-40-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.triangleCount.stream(&#39;myGraph_conteo_triangulo&#39;)
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2"></a><a href="#__codelineno-40-2"><span class="linenos" data-linenos="2 "></span></a>YIELD nodeId, triangleCount
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3"></a><a href="#__codelineno-40-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.util.asNode(nodeId).id AS id, triangleCount
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4"></a><a href="#__codelineno-40-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY triangleCount DESC
+</span></code></pre></div>
+<em>Ejecución del conteo de triángulos</em></p>
+<h3 id="92-coeficiente-local-de-clustering-local-clustering-coefficient">9.2 Coeficiente local de clustering (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/local-clustering-coefficient/">Local Clustering Coefficient</a>)<a class="headerlink" href="#92-coeficiente-local-de-clustering-local-clustering-coefficient" title="Permanent link">&para;</a></h3>
+<p>Este coeficiente <strong>proporciona una medida cuantitativa del grado de agrupación de un nodo</strong>. Para el cálculo del coeficiente local de clustering se utiliza el conteo de triángulos, de forma que se compara el grado de agrupación de un nodo con el grado máximo de agrupación que podría tener. Así pues, el coeficiente local de clustering se puede calcular mediante la siguiente ecuación.</p>
+<figure style="align: center;">
+    <img src="images/Neo4j_GDS_Ecuacion_Coeficiente_local.jpg">
+    <figcaption>Figura Neo4j Ecuación de coeficiente local. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>Donde <em>u</em> es un nodo, <em>R(u)</em> es el número de relaciones que a través de los vecinos de <em>u</em> (lo cual puede medirse con el número de triángulos que pasan por <em>u</em> y <em>k(u)</em> es el grado de <em>u</em>. El cálculo del coeficiente local de clustering puede realizarse por medio del siguiente código. Los actores Bridget, Charles, Mark y Michael tienen el mayor coeficiente local de clustering, que es 1. </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1"></a><a href="#__codelineno-41-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2"></a><a href="#__codelineno-41-2"><span class="linenos" data-linenos="2 "></span></a>    &#39;myGraph_LCC&#39;,
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3"></a><a href="#__codelineno-41-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;User&#39;,
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4"></a><a href="#__codelineno-41-4"><span class="linenos" data-linenos="4 "></span></a>    {
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5"></a><a href="#__codelineno-41-5"><span class="linenos" data-linenos="5 "></span></a>        FOLLOWS: {
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6"></a><a href="#__codelineno-41-6"><span class="linenos" data-linenos="6 "></span></a>        orientation: &#39;UNDIRECTED&#39;
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7"></a><a href="#__codelineno-41-7"><span class="linenos" data-linenos="7 "></span></a>        }
+</span><span id="__span-41-8"><a id="__codelineno-41-8" name="__codelineno-41-8"></a><a href="#__codelineno-41-8"><span class="linenos" data-linenos="8 "></span></a>    }
+</span><span id="__span-41-9"><a id="__codelineno-41-9" name="__codelineno-41-9"></a><a href="#__codelineno-41-9"><span class="linenos" data-linenos="9 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1"></a><a href="#__codelineno-42-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.localClusteringCoefficient.stream(&#39;myGraph_LCC&#39;)
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2"></a><a href="#__codelineno-42-2"><span class="linenos" data-linenos="2 "></span></a>YIELD nodeId, localClusteringCoefficient
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3"></a><a href="#__codelineno-42-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.util.asNode(nodeId).id AS id, localClusteringCoefficient
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4"></a><a href="#__codelineno-42-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY localClusteringCoefficient DESC
+</span></code></pre></div>
+<em>Cálculo del coeficiente local de clustering</em></p>
+<p>Por último, <strong>el coeficiente global de clustering se calcula como la suma normalizada de los coeficientes de clustering locales</strong>. Así, estos coeficientes nos permiten encontrar medidas cuantitativas para detectar comunidades, pudiendo especificar incluso un umbral para establecer la comunidad (por ejemplo, especificar que los nodos han de estar conectados en un 40 %).</p>
+<h3 id="93-componentes-fuertemente-conexas-strongly-connected-components">9.3 Componentes fuertemente conexas (<a href="https://neo4j.com/docs/graph-data-science/current/algorithms/strongly-connected-components/">Strongly Connected Components</a>)<a class="headerlink" href="#93-componentes-fuertemente-conexas-strongly-connected-components" title="Permanent link">&para;</a></h3>
+<p><em>alpha a 04-11-2023</em></p>
+<p><strong>En un grafo dirigido, una componente fuertemente conexa es aquel grupo de nodos en el que cualquier nodo puede ser alcanzado por cualquier otro en ambas direcciones</strong>. El estudio de las componentes fuertemente conexas en un grafo permite <strong>estudiar la conectividad de la red</strong>. Para realizar el cálculo de las componentes conexas, el cual se realiza en un tiempo de procesamiento proporcional al número de nodos, podemos utilizar el siguiente código. El resultado permite comprobar que hay un total de cuatro componentes fuertemente conexas en el grafo social.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1"></a><a href="#__codelineno-43-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.graph.project(
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2"></a><a href="#__codelineno-43-2"><span class="linenos" data-linenos="2 "></span></a>    &#39;myGraph_SCC&#39;,
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3"></a><a href="#__codelineno-43-3"><span class="linenos" data-linenos="3 "></span></a>    &#39;User&#39;,
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4"></a><a href="#__codelineno-43-4"><span class="linenos" data-linenos="4 "></span></a>    &#39;FOLLOWS&#39;
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5"></a><a href="#__codelineno-43-5"><span class="linenos" data-linenos="5 "></span></a>)
+</span></code></pre></div>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1"></a><a href="#__codelineno-44-1"><span class="linenos" data-linenos="1 "></span></a>CALL gds.alpha.scc.stream(&#39;myGraph_SCC&#39;, {})
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2"></a><a href="#__codelineno-44-2"><span class="linenos" data-linenos="2 "></span></a>YIELD nodeId, componentId
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3"></a><a href="#__codelineno-44-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.util.asNode(nodeId).id AS Name, componentId AS Component
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4"></a><a href="#__codelineno-44-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY Component DESC
+</span></code></pre></div>
+<em>Obtención de componentes fuertemente conexas</em></p>
+<h2 id="10-prediccion-de-enlaces">10. Predicción de enlaces<a class="headerlink" href="#10-prediccion-de-enlaces" title="Permanent link">&para;</a></h2>
+<p>Los grafos son estructuras de datos que representan sistemas dinámicos, que evolucionan a lo largo del tiempo. Por este motivo, es muy común que en un grafo cualquiera aparezcan y desaparezcan nuevos nodos y conexiones entre dichos nodos. <strong>Los métodos de predicción de enlaces permiten predecir qué enlaces se formarán próximamente entre los nodos del grafo, permitiendo adelantarse a los acontecimientos y prevenir eventualidades</strong>. Como norma general, los métodos de predicción de enlaces <strong>se basan en medidas de cercanía y de centralidad</strong> asumiendo que los nuevos enlaces se producirán, mayoritariamente, sobre/desde los nodos más relevantes. A continuación, se detalla el funcionamiento de tres métodos comúnmente utilizados en predicción de enlaces. </p>
+<h3 id="101-vecinos-comunes-common-neighbors">10.1 Vecinos comunes (<a href="https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/common-neighbors/">Common Neighbors</a>)<a class="headerlink" href="#101-vecinos-comunes-common-neighbors" title="Permanent link">&para;</a></h3>
+<p><em>alpha a 04-11-2023</em></p>
+<p>El método de vecinos comunes se basa en la idea genérica de que dos actores de la red que tienen una relación con un usuario común tendrán más posibilidad de conectarse entre sí que quienes no. Formalmente, dados dos nodos, la posibilidad de que se produzca un enlace entre los nodos <em>x</em> e <em>y</em> viene dada por la siguiente ecuación.</p>
+<figure style="align: center;">
+    <img src="images/Neo4j_GDS_Ecuacion_Vecinos_comunes.jpg">
+    <figcaption>Figura Neo4j Ecuación de vecinos comunes. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>Donde <em>N(x)</em> es el conjunto de nodos adyacentes a <em>x</em> y <em>N(y)</em> es el conjunto de nodos adyacentes a <em>y</em>. Cuanto mayor es el valor de <em>CN</em> calculado, existe mayor posibilidad de que se produzca un nuevo enlace entre <em>x</em> e <em>y</em>. En el grafo social de ejemplo, el cálculo de vecinos comunes para Charles y Bridget se puede realizar a través del siguiente código. El resultado de este cálculo es 2.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1"></a><a href="#__codelineno-45-1"><span class="linenos" data-linenos="1 "></span></a>MATCH (x:User{id:&#39;Charles&#39;})
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2"></a><a href="#__codelineno-45-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (y:User{id:&#39;Bridget&#39;})
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3"></a><a href="#__codelineno-45-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.alpha.linkprediction.commonNeighbors(x,y) AS score
+</span></code></pre></div>
+<em>Obtención del valor de vecinos comunes para Charles y Bridget</em></p>
+<h3 id="102-adhesion-preferencial-preferential-attachment">10.2 Adhesión preferencial (<a href="https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/preferential-attachment/">Preferential Attachment</a>)<a class="headerlink" href="#102-adhesion-preferencial-preferential-attachment" title="Permanent link">&para;</a></h3>
+<p><em>alpha a 04-11-2023</em></p>
+<p>Este método se basa en la idea general de que cuanto más conectado está un nodo, es más probable que reciba nuevos enlaces. Formalmente, esta idea se puede expresar por medio de la siguiente ecuación.</p>
+<figure style="align: center;">
+    <img src="images/Neo4j_GDS_Ecuacion_Adhesión_preferencial.jpg">
+    <figcaption>Figura Neo4j Ecuación de adhesión preferencial. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>En el grafo social de ejemplo, el cálculo de adhesión preferencial para Charles y Bridget se puede realizar a través del siguiente código. El resultado de este cálculo es 10.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1"></a><a href="#__codelineno-46-1"><span class="linenos" data-linenos="1 "></span></a>MATCH (x:User{id:&#39;Charles&#39;})
+</span><span id="__span-46-2"><a id="__codelineno-46-2" name="__codelineno-46-2"></a><a href="#__codelineno-46-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (y:User{id:&#39;Bridget&#39;})
+</span><span id="__span-46-3"><a id="__codelineno-46-3" name="__codelineno-46-3"></a><a href="#__codelineno-46-3"><span class="linenos" data-linenos="3 "></span></a>RETURN gds.alpha.linkprediction.preferentialAttachment(x, y) AS score
+</span></code></pre></div>
+<em>Obtención del valor de adhesión preferencial para Charles y Bridget</em></p>
+<h3 id="103-asignacion-de-recursos-resource-allocation">10.3 Asignación de recursos (<a href="https://neo4j.com/docs/graph-data-science/current/alpha-algorithms/resource-allocation/">Resource Allocation</a>)<a class="headerlink" href="#103-asignacion-de-recursos-resource-allocation" title="Permanent link">&para;</a></h3>
+<p><em>alpha a 04-11-2023</em></p>
+<p>Se trata de una métrica compleja que evalúa la cercanía de un par de nodos para determinar la posibilidad de que, entre ellos, se produzca un nuevo enlace. Para ello, se utiliza la expresión dada en la siguiente ecuación.</p>
+<figure style="align: center;">
+    <img src="images/Neo4j_GDS_Ecuacion_Asignación_recursos.jpg">
+    <figcaption>Figura Neo4j Ecuación de asignación de recursos. (Fuente: Neo4J)</figcaption>
+</figure>
+
+<p>En el grafo social de ejemplo, el cálculo de la asignación de recursos para Charles y Bridget se puede realizar a través del siguiente código. El resultado de este cálculo es 0.309.</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1"></a><a href="#__codelineno-47-1"><span class="linenos" data-linenos="1 "></span></a>//No funciona ni en la documentación oficial (09-11-2022)
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2"></a><a href="#__codelineno-47-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (x:User{id:&#39;Charles&#39;})
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3"></a><a href="#__codelineno-47-3"><span class="linenos" data-linenos="3 "></span></a>MATCH (y:User{id:&#39;Bridget&#39;})
+</span><span id="__span-47-4"><a id="__codelineno-47-4" name="__codelineno-47-4"></a><a href="#__codelineno-47-4"><span class="linenos" data-linenos="4 "></span></a>RETURN gds.alpha.linkprediction.resourceAllocation(x, y) AS score
+</span></code></pre></div>
+<em>Obtención del valor de asignación de recursos para Charles y Bridget</em></p>
+<h2 id="11-machine-learning">11. Machine Learning<a class="headerlink" href="#11-machine-learning" title="Permanent link">&para;</a></h2>
+<p>Existe también la posibilidad de trabajar con <strong>Machine learning</strong> en los sistema de Big Data orientados a grafos como Neo4j</p>
+<p>Toda la documentación de los mismos se encuentra también en la <a href="https://neo4j.com/docs/graph-data-science/current/machine-learning/machine-learning/">documentación oficial</a>. Esta funcionalidad no forma parte de los Resultados de Aprendizaje de este módulo, ya que existe un módulo especifico para este tema. Aún así, podría ser interesante investigarlo e intentar integrarlo como una práctica opcional 😉</p>
+<h2 id="12-ejemplo">12. Ejemplo<a class="headerlink" href="#12-ejemplo" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Para esta práctica vamos a usar la herramienta SandBox Neo4j: https://sandbox.neo4j.com/</p>
+<ul>
+<li>Crearemos un nuevo proyecto y elegiremos el proyecto de twitter.</li>
+<li>Vamos obtener <strong>conocimiento</strong> a través de las relaciones la cuenta oficial de Twitter Neo4j (anteriormente se podía con la nuestra, actualmente no tienen habilitada esta opción)</li>
+<li><del>Seguimos los pases para dar acceso a Neo4j a nuestra cuenta. <strong><em>No olvides derogar el permiso al terminar el ejemplo</em></strong></del></li>
+</ul>
+</li>
+<li>
+<p>El esquema del grafo que nos va a crear de nuestra cuenta de Twitter es la siguiente</p>
+</li>
+</ol>
+<figure style="align: center;">
+    <img src="images/Neo4j_Ejemplo_twitter-data-model.svg">
+    <figcaption>Figura Neo4j Ejemplo. Data model Twitter. (Fuente: Propia)</figcaption>
+</figure>
+
+<ul>
+<li>Quién te está mencionando en Twitter</li>
+<li>¿Quiénes son tus seguidores más influyentes?</li>
+<li>Qué etiquetas usas con frecuencia</li>
+<li>La gente que tuitea sobre ti, pero no los sigues</li>
+<li>Enlaces de retweets interesantes</li>
+<li>Otras personas tuiteando con algunos de tus mejores hashtags</li>
+</ul>
+<ol>
+<li><strong>Menciones</strong></li>
+</ol>
+<p>La siguiente consulta de Cypher determina quién te está mencionando en Twitter (en este caso a la cuenta de Neo4j).</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1"></a><a href="#__codelineno-48-1"><span class="linenos" data-linenos="1 "></span></a>// Graph of some of your mentions
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2"></a><a href="#__codelineno-48-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (u:User)-[p:POSTS]-&gt;(t:Tweet)-[:MENTIONS]-&gt;(m:Me)
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3"></a><a href="#__codelineno-48-3"><span class="linenos" data-linenos="3 "></span></a>WITH u,p,t,m, COUNT(m.screen_name) AS count
+</span><span id="__span-48-4"><a id="__codelineno-48-4" name="__codelineno-48-4"></a><a href="#__codelineno-48-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY count DESC
+</span><span id="__span-48-5"><a id="__codelineno-48-5" name="__codelineno-48-5"></a><a href="#__codelineno-48-5"><span class="linenos" data-linenos="5 "></span></a>RETURN u,p,t,m
+</span><span id="__span-48-6"><a id="__codelineno-48-6" name="__codelineno-48-6"></a><a href="#__codelineno-48-6"><span class="linenos" data-linenos="6 "></span></a>LIMIT 10
+</span></code></pre></div>
+Detalles de algunas de tus menciones</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1"></a><a href="#__codelineno-49-1"><span class="linenos" data-linenos="1 "></span></a>// Number of your mentions
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2"></a><a href="#__codelineno-49-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (u:User)-[:POSTS]-&gt;(t:Tweet)-[:MENTIONS]-&gt;(m:Me)
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3"></a><a href="#__codelineno-49-3"><span class="linenos" data-linenos="3 "></span></a>RETURN m.screen_name AS screen_name, COUNT(m.screen_name) AS count 
+</span></code></pre></div>
+<ol start="4">
+<li><strong>Seguidores más influyentes</strong></li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1"></a><a href="#__codelineno-50-1"><span class="linenos" data-linenos="1 "></span></a>// Most influential followers
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2"></a><a href="#__codelineno-50-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (follower:User)-[:FOLLOWS]-&gt;(u:User:Me)
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3"></a><a href="#__codelineno-50-3"><span class="linenos" data-linenos="3 "></span></a>RETURN follower.screen_name AS user, follower.followers AS followers
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4"></a><a href="#__codelineno-50-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY followers DESC
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5"></a><a href="#__codelineno-50-5"><span class="linenos" data-linenos="5 "></span></a>LIMIT 10
+</span></code></pre></div>
+<ol start="5">
+<li><strong>Hashtags mas usados</strong></li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1"></a><a href="#__codelineno-51-1"><span class="linenos" data-linenos="1 "></span></a>// The hashtags you have used most often
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2"></a><a href="#__codelineno-51-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (h:Hashtag)&lt;-[:TAGS]-(t:Tweet)&lt;-[:POSTS]-(u:User:Me)
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3"></a><a href="#__codelineno-51-3"><span class="linenos" data-linenos="3 "></span></a>WITH h, COUNT(h) AS Hashtags
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4"></a><a href="#__codelineno-51-4"><span class="linenos" data-linenos="4 "></span></a>ORDER BY Hashtags DESC
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5"></a><a href="#__codelineno-51-5"><span class="linenos" data-linenos="5 "></span></a>RETURN h.name, Hashtags
+</span><span id="__span-51-6"><a id="__codelineno-51-6" name="__codelineno-51-6"></a><a href="#__codelineno-51-6"><span class="linenos" data-linenos="6 "></span></a>LIMIT 10
+</span></code></pre></div>
+<ol start="6">
+<li><strong>Recomendaciones de seguidores.</strong> ¿Quién tuitea sobre ti, pero no lo sigues?</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1"></a><a href="#__codelineno-52-1"><span class="linenos" data-linenos="1 "></span></a>// Follower Recommendations - tweeting about you, but you don&#39;t follow
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2"></a><a href="#__codelineno-52-2"><span class="linenos" data-linenos="2 "></span></a>MATCH (ou:User)-[:POSTS]-&gt;(t:Tweet)-[mt:MENTIONS]-&gt;(me:User:Me)
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3"></a><a href="#__codelineno-52-3"><span class="linenos" data-linenos="3 "></span></a>WITH DISTINCT ou, me
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4"></a><a href="#__codelineno-52-4"><span class="linenos" data-linenos="4 "></span></a>WHERE (ou)-[:FOLLOWS]-&gt;(me) AND NOT (me)-[:FOLLOWS]-&gt;(ou)
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5"></a><a href="#__codelineno-52-5"><span class="linenos" data-linenos="5 "></span></a>RETURN ou.screen_name
+</span></code></pre></div>
+<ol start="7">
+<li><strong>Enlaces de retweets interesantes.</strong> ¿Qué enlaces retuiteas y con qué frecuencia se marcan como favoritos?</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1"></a><a href="#__codelineno-53-1"><span class="linenos" data-linenos="1 "></span></a>// Links from interesting retweets
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2"></a><a href="#__codelineno-53-2"><span class="linenos" data-linenos="2 "></span></a>MATCH
+</span><span id="__span-53-3"><a id="__codelineno-53-3" name="__codelineno-53-3"></a><a href="#__codelineno-53-3"><span class="linenos" data-linenos="3 "></span></a>  (:Me)-[:POSTS]-&gt;
+</span><span id="__span-53-4"><a id="__codelineno-53-4" name="__codelineno-53-4"></a><a href="#__codelineno-53-4"><span class="linenos" data-linenos="4 "></span></a>  (t:Tweet)-[:RETWEETS]-&gt;(rt)-[:CONTAINS]-&gt;(link:Link)
+</span><span id="__span-53-5"><a id="__codelineno-53-5" name="__codelineno-53-5"></a><a href="#__codelineno-53-5"><span class="linenos" data-linenos="5 "></span></a>RETURN
+</span><span id="__span-53-6"><a id="__codelineno-53-6" name="__codelineno-53-6"></a><a href="#__codelineno-53-6"><span class="linenos" data-linenos="6 "></span></a>  t.id_str AS tweet, link.url AS url, rt.favorites AS favorites
+</span><span id="__span-53-7"><a id="__codelineno-53-7" name="__codelineno-53-7"></a><a href="#__codelineno-53-7"><span class="linenos" data-linenos="7 "></span></a>ORDER BY
+</span><span id="__span-53-8"><a id="__codelineno-53-8" name="__codelineno-53-8"></a><a href="#__codelineno-53-8"><span class="linenos" data-linenos="8 "></span></a>  favorites DESC
+</span><span id="__span-53-9"><a id="__codelineno-53-9" name="__codelineno-53-9"></a><a href="#__codelineno-53-9"><span class="linenos" data-linenos="9 "></span></a>LIMIT 10
+</span></code></pre></div>
+<p>Mismo que el anterior, pero mostrando el nombre del usuario del tweet original</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1"></a><a href="#__codelineno-54-1"><span class="linenos" data-linenos=" 1 "></span></a>// Links from interesting retweets
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2"></a><a href="#__codelineno-54-2"><span class="linenos" data-linenos=" 2 "></span></a>MATCH
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3"></a><a href="#__codelineno-54-3"><span class="linenos" data-linenos=" 3 "></span></a>  (u:Me)-[:POSTS]-&gt;(t:Tweet)-[:RETWEETS]-&gt;(rt)-[:CONTAINS]-&gt;(link:Link)
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4"></a><a href="#__codelineno-54-4"><span class="linenos" data-linenos=" 4 "></span></a>MATCH
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5"></a><a href="#__codelineno-54-5"><span class="linenos" data-linenos=" 5 "></span></a>  (u:Me)-[:POSTS]-&gt;(t_link:Tweet)-[:RETWEETS]-&gt;(rt)&lt;-[:POSTS]-(m:User)
+</span><span id="__span-54-6"><a id="__codelineno-54-6" name="__codelineno-54-6"></a><a href="#__codelineno-54-6"><span class="linenos" data-linenos=" 6 "></span></a>RETURN
+</span><span id="__span-54-7"><a id="__codelineno-54-7" name="__codelineno-54-7"></a><a href="#__codelineno-54-7"><span class="linenos" data-linenos=" 7 "></span></a>  t.id_str AS tweet, link.url AS url, rt.favorites AS favorites, m.screen_name
+</span><span id="__span-54-8"><a id="__codelineno-54-8" name="__codelineno-54-8"></a><a href="#__codelineno-54-8"><span class="linenos" data-linenos=" 8 "></span></a>ORDER BY
+</span><span id="__span-54-9"><a id="__codelineno-54-9" name="__codelineno-54-9"></a><a href="#__codelineno-54-9"><span class="linenos" data-linenos=" 9 "></span></a>  favorites DESC
+</span><span id="__span-54-10"><a id="__codelineno-54-10" name="__codelineno-54-10"></a><a href="#__codelineno-54-10"><span class="linenos" data-linenos="10 "></span></a>LIMIT 10
+</span></code></pre></div>
+<ol start="8">
+<li><strong>Hashtags comunes.</strong> ¿Qué usuarios tuitean con algunos de tus mejores hashtags?</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1"></a><a href="#__codelineno-55-1"><span class="linenos" data-linenos=" 1 "></span></a>// Users tweeting with your top hashtags
+</span><span id="__span-55-2"><a id="__codelineno-55-2" name="__codelineno-55-2"></a><a href="#__codelineno-55-2"><span class="linenos" data-linenos=" 2 "></span></a>MATCH
+</span><span id="__span-55-3"><a id="__codelineno-55-3" name="__codelineno-55-3"></a><a href="#__codelineno-55-3"><span class="linenos" data-linenos=" 3 "></span></a>  (me:Me)-[:POSTS]-&gt;(tweet:Tweet)-[:TAGS]-&gt;(ht)
+</span><span id="__span-55-4"><a id="__codelineno-55-4" name="__codelineno-55-4"></a><a href="#__codelineno-55-4"><span class="linenos" data-linenos=" 4 "></span></a>MATCH
+</span><span id="__span-55-5"><a id="__codelineno-55-5" name="__codelineno-55-5"></a><a href="#__codelineno-55-5"><span class="linenos" data-linenos=" 5 "></span></a>  (ht)&lt;-[:TAGS]-(tweet2:Tweet)&lt;-[:POSTS]-(sugg:User)
+</span><span id="__span-55-6"><a id="__codelineno-55-6" name="__codelineno-55-6"></a><a href="#__codelineno-55-6"><span class="linenos" data-linenos=" 6 "></span></a>WHERE
+</span><span id="__span-55-7"><a id="__codelineno-55-7" name="__codelineno-55-7"></a><a href="#__codelineno-55-7"><span class="linenos" data-linenos=" 7 "></span></a>  sugg &lt;&gt; me
+</span><span id="__span-55-8"><a id="__codelineno-55-8" name="__codelineno-55-8"></a><a href="#__codelineno-55-8"><span class="linenos" data-linenos=" 8 "></span></a>  AND NOT
+</span><span id="__span-55-9"><a id="__codelineno-55-9" name="__codelineno-55-9"></a><a href="#__codelineno-55-9"><span class="linenos" data-linenos=" 9 "></span></a>  (tweet2)-[:RETWEETS]-&gt;(tweet)
+</span><span id="__span-55-10"><a id="__codelineno-55-10" name="__codelineno-55-10"></a><a href="#__codelineno-55-10"><span class="linenos" data-linenos="10 "></span></a>WITH
+</span><span id="__span-55-11"><a id="__codelineno-55-11" name="__codelineno-55-11"></a><a href="#__codelineno-55-11"><span class="linenos" data-linenos="11 "></span></a>  sugg, collect(distinct(ht)) as tags
+</span><span id="__span-55-12"><a id="__codelineno-55-12" name="__codelineno-55-12"></a><a href="#__codelineno-55-12"><span class="linenos" data-linenos="12 "></span></a>RETURN
+</span><span id="__span-55-13"><a id="__codelineno-55-13" name="__codelineno-55-13"></a><a href="#__codelineno-55-13"><span class="linenos" data-linenos="13 "></span></a>  sugg.screen_name as friend, size(tags) as common
+</span><span id="__span-55-14"><a id="__codelineno-55-14" name="__codelineno-55-14"></a><a href="#__codelineno-55-14"><span class="linenos" data-linenos="14 "></span></a>ORDER BY
+</span><span id="__span-55-15"><a id="__codelineno-55-15" name="__codelineno-55-15"></a><a href="#__codelineno-55-15"><span class="linenos" data-linenos="15 "></span></a>  common DESC
+</span><span id="__span-55-16"><a id="__codelineno-55-16" name="__codelineno-55-16"></a><a href="#__codelineno-55-16"><span class="linenos" data-linenos="16 "></span></a>LIMIT 20
+</span></code></pre></div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://orientdb.org">https://orientdb.org</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p><a href="https://github.com/twitter-archive/flockdb">https://github.com/twitter-archive/flockdb</a>&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p><a href="https://objectivity.com/infinitegraph/">https://objectivity.com/infinitegraph/</a>&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p><a href="https://neo4j.com">https://neo4j.com</a>&#160;<a class="footnote-backref" href="#fnref:4" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2023-2024 Jaime Rabasco - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jaimerabasco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<jaimerabasco@iesgrancapitan.org>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.indexes", "toc.follow", "navigation.top", "header.autohide", "announce.dismiss", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>

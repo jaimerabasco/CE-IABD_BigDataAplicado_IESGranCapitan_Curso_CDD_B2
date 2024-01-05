@@ -1,0 +1,1688 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/comput_paralela_distribuida.html">
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="../UD4%20-%20Apache%20Hadoop/index.html">
+      
+      
+      <link rel="icon" href="../images/logo.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.3">
+    
+    
+      
+        <title>Computación Paralela y Distribuida - Big Data Aplicado</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.50c56a3b.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="Computación Paralela y Distribuida - Big Data Aplicado" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD3 - Introducción a la computación paralela y distribuida/comput_paralela_distribuida.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/UD3%20-%20Introducci%C3%B3n%20a%20la%20computaci%C3%B3n%20paralela%20y%20distribuida/comput_paralela_distribuida.html" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="Computación Paralela y Distribuida - Big Data Aplicado" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://jaimerabasco.github.io/CE-IABD_BigDataAplicado_IESGranCapitan/assets/images/social/UD3 - Introducción a la computación paralela y distribuida/comput_paralela_distribuida.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ud-3-introduccion-a-la-computacion-paralela-y-distribuida" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../index.html" title="Big Data Aplicado" class="md-header__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Big Data Aplicado
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Computación Paralela y Distribuida
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo noche"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo noche" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-label="Cambiar a modo día"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Cambiar a modo día" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Big Data Aplicado" class="md-nav__button md-logo" aria-label="Big Data Aplicado" data-md-component="logo">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    Big Data Aplicado
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inicio
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metadatos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metadatos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guia_didactica.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Guía Didáctica
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD1 - Gestión de Soluciones
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD1 - Gestión de Soluciones
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/1_dis_const_soluc.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diseño y Construcción de Soluciones
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/2_proced_mecan_ingesta_datos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Procedimientos y Mecanismos de Ingesta de Datos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD1%20-%20Gesti%C3%B3n%20de%20soluciones/3_form_datos_almacenamiento.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Formato de Datos Adecuado para el Almacenamiento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD2 - Procesado y Presentación Datos Almacenados
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD2 - Procesado y Presentación Datos Almacenados
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/mongoDB.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MongoDB
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD2%20-%20Procesado%20y%20Presentaci%C3%B3n%20Datos%20Almacenados/neo4j.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neo4j
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD3 - Introducción a la computación paralela y distribuida
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD3 - Introducción a la computación paralela y distribuida
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Computación Paralela y Distribuida
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="comput_paralela_distribuida.html" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Computación Paralela y Distribuida
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-computacion-paralela" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Computación Paralela
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-computacion-distribuida" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Computación Distribuida
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-grid-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Grid Computing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-cloud-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Cloud Computing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Cloud Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-software-como-servicio-software-as-a-service-saas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.1 Software como servicio - Software as a Service (SaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-plataforma-como-servicio-paas-platform-as-a-service-paas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.2 Plataforma como servicio PaaS - Platform as a Service (PaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#343-infraestructura-como-servicio-infrastructure-as-a-service-iaas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.3 Infraestructura como servicio - Infrastructure as a Service (IaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#344-soluciones-cloud-compiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.4 Soluciones Cloud Compiting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#345-principales-servicios-de-datos-en-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.5 Principales Servicios de Datos en Cloud
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-big-data-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Big Data Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Big Data Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-etapas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.1 Etapas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#352-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.2. Arquitectura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#353-data-pipeline-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.3 Data Pipeline en la nube
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#354-bases-de-datos-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.4 Bases de datos en la nube
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-sistemas-de-archivos-distribuidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Sistemas de Archivos Distribuidos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-tolerancia-a-fallos-en-big-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 Tolerancia a fallos en Big Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Tolerancia a fallos en Big Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#371-tolerancia-a-fallos-en-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7.1 Tolerancia a fallos en batch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#372-tolerancia-a-fallos-en-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7.2 Tolerancia a fallos en Streaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../UD4%20-%20Apache%20Hadoop/index.html" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    UD4 - Apache Hadoop
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD4 - Apache Hadoop
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/1_Plataforma_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plataforma y Ecosistema Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/2_Hadoop_HDFS.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    HDFS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/3_Hadoop_Map_Reduce.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Map Reduce
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/4_Hadoop_Yarn.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Yarn
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UD4%20-%20Apache%20Hadoop/5_Cluster_Hadoop.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cluster Hadoop
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../creditos.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Creditos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-computacion-paralela" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Computación Paralela
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-computacion-distribuida" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Computación Distribuida
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-grid-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Grid Computing
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-cloud-computing" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Cloud Computing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.4 Cloud Computing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#341-software-como-servicio-software-as-a-service-saas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.1 Software como servicio - Software as a Service (SaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#342-plataforma-como-servicio-paas-platform-as-a-service-paas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.2 Plataforma como servicio PaaS - Platform as a Service (PaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#343-infraestructura-como-servicio-infrastructure-as-a-service-iaas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.3 Infraestructura como servicio - Infrastructure as a Service (IaaS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#344-soluciones-cloud-compiting" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.4 Soluciones Cloud Compiting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#345-principales-servicios-de-datos-en-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4.5 Principales Servicios de Datos en Cloud
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-big-data-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5 Big Data Pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.5 Big Data Pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#351-etapas" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.1 Etapas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#352-arquitectura" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.2. Arquitectura
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#353-data-pipeline-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.3 Data Pipeline en la nube
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#354-bases-de-datos-en-la-nube" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.5.4 Bases de datos en la nube
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-sistemas-de-archivos-distribuidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.6 Sistemas de Archivos Distribuidos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-tolerancia-a-fallos-en-big-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7 Tolerancia a fallos en Big Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.7 Tolerancia a fallos en Big Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#371-tolerancia-a-fallos-en-batch" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7.1 Tolerancia a fallos en batch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#372-tolerancia-a-fallos-en-streaming" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.7.2 Tolerancia a fallos en Streaming
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="ud-3-introduccion-a-la-computacion-paralela-y-distribuida">UD 3 - Introducción a la Computación Paralela y Distribuida<a class="headerlink" href="#ud-3-introduccion-a-la-computacion-paralela-y-distribuida" title="Permanent link">&para;</a></h1>
+<h2 id="31-computacion-paralela">3.1 Computación Paralela<a class="headerlink" href="#31-computacion-paralela" title="Permanent link">&para;</a></h2>
+<p><em>Evolución de computación desde Von Neuman a los sistemas actuales de computación</em></p>
+<p>Tanto el volumen de datos como la velocidad de procesamiento han seguido una trayectoria de aumento exponencial desde el inicio de la era digital, pero el primero ha aumentado a un ritmo mucho mayor que el segundo. De esta forma se hace imprescindible contar con nuevas herramientas como la computación o el procesamiento paralelo para conseguir salvar la brecha generada. Además de proporcionar una mayor capacidad de procesamiento para hacer frente a los requisitos de los grandes conjuntos de datos, el procesamiento paralelo tiene el potencial de aliviar el <em>cuello de botella de von Neumann</em> cuando los datos necesarios no pueden ser suministrados al procesador a la velocidad requerida.</p>
+<p>Los algoritmos y arquitecturas de procesamiento paralelo se estudian desde desde la década de 1950 como una forma de mejorar el rendimiento de los sistemas de información y, más recientemente, como una forma de mejorar su rendimiento manteniendo el consumo de energía bajo control.</p>
+<p>Los primeros supercomputadores seguían una arquitectura de flujo de instrucciones único, flujo de datos múltiple <strong>(SIMD)</strong> que utiliza una única unidad de ejecución de instrucciones, con cada instrucción aplicada a múltiples elementos de datos simultáneamente. La otra clase principal de arquitecturas paralelas se conoce como <strong>MIMD</strong>, en la que hay múltiples flujos de instrucciones además de múltiples flujos de datos. Los superordenadores modernos, incluida la mayoría de las entradas de la lista Top500 Supercomputers, tienden a ser MIMD. Los superordenadores de gama alta suelen utilizarse para realizar cálculos numéricos intensivos con números en <strong>coma flotante</strong>. Por ello, su rendimiento se mide en operaciones de coma flotante por segundo, o <strong>FLOPS</strong>.</p>
+<p>Por otro lado, la <strong>ley de Moore</strong> muestra el crecimiento exponencial en el número de transistores, los cuáles eran doblados aproximadamente cada 2 años. Hasta principios del siglo XXI, el aumento de la densidad de los chips iba acompañado de una mejora exponencial del rendimiento, debido a las correspondientes frecuencias de reloj más altas. Después, las líneas de tendencia de la frecuencia de reloj y el rendimiento comenzaron a aplanarse, sobre todo por el efecto de la disipación del calor, lo que dificultó la refrigeración de los circuitos superdensos. En ese momento, la atención a la mejora del rendimiento se trasladó al uso de múltiples procesadores independientes en el mismo chip, dando lugar a los procesadores multinúcleo. Esto provoca que el rendimiento sea más eficiente desde el punto de vista energético, dado que el consumo de energía es una función superlineal de el rendimiento de un solo núcleo.</p>
+<p>Sin embargo, <strong>la aparición del Big Data</strong> requiere una reevaluación de la forma en que medir el rendimiento de los superordenadores. Mientras que la clasificación de FLOPS la entrada/salida y el ancho de banda de almacenamiento asumen un papel más importante en la determinación del rendimiento (un superordenador que realiza cálculos científicos puede recibir escasos parámetros de entrada y un conjunto de ecuaciones que definen un un modelo y luego realizar cálculos durante días o semanas, antes de arrojar las respuestas), <strong>muchas aplicaciones Big Data requieren un flujo constante de nuevos datos que se introducen, se almacenan, se procesan y se ofrecen como resultados</strong>, con lo que posiblemente se ponga a prueba la memoria y el ancho de banda de E/S, capacidades que suelen ser más limitadas que la velocidad de cálculo.</p>
+<p>Por tanto, en los últimos años, se han introducido muchos modelos abstractos de procesamiento paralelo en un esfuerzo por para representar con precisión los <strong>recursos de procesamiento, almacenamiento y comunicación</strong>, junto con sus interacciones, permitiendo a los desarrolladores de aplicaciones paralelas visualizar y aprovechar las ventajas disponibles, <strong>sin tener que ocuparse en detalles específicos de la máquina</strong>. Con un <strong>alto nivel de abstracción</strong> podemos distinguir los enfoques de <strong>procesamiento paralelo de datos y de control</strong>.</p>
+<p>El <strong>paralelismo de datos</strong> implica la partición de un gran conjunto de datos entre múltiples nodos de procesamiento, cada uno de ellos operando sobre una parte asignada de los datos, antes de que los resultados parciales se terminen combinando. A menudo, en las aplicaciones Big Data el mismo conjunto de operaciones debe ejecutarse en cada subconjunto de datos, por lo que el procesamiento SIMD es la alternativa más eficiente. En la práctica, sin embargo, la sincronización de un gran número de nodos de procesamiento introduce sobrecargas e ineficiencias que reducen las ganancias de velocidad. Por eso puede ser beneficioso dirigir los nodos de procesamiento para que ejecuten un único programa en múltiples de datos de forma asíncrona, con una coordinación dispersa.</p>
+<p>En los esquemas basados en el <strong>paralelismo de control</strong> varios nodos operan independientemente resolviendo subproblemas, sincronizándose entre sí mediante el envío de mensajes informativos y de sincronización. Dicha independencia permite emplear recursos heterogéneos y recursos específicos de la aplicación sin interferencias cruzadas ni recursos más lentos obstaculicen el progreso de los más rápidos. La Ley de Amdahl (Gene Amdahl, 1867) dice que a no ser que un programa secuencial pudiera ser completamente paralelizado, el speedup o aceleración que se obtendrá será muy limitado independientemente del número de núcleos disponibles.</p>
+<h2 id="32-computacion-distribuida">3.2 Computación Distribuida<a class="headerlink" href="#32-computacion-distribuida" title="Permanent link">&para;</a></h2>
+<p>Un <strong>sistema distribuido es una colección de ordenadores autónomos enlazados por una red de ordenadores y soportados por un software que hace que la colección actúe como un servicio integrado</strong>.</p>
+<p>Algunos de los aspectos más importantes a tener en cuenta dentro de un sistema distribuido actual son los siguientes:</p>
+<ul>
+<li>
+<p><strong>Apertura</strong>: El sistema debe ser ampliable, es decir, debe existir la posibilidad de añadir nuevos recursos y servicios compartidos y que éstos se puedan poner a disposición de los diferentes componentes que forman el sistema.</p>
+</li>
+<li>
+<p><strong>Concurrencia</strong>: Los distintos componentes de un sistema distribuido pueden demandar acceder a un recurso simultáneamente. Es necesario que el sistema esté diseñado para permitirlo.</p>
+</li>
+<li>
+<p><strong>Escalabilidad</strong>: Un sistema es escalable si mantiene su eficiencia cuando hay un incremento significativo en el número de recursos y el número de usuarios.</p>
+</li>
+<li>
+<p><strong>Heterogeneidad</strong>: El sistema distribuido puede estar formado por una variedad de diferentes redes, sistemas operativos, hardware, etc. A pesar de estas diferencias, los componentes deben poder interactuar entre sí.</p>
+</li>
+<li>
+<p><strong>Tolerancia a fallos</strong>: Cualquier sistema puede fallar. En el caso de un sistema distribuido a pesar del fallo de un componente tiene que ser posible que el sistema siga funcionando.</p>
+</li>
+<li>
+<p><strong>Transparencia</strong>: La transparencia permite que ciertos aspectos del sistema sean invisibles a las aplicaciones, por ejemplo, la ubicación, el acceso, la concurrencia, la gestión de los fallos, la replica de la información, etc.</p>
+</li>
+</ul>
+<p>Los sistemas computacionales distribuidos son sistemas de computación de alto rendimiento que están formados por conjuntos de ordenadores interconectados mediante una red que ofrecen funcionalidades diversas algunas de ellas propias de la supercomputación, tales como la computación paralela. Entre estos sistemas cabe destacar los basados en <strong>Grid</strong> o en arquitecturas <strong>Cloud</strong> (en la nube) y de forma más básica, los denominados <strong>Clusters</strong>.</p>
+<p>Los <strong>Clusters</strong> están formados por colecciones de computadores de similares características interconectados mediante una red. Los computadores hacen uso de un mismo sistema operativo y un middleware que se encarga de abstraer y virtualizar los diferentes computadores del sistema dando la visión al usuario de un sistema operativo único. Los <em>clusters</em> son sistemas dedicados a la supercomputación. El sistema operativo de un cluster es estándar y, por lo tanto, es el <em>middleware</em> quien provee de librerías que permiten la computación paralela.</p>
+<figure style="align: center; ">
+    <img src="images/Figura3.1_Esquema_organizacion_servicio_supercomputacion_cluster.png">
+    <figcaption>Figura 3.1: Esquema de organización de un servicio de supercomputación en Cluster. (Fuente: UCLM) </figcaption>
+</figure>
+
+<h2 id="33-grid-computing">3.3 Grid Computing<a class="headerlink" href="#33-grid-computing" title="Permanent link">&para;</a></h2>
+<p>Se define <strong>Grid Computing</strong> como una infraestructura persistente que soporta la computación y actividades de datos intensivas a través de múltiples organizaciones virtuales. Evidentemente, todas las implementaciones de <em>Grid Computing</em> se basan en la comunicación a través de Internet mediante distintos protocolos. Actualmente existen dos aproximaciones para la implementación de arquitecturas en Grid: <strong>Arquitecturas SOA</strong> y <strong>Arquitecturas Peer-to-Peer</strong>. </p>
+<p>Las <strong>arquitecturas SOA</strong> (Service Oriented Architecture) están basadas en la agregación de servicios a los que se accede remotamente de forma independiente de las plataformas en las que se ejecutan y del lenguaje en los que están implementados. Un <strong>servicio</strong> es un programa autocontenido con una función y un interfaz bien definido. Este tipo de servicios se adapta muy bien a los sistemas <em>Grid</em> ya que ofrece, entre otras ventajas, una alta portabilidad al permitir interactuar servicios de sistemas heterogéneos a través de interfaces que son independientes de las plataformas donde están alojados; interoperabilidad a través de protocolos estándar de redes, y a su vez, permiten el uso de clientes ligeros que aíslan a los consumidores de la complejidad de los servicios.</p>
+<figure style="align: center; ">
+    <img src="images/Figura3.2_Esquema_arquitectura_SOA.png">
+    <figcaption>Figura 3.2: Arquitecturas SOA. (Fuente: appseconnect)</figcaption>
+</figure>
+
+<p>Las <strong>arquitecturas Peer-To-Peer</strong> son agregaciones de programas equivalentes que se ejecutan sobre plataformas heterogéneas y que comparten parte de su memoria y capacidad de cómputo. Estas plataformas presentan una alta tolerancia a errores, dado que cada nodo tiene la misma función que el resto. Este tipo de arquitecturas son más habituales en un tipo de computación conocido como <em>Volunteer Computing</em>.</p>
+<p><strong>Escalabilidad</strong></p>
+<p>La tecnología <em>Grid</em> permite de una forma muy fácil la escalabilidad, puesto que los nodos que actúan en ella son independientes a los demás. Esto permite que, si alguno de los nodos falla, se pueden delegar las tareas que estuviera realizando al resto de nodos, lo que permite seguir con la ejecución del programa y evitar paradas que puedan afectar a la efectividad de la obtención de los resultados deseados.</p>
+<p>Además, este tipo de estructuración permite que se puedan escalar los recursos para cada computador o nodo de forma independiente en caso de que fuera necesario, sin tener que afectar al resto de computadoras. En el caso de actualizaciones que deban sufrir los equipos para obtener nuevos fragmentos de programas o mejoras acerca de ciertos aspectos, esta tecnología permite realizarlas de forma sencilla. Esto se consigue mediante la obtención de los recursos que vayan a verse afectados por estas actualizaciones y son puestas <em>offline</em> y retiradas de la red. Mientras tanto, las tareas que suelan llevar son delegadas al resto de computadoras que se encuentren en las otras localizaciones. Esto permite que las actualizaciones se procedan en forma de cascada, haciendo que el trabajo en los proyectos que se estén llevando a cabo no se vea afectado.</p>
+<p><strong>Ventajas e Inconvenientes</strong></p>
+<p>Algunas de las ventajas que ofrece el <em>Grid Computing</em> son las siguientes:</p>
+<ul>
+<li>Es robusta en cuanto a sucesos que pudieran afectar a parte de su infraestructura, por ejemplo, catástrofes naturales. Los entornos Grid son bastante modulares e independientes, lo que reduce sus puntos vulnerables a fallo.</li>
+<li>Es una manera muy eficaz de utilizar los recursos de una manera óptima y eficiente en una organización.</li>
+<li>Puede utilizarse para balanceos de carga y conexiones de red que sean redundantes ofreciendo muchas facilidades en cuanto a la escalabilidad y actualización y siendo muy conveniente para ejecutar programas o tareas de forma paralela.</li>
+</ul>
+<p>Algunas de las desventajas que tiene esta tecnología son: los riesgos de seguridad que ofrece la participación de diferentes entidades heterogéneas y la necesidad de una interconexión de altas prestaciones.</p>
+<figure style="align: center; ">
+    <img src="images/Figura3.3_GridComputing_vs_CloudComputing.jpg">
+    <figcaption>Figura 3.3: Grid Computing vs Cloud Computing. (Fuente: Medium)</figcaption>
+</figure>
+
+<h2 id="34-cloud-computing">3.4 Cloud Computing<a class="headerlink" href="#34-cloud-computing" title="Permanent link">&para;</a></h2>
+<p>La computación en nube o Cloud Computing es una de las tecnologías actuales de mayor implantación. El concepto de computación en la nube supone el siguiente paso evolutivo de la computación distribuida superando los sistemas legacy y evolucionando hacia los sistemas distribuidos a gran escala. El objetivo de este modelo informático es hacer un mejor uso de los recursos distribuidos, ponerlos en común para lograr un mayor rendimiento y poder abordar problemas de computación a gran escala.</p>
+<p>En la computación en la nube se deben abordar diferentes retos como: <strong>la virtualización, la escalabilidad, la interoperabilidad, la calidad del servicio, la tolerancia a errores y los modelos de nube</strong>.</p>
+<p>Básicamente, la nube puede definirse mediante tres modelos distintos:</p>
+<ul>
+<li>
+<p><strong>Nube privada</strong>: Los datos y procesos se gestionan dentro de la organización sin las restricciones de ancho de banda de la red, los requerimientos de seguridad y los requisitos legales que supone el uso de los servicios de la nube pública a través de redes públicas y abiertas. Algunos ejemplos son Amazon VPC.</p>
+</li>
+<li>
+<p><strong>Nube pública</strong>: Describe la computación en nube en el sentido tradicional, los recursos son facilitados de forma dinámica sobre una base de auto-servicio a través de aplicaciones web/servicios web, desde un proveedor externo que comparte recursos. Algunos ejemplos son <em>Azure</em> o <em>Amazon EC2</em>.</p>
+</li>
+<li>
+<p><strong>Nube híbrida</strong>: El entorno está formado por múltiples proveedores internos y/o externos. Algunos ejemplos son <em>RightScale, Asigra Hybrid Cloud Backup, Carpathia, Skytap y Elastra</em>.</p>
+</li>
+</ul>
+<p>La arquitectura en la nube o <em>arquitectura cloud</em> subyacen en una infraestructura que se se utiliza sólo cuando se necesita para extraer los recursos necesarios bajo demanda y realizar un trabajo específico, para luego ceder los recursos innecesarios. Los servicios son accesibles en cualquier parte del mundo, y la nube aparece como un único punto de acceso para todas las necesidades informáticas de los usuarios. Las arquitecturas en la nube abordan las principales dificultades que rodean el procesamiento de datos a gran escala. Existen diferentes categorías de servicios en la nube, como infraestructura, plataforma y aplicaciones. Estos servicios se prestan y consumen en tiempo real a través de Internet.</p>
+<h3 id="341-software-como-servicio-software-as-a-service-saas">3.4.1 Software como servicio - Software as a Service (SaaS)<a class="headerlink" href="#341-software-como-servicio-software-as-a-service-saas" title="Permanent link">&para;</a></h3>
+<p>El software como servicio es una plataforma multiusuario. Utiliza recursos comunes y una instancia única tanto del código objeto de una aplicación como de la base de datos subyacente para dar soporte a varios clientes simultáneamente. Este servicio es el nuevo método en la distribución de software de aplicaciones. Algunos ejemplos de los principales proveedores son SalesForce.com, NetSuite, Oracle, IBM y Microsoft, etc.</p>
+<h3 id="342-plataforma-como-servicio-paas-platform-as-a-service-paas">3.4.2 Plataforma como servicio PaaS - Platform as a Service (PaaS)<a class="headerlink" href="#342-plataforma-como-servicio-paas-platform-as-a-service-paas" title="Permanent link">&para;</a></h3>
+<p>La plataforma como servicio proporciona a los desarrolladores una plataforma que incluye todos los sistemas y entornos, que comprende el ciclo de vida completo de desarrollo, prueba despliegue y alojamiento de aplicaciones web como un servicio prestado con una base en la nube. Proporciona una forma más fácil de desarrollar aplicaciones empresariales y diversos servicios a través de Internet. El PaaS se plantea para facilitar el mantenimiento de la infraestructura de trabajo de los diferentes sistemas. Su aplicación debe reducir el tiempo de desarrollo al ofrecer un amplio abanico de herramientas y servicios fácilmente disponibles, y con una rápida capacidad de escalado.</p>
+<h3 id="343-infraestructura-como-servicio-infrastructure-as-a-service-iaas">3.4.3 Infraestructura como servicio - Infrastructure as a Service (IaaS)<a class="headerlink" href="#343-infraestructura-como-servicio-infrastructure-as-a-service-iaas" title="Permanent link">&para;</a></h3>
+<p>Infraestructura como servicio ofrece acceso basado en la web a almacenamiento y potencia de cálculo. Por ello, no se necesita gestionar o controlar la infraestructura subyacente de la nube, pero si que se tiene control sobre los sistemas operativos, el almacenamiento y las aplicaciones desplegadas. Además de una mayor flexibilidad, una de las principales ventajas de IaaS es el esquema de pago basado en el uso. Esto permite a los clientes pagar a medida que crecen. Otra ventaja importante es la de utilizar siempre la última tecnología.</p>
+<p>El camino hacia la computación en nube está impulsado por muchos factores, como la <em>ubicuidad del acceso</em> (todo lo que se necesita es un navegador), la <em>facilidad de gestión</em> (no hay necesidad de mejorar la experiencia del usuario, ya que no se necesita configuración o copia de seguridad), y una <em>menor inversión</em> (solución empresarial asequible desplegada sobre la base del pago por uso del hardware, con un software de sistemas proporcionado por los proveedores de la nube). Además, la computación en nube ofrece muchas ventajas a los proveedores, como una infraestructura fácil de gestionar dado que el centro de datos tiene un hardware y un software de sistema homogéneos.</p>
+<h3 id="344-soluciones-cloud-compiting">3.4.4 Soluciones Cloud Compiting<a class="headerlink" href="#344-soluciones-cloud-compiting" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Amazon Elastic Map Reduce (EMR)</strong><ul>
+<li><a href="https://aws.amazon.com/es/emr/">Sitio Oficial</a></li>
+<li><a href="https://docs.aws.amazon.com/es_es/emr/latest/ManagementGuide/emr-what-is-emr.html">¿Qué es Amazon EMR?</a></li>
+</ul>
+</li>
+<li><strong>Microsoft Azure HDInsight</strong><ul>
+<li><a href="https://azure.microsoft.com/es-es/products/hdinsight/">Sitio Oficial</a></li>
+<li><a href="https://learn.microsoft.com/es-es/azure/hdinsight/hdinsight-overview">¿Qué es Azure HDInsight?</a></li>
+</ul>
+</li>
+<li><strong>Google Dataproc</strong><ul>
+<li><a href="https://cloud.google.com/dataproc?hl=es">Sitio Oficial</a></li>
+<li><a href="https://cloud.google.com/dataproc/docs/concepts/overview?hl=es-419">¿Qué es Dataproc?</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="345-principales-servicios-de-datos-en-cloud">3.4.5 Principales Servicios de Datos en Cloud<a class="headerlink" href="#345-principales-servicios-de-datos-en-cloud" title="Permanent link">&para;</a></h3>
+<p>Para comprender mejor los servicios que ofrecen los proveedores cloud, podemos clasificarlos en varios grupos en función de sus características:</p>
+<ul>
+<li><strong>Ingesta</strong></li>
+<li><strong>Procesamiento</strong></li>
+<li><strong>Almacenamiento</strong></li>
+<li><strong>Análisis</strong></li>
+</ul>
+<p>En la siguiente tabla se muestran estos grupos de servicios, con la categoría a la que pertenecen, las alternativas en los principales proveedores de servicios cloud (HDInsight, AWS y GCP) y su opción Open Source.</p>
+<table>
+<thead>
+<tr>
+<th><strong>GRUPO</strong></th>
+<th><strong>CATEGORÍA</strong></th>
+<th><strong>AZURE</strong></th>
+<th><strong>AWS</strong></th>
+<th><strong>GCP</strong></th>
+<th><strong>OPEN SOURCE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ingesta</td>
+<td>ETL</td>
+<td>Data Factory</td>
+<td>Glue</td>
+<td>Dataprep</td>
+<td>Apache NiFi</td>
+</tr>
+<tr>
+<td>Ingesta</td>
+<td>Message Queue</td>
+<td>Streaming</td>
+<td>EventHub</td>
+<td>Kinesis</td>
+<td>Pub/Sub</td>
+</tr>
+<tr>
+<td>Ingesta</td>
+<td>Scheduling</td>
+<td>Logic Apps, Batch</td>
+<td>Stepfunctions, Cloudwatch, EventBridge</td>
+<td>Cloud Scheduler, Cloud Batch, Cloud Workflows, Cloud Composer</td>
+<td>Apache Airflow</td>
+</tr>
+<tr>
+<td>Procesamiento</td>
+<td>Procesamiento</td>
+<td>Functions, Data Factory, Databricks</td>
+<td>Lambda, EMR, Glue, Databricks</td>
+<td>Cloud Functions, DataProc, DataFlow</td>
+<td>Apache Flink, Apache Spark, Apache Hadoop</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>Relacional</td>
+<td>Azure SQL DB</td>
+<td>RDS</td>
+<td>CloudSQL, BigTable</td>
+<td>MySQL, MariaDB, PostgreSQL</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>NoSQL</td>
+<td>CosmosDB</td>
+<td>DynamoDB, DocumentDB</td>
+<td>Datastore, Firestore</td>
+<td>Elasticsearch, Apache Cassandra, MongoDB</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>OLAP, Data Warehouse</td>
+<td>Synapse Analytics, Snowflake</td>
+<td>Redshift, Athena, Snowflake</td>
+<td>BigQuery, Snowflake</td>
+<td>Apache Druid, Apache Hive, Presto</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>Objetos</td>
+<td>Blob Storage</td>
+<td>S3</td>
+<td>Cloud Storage</td>
+<td>Minio, Ceph</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>Cache</td>
+<td>Cache for Redis</td>
+<td>ElastiCache</td>
+<td>Memorystore</td>
+<td>Memcached, Redis</td>
+</tr>
+<tr>
+<td>Almacenamiento</td>
+<td>Grafo</td>
+<td>CosmosDB</td>
+<td>Neptune</td>
+<td>Vertex AI</td>
+<td>Neo4j</td>
+</tr>
+<tr>
+<td>Análisis</td>
+<td>Machine Learning</td>
+<td>Azure ML</td>
+<td>SageMaker</td>
+<td>Cloud datalab, Vertex AI</td>
+<td>Tensorflow, Keras, PyTorch</td>
+</tr>
+<tr>
+<td>Análisis</td>
+<td>Business Intelligence</td>
+<td>PowerBI</td>
+<td>Quicksight</td>
+<td>Data Studio, Looker</td>
+<td>Grafana, Apache Superset</td>
+</tr>
+</tbody>
+</table>
+<h2 id="35-big-data-pipeline">3.5 Big Data Pipeline<a class="headerlink" href="#35-big-data-pipeline" title="Permanent link">&para;</a></h2>
+<p>Una <strong>pipeline de datos</strong> es una construcción lógica que representa un proceso dividido en fases. Las pipelines de datos se caracterizan por definir el conjunto de pasos o fases y las tecnologías involucradas en un proceso de movimiento o procesamiento de datos. Por tanto, <strong>el proceso de extremo a extremo de recopilar datos, convertirlos en conocimiento, entrenar un modelo, difundir conocimiento y aplicar el modelo cuando y donde sea necesario la acción para lograr el objetivo empresarial está unido por un <em>data pipeline</em></strong>.</p>
+<h3 id="351-etapas">3.5.1 Etapas<a class="headerlink" href="#351-etapas" title="Permanent link">&para;</a></h3>
+<p>Un proceso de big data tiene cinco etapas:</p>
+<ul>
+<li><strong>Captura</strong> de datos de fuentes internas y externas. Las fuentes de datos (aplicaciones móviles, sitios web, aplicaciones web, microservicios, dispositivos IoT, etc.) están instrumentadas para capturar datos relevantes.</li>
+<li><strong>Ingerir</strong> datos a través de trabajos por lotes o flujos. Las fuentes instrumentadas bombean los datos a varios puntos de entrada (HTTP, MQTT, cola de mensajes, etc.). También puede haber trabajos para importar datos de servicios como Google Analytics. Los datos pueden tener dos formas: blobs por lotes y secuencias.</li>
+<li>
+<p><strong>Almacenar</strong> en Data Lake o Data Warehouse. A menudo, los datos/eventos sin procesar se almacenan en Data Lakes y se limpian, se eliminan duplicados y anomalías y se transforman para ajustarse al esquema. Finalmente, estos datos listos para consumir se almacenan en un Data Warehouse.</p>
+</li>
+<li>
+<p><strong>Procesamiento de análisis</strong> informáticos y/o funciones de aprendizaje automático. Aquí es donde ocurren el análisis, la ciencia de datos y el aprendizaje automático. La computación puede ser una combinación de procesamiento por lotes (batch) y/o en flujo (streaming). Los modelos y los conocimientos se almacenan en el almacén de datos.</p>
+</li>
+<li><strong>Uso</strong> en dashboards, ciencia de datos y aprendizaje automático. La información se entrega a través de dashboards, correos electrónicos, SMS, notificaciones, microservicios, etc. </li>
+</ul>
+<figure style="align: center; ">
+    <img src="images/Figura3.4_Estados_BigData_Pipeline.webp">
+    <figcaption>Figura 3.4: Estados de un BigData Pipeline. (Fuente: ml4devs)</figcaption>
+</figure>
+
+<h3 id="352-arquitectura">3.5.2. Arquitectura<a class="headerlink" href="#352-arquitectura" title="Permanent link">&para;</a></h3>
+<p>Hay varias opciones de arquitecturas que ofrecen diferentes compensaciones de rendimiento y costes. Es decir, habrá distintas soluciones arquitectónicas dependiendo del tipo de soporte, análisis y BI que necesitemos y recursos de los que dispongamos en cada caso.Para decidir que arquitectura, deberías hacerte algunas preguntas para identificar requisitos, como por ejemplo:</p>
+<ul>
+<li>¿Necesita información en tiempo real o por lotes?</li>
+<li>¿Cuál es la tolerancia al estancamiento de su aplicación?</li>
+<li>¿Cuáles son las restricciones de costes?</li>
+<li>...</li>
+</ul>
+<p>Como ejemplo general que abarca un gran numero de escenarios de arquitecturas, tomamos <a href="https://en.wikipedia.org/wiki/Lambda_architecture">Lambda Architecture</a>, cuya arquitectura de procesamiento de datos está diseñada para manejar cantidades masivas de datos en batch y streaming.</p>
+<figure style="align: center; ">
+    <img src="images/Figura3.5_Arquitectura_Estados_BigData_Pipeline.webp">
+    <figcaption>Figura 3.5: Arquitectura de un BigData Pipeline. (Fuente: ml4devs)</figcaption>
+</figure>
+
+<h3 id="353-data-pipeline-en-la-nube">3.5.3 Data Pipeline en la nube<a class="headerlink" href="#353-data-pipeline-en-la-nube" title="Permanent link">&para;</a></h3>
+<p>En la imagen se muestra Los Data Pipeline en los diferentes servicios de Cloud Computing. Cada uno de ellos se corresponde estrechamente con la arquitectura general de big data pipeline analizada anteriormente. Podemos utilizarlos como referencia para seleccionar tecnologías adecuadas a nuestras necesidades.</p>
+<figure style="align: center; width:900px;">
+    <img src="images/Figura3.6_BigData_Pipeline.webp">
+    <figcaption>Figura 3.6: BigData Pipeline on AWS, Azure and GCP. (Fuente: ml4devs)</figcaption>
+</figure>
+
+<h3 id="354-bases-de-datos-en-la-nube">3.5.4 Bases de datos en la nube<a class="headerlink" href="#354-bases-de-datos-en-la-nube" title="Permanent link">&para;</a></h3>
+<p>Como información adicional, y para completar el gran ecosistema de cloud computing, añadimos la siguiente imagen donde se muestran las diferentes Bases de Datos en los servicios de Cloud Computing.</p>
+<figure style="align: center; width:900px;">
+    <img src="images/Figura3.7_BigData_Cloud_Database.jpg">
+    <figcaption>Figura 3.7: Cloud DataBase on AWS, Azure and GCP. (Fuente: ml4devs)</figcaption>
+</figure>
+
+<h2 id="36-sistemas-de-archivos-distribuidos">3.6 Sistemas de Archivos Distribuidos<a class="headerlink" href="#36-sistemas-de-archivos-distribuidos" title="Permanent link">&para;</a></h2>
+<p>El sistema de archivos es un subsistema de un sistema operativo cuyo objetivo es organizar, recuperar y almacenar datos archivos. Un <strong>sistema de archivos distribuido (DFS) es un sistema de archivos con archivos compartidos en recursos de almacenamiento dispersos en una red</strong>. El DFS hace fácil compartir archivos entre aplicaciones cliente de forma controlada y autorizada. Asimismo, los usuarios pueden beneficiarse de los servicios de un DFS ya que pueden localizar todos los archivos compartidos dentro de un único servidor o nombre de dominio.</p>
+<p>Una gran variedad de aplicaciones de análisis Big Data dependen de entornos distribuidos para analizar grandes cantidades de datos. A medida que aumenta la cantidad de datos, la necesidad de proporcionar soluciones de almacenamiento fiables y eficientes se ha convertido en una de las principales preocupaciones de los administradores de infraestructuras de Big Data. Los sistemas y métodos tradicionales de almacenamiento no son óptimos debido a sus restricciones de precio o rendimiento, mientras que el DFS se ha desarrollado con el fin de facilitar  compartir archivos tanto en redes locales (LAN) como en redes de área amplia (WAN).</p>
+<p>Una de las principales características de los DFS es la <strong>transparencia</strong> que hace que los archivos se lean, se almacenen y se gestionen en las máquinas cliente, mientras que el procesamiento real se produce en los servidores, es decir, el DFS implementa sus políticas de control de acceso y almacenamiento a sus clientes de forma centralizada proporcionando su servicios a través de la red.</p>
+<p>El objetivo principal de la transparencia en el DFS es ocultar a los clientes el hecho de que los procesos y los recursos están distribuidos físicamente en la red y proporcionar una visión común de un sistema de archivos centralizado. Es decir, el DFS pretende ser <strong>invisible/transparente</strong> para los clientes, que consideran que el DFS es similar a un sistema de archivos local.</p>
+<p>Además de la transparencia, otro de los factores fundamentales en los DFS es la <strong>fiabilidad</strong>. Dado que el lugar de uso de los archivos puede ser diferente de su lugar de almacenamiento, los modos de fallo son sustancialmente más complejos en los DFS en comparación con los sistemas de archivos locales. La replica y la codificación de borrado son dos técnicas típicas para lograr una alta fiabilidad.</p>
+<p>Los DFS utilizan la replica haciendo varias copias de un archivo de datos en diferentes servidores. Cuando un cliente solicita el archivo, accede de forma transparente a una de las copias. Dentro de la estrategia de <strong>réplica</strong> la ubicación de las réplicas juega un papel crítico en tanto en el rendimiento como en la fiabilidad de los DFS. Las réplicas se almacenan en diferentes servidores según de acuerdo con un esquema de colocación. Muchos DFS (por ejemplo <strong>HDFS</strong>) utiliza por defecto la replica aleatoria en la que las réplicas se almacenan aleatoriamente en diferentes nodos, en diferentes racks, en diferentes ubicación geográfica, de modo que si se produce un fallo en cualquier parte del sistema, los datos siguen estando disponibles.</p>
+<p>Sin embargo, utilizando esta estrategia, no se puede separar eficazmente el <em>clúster</em> en niveles mientras se mantiene la consistencia del mismo y, por lo tanto, es bastante susceptible a la pérdida frecuente de datos debido a fallos. La implementación de <em>HDFS</em>  limita la colocación de réplicas de bloques a grupos más pequeños de nodos, lo que reduce la probabilidad de pérdida de bloques con múltiples fallos de nodos. </p>
+<p>El procedimiento de replica dispersa múltiples copias de un archivo, y los cambios tienen que propagarse a todas las réplicas. Esto hace que la consistencia de los datos sea un aspecto clave en el funcionamiento de los DFS.</p>
+<div class="admonition info">
+<p class="admonition-title"><strong>HDFS (Hadoop File System)</strong> es uno de los sistemas de archivos distribuidos más populares en la actualidad. Características</p>
+<p><strong>Arquitectura</strong>: Un clúster HDFS consiste en un único nodo de nombres (namenode), que es el nodo maestro que gestiona el espacio de nombres del sistema de archivos y regula el acceso a los archivos por parte de los clientes. El flujo de datos se dividido en bloques distribuidos entre los datanodes, que gestionan el almacenamiento en los nodos en los que se ejecutan.</p>
+<p><strong>Acceso</strong>: HDFS utiliza una librería de código que permite a los clientes leer, escribir y eliminar archivos y crear y eliminar directorios.</p>
+<p><strong>Replica</strong>: HDFS divide los datos en bloques que se replican a través de los datanodes de acuerdo con una política de colocación, por la cual cada datanode tiene como máximo una copia de un bloque y cada rack tiene como máximo dos copias del bloque.</p>
+<p><strong>Tolerancia a fallos</strong>: Cada datanode compara la versión del software yel ID del espacio de nombres con los del namenode. Si no coinciden, el datanode se apaga para preservar la integridad del sistema.</p>
+</div>
+<h2 id="37-tolerancia-a-fallos-en-big-data">3.7 Tolerancia a fallos en Big Data<a class="headerlink" href="#37-tolerancia-a-fallos-en-big-data" title="Permanent link">&para;</a></h2>
+<p>Todos los sistemas de Big Data necesitan manejar los fallos de software y hardware que se producen en el sistema después de su desarrollo, lo que beneficiará a los sistemas de diferentes maneras, incluyendo: recuperación de fallos, menor coste, mayor rendimiento, etc. La tolerancia a fallos es una configuración que evita que un ordenador o dispositivo de red falle en caso de un problema o error inesperado. Para hacer que un computador o una red tolerante a fallos requiere que los usuarios o las empresas piensen en cómo puede fallar un ordenador o dispositivo de red y tomen medidas que ayuden a prevenir ese tipo de fallos.</p>
+<p>El comportamiento de los sistemas Big Data se puede dividir en:</p>
+<ul>
+<li>
+<p><strong>Batch Processing</strong>: Procesamiento por lotes de datos en reposo. En este escenario, los datos de origen se cargan en los dispositivos de almacenamiento de datos, ya sea por la propia aplicación de origen o por un flujo de trabajo de orquestación (<em>orchestation workflow</em>). A continuación, los datos se procesan en el lugar por un trabajo paralelizado, que también puede ser iniciado por el flujo de trabajo de orquestación.</p>
+</li>
+<li>
+<p><strong>Stream Processing</strong>: Procesamiento continuo de datos en tiempo real, es decir, en cuando existe disponibilidad de datos estos se procesan de manera secuencial. Se establecen unos flujos de datos infinitos y sin límites de tiempo.</p>
+</li>
+</ul>
+<p>Dentro de estos dos escenarios se pueden definir diferentes estrategias de tolerancia a fallos como se explica a continuación.</p>
+<h3 id="371-tolerancia-a-fallos-en-batch">3.7.1 Tolerancia a fallos en batch<a class="headerlink" href="#371-tolerancia-a-fallos-en-batch" title="Permanent link">&para;</a></h3>
+<p>En el modelo de cálculo por lotes de Hadoop, las aplicaciones de dos principales mecanismos para hacer frente a los fallos son la replica de datos y el mecanismo de rollback (reversión).</p>
+<ul>
+<li>
+<p><strong>Replica de datos (Data Replication)</strong>: En el mecanismo de replica los datos estarán en varios nodos de datos diferentes. Cuando se necesita la replica de datos, cualquier nodo de datos, cuya comunicación no esté ocupada puede copiar los datos. La principal ventaja de esta tecnología es que puede recuperarse instantáneamente de un fallo. El inconveniente es que se produce un consumo de una alta cantidad de recursos y la posibilidad de que los datos sean inconsistentes.</p>
+</li>
+<li>
+<p><strong>Mecanismo de reversión (Rollback Mechanism)</strong>: El informe de la copia (<em>copy report</em>) se guardará periódicamente. Si se produce un fallo el sistema se limita a volver a un punto de control (<em>checkpoint</em>) y, a continuación, vuelve a iniciar la operación desde ese punto. El método adopta el concepto de <em>rollback</em>, es decir, el sistema volverá al trabajo anterior. Este método aumenta el tiempo de ejecución de todo el sistema, porque el <em>rollback</em> necesita hacer una copia de seguridad y comprobar que se guarda un estado consistente. En comparación con la replica supone más tiempo pero menos recursos.</p>
+</li>
+</ul>
+<h3 id="372-tolerancia-a-fallos-en-streaming">3.7.2 Tolerancia a fallos en Streaming<a class="headerlink" href="#372-tolerancia-a-fallos-en-streaming" title="Permanent link">&para;</a></h3>
+<p>En el sistema de <em>streaming</em>, hay tres tipos de estrategia para realizar la gestión de los fallos: la espera pasiva, la espera activa y la copia de seguridad ascendente.</p>
+<ul>
+<li><strong>Espera pasiva (Passive Standby)</strong>: El sistema hará regularmente una copia de seguridad del último estado en el nodo maestro a una copia del nodo réplica. Cuando se produzca un fallo, el estado del sistema se restaurará a partir de los datos de la copia de seguridad. La estrategia de replicación pasiva admite el caso de que la carga de datos sea mayor, pero el tiempo de recuperación se incrementa. Los datos de copia de seguridad pueden guardarse en un sistema de almacenamiento distribuido para reducir el tiempo de recuperación.</li>
+</ul>
+<figure style="align: center; ">
+    <img src="images/Figura3.8_Esquema_nodos_streaming.png">
+    <figcaption>Figura 3.8: Esquema de nodos en streaming. Upstream Nu y downstream Nd. (Fuente: UCLM) </figcaption>
+</figure>
+
+<ul>
+<li>
+<p><strong>Espera activa (Active Standby)</strong>: Cuando el sistema transmite datos para el nodo maestro, también transmite una copia de los datos para una replica del nodo al mismo tiempo. Cuando el nodo maestro falla, una de las réplicas del nodo asume completamente el trabajo, y los nodos suplentes necesitan la asignación de los mismos recursos del sistema. De esta manera, el tiempo de recuperación del fallo es más corto, pero el rendimiento de los datos es menor. También desperdicia más recursos del sistema.</p>
+</li>
+<li>
+<p><strong>Copia de seguridad ascendente (Upstream Backup)</strong>. Cada nodo maestro almacena su propio estado y los datos de salida en un archivo de registro. Cuando un nodo maestro falla, el nodo maestro anterior en el flujo (upstream) reproducirá una copia de los datos en un archivo de registro al nodo correspondiente con el fin de recalcular las operaciones. Esta estrategia necesita más tiempo para reconstruir el estado de la recuperación, por lo que el tiempo de recuperación de fallos tiende a ser largo. La estrategia de copia de seguridad ascendente es una mejor opción en unas circunstancias de escasez de recursos.</p>
+</li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Volver al principio
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      2023-2024 Jaime Rabasco - Licencia CC BY-NC-SA
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jaimerabasco" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="mailto:<jaimerabasco@iesgrancapitan.org>" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M498.1 5.6c10.1 7 15.4 19.1 13.5 31.2l-64 416c-1.5 9.7-7.4 18.2-16 23s-18.9 5.4-28 1.6L284 427.7l-68.5 74.1c-8.9 9.7-22.9 12.9-35.2 8.1S160 493.2 160 480v-83.6c0-4 1.5-7.8 4.2-10.7l167.6-182.9c5.8-6.3 5.6-16-.4-22s-15.7-6.4-22-.7L106 360.8l-88.3-44.2C7.1 311.3.3 300.7 0 288.9s5.9-22.8 16.1-28.7l448-256c10.7-6.1 23.9-5.5 34 1.4z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.indexes", "toc.follow", "navigation.top", "header.autohide", "announce.dismiss", "content.tabs.link", "content.code.copy"], "search": "../assets/javascripts/workers/search.f886a092.min.js", "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7c377c4.min.js"></script>
+      
+    
+  </body>
+</html>
